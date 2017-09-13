@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
+
+</head>
+<body>
+<div style="width: 800px;height: 800px;" id="WWMAP"></div>
+</body>
+<script type="application/javascript">
+
+
+    $(function(){
+        var map = new BMap.Map("WWMAP");
+        map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
+        var mapType2 = new BMap.MapTypeControl({anchor: BMAP_ANCHOR_TOP_LEFT});
+        map.addControl(mapType2);
+        var opts = {offset: new BMap.Size(50, 85)}
+        map.addControl(new BMap.NavigationControl({offset: new BMap.Size(50, 85)}));
+    });
+</script>
+</html>

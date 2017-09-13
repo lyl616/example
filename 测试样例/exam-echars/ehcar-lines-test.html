@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.4.0/echarts.js"></script>
+</head>
+<body>
+<div id="bar" style="width: 600px;height: 600px;"></div>
+</body>
+<script type="application/javascript">
+
+    var myChart = echarts.init(document.getElementById('bar'));
+var option = {
+    title: {
+        text: '未来一周气温变化',
+        subtext: '纯属虚构'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter:function(params){
+
+
+            var obj = JSON.parse(JSON.stringify(params));
+            var itemName = obj.name;
+            var dataIndex = obj.dataIndex;
+            var str = "<ur style='text-align:left'><li style='color: #da70d6;font:bolder;'>" + itemName + "</li>";
+            for (var i = 0; i < option.series.length;i++) {
+                str = str + "<li>" + option.series[i].name + ":" + option.series[i].data[dataIndex] + "</li>";
+            }
+            str = str + "</ul>";
+            return str;
+//            console.log(params);
+        }
+    },
+    legend: {
+        data:['最高气温','最低气温']
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            dataView: {readOnly: false},
+            magicType: {type: ['line', 'bar']},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: ['周一','周二','周三','周四','周五','周六','周日']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} °C'
+        }
+    },
+    series: [
+        {
+            name:'最高气温',
+            type:'line',
+            data:[11, 11, 15, 13, 12, 13, 10]
+
+        },
+        {
+            name:'最低气温',
+            type:'line',
+            data:[1, -2, 2, 5, 3, 2, 0]
+        }
+    ]
+};
+
+    myChart.setOption(option);
+</script>
+</html>

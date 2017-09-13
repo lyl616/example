@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Google Map</title>
+    <style>
+        #map{
+            height:500px;
+            width:100%;
+        }
+    </style>
+    <script src="../js/jquery-1.6.2.min.js"></script>
+
+</head>
+<body>
+<h1>My Google Map<button onclick="addMarkers()">addMarkers</button></h1>
+<div id="map"></div>
+<script>
+    var map;
+    function initMap(){
+        var options = {
+            zoom:5,
+            center:{lat:37.088752,lng:110.1260082}
+        };
+         map = new google.maps.Map(document.getElementById('map'), options);
+
+        // Listen for click on map
+        google.maps.event.addListener(map, 'click', function(event){
+            // Add marker
+
+            addMarker({coords:event.latLng});
+        });
+
+    }
+
+    var markers =[];
+
+    function addMarkers() {
+        $.ajax({
+            type: "GET",
+            url: "leaflet0.7.7/data/country-city-co.json",
+            dataType: "json",
+            success: function (data) {
+                if (data.erroCode == 2000) {
+                    var list = data.result;
+
+                    for (var i = 0; i < list.length; i++) {
+                        var station = list[i];
+                        var marker = new google.maps.Marker({
+                            position:{lat:station.lat,lng:station.lng},
+                            map:map,
+                            icon:'images/marker/mark_sprite_1.png'
+                        });
+                    }
+
+
+
+                }
+            }
+        });
+    }
+
+
+ 
+
+    // Add Marker Function
+    function addMarker(props){
+        var marker = new google.maps.Marker({
+            position:props.coords,
+            map:map,
+            //icon:props.iconImage
+        });
+
+        // Check for customicon
+        if(props.iconImage){
+            // Set icon image
+            marker.setIcon(props.iconImage);
+        }
+
+        // Check content
+        if(props.content){
+            var infoWindow = new google.maps.InfoWindow({
+                content:props.content
+            });
+
+            marker.addListener('click', function(){
+                infoWindow.open(map, marker);
+            });
+        }
+    }
+</script>
+<script  src="http://ditu.google.cn/maps/api/js?key=AIzaSyCLwjXQNratDY1kEZs26AQi-ud6sh_BWr0&language=zh-CN&callback=initMap"></script>
+</body>
+</html>

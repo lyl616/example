@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.4.0/echarts.js"></script>
+</head>
+<body>
+<div id="bar" style="width: 600px;height: 400px;"></div>
+</body>
+
+
+<script>
+
+
+    $(function () {
+
+        var res = [
+            {text: '北', max: 1},
+            {text: '北西北', max: 1},
+            {text: '西北', max: 1},
+            {text: '西西北', max: 1},
+            {text: '西', max: 1},
+            {text: '西西南', max: 1},
+            {text: '西南', max: 1},
+            {text: '南西南', max: 1},
+            {text: '南', max: 1},
+            {text: '南东南', max: 1},
+            {text: '东南', max: 1},
+            {text: '东东南', max: 1},
+            {text: '东', max: 1},
+            {text: '东东北', max: 1},
+            {text: '东北', max: 1},
+            {text: '北东北', max: 1}
+        ];
+        var myChart = echarts.init(document.getElementById('bar'));
+        var option = option = {
+            title: {
+                text: '多雷达图'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+//            legend: {
+//                x: 'center',
+//                data:['降水量','蒸发量']
+//            },
+            radar: [
+
+                {
+//                    indicator: (function () {
+//                        var res = [];
+//                        for (var i = 1; i <= 16; i++) {
+//                            res.push({text: i + '月', max: 0.4});
+//                        }
+//                        return res;
+//                    })(),
+                    indicator: res,
+                    center: ['75%', '40%'],
+                    radius: 100
+                }
+            ],
+            series: [
+
+                {
+                    type: 'radar',
+//                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    data: [
+                        {
+//                            name: '降水量',
+                            value: [0.1, 0.6, 0.88, 0.4, 0.6, 0.2, 0.8, 0.3, 0.1, 0.4, 0.3, 0.8, 0.4, 0.9, 0.3, 0.7],
+                        },
+//                        {
+//                            name:'蒸发量',
+//                            value:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 35.6, 62.2, 32.6, 20.0, 6.4, 3.3]
+//                        }
+                    ]
+                }
+            ]
+        };
+        ;
+
+
+        myChart.setOption(option);
+
+
+    });
+</script>
+</html>

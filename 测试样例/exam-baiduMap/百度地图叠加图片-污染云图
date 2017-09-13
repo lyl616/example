@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1XjLLEhZhQNUzd93EjU5nOGQ"></script>
+    <!--<script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>-->
+    <!--<script type="text/javascript" src="js/Heatmap_min.js"></script>-->
+
+</head>
+<body>
+<!--<input type="text" id="cityName">-->
+<!--<button onclick="queryList()">查询</button>-->
+<div id="bMap" style="width: 1280px;height: 600px;"></div>
+<script type="application/javascript">
+    var map = "";
+    $(function () {
+        map = new BMap.Map("bMap");
+        map.enableScrollWheelZoom(true);
+        map.centerAndZoom("成都", 9);
+        getBoundary("成都");
+        getCloud();
+        map.addEventListener("click", showInfo);
+    });
+
+
+
+    function showInfo(e) {
+        console.log("{ \"lng\":" + e.point.lng + ",\"lat\": " + e.point.lat, ",\"count\":" + parseInt(100 * Math.random()) + " },");
+    }
+
+
+
+    function getCloud() {
+        var ch = new BMap.Point(102.562308,  28.505303), cm = new BMap.Point(105.313884,  31.666892 );
+        // var ch=new BMap.Point(60.42,10.01),cm=new BMap.Point(152.48,57.35);
+        var groundOverlayOptions = {
+            opacity: 0.4
+        };
+        imageLayer2 = new BMap.GroundOverlay(new BMap.Bounds(ch, cm), groundOverlayOptions);
+        map.addOverlay(imageLayer2);
+        var imgurl2 = "images/CD2017062113.png";
+        imageLayer2.setImageURL(imgurl2);
+    }
+
+    function getBoundary(name){
+        var bdary = new BMap.Boundary();
+//        var name = document.getElementById("districtName").value;
+        bdary.get(name, function(rs){       //获取行政区域
+//            map.clearOverlays();        //清除地图覆盖物
+            var count = rs.boundaries.length; //行政区域的点有多少个
+            for(var i = 0; i < count; i++){
+                var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight: 2, strokeColor: "#ff0000"}); //建立多边形覆盖物
+                map.addOverlay(ply);  //添加覆盖物
+                map.setViewport(ply.getPath());    //调整视野
+            }
+        });
+    }
+
+
+    //    var ch = new BMap.Point(54.25, 14.50), cm = new BMap.Point(151.85, 58.26);
+
+
+</script>
+</body>
+</html>

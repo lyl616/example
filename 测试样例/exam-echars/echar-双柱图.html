@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.4.0/echarts.js"></script>
+
+    <script>
+
+
+        $(function () {
+
+            var myChart = echarts.init(document.getElementById('bar'));
+            var option = {
+                title: {
+                    text: '区间浓度占比'
+                }, tooltip: {
+                    trigger: 'item',
+                    formatter: function (params) {
+                        console.log(params);
+                        return params.name + " pm25<br/>" + "在0-200占比:" + params.value + "%";
+                    }
+                },
+                toolbox: {
+                    show: false,
+                    feature: {
+                        mark: {show: true},
+                        dataView: {show: true, readOnly: false},
+                        magicType: {show: true, type: ['line', 'bar']},
+                        restore: {show: true},
+                        saveAsImage: {show: true}
+                    }
+                },
+                calculable: true,
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: ['任城区', '市辖区']
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        max: 100,
+                        axisLabel: {
+                            show: true,
+                            interval: 'auto',
+                            formatter: '{value} %'
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        name: '百分比',
+                        type: 'bar',
+                        data: [20, 40]
+                    }
+                ]
+            };
+
+
+            myChart.setOption(option);
+        });
+    </script>
+
+</head>
+<body>
+<div id="bar" style="width: 600px;height: 400px;"></div>
+</body>
+</html>

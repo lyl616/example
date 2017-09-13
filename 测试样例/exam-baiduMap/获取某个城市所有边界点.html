@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1XjLLEhZhQNUzd93EjU5nOGQ"></script>
+    <!--<script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>-->
+    <!--<script type="text/javascript" src="js/Heatmap_min.js"></script>-->
+
+</head>
+<body>
+<input type="text" id="cityName">
+<button onclick="queryList()">查询</button>
+<textarea rows="100" id="valTxt" cols="200"></textarea>
+<script type="application/javascript">
+
+    function queryList() {
+        var bdary = new BMap.Boundary();
+        var cityName = $("#cityName").val();
+        bdary.get(cityName, function (rs) {       //获取行政区域
+            //这里是用户自己的函数。
+            //这里是用户自己的函数。
+//        console.info(rs);
+
+            $("#valTxt").val(rs.boundaries[0])
+
+
+            //document.writeln(rs.boundaries[0]);
+            //document.write(rs.boundaries[0]);
+        });
+    }
+
+
+</script>
+</body>
+</html>

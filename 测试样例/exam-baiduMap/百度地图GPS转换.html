@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1XjLLEhZhQNUzd93EjU5nOGQ"></script>
+
+
+</head>
+<body>
+
+GPS>>
+经度：<input type="text" id="gps_lng" value="104.1432037">
+纬度：<input type="text" id="gps_lat" value="30.6838913">
+
+<br/>
+
+
+百度>>
+经度：<input type="text" id="bd_lng">
+纬度：<input type="text" id="bd_lat"><br/>
+<button type="button" onclick="convertLagLng()">转换</button>
+<div id="bMap" style="width: 1256px;height: 600px;"></div>
+
+
+<script type="application/javascript">
+    // 百度地图API功能
+    //GPS坐标
+
+
+    //坐标转换完之后的回调函数
+    translateCallback = function (data) {
+        if (data.status === 0) {
+            var pt = data.points[0];
+            var marker = new BMap.Marker(pt);
+            bm.addOverlay(marker);
+            var label = new BMap.Label("转换后的百度坐标（正确）", {offset: new BMap.Size(20, -10)});
+            marker.setLabel(label); //添加百度label
+            bm.setCenter(pt);
+            $("#bd_lng").val(pt.lng);
+            $("#bd_lat").val(pt.lat);
+        }
+    }
+
+
+    function convertLagLng() {
+
+
+        var gps_lng = $("#gps_lng").val();
+        if (gps_lng == "" || gps_lng == null) {
+            alert("gps_lng");
+            return false;
+        }
+
+        var gps_lat = $("#gps_lat").val();
+        if (gps_lat == "" || gps_lat == null) {
+            alert("请输入gps_lat");
+            return false;
+        }
+
+        var gpsPoint = new BMap.Point(gps_lng, gps_lat);
+
+
+        //添加gps marker和label
+        var markergg = new BMap.Marker(gpsPoint);
+        bm.addOverlay(markergg); //添加GPS marker
+        var labelgg = new BMap.Label("未转换的GPS坐标（错误）", {offset: new BMap.Size(20, -10)});
+        markergg.setLabel(labelgg); //添加GPS label
+
+        var pointArr = [];
+        pointArr.push(gpsPoint);
+        var convertor = new BMap.Convertor();
+        convertor.translate(pointArr, 1, 5, translateCallback)
+
+    }
+    var bm;
+    $(function () {
+        var x = 116.32715863448607;
+        var y = 39.990912172420714;
+        var ggPoint = new BMap.Point(x, y);
+        //地图初始化
+        bm = new BMap.Map("bMap");
+        bm.centerAndZoom(ggPoint, 15);
+
+        bm.addControl(new BMap.NavigationControl());
+    });
+
+
+</script>
+</body>
+</html>

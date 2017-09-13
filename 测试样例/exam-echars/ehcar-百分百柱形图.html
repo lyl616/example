@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.4.0/echarts.js"></script>
+    <!--<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>-->
+
+    <!--<script type="text/javascript" src="js/echarts-3.1.10/dist/echarts.min.js"></script>-->
+    <!--<script type="text/javascript" src="js/echarts-3.1.10/dist/extension/dataTool.min.js"></script>-->
+</head>
+<body>
+<div id="bar"style="width: 600px;height: 400px;"></div>
+</body>
+<script type="application/javascript">
+
+    var myChart = echarts.init(document.getElementById('bar'));
+    var data1 = ["北", "东北", "东", "东南", "南", "西南", "西", "西北"];
+
+    var data2 = ['-',12,12,12,12,12,12,12];
+    var data3 = [13,13,13,13,13,13,13,13];
+    var data4 = [14,14,14,14,14,14,14,14];
+    var data5 = [15,15,15,15,15,15,15,15];
+    var data6 = [16,16,16,16,16,16,16,16];
+    var data7 = [17,17,17,17,17,17,17,17];
+
+    var option = {
+        title: {
+            text: '占比趋势分析',
+            left: 'left'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            },
+            formatter: "{b0}<br />{a0}: {c0}%<br />{a1}: {c1}%<br />{a2}:{c2}%<br />{a3}: {c3}%<br />" +
+            "{a4}: {c4}%<br />{a5}: {c5}%"
+
+        },
+        legend: {
+            data: ['优', '良', '轻度污染', '中度污染', '重度污染','严重污染'],
+//            orient: 'vertical',
+//            right: 'right',
+//            bottom: 'center',
+        },
+        grid: {
+            left: '3%',
+            right: '15%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            data: data1
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}%'  //在这加%
+            }
+        },
+        series: [
+            {
+                name: '优',
+                type: 'bar',
+                stack: '总量' ,
+                data: data2,
+                itemStyle: {
+                    normal: {
+                        color: '#00E500'
+                    }
+                }
+            },
+            {
+                name: '良',
+                type: 'bar',
+                stack: '总量' ,
+                data: data3,
+                itemStyle: {
+                    normal: {
+                        color: '#FFFF00'
+                    }
+                }
+            },
+            {
+                name: '轻度污染',
+                type: 'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'insideTop',
+                        formatter: '{c}%'
+                    }
+                },
+                data: data4,
+                itemStyle: {
+                    normal: {
+                        color: '#FF7E00'
+                    }
+                }
+            },
+            {
+                name: '中度污染',
+                type: 'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'insideTop',
+                        formatter: '{c}%'
+                    }
+                },
+                data: data5,
+                itemStyle: {
+                    normal: {
+                        color: '#FF0000'
+                    }
+                }
+            },{
+                name: '重度污染',
+                type: 'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'insideTop',
+                        formatter: '{c}%'
+                    }
+                },
+                data: data6,
+                itemStyle: {
+                    normal: {
+                        color: '#99004C'
+                    }
+                }
+            },{
+                name: '严重污染',
+                type: 'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'insideTop',
+                        formatter: '{c}%'
+                    }
+                },
+                data: data7,
+                itemStyle: {
+                    normal: {
+                        color: '#7E0023'
+                    }
+                }
+            }
+        ]
+    };
+    myChart.setOption(option);
+</script>
+</html>
