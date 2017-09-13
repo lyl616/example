@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="application/javascript" src="js/jquery.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="application/javascript">
+
+
+    //   var[][] RANGE_AQI = {
+    //    { 0, 50, 100, 150, 200, 300 },
+    //    { 0, 50, 100, 150, 200, 300, 400, 500 }, { 0, 50, 100, 150, 200, 300, 400, 500 } };
+    //   var[][] RANGE_PM25 = { { 0, 35, 75, 115, 150, 250 },
+    //    { 0, 50, 150, 250, 350, 420, 500, 500 }, { 0, 50, 150, 250, 350, 420, 500, 500 } };
+    //   var[][] RANGE_PM10 = { { 0, 50, 150, 250, 350, 420 },
+    //    { 0, 35, 75, 115, 150, 250, 350, 600 }, { 0, 35, 75, 115, 150, 250, 350, 600 } };
+    //   var[][] RANGE_CO = { { 0, 5, 10, 35, 60, 90 }, { 0, 5, 10, 35, 60, 90, 120, 150 },
+    //    { 0, 2, 4, 14, 24, 36, 48, 60 } };
+    //   var[][] RANGE_SO2 = { { 0, 150, 500, 650, 800, 1600 }, { 0, 150, 500, 650, 800 },
+    //    { 0, 50, 150, 475, 800, 1600, 2100, 2620 } };
+    //   var[][] RANGE_O3 = { { 0, 160, 200, 300, 400, 800 },
+    //    { 0, 160, 200, 300, 400, 800, 1000, 1200 }, { 0, 100, 160, 215, 265, 800 } };
+    //   var[][] RANGE_NO2 = { { 0, 100, 200, 700, 1200, 2340 },
+    //    { 0, 100, 200, 700, 1200, 2340, 3090, 3840 }, { 0, 40, 80, 180, 280, 565, 750, 940 } };
+
+
+    var RANGE_AQI = [0, 50, 100, 150, 200, 300];
+    var RANGE_PM25 = [0, 50, 100, 150, 200, 300];
+    var RANGE_PM10 = [0, 50, 150, 250, 350, 420];
+    var RANGE_SO2 = [0, 150, 500, 650, 800, 1600];
+    var RANGE_CO = [0, 5, 10, 35, 60, 90];
+    var RANGE_O3 = [0, 160, 200, 300, 400, 800];
+    var RANGE_NO2 = [0, 100, 200, 700, 1200, 2340];
+
+
+    function getRangeByType(type) {
+        if (type == "aqi") {
+            return [0, 50, 100, 150, 200, 300];
+        }
+        else if (type == "pm25") {
+            return [0, 50, 100, 150, 200, 300];
+        }
+        else if (type == "pm10") {
+            return [0, 50, 150, 250, 350, 420];
+        }
+        else if (type == "so2") {
+            return [0, 150, 500, 650, 800, 1600];
+        }
+        else if (type == "co") {
+            return [0, 5, 10, 35, 60, 90];
+        }
+        else if (type == "o3") {
+            return [0, 160, 200, 300, 400, 800];
+        }
+        else if (type == "no2") {
+            return [0, 100, 200, 700, 1200, 2340];
+        }else{
+            return [0, 50, 100, 150, 200, 300];
+        }
+    }
+
+
+    function computeLevel(value, range, level) {
+
+        if (value == null) {
+            return [-1, 0, 0];
+
+        }
+//    var  range = RANGE_DATA;
+        var beginIndex = 0;
+        var beginValue = 0;
+        var endValue = 0;
+
+        var index = 0;
+        // 是否找到区间,如果找不到,则会大于最大值或小于最小值
+        var flag = false;
+        for (var i = 0; i < range.length; i++) {
+            if (i != range.length - 1 && value >= range[i] && value <= range[i + 1]) {
+                flag = true;
+                beginIndex = i;
+                beginValue = range[i];
+                endValue = range[i + 1];
+                break;
+            }
+        }
+        if (flag) {// 查找到区间，把浓度级别赋值给index
+            index = beginIndex + 1;// 浓度级别 ，从1开始到 6.
+        } else {// 未查找到区间，小于0或大于最大值
+            if (value < range[0]) {
+                index = -1; // 浓度值小于0
+            } else if (value > range[range.length - 1]) {
+                if (level == 1)// 计算空气质量指数级别
+                    index = 6; // >300 属于严重污染
+                else
+                    index = 9999;// 浓度值大于最大区间.爆表了
+            }
+        }
+        // 左区间索引，左区间值，右区间值，右区间索引
+//        var returnValue = [4];
+//        returnValue[0] = index;
+//        returnValue[1] = beginValue;
+//        returnValue[2] = endValue;
+//        returnValue[3] = index + 1;
+//        return returnValue;
+
+        return index;
+    }
+
+
+    $(function () {
+        var  type="pm10";
+        var rang = getRangeByType(type);
+        var lev=computeLevel(158,rang,1);
+        alert(lev);
+//        alert(computeLevel(455, RANGE_AQI, 1)[0]);
+    });
+</script>
+</body>
+</html>

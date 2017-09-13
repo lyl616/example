@@ -1,0 +1,1430 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN" >
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>中国空气质量分布图|中国污染地图|真气网污染地图|真气网环境大数据中心</title>
+    <link rel="shortcut icon" href="resource/icons/logo.png">
+    <meta name="keywords" content="中国PM2.5查询,真气网,空气质量分布图,污染地图,真气网污染地图,真气网环境大数据中心">
+    <meta name="description" content="真气网是千人计划PM2.5特别防治小组旗下杭州真气环保科技有限公司倾力研发的环境大数据平台，提供未来五日空气质量预报（PM2.5预报），PM2.5历史数据查询，全国空气质量污染地图分布，PM2.5数据挖掘分析及可视化展示，室内微环境监测及健康指导，通过环境大数据的挖掘分析，真实反应公众生活微环境的空气污染水平，真实评估空气污染的健康威胁与影响，真正解决公众微环境空气质量水平，重污染天气保护特定敏感人群，持续长久的服务公众体内真气提升，打造健康生活。">
+    <link rel="stylesheet" type="text/css" href="resource/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="resource/css/style.css?v=1.2" type="text/css">
+    <link rel="stylesheet" href="resource/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+    <style>
+        marquee{
+            margin:3px 0 0 0;
+        }
+        @keyframes mymove
+        {
+            0% {top:0px;display: none;}
+            50% {top:10px;}
+            50% {top:0px;}
+        }
+    </style>
+</head>
+<body style="height:100%;padding:0px;overflow:hidden;">
+<div  style="height:48px;line-height:48px;padding-right:0px;">
+    <div class="navbar-header hidden-md" style="margin-top:4px;margin-left:10px;">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="/" style="padding:0px"><img src="resource/img/logo.png" height="40px" /></a>
+    </div>
+    <div class="navbar-collapse collapse navbar-right" style="margin-right:0px;margin-top:10px;">
+        <div id="btn-group1" class="btn-group btn-group-sm hidden-xs hidden-sm" style="float:left;margin-right:30px;">
+            <button type="button" class="btn btn-default btnregiongroup" style="display:none" value="中国">中国</button>
+            <button type="button" class="btn btn-default btnregiongroup" value="全国">全国</button>
+            <button type="button" class="btn btn-default btnregiongroup" value="京津冀">京津冀</button>
+            <button type="button" class="btn btn-default btnregiongroup" value="长三角">长三角</button>
+            <button type="button" class="btn btn-default btnregiongroup" value="珠三角">珠三角</button>
+            <button type="button" class="btn btn-default btnregiongroup" value="中原地区">中原地区</button>
+            <button type="button" class="btn btn-default btnregiongroup hidden-md" value="西部地区">西部地区</button>
+            <button type="button" class="btn btn-default btnregiongroup hidden-md" value="东北地区">东北地区</button>
+        </div>
+        <div id="btn-group2" class="btn-group btn-group-sm hidden-xs hidden-sm" style="float:left">
+            <button type="button" class="btn btn-default btnitemgroup" value="AQI">AQI</button>
+            <button type="button" class="btn btn-default btnitemgroup" value="PM2.5">PM2.5</button>
+            <button type="button" class="btn btn-default btnitemgroup" value="PM10">PM10</button>
+            <button type="button" class="btn btn-default btnitemgroup" value="SO2">SO2</button>
+            <button type="button" class="btn btn-default btnitemgroup" value="NO2">NO2</button>
+            <button type="button" class="btn btn-default btnitemgroup" value="CO">CO</button>
+            <button type="button" class="btn btn-default btnitemgroup" value="O3">O3</button>
+            <button type="button" class="btn btn-default btnitemgroup" value="INDEX">综指</button>
+            <button type="button" class="btn btn-default btnitemgroup" value="TEMP">温度</button>
+            <button type="button" class="btn btn-default btnitemgroup" value="HUMI">湿度</button>
+            <button type="button" class="btn btn-default btnitemgroup" value="WD">风向</button>
+            <button type="button" class="btn btn-default btnitemgroup" value="WS">风力</button>
+        </div>
+    </div><!--/.nav-collapse -->
+</div>
+<div id="allmap" style="width:100%;height:100%;overflow: hidden;margin:0;"></div>
+<div id="" style="position:absolute;top:80px;right:9px;background:rgba(255,255,255,0.8);padding:4px;display: none">
+    <input type="radio" name="source" value="1" onclick="loadData()" /> 官方发布数据 <br/>
+    <input type="radio" name="source" value="2" checked="checked" onclick="loadData()" /> 统一标准计算
+</div>
+<div style="position:absolute;top:80px;right:11px;background:rgba(255,255,255,0.8);padding:5px;display: none">
+    <select id="mapstyle" class="easyui-combobox" name="mapstyle" style="width:100px;height: 28px;">
+        <option value="normal">默认风格</option>
+        <option value="midnight" selected="true">午夜蓝风格</option>
+    </select>
+</div>
+<div id="txtTime" style="position:absolute;top:50px;left:60px;padding:4px;background:rgba(255,255,255,0.9);z-index:2000;"></div>
+<div style="position:absolute;top:80px;left:60px;padding:4px;background:rgba(255,255,255,0.9);z-index:2000;">
+    <a href="https://map.zq12369.com/" target="_blank">点击体验真气网新版风场复合污染地图<img src="https://www.zq12369.com/resource/img/new.gif" height="18px" /></a>
+</div>
+
+<div id="showText" style="position:absolute;top:150px;right:10px;">
+    <button id="publish" class="btn btn-info" value="1" style="margin-bottom:0px" data-toggle="modal" data-target="#myModal">
+        发表弹幕
+    </button>
+    <br>
+    <button id="shield" class="btn" value="0">
+        屏蔽弹幕
+    </button>
+    <button id="openText" class="btn btn-info" value="1" style="display: none">
+        启用弹幕
+    </button>
+</div>
+
+<div id="mainText" style="position:absolute;bottom:30px;width:100%;height:120px;font-size:20px">
+    <!--  <marquee scrollAmount=6 id="mq1" class="floating"></marquee>
+     <marquee scrollAmount=8 id="mq2" class="floating"></marquee>
+     <marquee scrollAmount=7 id="mq3" class="floating"></marquee>
+     <marquee scrollAmount=5 id="mq4" class="floating"></marquee>
+     <marquee scrollAmount=4 id="mq5" class="floating"></marquee>
+     <marquee scrollAmount=5 id="mq6" class="floating"></marquee> -->
+    <!-- <marquee scrollAmount=6 id="mq7" class="floating"></marquee> -->
+</div>
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="margin-top:100px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel" style="text-align: center">请输入弹幕内容</h4>
+            </div>
+            <div class="modal-body">
+
+                <textarea rows="4" cols="76" style="resize:none" id="floatContent"></textarea>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" style="color:black!important" id="save">提交弹幕</button>
+                <button  id="closed" type="button" class="btn btn-default" data-dismiss="modal" style="color:black!important">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="tips hidden-xs">
+    <div style="text-align:center;">
+        <div class='weixintip' style="float:right;background:rgba(0,0,0,0.5);color:white;">
+            <img src='resource/img/health/weixin/zhenqiweixin.jpg' width="128px" height="128px"/><br/>
+            关注真气网
+        </div>
+        <div class='weixintip' style="position: absolute;right: 0;bottom: 230px; background:rgba(0,0,0,0.5);color:white;">
+            <img src='resource/img/zanzhu.png' width="128px" height="128px"/><br/>
+            打赏真气网
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    <table id="statustip" class="leveltip">
+        <tr>
+            <td id='level1' style="background-color:#43ce17;color:#fff">优</td>
+            <td id='level2' style="background-color:#efdc31;color:#fff">良</td>
+            <td id='level3' style="background-color:#fa0;color:#fff">轻度污染</td>
+            <td id='level4' id='level1' id='level1' style="background-color:#ff401a;color:#fff">中度污染</td>
+            <td id='level5' id='level1' style="background-color:#d20040;color:#fff">重度污染</td>
+            <td id='level6' style="background-color:#9c0a4e;color:#fff">严重污染</td>
+        </tr>
+    </table>
+</div>
+
+<div id="btn-group3" class="btn-group btn-group-xs " style="float:right;position: absolute;top: 90px;right: 10px;">
+    <button type="button" class="btn btn-default btntypegroup" value="POINT">站点</button>
+    <button type="button" class="btn btn-default btntypegroup" value="REGION">区域</button>
+    <button type="button" class="btn btn-default btntypegroup" value="BOTH">混合</button>
+</div>
+
+<div id='graphplay' style="display:none;position: absolute;bottom: 0px;left: 100px;width: 60%;background: rgba(0,0,0,0.5);color:#fff;padding:5px;">
+
+    <img id='btnPaly' src='resource/img/pause.png' height="50px" style="float: left;margin-top:3px;cursor:hand"  />
+    <div style="float: left;margin-left:10px;width: 90%; ">
+        <p>
+            <label for="time">发布时间:</label>
+            <label type="text" id="publishtime" style="border:0; font-weight:bold;"></label>
+        </p>
+        <div id="slider-range-min" style="margin-top: -5px"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="resource/js/jquery-1.9.1.min.js?v=0.1"></script>
+<script type="text/javascript" src="resource/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="resource/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resource/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="resource/js/chart.js?v=1.0"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=FovGfLyaU2eYMMQaiq8jEKIU&s=1"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+<script type="text/javascript" src="resource/js/crypto_zq-min.js"></script>
+<script type="text/javascript" src="resource/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="resource/js/banWords.js"></script>
+<script type="text/javascript" src="resource/js/crypto.js"></script>
+<script type="text/javascript">
+    //var map = new BMap.Map("allmap");            // 创建Map实例
+    var map = new BMap.Map("allmap",{minZoom:5,maxZoom:15});
+    var b = new Base64();
+    var fdbtn=0;
+    var citys = '北京';
+
+    var ip = '124.192.240.26';
+
+    if(ip=="61.149.194.129" ||ip=="27.191.130.70" ||ip=="61.142.113.125"||ip=="162.221.197.107"){
+        //162.221.197.107 骂人
+
+        $('#showText').children().remove();
+    }
+
+
+    var showBanner = $.cookie('showBanner');
+
+    if(showBanner==0){
+        $('#mainText').hide();
+        $('#publish').hide();
+        $('#shield').hide();
+        $('#openText').show();
+    }else{
+        $('#mainText').show();
+        $('#publish').show();
+        $('#shield').show();
+        $('#openText').hide();
+    }
+
+    var usercenter=$.cookie('usercenter');
+    var usertype=$.cookie('usertype');
+    var userzoom=$.cookie('userzoom');
+    var item = "AQI";
+    var type = 'POINT';
+    var DATA;
+    var playflag = true;
+    map.centerAndZoom('中国',5);
+
+    var navigation = new BMap.NavigationControl();
+    //navigation.setOffset(new BMap.Size(10, 50));
+    map.addControl(navigation);
+    map.addControl(new BMap.ScaleControl());
+    map.addControl(new BMap.OverviewMapControl());
+    map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+    map.enableScrollWheelZoom(true);             //开启鼠标滚轮缩放
+
+    var curtime = "";
+
+    var h=new BMap.Point(60.42,10.01),m=new BMap.Point(152.48,57.35);
+    groundOverlayOptions={opacity:1};
+    var imageLayer=new BMap.GroundOverlay(new BMap.Bounds(h,m),groundOverlayOptions);
+
+    // 添加定位控件
+    var geolocationControl = new BMap.GeolocationControl();
+    geolocationControl.setOffset(new BMap.Size(10, 50));
+    geolocationControl.addEventListener("locationSuccess", function(e){
+        // 定位成功事件
+        var address = '';
+        address += e.addressComponent.province;
+        address += e.addressComponent.city;
+        address += e.addressComponent.district;
+        address += e.addressComponent.street;
+        address += e.addressComponent.streetNumber;
+        alert("当前定位地址为：" + address);
+    });
+    geolocationControl.addEventListener("locationError",function(e){
+        // 定位失败事件
+        alert(e.message);
+    });
+    map.addControl(geolocationControl);
+
+
+
+
+    $(function(){
+
+        //提交弹幕
+        $('#save').on('click',function(){
+
+            $('#mainText').show();
+            $.cookie('showBanner',1,{path: '/', expires: 10});
+            var content = $('#floatContent').val();
+
+
+            var lastcookie = $.cookie('floatcontent');
+
+            if($.trim(lastcookie)!="")
+            {
+                if($.trim(content)==$.trim(lastcookie)){
+                    alert("请不要刷屏,可能会封IP哦,谢谢合作!");
+                    return;
+                }
+            }
+            if($.trim(content)=="")
+            {
+                alert('内容为空,请输入弹幕内容');
+                return;
+            }
+
+            var newContent = ban(content);
+            newContent = filterHTML(newContent);
+            insertFloat(newContent);
+            $.cookie('floatcontent',content,{path: '/', expires: 10});
+        });
+        getFloatContent();
+
+        $('#publish').on('click',function(){
+
+            $('#floatContent').val("");
+        });
+
+        //屏蔽字幕
+        $('#shield').on('click',function(){
+
+            $('#mainText').hide();
+            $.cookie('showBanner',0,{path: '/', expires: 10});
+            $('#publish').hide();
+            $('#shield').hide();
+            $('#openText').show();
+        });
+
+
+        //启用弹幕
+        $('#openText').on('click',function(){
+            $.cookie('showBanner',1,{path: '/', expires: 10});
+            $('#publish').show();
+            $('#shield').show();
+            $('#openText').hide();
+            $('#mainText').show();
+        });
+
+        $( "#slider-range-min" ).slider({
+            range: "min",
+            value: 24,
+            min: 1,
+            max: 24,
+            slide: function( event, ui ) {
+                var index = ui.value;
+                showGraph(index);
+            }
+        });
+        $("#publishtime").html(curtime);
+
+        $(".btnitemgroup:first").addClass("btn-success");
+        $(".btnitemgroup").click(function()
+        {
+            item = $(this).val();
+            $(".btnitemgroup").removeClass("btn-success");
+            $(this).addClass("btn-success");
+
+            var maplevel = map.getZoom();
+            if(item=='AQI' || item=='PM2.5' || item=='PM10' || item=='SO2' || item=='NO2' || item=='CO' || item=='O3')
+            {
+                $("#btn-group3").show();
+                if(type=='REGION')
+                {
+                    $("#graphplay").show();
+                }
+            }
+            else
+            {
+                if(type=='REGION')
+                {
+                    $(".btntypegroup").eq(2).click();
+                }
+                $("#btn-group3").hide();
+                $("#graphplay").hide();
+            }
+
+            switch(item)
+            {
+                case 'AQI':
+                case 'PM2.5':
+                case 'PM10':
+                case 'SO2':
+                case 'NO2':
+                case 'CO':
+                case 'O3':setLevelTip('优','良','轻度污染','中度污染','重度污染','严重污染');break;
+                case 'INDEX':setLevelTip('0~4','4~6','6~8','8-10','10-12','12以上');break;
+                case 'WD':
+                case 'WS': setLevelTip('1级','2级','3级','4级','5级','6级以上');break;
+                case 'TEMP': setLevelTip('0℃以下','0~8℃','8~16℃','16-24℃','24-32℃','32℃以上');break;
+                case 'HUMI': setLevelTip('0~20%','20~40%','40~60%','60~80%','80-100%','100%');break;
+            }
+
+            //$(".btntypegroup").eq(0).click();
+            //loadData();
+            showMap(DATA);
+        });
+
+        $(".btntypegroup:first").addClass("btn-info");
+        $(".btntypegroup").click(function()
+        {
+
+            type = $(this).val();
+            usertype=type;
+            $.cookie('usertype',usertype,{path: '/', expires: 10});
+            $(".btntypegroup").removeClass("btn-info");
+            $(this).addClass("btn-info");
+
+            if(type!='POINT')
+            {
+                mapstyle='normal';
+                $("#mapstyle").val(mapstyle);
+                setMapStyle(mapstyle);
+            }
+
+            if(type=='REGION')
+            {
+                $('#graphplay').show();
+                setTimeout("autoplay()",3000);
+                playflag = true;
+            }
+            else
+            {
+                $('#graphplay').hide();
+            }
+
+            if(type=='BOTH')
+            {
+                var imgurl = "http://graph.zq12369.cn/" + item + "/hour/CUACE_09km_" + item + "_station_" + curtime + ".png";
+                imageLayer.setImageURL(imgurl);
+            }
+            //loadData();
+            showMap(DATA);
+        });
+
+        $(".btnregiongroup:first").addClass("btn-success");
+        $(".btnregiongroup").click(function()
+        {
+            $(".btnregiongroup").removeClass("btn-success");
+            $(this).addClass("btn-success");
+            var region = $(this).val();
+            fdbtn=0;
+            switch(region)
+            {
+                case '全国': map.centerAndZoom('中国',5); break;
+                case '京津冀': map.centerAndZoom('廊坊',7); isone=0;fdbtn=1;  break;
+                case '长三角': map.centerAndZoom('湖州',8); break;
+                case '珠三角': map.centerAndZoom('广州',8); break;
+                case '中原地区': map.centerAndZoom('武汉',7); break;
+                case '西部地区': map.centerAndZoom('成都',7); break;
+                case '东北地区': map.centerAndZoom('长春',7); break;
+                case '中国': map.centerAndZoom('中国',5); break;
+            }
+            setTimeout("loadData()",200);
+        });
+
+        $( "#btnPaly" ).click(function(){
+            if(playflag==true)
+            {
+                $( "#btnPaly" ).attr('src','resource/img/start.png');
+                playflag = false;
+            }
+            else
+            {
+                $( "#btnPaly" ).attr('src','resource/img/pause.png');
+                playflag = true;
+                setTimeout("autoplay()",1000);
+            }
+        });
+
+    });
+
+    function autoplay()
+    {
+        var index = $("#slider-range-min" ).slider('value');
+        index = index + 1;
+        if(index>24)
+        {
+            index  = 1;
+            timeout = 1500;
+        }
+        else
+        {
+            timeout = 500;
+        }
+        $("#slider-range-min" ).slider('value',index);
+        showGraph(index);
+        if(playflag && type=='REGION' && (item=='AQI' || item=='PM2.5' || item=='PM10' || item=='SO2' || item=='NO2' || item=='CO' || item=='O3'))
+        {
+            setTimeout("autoplay()",500);
+        }
+    }
+
+    function showGraph(index)
+    {
+        var seltime = converTimeFormat(curtime);
+        index = 24 - index;
+        seltime.setHours(seltime.getHours() - index);
+        seltime = seltime.pattern('yyyy-MM-dd HH:mm');
+        //var imgurl = "http://www.zq12369.cn/heatmap/hour/CUACE_09km_AQI_station_" + seltime + ":00.png";
+        var imgurl = "http://graph.zq12369.cn/" + item + "/hour/CUACE_09km_" + item + "_station_" + seltime + ":00.png";
+        imageLayer.setImageURL(imgurl);
+        //map.clearOverlays();
+        //map.addOverlay(imageLayer);
+        $( "#publishtime" ).html(seltime);
+    }
+
+    function setLevelTip(tip1,tip2,tip3,tip4,tip5,tip6)
+    {
+        $("#level1").html(tip1);
+        $("#level2").html(tip2);
+        $("#level3").html(tip3);
+        $("#level4").html(tip4);
+        $("#level5").html(tip5);
+        $("#level6").html(tip6);
+    }
+
+    var  mapStyle = {
+        features: ["road", "building","water","land"],//隐藏地图上的poi
+        style : "midnight"  //设置地图风格为高端黑
+    }
+    $("#mapstyle").change(function(){
+        var style =$(this).children('option:selected').val();//这就是selected的值
+        //map.setMapStyle({style:style});
+        setMapStyle(style);
+    });
+    var d=new Date();
+    var mapstyle='midnight';
+    if(d.getHours()>=6&&d.getHours()<18)
+    {
+        mapstyle='normal';
+
+    }
+    else
+    {
+        mapstyle='midnight';
+
+    }
+    $("#mapstyle").val(mapstyle);
+    setMapStyle(mapstyle);
+
+    function setMapStyle(mapstyle)
+    {
+        if(mapstyle=='midnight')
+        {
+            var mapStyle={  style : mapstyle }
+            map.setMapStyle(mapStyle);
+            $('#mainText').css('color','white');
+            $('.weixintip').css('color','white');
+        }
+        else
+        {
+            var mapStyle={  style : mapstyle }
+            map.setMapStyle(mapStyle);
+            $('#mainText').css('color','black');
+            $('.weixintip').css('color','black');
+            var myStyleJson=[
+                {
+                    "featureType": "road",
+                    "elementType": "geometry",
+                    "stylers": {
+                        "lightness": 50
+                    }
+
+                }
+            ];
+            map.setMapStyle({styleJson: myStyleJson });
+        }
+
+
+    }
+
+    map.addEventListener("zoomend", function()
+    {
+        loadData();
+    });
+
+    map.addEventListener("dragend", function()
+    {
+        loadData();
+    });
+
+    var level = 5;
+    if(level<10)
+    {
+        setTimeout("locate(8)",1500);
+    }
+
+    setTimeout("refreshData()",60000);
+
+    function refreshData()
+    {
+        var myDate = new Date();
+        var myMin = myDate.getMinutes();
+        if(myMin>=30 && myMin <=41)
+        {
+            loadData();
+        }
+        updateTime();
+        setTimeout("refreshData()",60000);
+    }
+
+    function updateTime()
+    {
+        if(curtime!="")
+        {
+            var now = new Date();
+            var myMin = now.getMinutes();
+            var diff;
+            if(myMin<=32)
+            {
+                diff = 32 - myMin;
+            }
+            else
+            {
+                diff = 92 - myMin;
+            }
+            var imgurl = "http://graph.zq12369.cn/" + item + "/hour/CUACE_09km_" + item + "_station_" + curtime + ".png";
+            imageLayer.setImageURL(imgurl);
+            $('#txtTime').html("更新时间：<span style='color:red'>" + curtime + "</span> 距离下一次更新大概还有" + diff + "分钟");
+        }
+    }
+
+    function locate(level)
+    {
+        var geolocation = new BMap.Geolocation();
+        geolocation.getCurrentPosition(function(r)
+        {
+            var cookiecenter=$.cookie('usercenter');
+            var cookietype=$.cookie('usertype');
+            if(this.getStatus() == BMAP_STATUS_SUCCESS)
+            {
+                if(cookiecenter==undefined){
+                    map.centerAndZoom(r.point,level);
+                }else{
+                    cookiecenter=cookiecenter.split(',');
+                    map.centerAndZoom(new BMap.Point(cookiecenter[0], cookiecenter[1]),$.cookie('userzoom'));
+                    if(cookietype==undefined || cookietype=='POINT'){
+                        $('.btntypegroup').eq(0).click();
+                    }else if(cookietype=='REGION'){
+                        $('.btntypegroup').eq(1).click();
+                    }else if(cookietype=='BOTH'){
+                        $('.btntypegroup').eq(2).click();
+                    }
+                }
+                console.info($.cookie("usercenter"));
+                var geoc = new BMap.Geocoder();
+                geoc.getLocation(r.point, function(rs){
+                    var addComp = rs.addressComponents;
+                    //$('#region').attr("value",addComp.city);
+                });
+            }
+            else
+            {
+                alert('failed'+this.getStatus());
+            }
+        },{enableHighAccuracy: true});
+    }
+
+
+
+    /*
+     插入弹幕文字到数据库
+     */
+    function insertFloat(content)
+    {
+        var status = 1;
+        var method = 'INSERTFLOATCONTENT';
+        $.ajax({
+            url: 'api/zhenqiapi.php',
+            data:{'appId':appId,
+                'method':encode_param(method),
+                'content':content,
+                'ip':ip,
+                'city':citys,
+                'status':status,
+                'secret': hex_md5(appId + method)
+            },
+            type: "post",
+            success: function (data) {
+
+                $('#closed').click();
+                for(var i=1;i<8;i++){
+                    $('#mq'+i).children().remove();
+                }
+
+                getFloatContent();
+
+            }
+        });
+    }
+
+
+    /*
+     获取近一个小时的弹幕信息
+     */
+    function getFloatContent()
+    {
+        var method = 'GETFLOATCONTENT';
+        $.ajax({
+            url: 'api/zhenqiapi.php',
+            data:{'appId':appId,
+                'method':encode_param(method),
+                'secret': hex_md5(appId + method)
+            },
+            type: "post",
+            success: function (data) {
+
+                data = eval('(' + decode_result(data) + ')');
+
+                $('#mainText').append('<marquee scrollAmount=6 id="mq1" class="floating"></marquee>\
+            <marquee scrollAmount=8 id="mq2" class="floating"></marquee>\
+            <marquee scrollAmount=7 id="mq3" class="floating"></marquee>\
+   ' );
+
+                $('#mq1').append('<span id="notice">真气网数据来源于中国环境监测总站，未经审核，仅供参考！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+
+                var float = data['float']['rows'];
+
+                for(var i=0;i<Math.ceil(data['float'].total/3);i++){
+                    var start = i*3;
+                    var end = start +3;
+                    var size = 1;
+                    for(var j=start;j<end;j++,size++){
+                        var t = parseInt(i+1);
+                        if(float[j]){
+                            $('#mq'+size).append('<span>'+float[j]['content']+'</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+                        }
+                    }
+                }
+                var pay = data['pay']['rows'];
+
+                for(var i=0;i<Math.ceil(data['pay'].total/3);i++){
+                    var start = i*3;
+                    var end = start +3;
+                    var size = 1;
+                    for(var j=start;j<end;j++,size++){
+
+                        var t = parseInt(i+1);
+                        if(pay[j]&&pay[j]['nickname']!=""){
+
+                            $('#mq'+size).append('<div style="padding:5px 10px;display:inline-block">感谢'+pay[j]['nickname']+'打赏了真气网!<img style="width:26px;height:26px" src="resource/img/rose.png"/></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+                        }
+
+                    }
+
+                }
+                $('#mq3').append('<div style="padding:5px 10px;display:inline-block">感谢不愿透露姓名的环保大咖打赏了真气网!<img style="width:26px;height:26px" src="resource/img/rose.png"/></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+
+            }
+        });
+    }
+
+    setTimeout(function(){
+        $('#notice').html("");
+    },40000);
+    var isuserone=0;
+    function loadData()
+    {
+        var maplevel = map.getZoom();
+        //获取用户的中心
+        usercenter=map.getCenter();
+        if(isuserone!=0){
+            $.cookie('usercenter',usercenter.lng+","+usercenter.lat,{path: '/', expires: 10});
+            $.cookie('userzoom',maplevel,{path: '/', expires: 10});
+        }
+
+
+
+        var bs = map.getBounds();       //获取可视区域
+        var bssw = bs.getSouthWest();   //可视区域左下角
+        var bsne = bs.getNorthEast();   //可视区域右上角
+        method = "GETCITYLISTMOBILE";
+        lat1 = (bssw.lat).toString();
+        lng1 = (bssw.lng).toString();
+        lat2 = (bsne.lat).toString();
+        lng2 = (bsne.lng).toString();
+        level = maplevel.toString();
+
+        var obj = {
+            lat1:lat1,
+            lng1:lng1,
+            lat2:lat2,
+            lng2:lng2,
+            level:level,
+        };
+        var param = getParam(method,obj);
+        $.ajax({
+            type:"post",
+            url:"api/newzhenqiapi.php",
+            data:{
+                param: param
+            },
+            success:function(data)
+            {
+                data=eval('('+b.decode(decryptData(data))+')');
+                data=data.result.data;
+                isuserone++;
+                if(data.total>0)
+                {
+                    DATA=data.rows;
+                    showMap(data.rows);
+                }
+            }
+        });
+    }
+
+    function showMap(data)
+    {
+        var aqi,lat,lng,marker,icon,label,city,pointname,level,region,province,desp,title;
+        map.clearOverlays();
+        for (var i = 0; i < data.length && (type!='REGION'||item!='AQI'); i++)
+        {
+            city = data[i].cityname;
+            pointname = data[i].pointname;
+            level = data[i].level;
+            region = data[i].region;
+            province = data[i].provincename;
+            if(level==null)
+            {
+                level = "城市";
+            }
+            if($('input[name="source"]:checked').val()=="2")
+            {
+                if(parseInt(data[i].zq_aqi)>0)
+                {
+                    aqi=parseInt(data[i].zq_aqi);
+                }
+                else
+                {
+                    aqi = parseInt(data[i].aqi);
+                }
+            }
+            else
+            {
+                aqi = parseInt(data[i].aqi);
+            }
+            var pm2_5=parseInt(data[i].pm2_5);
+            var pm10=parseInt(data[i].pm10);
+            var so2=parseInt(data[i].so2);
+            var no2=parseInt(data[i].no2);
+            var co=parseFloat(data[i].co).toFixed(1);
+            var o3=parseInt(data[i].o3);
+            var temp=parseInt(data[i].temp);
+            var  humi=parseInt(data[i].humi);
+            var wd=data[i].winddirection;
+            var ws=parseFloat(data[i].windlevel);
+            var PRESSURE=data[i].pressure;
+            var VISIBILITY=data[i].visibility;
+
+            var mytime=data[i].time;
+            mytime=mytime.replace('-', "/");
+            mytime=mytime.replace('-', "/");
+            var time1 = new Date(mytime);
+            var time2 = new Date();
+
+            var hourdiff = (time2.getTime() - time1.getTime())/3600000;
+            if(hourdiff>3)
+            {
+                aqi = 0;
+            }
+
+            switch(item)
+            {
+                case "AQI":  value = aqi; unit="";index = getAQILevelIndex(value);break;
+                case "PM2.5": if(data[i].pm2_5!=null) value=parseInt(data[i].pm2_5); else value = 0;unit="ug/m3";index = getPM25LevelIndex(value);break;
+                case "PM10":  if(data[i].pm10!=null)  value=parseInt(data[i].pm10); else value = 0;unit="ug/m3";index = getPM10LevelIndex(value);break;
+                case "SO2":   if(data[i].so2!=null) value=parseInt(data[i].so2); else value = 0;unit="ug/m3";index = getSO2LevelIndex(value);break;
+                case "NO2":   if(data[i].no2!=null) value=parseInt(data[i].no2);else value = 0; unit="ug/m3";index = getNO2LevelIndex(value);break;
+                case "O3":   if(data[i].o3!=null) value=parseInt(data[i].o3); else value = 0;unit="ug/m3";index = getO3LevelIndex(value);break;
+                case "CO":   if(data[i].co!=null) value=parseFloat(data[i].co).toFixed(1);else value = 0; unit="mg/m3";index = getCOLevelIndex(value);break;
+                case "INDEX": value = parseFloat(data[i].complexindex).toFixed(2); unit="";index = getComplexIndex(value);break;
+                case "TEMP":  if(data[i].temp!=null)  value=parseInt(data[i].temp); else value = 0;unit="℃";index = getTempLevelIndex(value);break;
+                case "HUMI":   if(data[i].humi!=null) value=parseInt(data[i].humi); else value = 0;unit="%";index = getHumiLevelIndex(value);break;
+                case "WS":   if(data[i].windlevel!=null) value=parseInt(data[i].windlevel); else value = 0;unit="级";index = getWindLevelIndex(value);break;
+                case "WD":   if(data[i].windangle!=null) value=parseInt(data[i].windangle) + '|' +parseInt(data[i].windlevel) ; else value = 0;unit="°";break;
+            }
+            lat = data[i].latitude;
+            lng = data[i].longitude;
+            time = data[i].time;
+            if(time>curtime)
+            {
+                curtime = time;
+            }
+            var point = new BMap.Point(lng,lat);
+
+            if(city!=province)
+            {
+                title = province + '-' + city;
+            }
+            else
+            {
+                title = city;
+            }
+            if(pointname=="惠济区管委会"){
+                pointname="惠济区党校";
+            }else if(pointname=="新郑市合庄镇"){
+                pointname="新郑新区";
+            }
+            if(pointname!=null)
+            {
+                title = title + '-' + pointname;
+            }
+            //level = data[i].level;
+
+            pointtype = data[i].type;
+            if(pointtype==null)
+            {
+                pointtype = "城市";
+            }
+            var desp =
+                "<table width='100%'><tr><td style='font-size:12px' valign='top'>"
+                +"<table width='100%' class='fitem'>"
+                +"</td></tr><tr><th>类型</th><td style='width:70px;text-align:center;'>" +pointtype
+                +"</td><th>区域</th><td style='width:70px;text-align:center;'>" +data[i].region
+                +"</td><th></th><td  style='width:70px;text-align:center;'>" + ''
+                +"</td></tr/><tr><th>AQI</th><td style='width:70px;text-align:center;background-color:" + getColorByIndex(getAQILevelIndex(aqi)) +";color:#fff'>" + aqi
+                +"</td><th>等级</th><td style='text-align:center;background-color:" + getColorByIndex(getAQILevelIndex(aqi)) +";color:#fff'>" + getLevel(aqi).quality
+                +"</td><th>综指</th><td  style='width:70px;text-align:center;background-color:" + getColorByIndex(getComplexIndex(data[i].complexindex)) +";color:#fff'>" + parseFloat(data[i].complexindex).toFixed(3)
+                +"</td></tr><tr><th>PM2.5</th><td style='width:70px;text-align:center;background-color:" + getColorByIndex(getPM25LevelIndex(data[i].pm2_5)) +";color:#fff'>" + parseInt(data[i].pm2_5)
+                +"</td><th>PM10</th><td style='width:70px;text-align:center;background-color:" + getColorByIndex(getPM10LevelIndex(data[i].pm10)) +";color:#fff'>" + parseInt(data[i].pm10)
+                +"</td><th>CO</th><td style='width:70px;text-align:center;background-color:" + getColorByIndex(getCOLevelIndex(data[i].co)) +";color:#fff'>" + parseFloat(data[i].co).toFixed(1)
+                +"</td></tr><tr><th>NO2</th><td style='width:70px;text-align:center;background-color:" + getColorByIndex(getNO2LevelIndex(data[i].no2)) +";color:#fff'>" + parseInt(data[i].no2)
+                +"</td><th>SO2</th><td style='width:70px;text-align:center;background-color:" + getColorByIndex(getSO2LevelIndex(data[i].so2)) +";color:#fff'>" + parseInt(data[i].so2)
+                +"</td><th>O3</th><td style='width:70px;text-align:center;background-color:" + getColorByIndex(getO3LevelIndex(data[i].o3)) +";color:#fff'>" + parseInt(data[i].o3)
+                +"</td></tr><tr><th>温度</th><td style='width:70px;text-align:center;'>" + parseInt(data[i].temp) + "℃"
+                +"</td><th>湿度</th><td style='width:70px;text-align:center;'>" + parseInt(data[i].humi) + "%"
+                +"</td><th>大气压</th><td style='width:70px;text-align:center;'>" + data[i].pressure + "hPa"
+                +"</td></tr><tr><th>风向</th><td style='width:70px;text-align:center;'>" + data[i].winddirection
+                +"</td><th>风级</th><td style='width:70px;text-align:center;'>" + parseInt(data[i].windlevel) + "级"
+                +"</td><th>能见度</th><td style='width:70px;text-align:center;'>" + parseInt(data[i].visibility) + "km"
+                +"</td></tr><tr><th>时间</th><td colspan='5' style='text-align:left;padding-left:7px;'>" + data[i].time + "</td></tr></table>"
+                +"</td>"
+                +"<td valign='top' align='right'><td>"
+                +"</tr></table><div id='citychart_" + i + "' style='width:100%;height:110px'>";
+            bgcolor = getColorByIndex(index);
+            if(type!='REGION')
+            {
+                var city_2_26='{"citylist":[{"cityname":"安阳"},{"cityname":"保定"},{"cityname":"北京"},{"cityname":"滨州"},{"cityname":"沧州"},{"cityname":"长治"},{"cityname":"德州"},{"cityname":"邯郸"},{"cityname":"菏泽"},{"cityname":"鹤壁"},{"cityname":"衡水"},{"cityname":"济南"},{"cityname":"济宁"},{"cityname":"焦作"},{"cityname":"晋城"},{"cityname":"开封"},{"cityname":"廊坊"},{"cityname":"聊城"},{"cityname":"濮阳"},{"cityname":"石家庄"},{"cityname":"太原"},{"cityname":"唐山"},{"cityname":"天津"},{"cityname":"新乡"},{"cityname":"邢台"},{"cityname":"阳泉"},{"cityname":"郑州"},{"cityname":"淄博"}]}';
+                city_2_26=eval('('+city_2_26+')');city_2_26=city_2_26.citylist;
+                var isfd=0;
+                if(fdbtn==1){
+                    for(var c=0;c<city_2_26.length;c++){
+                        if(city==city_2_26[c].cityname) {isfd=1;}
+
+                    }
+                }
+
+                showMapByPoint(title,value,bgcolor,point,desp,i,city,region,pointname,index,isfd);
+            }
+
+        }
+        updateTime();
+        if(type!='POINT')
+        {
+            map.addOverlay(imageLayer);
+        }
+    }
+
+    var isone=0;
+    function showMapByPoint(name,value,bgcolor,point,desp,i,city,region,pointname,index,isfd)
+    {
+
+        var opts = {
+            position : point,    // 指定文本标注所在的地理位置
+            offset   : new BMap.Size(-15, -15)    //设置文本偏移量
+        }
+        var label = new BMap.Label(value+'<div class="arrow" style="width: 0px;  height: 0px; border-left: 8px solid transparent; border-top: 8px solid; border-right: 8px solid transparent; color:'+bgcolor+'; position: absolute;  margin-top:-2px;margin-left:8px  " ></div>', opts);  // 创建文本标注对象
+        var maplevel = map.getZoom();
+        var link = "";
+        if(pointname==null)
+        {
+            link = "<a href='environment.php?tab=city&city=" + city + "#envtab' style='font-size:12px' target='_blank'> 详情</a>"
+        }
+        var searchInfoWindow = new BMapLib.SearchInfoWindow(map, desp, {
+            title  : '<span style="font-size:16px"><b>' + name + '</b>' + link + '<a href=""></a></span>',             //标题
+            width  : 320,              //宽度
+            height : 260,              //高度
+            enableAutoPan : true,      //自动平移,
+            searchTypes :[]
+        });
+
+        if(item=='WD')
+        {
+            if(value==0)
+            {
+                return;
+            }
+            arr = value.split('|');
+            wl = arr[1];
+            wd = arr[0];
+            if(wl>6)
+            {
+                wl=6;
+            }
+            icon = 'resource/img/arrow/color/' + wl + '.png';
+            var myIcon = new BMap.Icon(icon, new BMap.Size(23,32));
+            var marker = new BMap.Marker(point,{icon:myIcon});
+            marker.setRotation(wd);
+            map.addOverlay(marker);
+            offseth = 12;
+            label = marker;
+        }
+        else if(maplevel<7)
+        {
+            var icon = getIconByIndex(index);
+            var myIcon = new BMap.Icon(icon, new BMap.Size(16,16));
+            var marker = new BMap.Marker(point,{icon:myIcon});
+            map.addOverlay(marker);
+            marker.addEventListener("click", function (){
+                searchInfoWindow.open(point);
+                showCityPointChart(i,city,pointname);
+            });
+        }
+        else
+        {
+            if(index<=3 || index==7)
+            {
+                color = "#28004D";
+            }
+            else
+            {
+                color = "white";
+            }
+            if(isfd==1){
+                if(isone<26){
+                    label.setStyle({
+                        color : color,
+                        background: bgcolor,
+                        fontSize : "14px",
+                        border:'1px solid #888',
+                        width: "40px",
+                        textAlign:"center",
+                        height : "23px",
+                        lineHeight : "22px",
+                        borderRadius:'4px' ,
+                        animation:'mymove 1s ',
+                    });
+                }else{
+                    label.setStyle({
+                        color : color,
+                        background: bgcolor,
+                        fontSize : "14px",
+                        border:'1px solid #888',
+                        width: "35px",
+                        textAlign:"center",
+                        height : "23px",
+                        lineHeight : "22px",
+                        borderRadius:'4px' ,
+                    });
+                }
+                isone++;
+            }else{
+                label.setStyle({
+                    color : color,
+                    background: bgcolor,
+                    fontSize : "14px",
+                    border:'',
+                    width: "35px",
+                    textAlign:"center",
+                    height : "22px",
+                    lineHeight : "22px",
+                    borderRadius:'4px' ,
+                });
+            }
+
+            map.addOverlay(label);
+            offseth = 14;
+        }
+        if(maplevel>=7)
+        {
+
+            var nametip=null;
+            if(maplevel<=8)
+            {
+                nametip = city;
+            }
+            else if(maplevel<=10)
+            {
+                nametip = region;
+            }
+            else
+            {
+                nametip = pointname;
+            }
+            if(nametip!=null)
+            {
+                var len = nametip.length;
+                var opts_tip = {
+                    position : point,    // 指定文本标注所在的地理位置
+                    offset   : new BMap.Size(-len*6, offseth)    //设置文本偏移量
+                }
+                var label_tip = new BMap.Label(nametip, opts_tip);  // 创建文本标注对象
+                label_tip.setStyle({
+                    color : "black",
+                    background: 'rgba(255,255,255,0.8)',
+                    fontSize : "12px",
+                    border:'1px solid #999',
+                    width: "auto",
+                    textAlign:"center",
+                    height : "18px",
+                    lineHeight : "18px"
+                });
+                if(item!='WD' || maplevel!=9)
+                    map.addOverlay(label_tip);
+            }
+        }
+        label.addEventListener("click", function (){
+            searchInfoWindow.open(point);
+            showCityPointChart(i,city,pointname);
+        });
+    }
+
+    function showCityPointChart(i,city,pointname)
+    {
+
+        var startTime = new Date();
+        startTime.setHours(startTime.getHours() - 27);
+        startTime.setMinutes(0);
+        var endTime = new Date();
+        startTime = startTime.pattern('yyyy-MM-dd HH:mm:ss');
+        endTime = endTime.pattern('yyyy-MM-dd HH:mm:ss');
+        var method,secret;
+        var type ="HOUR";
+        if(pointname!=null)
+        {
+            method = "GETCITYPOINTPERIOD";
+        }
+        else
+        {
+            method = "CETCITYPERIODAUTO";
+        }
+        var obj = {
+            city:city,
+            pointname:pointname,
+            type:type,
+            startTime:startTime,
+            endTime:endTime,
+        };
+
+        var param = getParam(method,obj);
+        $.ajax({
+            type:"post",
+            url:"api/newzhenqiapi.php",
+            data:{
+                param: param
+            },
+            success:function(data)
+            {
+                data=eval('('+b.decode(decryptData(data))+')');
+                console.info(data);
+                data=data.result.data;
+
+                var dataCityPoint = [];
+
+                for(var j=0;j<data.total;j++)
+                {
+                    if($('input[name="source"]:checked').val()=="2")
+                    {
+                        if(parseInt(data.rows[j].zq_aqi)>0)
+                        {
+                            aqi=parseInt(data.rows[j].zq_aqi);
+                        }
+                        else
+                        {
+                            aqi = parseInt(data.rows[j].aqi);
+                        }
+                    }
+                    else
+                    {
+                        aqi = parseInt(data.rows[j].aqi);
+                    }
+                    labelstr=item;
+                    switch(item)
+                    {
+                        case "AQI":  value=aqi; unit="";index = getAQILevelIndex(value);break;
+                        case "PM2.5":  value=parseInt(data.rows[j].pm2_5); unit="ug/m3";index = getPM25LevelIndex(value);break;
+                        case "PM10":  value=parseInt(data.rows[j].pm10); unit="ug/m3";index = getPM10LevelIndex(value);break;
+                        case "SO2":  value=parseInt(data.rows[j].so2); unit="ug/m3";index = getSO2LevelIndex(value);break;
+                        case "NO2":  value=parseInt(data.rows[j].no2); unit="ug/m3";index = getNO2LevelIndex(value);break;
+                        case "O3":  value=parseInt(data.rows[j].o3); unit="ug/m3";index = getO3LevelIndex(value);break;
+                        case "CO":  value=parseFloat(data.rows[j].co); unit="mg/m3";index = getCOLevelIndex(value);break;
+                        case "INDEX":  value=parseFloat(data.rows[j].complexindex); unit="";index = getComplexIndex(value);labelstr = "综合指数";break;
+                        case "TEMP":  value=parseInt(data.rows[j].temp); unit="℃";index = getTempLevelIndex(value);labelstr="温度";break;
+                        case "HUMI":  value=parseInt(data.rows[j].humi); unit="%";index = getHumiLevelIndex(value);labelstr="湿度";break;
+                        case "WD":  value=parseInt(data.rows[j].windangle); unit="°";index = 0;labelstr="风向角";break;
+                        case "WS":  value=parseInt(data.rows[j].windlevel); unit="级";index = getWindLevelIndex(value);labelstr="风级";break;
+                    }
+                    dataCityPoint.push({
+                        x: converTimeFormat(data.rows[j].time).getTime(),
+                        y: value,
+                        color: getColorByIndex(index)
+                    });
+                }
+                title = '最近24小时' + labelstr + '变化趋势';
+                showChart('citychart_' + i,labelstr,dataCityPoint,unit,title);
+            }
+        });
+    }
+
+    function showMapMarker(name,point,title,desp,icon,pointgid,labelFlag,markerFlag)
+    {
+        //map.centerAndZoom(point, 5);
+        var myIcon = new BMap.Icon(icon, new BMap.Size(25,29));
+        var marker = new BMap.Marker(point,{icon:myIcon});
+        var label = new BMap.Label("<span style='height:20px;border:1px solid #999;font-size:14px;background:rgba(255,255,255,0.8)'>" + name + "</span>");
+        label.setStyle({
+            color : "black",
+            height : "20px",
+            lineHeight : "20px",
+            fontFamily:"微软雅黑",
+            border:'none',
+            background:'none'
+        });
+        var len = name.length;
+        var offset = new BMap.Size(28, 3);
+        label.setOffset(offset);
+        if(labelFlag)
+            marker.setLabel(label);
+        //marker.setTitle(title);
+        map.addOverlay(marker);
+        if(markerFlag==true)
+        {
+            var searchInfoWindow = new BMapLib.SearchInfoWindow(map,desp,{
+                title: "<span style='font-size:14px'>" + name + "</span>", //标题
+                width: 320, //宽度
+                height: 200, //高度
+                panel : "panel", //检索结果面板
+                enableAutoPan : true, //自动平移
+                searchTypes :[]
+            });
+            marker.addEventListener("mouseover",function(){
+                searchInfoWindow.open(point);
+                showSelfPointChart(pointgid);
+            });
+            marker.addEventListener("mouseout",function(){
+                //searchInfoWindow.close();
+            });
+        }
+    }
+
+    function showSelfPointChart(pointgid)
+    {
+        var startTime = new Date();
+        startTime.setHours(startTime.getHours() - 27);
+        startTime.setMinutes(0);
+        var endTime = new Date();
+        startTime = startTime.pattern('yyyy-MM-dd HH:mm:ss');
+        endTime = endTime.pattern('yyyy-MM-dd HH:mm:ss');
+        var method = "GETSELFPOINTPERIOD";
+        pointgid = pointgid.toString();
+        var type = "HOUR";
+        $.ajax({
+            url: 'api/zhenqiapi.php',
+            data:{'appId':appId,
+                'method': encode_param(method),
+                'pointgid': encode_param(pointgid),
+                'type': encode_param(type),
+                'startTime': encode_param(startTime),
+                'endTime': encode_param(endTime),
+                'secret': encode_secret(method,pointgid,type,startTime,endTime)
+            },
+            type: "post",
+            success: function (data){
+                data = eval('(' + decode_result(data) + ')');
+                var dataSelfPoint = [];
+                for(var j=0;j<data.total;j++)
+                {
+                    var pm2_5 = data.rows[j].pm2_5;
+                    index = getPM25LevelIndex(pm2_5);
+                    dataSelfPoint.push({
+                        x: converTimeFormat(data.rows[j].time).getTime(),
+                        y: parseInt(pm2_5),
+                        color: getColorByIndex(index)
+                    });
+                }
+                title = '最近24小时PM2.5变化趋势';
+                showChart('selfchart_' + pointgid,'PM2.5',dataSelfPoint,'ug/m3',title);
+            }
+        });
+    }
+
+    function showChart(container,name,data,unit,title)
+    {
+
+        Highcharts.setOptions({
+            global: {
+                useUTC: false
+            }
+        });
+
+        var dateTypeFormat = '%Y-%m-%d %H:%M';
+        var markerShowFlag = false;
+
+        $('#' + container).highcharts({
+            chart: {
+                type: 'column',
+                zoomType: 'x',
+                spacingLeft: 0,
+                spacingRight: 0
+            },
+            title: {
+                text: title,
+                style:{
+                    fontSize:'12px'
+                }
+            },
+            xAxis: {
+                type: 'datetime',
+                dateTimeLabelFormats:{
+                    millisecond: '%H:%M:%S.%L',
+                    second: '%H:%M:%S',
+                    minute: '%H:%M',
+                    hour: '%H:%M',
+                    day: '%m-%d',
+                    week: '%m-%d',
+                    month: '%Y-%m',
+                    year: '%Y'
+                }
+            },
+            yAxis:{
+                title: {
+                    text: ''
+                },
+                min:0
+            },
+            tooltip: {
+                //shared: true,
+                enabled: true,
+                formatter: function() {
+                    var tip = '' + Highcharts.dateFormat(dateTypeFormat, this.x) +'<br/>' +
+                        this.series.name +': <b>'+ this.y + '</b>' + unit;
+                    if(this.point.primary_pollutant!=null)
+                    {
+                        tip = tip + "<br/>首要污染物：" + this.point.primary_pollutant;
+                    }
+                    return tip;
+
+                }
+            },
+            plotOptions:{
+                series:{
+                    marker: {
+                        enabled: markerShowFlag,
+                        radius:5
+                    },
+                    enableMouseTracking:true,
+                    turboThreshold: 0
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            credits: {
+                enabled:false
+            },
+            series: [{
+                name: name,
+                data: data
+            }]
+        });
+    }
+
+    /*获取风向图标*/
+    function getWindDirectionIcon(wd)
+    {
+        var wid = 0;
+        var url = null;
+        switch(wd)
+        {
+            case '东风':wid = 1;break;
+            case '东南风':wid = 2;break;
+            case '南风':wid = 3;break;
+            case '西南风':wid = 4;break;
+            case '西风':wid = 5;break;
+            case '西北风':wid = 6;break;
+            case '北风':wid = 7;break;
+            case '东北风':wid = 8;break;
+        }
+        if(wid>0)
+        {
+            url = 'resource/img/arrow/' + wid + '.png';
+        }
+        return url;
+    }
+
+    function getIconByIndex(value)
+    {
+        var icon = null;
+        if(value==0){
+            icon="resource/img/map/level00.png";
+        }
+        else if(value==1){
+            icon="resource/img/map/level11.png";
+        }
+        else if(value==2){
+            icon="resource/img/map/level22.png";
+        }
+        else if(value==3){
+            icon="resource/img/map/level33.png";
+        }
+        else if(value==4){
+            icon="resource/img/map/level44.png";
+        }
+        else if(value==5){
+            icon="resource/img/map/level55.png";
+        }
+        else{
+            icon="resource/img/map/level66.png";
+        }
+        //icon = "resource/img/map/aqi"+value + ".png";
+        return icon;
+    }
+
+    function getLevel(aqival)
+    {
+        var _color=null;
+        var _quality=null;
+        if(aqival<=0){
+            _color='#6E6E6E';
+            _quality="无";
+        }
+        else if(aqival<=50){
+            _color='#43ce17';
+            _quality="优";
+        }
+        else if(aqival<=100){
+            _color='#efdc31';
+            _quality="良";
+        }
+        else if(aqival<=150){
+            _color='#fa0';
+            _quality="轻度污染";
+        }
+        else if(aqival<=200){
+            _color='#ff401a';
+            _quality="中度污染";
+        }
+        else if(aqival<=300){
+            _color='#d20040';
+            _quality="重度污染";
+        }
+        else{
+            _color='#9c0a4e';
+            _quality="严重污染";
+        }
+        return {
+            color:_color,
+            quality:_quality
+        };
+    }
+
+</script>
+<div style="display:none">
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254317176'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1254317176%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</body>
+</html>

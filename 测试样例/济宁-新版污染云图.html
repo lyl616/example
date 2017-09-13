@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1XjLLEhZhQNUzd93EjU5nOGQ"></script>
+
+</head>
+<body>
+<div id="bMap" style="width: 1280px;height: 600px;"></div>
+</body>
+
+<script type="application/javascript">
+    var map = "";
+    $(function () {
+        map = new BMap.Map("bMap");
+        map.enableScrollWheelZoom(true);
+        map.centerAndZoom("济宁", 10);
+        getCloud();
+        getBoundary("济宁");
+        map.addEventListener("click", showInfo);
+    });
+
+
+    function addmarker(map2, point2) {
+        var marker2 = new BMap.Marker(point2, {
+            icon: new BMap.Icon("images/marker/mark_sprite_1.png",
+                new BMap.Size(32, 32))
+        });
+        // 将标注添加到地图中
+        map2.addOverlay(marker2);
+    }
+
+
+    function showInfo(e) {
+        console.log("{ \"lng\":" + e.point.lng + ",\"lat\": " + e.point.lat, ",\"count\":" + parseInt(100 * Math.random()) + " },");
+    }
+
+
+    function getCloud() {
+//        济宁[115.030960,30.185069],[118.299947,36.238989]
+        var ch = new BMap.Point(115.060539, 30.40945), cm = new BMap.Point(118.337309,  36.238351);
+//        var ch = new BMap.Point(102.562308,  28.505303), cm = new BMap.Point(105.313884,  31.666892 );
+        // var ch=new BMap.Point(60.42,10.01),cm=new BMap.Point(152.48,57.35);
+//        addmarker(map, ch);
+//        addmarker(map, cm);
+        var groundOverlayOptions = {
+            opacity: 0.8
+        };
+        imageLayer2 = new BMap.GroundOverlay(new BMap.Bounds(ch, cm), groundOverlayOptions);
+        map.addOverlay(imageLayer2);
+        var imgurl2 = "images/370800-20170827.png";
+        imageLayer2.setImageURL(imgurl2);
+
+
+    }
+
+    function getBoundary(name) {
+        var bdary = new BMap.Boundary();
+        bdary.get(name, function (rs) {       //获取行政区域
+//            map.clearOverlays();        //清除地图覆盖物
+            var count = rs.boundaries.length; //行政区域的点有多少个
+            for (var i = 0; i < count; i++) {
+                var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight: 2, strokeColor: "#ff0000"}); //建立多边形覆盖物
+                map.addOverlay(ply);  //添加覆盖物
+                map.setViewport(ply.getPath());    //调整视野
+            }
+        });
+    }
+
+
+</script>
+</html>

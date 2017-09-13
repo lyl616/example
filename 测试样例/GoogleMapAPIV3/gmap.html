@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="application/javascript" src="mapapi.js"></script>
+    <script type="application/javascript" src="maplabel-compiled.js"></script>
+
+</head>
+
+<body>
+ <div id="map"></div>
+</body>
+<script type="application/javascript">
+
+
+    function Demo() { }
+    Demo.prototype.tileSize = new google.maps.Size(256, 256);//瓦片大小
+    Demo.prototype.maxZoom = 19;//允许最大缩放层级
+    Demo.prototype.minZoom = 5;//允许最小缩放层级
+    Demo.prototype.name = "地图";
+    Demo.prototype.getTile = function (coord, zoom, ownerDocument) {
+        var img = ownerDocument.createElement("img");
+        img.style.width = this.tileSize.width + "px";
+        img.style.height = this.tileSize.height + "px";
+        //定义瓦片的相对路径
+        var strURL = '电子地图瓦片目录/';
+        //其中zoom为层级，x可以理解为该瓦片在整个地图中的列数，y为行数，图片格式下载的时候选择png或者jpg，我这里是png格式
+        strURL += zoom + "/" + coord.x + "/" + coord.y + '.png';
+        img.src = strURL;
+        return img;
+    };
+    var localMap = new Demo();
+    var satel=new Demo();
+    satel.name='卫星影像';
+    satel.getTile = function (coord, zoom, ownerDocument) {
+        var img = ownerDocument.createElement("img");
+        img.style.width = this.tileSize.width + "px";
+        img.style.height = this.tileSize.height + "px";
+        var strURL = '卫星影像瓦片目录/';
+        strURL += zoom + "/" + coord.x + "/" + coord.y + '.png';
+        img.src = strURL;
+        return img;
+    };
+    var myOptions = {
+        center: new google.maps.LatLng(23.56,104.252), //地图中心坐标
+        zoom: 4,    //地图层级
+        mapTypeControl: true,  //默认右上角显示地图名称
+        mapTypeControlOptions: {
+            mapTypeIds: ['satel', 'localMap']
+        }
+    };
+    //创建一个map对象，以下代码使用参数(myOptions)在<div> 元素 (id为map_canvas) 创建了一个新的地图，并默认在地图右上角显示 卫星影像和电子地图切换
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    map.mapTypes.set('localMap', localMap);
+    map.mapTypes.set('satel', satel);
+    map.setMapTypeId('localMap'); //设置默认显示的地图为卫星影像
+</script>
+</html>

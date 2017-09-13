@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.7.0/echarts.min.js"
+            integrity="sha256-N5nYTQTWQvodubahOdL8sOCfBHc+9yChX3MxgoLxQCA=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.7.0/extension/bmap.min.js"
+            integrity="sha256-3pgqbzSWnfOmw84ENdjmNwtoDZ+DbLmRIJFbnwqMjpw=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="main" style="width: 100%;height:700px;">
+
+</div>
+</body>
+
+<script type="text/javascript">
+    var COLORS = ["#070093", "#1c3fbf", "#1482e5", "#70b4eb", "#b4e0f3", "#ffffff"];
+    var aqiData = [[34.71935871875, 34.580898121093753, 103.39518262499999, 103.15543653124999, 2, 200],
+                   [34.71935871875, 34.580898121093753, 103.63492871874999, 103.39518262499999, 2, 150],
+                   [34.71935871875, 34.580898121093753, 103.87467481249999, 103.63492871874999, 2, 100],
+                   [34.71935871875, 34.580898121093753, 104.11442090624999, 103.87467481249999, 2, 50]];
+
+
+    function renderItem(params, api) {
+        var maxLat = api.value(0);
+        var minLat = api.value(1);
+        var maxLng = api.value(2);
+        var minLng = api.value(3);
+        var pointLeftTop = getCoord(params, api, minLng, minLat);
+        var pointRightBottom = getCoord(params, api, maxLng, maxLat);
+        return {
+            type: 'rect',
+            shape: {
+                x: pointLeftTop[0],
+                y: pointLeftTop[1],
+                width: pointRightBottom[0] - pointLeftTop[0],
+                height: pointRightBottom[1] - pointLeftTop[1]
+            },
+            style: api.style({
+                stroke: 'rgba(255,0,0,1)'
+            }),
+            styleEmphasis: api.styleEmphasis()
+        };
+    }
+
+    function getCoord(params, api, lat, lng) {
+        var coords = params.context.coords || (params.context.coords = []);
+        var key = lat + '-' + lng;
+        return coords[key] || (coords[key] = api.coord([lat,lng]));
+    }
+
+    option = {
+        tooltip: {},
+        visualMap: {
+            type: 'piecewise',
+            inverse: true,
+            top: 10,
+            left: 10,
+            pieces: [{
+                value: 0, color: COLORS[0]
+            }, {
+                value: 1, color: COLORS[1]
+            }, {
+                value: 2, color: COLORS[2]
+            }, {
+                value: 3, color: COLORS[3]
+            }, {
+                value: 4, color: COLORS[4]
+            }, {
+                value: 5, color: COLORS[5]
+            }],
+            borderColor: '#ccc',
+            borderWidth: 2,
+            backgroundColor: '#eee',
+            dimension: 4,
+            inRange: {
+                color: COLORS,
+                opacity: 0.5
+            }
+        },
+        series: [
+            {
+                type: 'custom',
+                coordinateSystem: 'bmap',
+                renderItem: renderItem,
+                animation: false,
+                itemStyle: {
+                    emphasis: {
+                        color: 'yellow'
+                    }
+                },
+                encode: {
+                    tooltip: 5
+                },
+                data: aqiData
+            }
+        ],
+        bmap: {
+            center: [103.7, 34.6],
+            zoom: 11.8,
+            roam: true,
+            mapStyle: {
+                styleJson: [{
+                    'featureType': 'water',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#d1d1d1'
+                    }
+                }, {
+                    'featureType': 'land',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#f3f3f3'
+                    }
+                }, {
+                    'featureType': 'railway',
+                    'elementType': 'all',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'highway',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#999999'
+                    }
+                }, {
+                    'featureType': 'highway',
+                    'elementType': 'labels',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'arterial',
+                    'elementType': 'geometry',
+                    'stylers': {
+                        'color': '#fefefe'
+                    }
+                }, {
+                    'featureType': 'arterial',
+                    'elementType': 'geometry.fill',
+                    'stylers': {
+                        'color': '#fefefe'
+                    }
+                }, {
+                    'featureType': 'poi',
+                    'elementType': 'all',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'green',
+                    'elementType': 'all',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'subway',
+                    'elementType': 'all',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'manmade',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#d1d1d1'
+                    }
+                }, {
+                    'featureType': 'local',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#d1d1d1'
+                    }
+                }, {
+                    'featureType': 'arterial',
+                    'elementType': 'labels',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'boundary',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#fefefe'
+                    }
+                }, {
+                    'featureType': 'building',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#d1d1d1'
+                    }
+                }, {
+                    'featureType': 'label',
+                    'elementType': 'labels.text.fill',
+                    'stylers': {
+                        'color': 'rgba(0,0,0,0)'
+                    }
+                }]
+            }
+        }
+    };
+    var myChart = echarts.init(document.getElementById('main'));
+    myChart.setOption(option);
+    myChart.on('click', function (param) {
+       alert(param.value);
+    });
+</script>
+</html>

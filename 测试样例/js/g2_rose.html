@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+    <!--<script src="https://a.alipayobjects.com/g/datavis/g2/2.3.4/index.js"></script>-->
+    <script src="g2.js"></script>
+
+</head>
+<body>
+<div id="c1"></div>
+<script>
+    var data = [
+
+        {direction: 'N', level: '严重污染', value: 10},
+        {direction: 'N', level: '重度污染', value: 20},
+        {direction: 'N', level: '中度污染', value: 20},
+        {direction: 'N', level: '轻度污染', value: 10},
+        {direction: 'N', level: '良', value: 20},
+        {direction: 'N', level: '优', value: 10},
+
+
+        {direction: 'NE', level: '严重污染', value: 10},
+        {direction: 'NE', level: '重度污染', value: 10},
+        {direction: 'NE', level: '中度污染', value: 20},
+        {direction: 'NE', level: '轻度污染', value: 30},
+        {direction: 'NE', level: '良', value: 10},
+        {direction: 'NE', level: '优', value: 20},
+
+        {direction: 'E', level: '严重污染', value: 15},
+        {direction: 'E', level: '重度污染', value: 20},
+        {direction: 'E', level: '中度污染', value: 30},
+        {direction: 'E', level: '轻度污染', value: 5},
+        {direction: 'E', level: '良', value: 25},
+        {direction: 'E', level: '优', value: 5},
+
+
+        {direction: 'SE', level: '严重污染', value: 10},
+        {direction: 'SE', level: '重度污染', value: 15},
+        {direction: 'SE', level: '中度污染', value: 20},
+        {direction: 'SE', level: '轻度污染', value: 15},
+        {direction: 'SE', level: '良', value: 30},
+        {direction: 'SE', level: '优', value: 10},
+
+        {direction: 'S', level: '严重污染', value: 20},
+        {direction: 'S', level: '重度污染', value: 15},
+        {direction: 'S', level: '中度污染', value: 10},
+        {direction: 'S', level: '轻度污染', value: 15},
+        {direction: 'S', level: '良', value: 20},
+        {direction: 'S', level: '优', value: 20},
+
+
+        {direction: 'SW', level: '严重污染', value: 15},
+        {direction: 'SW', level: '重度污染', value: 25},
+        {direction: 'SW', level: '中度污染', value: 10},
+        {direction: 'SW', level: '轻度污染', value: 20},
+        {direction: 'SW', level: '良', value: 25},
+        {direction: 'SW', level: '优', value: 15},
+
+
+        {direction: 'W', level: '严重污染', value: 10},
+        {direction: 'W', level: '重度污染', value: 20},
+        {direction: 'W', level: '中度污染', value: 25},
+        {direction: 'W', level: '轻度污染', value: 5},
+        {direction: 'W', level: '良', value: 15},
+        {direction: 'W', level: '优', value: 25},
+
+        {direction: 'NW', level: '严重污染', value: 25},
+        {direction: 'NW', level: '重度污染', value: 5},
+        {direction: 'NW', level: '中度污染', value: 10},
+        {direction: 'NW', level: '轻度污染', value: 15},
+        {direction: 'NW', level: '良', value: 10},
+        {direction: 'NW', level: '优', value: 35}
+
+    ];
+    //    var colors = ['#00E500', '#FFFF00', '#FF7E00', '#FF0000', '#99004C', '#7E0023'];
+
+
+    var colors = ['#7E0023', '#99004C', '#FF0000', '#FF7E00', '#FFFF00', '#00E500'];
+
+
+    //    var colors = ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', '#f15c80', '#e4d354'];
+    var chart = new G2.Chart({
+        id: 'c1',
+        forceFit: true,
+        height: 450,
+        plotCfg: {
+            margin: [40, 100, 80, 80]
+        }
+    });
+    chart.source(data);
+    chart.coord('polar');
+    chart.axis('value', {
+        grid: {
+            line: {
+                lineDash: [0, 0]
+            }
+        }// 设置坐标系栅格样式
+    });
+    chart.intervalStack().position('direction*value').color('level', colors).size(75);
+    chart.render();
+</script>
+
+</body>
+</html>
