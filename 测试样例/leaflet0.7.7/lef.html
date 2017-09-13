@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+
+<script type="text/javascript">
+
+    var map = this._map,
+        bounds = map.getPixelBounds(),
+        sw = map.unproject(bounds.getBottomLeft()),
+        //<span style = "font-family: Arial, Helvetica, sans-serif;" >//获取左下角经纬度</span>
+        ne = map.unproject(bounds.getTopRight()),
+        tileSize = this._getTileSize();
+    //< span style = "font-family: Arial, Helvetica, sans-serif;" >//获取右上角经纬度</span>
+    // <span style="font-family: Arial, Helvetica, sans-serif;"> </span>
+
+
+    if (zoom > this.options.maxZoom || zoom < this.options.minZoom) {
+//        return false;
+    }
+
+    var offsetX = this._offsetX;//经度偏移量
+    var offsetY = this._offsetY;//纬度偏移量
+    if (offsetX != null && offsetY != null) {
+        sw = new L.LatLng(sw.lat - parseFloat(offsetY), sw.lng - parseFloat(offsetX));//增加偏移量
+        ne = new L.LatLng(ne.lat - parseFloat(offsetY), ne.lng - parseFloat(offsetX));
+
+        var swPoint = map.project(sw);//将经纬度进行投影
+        // <span style="white-space:pre">	</span>
+        var nePoint = map.project(ne);
+
+        bounds = L.bounds(swPoint, nePoint);
+    }
+
+
+    var offsetX = this._offsetX;
+    var offsetY = this._offsetY;
+
+    if (offsetX != null && offsetY != null) {
+        var latLng = this._map.layerPointToLatLng(tilePos);
+        tilePos = this._map.latLngToLayerPoint(new L.LatLng(latLng.lat +
+            parseFloat(offsetY), latLng.lng + parseFloat(offsetX)));
+    }
+</script>
+</html>

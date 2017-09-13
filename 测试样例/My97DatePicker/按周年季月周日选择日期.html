@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="WdatePicker.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>查询时间类型</th>
+        <td>
+            <select id="selType" name="dept" style="width: 150px;">
+                <option value="1">按日</option>
+                <option value="2">按周</option>
+                <option value="3">按月</option>
+                <option value="4">按季</option>
+                <option value="5">按年</option>
+            </select>
+        </td>
+        <th>统计时间</th>
+        <td>
+            <input id="starttime" class="Wdate" onclick="createWdatePicker();"/>
+        </td>
+    </tr>
+    <tr>
+        <th>选中时间段</th>
+        <td>
+            <input id="showstarttime" type="text" readonly="readonly"/>
+        </td>
+        <th>到</th>
+        <td>
+            <input id="showendtime" type="text" readonly="readonly"/>
+        </td>
+    </tr>
+</table>
+<hr/>
+季度 <input type="text" onclick="WdatePicker({dateFmt:'yyyy年M季度',
+isQuarter:true, isShowOK:false,disabledDates:['....-0[5-9]-..','....-1[0-2]-..'],
+startDate:'%y-01-01' })" class="Wdate" readonly="true"/>
+</body>
+<hr/>
+星期一可选 <input type="text" id="d233" onFocus="WdatePicker({ dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true,isShowWeek:true,disabledDays:[2,3,4,5,6,0]})"/>
+</body>
+
+<script type="text/javascript">
+    /**
+     选择时间的输入框被选中时，创建datepicker控件
+     根据设置不同dateFmt 格式，使空间支持选择日，周，月，季，年
+     */
+    function createWdatePicker() {
+
+        var type = $("#selType").val();
+
+        if (type == 1) {//按日
+            WdatePicker({
+                readOnly: true,
+                dateFmt: 'yyyy-MM-dd',
+                onpicked: pickTime,
+                isShowWeek: true,
+                maxDate: '%y-%M-%d'
+            });
+        } else if (type == 2) {//按周
+            WdatePicker({
+                readOnly: true,
+                dateFmt: 'yyyy-MM-dd',
+                onpicked: pickTime,
+                isShowWeek: true,
+                maxDate: '%y-%M-%d'
+            });
+        } else if (type == 3) {//按月
+            WdatePicker({
+                readOnly: true,
+                dateFmt: 'yyyy-MM',
+                onpicked: pickTime,
+                isShowWeek: true,
+                maxDate: '%y-%M-% d'
+            });
+        } else if (type == 4) {//按季
+            WdatePicker({
+                readOnly: true,
+                dateFmt: 'yyyy-MM',
+                onpicked: pickTime,
+                isShowWeek: true,
+                maxDate: '%y-%M-%d'
+            });
+        } else if (type == 5) {//按年
+            WdatePicker({
+                readOnly: true,
+                dateFmt: 'yyyy',
+                onpicked: pickTime,
+                isShowWeek: true,
+                maxDate: '%y-%M-%d'
+            });
+        }
+
+    }
+
+    /**
+     控件时间选中后，onpicked 事件对应的方法
+     根据不同的选择类型：日周月季年，计算最终选中的时间段
+     */
+    function pickTime() {
+
+//        var type = $("#selType").combobox("getValue");
+        var type = $("#selType").val();
+
+        if (type == 1) {//按日
+            //获取控件选择的时间，格式是根据设置的dateFmt : 'yyyy-MM-dd'
+            var datetime = $dp.cal.getDateStr();
+            $("#showstarttime").val(datetime + " 00:00:00");
+            $("#showendtime").val(datetime + " 23:59:59");
+        } else if (type == 2) {//按周
+            debugger;
+            var datetime = $dp.cal.getDateStr();
+            //获取星期几，控件提供的方法
+            var dstart = -$dp.cal.getP('w', 'w');
+            var dend = dstart + 6;
+            //计算一周的开始日期和结束日期，这个方法文档说返回的是字符串，但是实际中返回的是控件定义的时间对象，所以后面得自己转换成字符串
+            var datestart = $dp.$DV(datetime, {
+                d: dstart
+            });
+            var dateend = $dp.$DV(datetime, {
+                d: dend
+            });
+
+            $("#showstarttime").val(dateToString(datestart) + " 00:00:00");
+            $("#showendtime").val(dateToString(dateend) + " 23:59:59");
+        } else if (type == 3) {//按月
+            var y = $dp.cal.getP('y', 'yyyy');
+            var M = $dp.cal.getP('M', 'M');
+
+            var d = new Date(y, M, 0);
+
+            var datestart = {};
+            datestart.y = y;
+            datestart.M = M;
+            datestart.d = 1;
+            var dateend = {};
+            dateend.y = y;
+            dateend.M = M;
+            //获取月的最后一天
+            dateend.d = d.getDate();
+
+            $("#showstarttime").val(dateToString(datestart) + " 00:00:00");
+            $("#showendtime").val(dateToString(dateend) + " 23:59:59");
+
+        } else if (type == 4) {//按季
+            var y = $dp.cal.getP('y', 'yyyy');
+            var M = $dp.cal.getP('M', 'M');
+
+            //计算季度的开始月份和结束月份
+            var startM = parseInt((M - 1) / 3) * 3 + 1;
+            var endM = startM + 2;
+
+            var d = new Date(y, endM, 0);
+
+            var datestart = {};
+            datestart.y = y;
+            datestart.M = startM;
+            datestart.d = 1;
+            var dateend = {};
+            dateend.y = y;
+            dateend.M = endM;
+            //获取最后一个月的最后一天
+            dateend.d = d.getDate();
+
+            $("#showstarttime").val(dateToString(datestart) + " 00:00:00");
+            $("#showendtime").val(dateToString(dateend) + " 23:59:59");
+
+        } else if (type == 5) {//按年
+
+            var y = $dp.cal.getP('y', 'yyyy');
+            //这里可以直接字符串拼凑写死，但是为了格式统一，还是创建对象在转化吧
+            var datestart = {};
+            datestart.y = y;
+            datestart.M = 1;
+            datestart.d = 1;
+            var dateend = {};
+            dateend.y = y;
+            dateend.M = 12;
+            dateend.d = 31;
+
+            $("#showstarttime").val(dateToString(datestart) + " 00:00:00");
+            $("#showendtime").val(dateToString(dateend) + " 23:59:59");
+        }
+
+    }
+    /**
+     控件返回的时间对象转换成字符串输出
+     控件的时间对象有y,M,d,H,m,s属性，分别返回年，月，日，时，分，秒
+     */
+    function dateToString(date) {
+        var strdate = "";
+        strdate = strdate + date.y + "-";
+        var M = date.M >= 10 ? date.M : ("0" + date.M);
+        strdate = strdate + M;
+        var d = date.d >= 10 ? date.d : ("0" + date.d);
+        strdate = strdate + "-" + d;
+        return strdate;
+    }
+</script>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+
+    <script src="WdatePicker.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="form-group">
+    <input type="text" class="form-control Wdate" style="width: 90%;" id="startTime" name="start"
+           placeholder="Date Start">
+</div><div class="form-group">
+    <input type="text" class="form-control Wdate" style="width: 90%;" id="endTime" name="start"
+           placeholder="date end">
+</div>
+<div class="form-group">
+    <span>间隔：</span> <select id="interval" class="form-control">
+    <option value='1' selected="selected">时</option>
+    <option value='2'>天</option>
+</select>
+    <input type="hidden" id="test" value="yyyy-MM-dd HH">
+</div>
+</body>
+
+<script type="application/javascript">
+    var reg = "yyyy-MM-dd HH";
+    var interval="1";
+    $(function () {
+        initWateStyle("startTime", "endTime",reg);
+
+
+        $("#interval").change(function(){
+            debugger;
+            interval = $(this).children('option:selected').val();
+
+            if (interval == "1") {
+                reg = "yyyy-MM-dd HH";
+                $("#test").val("yyyy-MM-dd HH");
+            } else if (interval == "2") {
+                reg = "yyyy-MM-dd HH";
+                $("#test").val("yyyy-MM-dd");
+            }
+            initWateStyle("startTime", "endTime",reg);
+        });
+
+
+    });
+
+
+    function initWateStyle(startDomId, endDomId,reg) {
+
+
+
+        $('#' + startDomId).unbind('focus',WdatePicker);
+        $('#' + endDomId).unbind('focus',WdatePicker);
+
+        $('#' + startDomId).bind('focus', function () {
+            WdatePicker({dateFmt: $("#test").val(), autoPickDate: true});
+        });
+        $('#' + endDomId).bind('focus', function () {
+            WdatePicker({dateFmt: $("#test").val(), autoPickDate: true});
+        });
+
+//        $('div').unbind('click', RecommandProduct);
+
+
+//	$("#" + startDomId).click(function() {
+//		var endTime = $dp.$(endDomId);
+//		WdatePicker({
+//			onpicked : function() {
+//				endTime.focus();
+//			},
+//			dateFmt : reg,
+//			maxDate : '#F{$dp.$D(\'' + endDomId + '\')}'
+//		})
+//	});
+//
+//	$("#" + endDomId).click(function() {
+//		WdatePicker({
+//			dateFmt : reg,
+//			minDate : '#F{$dp.$D(\'' + startDomId + '\')}'
+//		})
+//	});
+    }
+
+</script>
+</html>
