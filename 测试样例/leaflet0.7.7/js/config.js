@@ -134,20 +134,6 @@ function addStationMarkers() {
         }
     });
 
-    // ajax_post_msg("../data/country-city-co.json", '', "加载", function (data) {
-    //
-    //     if (data.erroCode == 2000) {
-    //         var list = data.result;
-    //         station_data[map_grade][polutionType] = list;
-    //         markers = new L.FeatureGroup();
-    //         for (var i = 0; i < list.length; i++) {
-    //             var station = list[i];
-    //             var mk = createMarker(station);
-    //             markers.addLayer(mk);
-    //         }
-    //         map.addLayer(markers);
-    //     }
-    // })
 }
 
 function iconByName(station, map_grade, level, mapZoom) {
@@ -213,18 +199,11 @@ function popWindowset(station, map_grade) {
         stationId = station.id;
         cityCode = "-1";
     }
-    var pop_url = $.ctx + '/realtimePC/getPriStationData';
-    var param = {
-        stationId: stationId,
-        cityCode: cityCode,
-        insTime: insTime,
-        total: 72
-    };
+
     $.ajax({
         type: 'POST',
-        url: pop_url,
+        url: "data/modal.json",
         dataType: 'json',
-        data: param,
         success: function (data) {
             if (data.erroCode == 2000) {
                 var station_city_fg = true,
@@ -329,8 +308,7 @@ function createWindMap(map, windycolor) {
     getTimeVal();
     timeval = yearV + '' + monthV + "" + dayV + '' + hourV;
     var mapDataUrl = 'https://raw.githubusercontent.com/dannycochran/windable/master/data/2016040900_700.json'
-    // var mapDataUrl = 'data/2017072700-china-ugrd-vgrd.json';
-    // var mapDataUrl = 'http://58.83.189.155/' + yearV + '/' + monthV + '/' + dayV + '/wind/' + timeval + '-w-0p25-10m.json';
+
     d3.json(mapDataUrl, function (err, windData) {
         windydataVal = windData;
         windMap.update({
@@ -652,13 +630,14 @@ function restStatiion_html(data) {
     } else {
         html += data.proName + '		' + data.cityName + '		' + data.stationType + '        ' + data.stationName + '    【' + data.stationId + '】';
     }
+    data.insTime += ":00"
     html += '	</div>';
     html += '<div class="pop_st_baseinfo" style="width:600px;">';
     html += '	<ol class="pop_st_ol">';
     html += '		<li>空气质量等级：' + data.grade + '</li>';
     html += '		<li>空气质量级别： ' + level + '</li>';
     html += '		<li>首要污染物：' + aqiFirst + '</li>';
-    html += '		<li class="text-right">最后时间：' + data.insTime + '</li>';
+    html += '		<li class="text-right">最后时间：' + new Date(data.insTime).Format("yyyy-MM-dd HH:mm") + '</li>';
     html += '	</ol>';
     html += '	<table cellpadding="0" cellspacing="0" class="pop_st_table">';
     html += '		<tr class="even">';

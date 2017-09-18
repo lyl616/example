@@ -265,7 +265,7 @@ function hourlyChartFun(label_list, data_sets, polutionType) {
             width: "99%",
             x: "0%",
             y: "88%"
-        }],
+        } ],
         grid: {
             top: '35px',
             left: '0%',
@@ -294,6 +294,15 @@ function hourlyChartFun(label_list, data_sets, polutionType) {
     };
     //setLineFontSize(option, '');
     myChart.setOption(option);
+
+
+    myChart.on('datazoom', function (params) {
+        var opt = myChart.getOption();
+        var dz = opt.dataZoom[0];
+        var tstart = opt.xAxis[0].data[dz.startValue];
+        var tend = opt.xAxis[0].data[dz.endValue];
+        console.log("start:" + tstart + "    end:" + tend);
+    });
 }
 
 
