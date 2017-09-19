@@ -149,7 +149,7 @@ function iconByName(station, map_grade, level, mapZoom) {
     } else {
         iconSize = 'iconSize30',
             iconUrl = '../images/marker/mark_sprite_1.png';
-            // iconUrl = '../images/country/city' + level + '.png';
+        // iconUrl = '../images/country/city' + level + '.png';
         var defaultWidth = 16,
             marginLeft = 0;
         if (station.value == null) {
@@ -164,7 +164,8 @@ function iconByName(station, map_grade, level, mapZoom) {
     return html;
 }
 
-var xAxis, no2_lst,
+var xAxis,
+    no2_lst,
     pm25_lst,
     pm10_lst,
     o3_lst,
@@ -178,13 +179,14 @@ function popWindowset(station, map_grade) {
         type: 1,
         title: false, //不显示标题栏
         closeBtn: true,
-        area: ['620px', '500px'],
+        area: ['700px', '500px'],
         shade: 0.3,
         id: 'LAY_layuipro', //设定一个id，防止重复弹出
-        resize: false,
+        resize: true,
+        moveOut: true,
         btnAlign: 'c',
         moveType: 1, //拖拽模式，0或者1
-        content: '<div class="leaflet-popup-content"><div class="loading_popup_msg">加载中...</div></div>',
+        content: '<div class="leaflet-popup-content" style="width: 800px;"><div class="loading_popup_msg">加载中...</div></div>',
         success: function (layero) {
             // console.log("点击成功按钮执行的事件！");
         }
@@ -220,6 +222,8 @@ function popWindowset(station, map_grade) {
                 co_lst = detail.co;
                 so2_lst = detail.so2;
 
+                startZoom = xAxis[0];
+                endZoom = xAxis[xAxis.length - 1];
                 hourlyChartFun(xAxis, aqi_lst, 'AQI'); //加载浓度曲线
                 particulateChartFun(xAxis, pm10_lst, pm25_lst, aqi_lst); //加载颗粒物曲线
                 gaseousChartFun(xAxis, co_lst, no2_lst, so2_lst, o3_lst, aqi_lst); //加载气曲线
@@ -623,7 +627,7 @@ function restStatiion_html(data) {
         aqiFirst = str_pollution.toUpperCase() + '<sub>' + num_pollution + '</sub>';
     }
     var html = '';
-    html += '<div class="pop_st_baseinfo" style="width:600px;">';
+    html += '<div class="pop_st_baseinfo" style="width:700px;">';
     html += '	<div class=\'pop_st_tit\'>';
     if (map_grade == "country") {
         html += data.proName + '        ' + data.cityName;
@@ -671,7 +675,7 @@ function restStatiion_html(data) {
     html += '	</table>';
     html += '	<div class="pop_st_echarts">';
     html += '		近72小时浓度曲线（小时数据）';
-    html += '		<div class="pull-right" >';
+    html += '		<div class="pull-right" style="position: absolute;right: 67px;font-size: 12px;top: 33%;" >';
     html += '           <select id="pollution_type_char"  onchange="changeChar()">';
     html += '               <option value="aqi" selected>AQI</option>';
     html += '               <option value="pm25">PM2.5</option>';

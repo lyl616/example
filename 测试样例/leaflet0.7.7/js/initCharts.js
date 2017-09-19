@@ -1,7 +1,12 @@
+var startZoom = "";
+var endZoom = "";
+var hourlyChart = "", particulateChart = "", gaseousChart;
+
 function hourlyChartFun(label_list, data_sets, polutionType) {
-    $("#hourlyChart").empty();
+    // $("#hourlyChart").empty();
+    clearChar("hourlyChart")
     polutionType = polutionType.toUpperCase();
-    var myChart = echarts.init(document.getElementById('hourlyChart'));
+    hourlyChart = echarts.init(document.getElementById('hourlyChart'));
     var colors = ['#008acd', '#b6a2de', '#2ec7c9', '#f7f7f7', '#eae6f2', '#65c2e7'],
         polutionLevel,
         ColorsLevel = ['#00e400', '#ffe800', '#ff7e00', '#ff0000', '#99004c', '#7e0023'];
@@ -196,7 +201,6 @@ function hourlyChartFun(label_list, data_sets, polutionType) {
         }
             break;
     }
-    ;
     option = {
         color: colors,
         tooltip: {
@@ -254,6 +258,13 @@ function hourlyChartFun(label_list, data_sets, polutionType) {
                 color: "#e7e7e7"
             }
 
+        }, datarangeselected: {
+            type: 'datarangeselected',
+            selected: function (r) {
+                debugger;
+                console.log(r);
+            }
+
         },
         dataZoom: [{
             type: 'slider',
@@ -262,10 +273,14 @@ function hourlyChartFun(label_list, data_sets, polutionType) {
             fillerColor: colors[4], // 选中的颜色
             handleColor: colors[5], // 滑块颜色
             height: "30px",
-            width: "99%",
-            x: "0%",
-            y: "88%"
-        } ],
+            width: "98%",
+            // 开始位置的数值
+            startValue: startZoom,
+            // 结束位置的数值
+            endValue: endZoom
+            // start: startZoom == "" ? 0 : startZoom,
+            // end: endZoom == "" ? 88 : endZoom
+        }],
         grid: {
             top: '35px',
             left: '0%',
@@ -292,16 +307,16 @@ function hourlyChartFun(label_list, data_sets, polutionType) {
             data: data_sets
         }
     };
-    //setLineFontSize(option, '');
-    myChart.setOption(option);
+    hourlyChart.setOption(option);
 
-
-    myChart.on('datazoom', function (params) {
-        var opt = myChart.getOption();
+    hourlyChart.on('datazoom', function (params) {
+        var opt = hourlyChart.getOption();
         var dz = opt.dataZoom[0];
         var tstart = opt.xAxis[0].data[dz.startValue];
         var tend = opt.xAxis[0].data[dz.endValue];
-        console.log("start:" + tstart + "    end:" + tend);
+        startZoom = dz.startValue;
+        endZoom = dz.endValue;
+        console.log(dz.startValue +"------"+ dz.endValue);
     });
 }
 
@@ -314,8 +329,9 @@ function hourlyChartFun(label_list, data_sets, polutionType) {
  * @param aqi
  */
 function particulateChartFun(label_list, pm10, pm25, aqi) {
-    $("#particulateChart").empty();
-    var myChart = echarts.init(document.getElementById('particulateChart')),
+    // $("#particulateChart").empty();
+    clearChar("particulateChart");
+    particulateChart = echarts.init(document.getElementById('particulateChart')),
         colors = ['#4c4c4c', '#4046f8', '#489f48'],
         dataZoomcolors = ['f7f7f7', '#eae6f2', '#65c2e7'];
     option = {
@@ -355,9 +371,13 @@ function particulateChartFun(label_list, pm10, pm25, aqi) {
             fillerColor: dataZoomcolors[1], // 选中的颜色
             handleColor: dataZoomcolors[2], // 滑块颜色
             height: "30px",
-            width: "96%",
-            x: "0%",
-            y: "88%"
+            width: "80%",
+            // 开始位置的数值
+            startValue: startZoom,
+            // 结束位置的数值
+            endValue: endZoom
+            // start: startZoom == "" ? 0 : startZoom,
+            // end: endZoom == "" ? 88 : endZoom
         }],
         grid: {
             top: '12%',
@@ -497,13 +517,22 @@ function particulateChartFun(label_list, pm10, pm25, aqi) {
         ]
     };
 
-    myChart.setOption(option);
+    particulateChart.setOption(option);
+    particulateChart.on('datazoom', function (params) {
+        var opt = particulateChart.getOption();
+        var dz = opt.dataZoom[0];
+        var tstart = opt.xAxis[0].data[dz.startValue];
+        var tend = opt.xAxis[0].data[dz.endValue];
+        startZoom = dz.startValue;
+        endZoom = dz.endValue;
+        console.log(dz.startValue +"------"+ dz.endValue);
+    });
 }
 
 function gaseousChartFun(label_list, co, no2, so2, o3, aqi) {
 
-    $("#gaseousChart").empty();
-    var myChart = echarts.init(document.getElementById('gaseousChart'), 'macarons'),
+    clearChar("gaseousChart");
+    gaseousChart = echarts.init(document.getElementById('gaseousChart'), 'macarons'),
         colors = ['#4c4c4c', '#278e27', '#3636ff', '#ff4040', '#323232'],
         dataZoomcolors = ['f7f7f7', '#eae6f2', '#65c2e7'];
     option = {
@@ -550,9 +579,13 @@ function gaseousChartFun(label_list, co, no2, so2, o3, aqi) {
             fillerColor: dataZoomcolors[1], // 选中的颜色
             handleColor: dataZoomcolors[2], // 滑块颜色
             height: "30px",
-            width: "96%",
-            x: "0%",
-            y: "88%"
+            width: "70%",
+            // 开始位置的数值
+            startValue: startZoom,
+            // 结束位置的数值
+            endValue: endZoom
+            // start: startZoom == "" ? 0 : startZoom,
+            // end: endZoom == "" ? 88 : endZoom
         }],
         grid: {
             top: '12%',
@@ -718,9 +751,7 @@ function gaseousChartFun(label_list, co, no2, so2, o3, aqi) {
             data: co,
             itemStyle: {
                 normal: {
-
                     color: colors[1] //自定义设置线条颜色
-
                 }
             }
         }, {
@@ -754,14 +785,23 @@ function gaseousChartFun(label_list, co, no2, so2, o3, aqi) {
             yAxisIndex: 4,
             itemStyle: {
                 normal: {
-
                     color: colors[4] //自定义设置线条颜色
 
                 }
             }
         }]
     };
-    myChart.setOption(option);
+    gaseousChart.setOption(option);
+    gaseousChart.on('datazoom', function (params) {
+        var opt = gaseousChart.getOption();
+        var dz = opt.dataZoom[0];
+        var tstart = opt.xAxis[0].data[dz.startValue];
+        var tend = opt.xAxis[0].data[dz.endValue];
+        startZoom = dz.startValue;
+        endZoom = dz.endValue;
+        console.log(dz.startValue +"------"+ dz.endValue);
+    });
+
 }
 
 function showEcharts(flag, obj, id) {
@@ -772,14 +812,22 @@ function showEcharts(flag, obj, id) {
     }
     $('.pop_st_echarts button').removeClass('bf08a');
     $(obj).addClass('bf08a');
-    $('.pop_st_echarts_detail .positionAbs').removeClass('zindex1');
-    $('.pop_st_echarts_detail .positionAbs').addClass('zindex0');
-    $('.pop_st_echarts_detail .positionAbs').removeClass('opacity1');
-    $('.pop_st_echarts_detail .positionAbs').addClass('opacity0');
-    $('#' + id).removeClass('opacity0');
-    $('#' + id).removeClass('zindex0');
-    $('#' + id).addClass('opacity1');
-    $('#' + id).addClass('zindex1');
+    $('.pop_st_echarts_detail .positionAbs').removeClass('zindex1').addClass('zindex0');
+    $('.pop_st_echarts_detail .positionAbs').removeClass('opacity1').addClass('opacity0');
+    $('#' + id).removeClass('opacity0').removeClass('zindex0');
+    $('#' + id).addClass('opacity1').addClass('zindex1');
+
+    debugger;
+    if (id == "hourlyChart") {
+        hourlyChartFun(xAxis, aqi_lst, 'AQI'); //加载浓度曲线
+    }
+    else if (id == "particulateChart") {
+        particulateChartFun(xAxis, pm10_lst, pm25_lst, aqi_lst); //加载颗粒物曲线
+    }
+    else if (id == "gaseousChart") {
+        gaseousChartFun(xAxis, co_lst, no2_lst, so2_lst, o3_lst, aqi_lst); //加载气曲线
+    }
+
 }
 
 var datax1 = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
@@ -790,3 +838,7 @@ var datay4 = [220, 182, 191, 234, 290, 330, 310];
 var datay5 = [220, 182, 191, 234, 290, 330, 310];
 var datay6 = [220, 182, 191, 234, 290, 330, 310];
 
+function clearChar(domId) {
+    var myChar = echarts.init(document.getElementById(domId));
+    myChar.clear();
+}
