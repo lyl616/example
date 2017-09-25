@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>蛙鸣科技 | 预报预警</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+	<link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="css/animate.min.css" rel="stylesheet" />
+	<link href="css/style.min.css" rel="stylesheet" />
+	<link href="css/style-responsive.min.css" rel="stylesheet" />
+	<link href="css/theme/default.css" rel="stylesheet" id="theme" />
+    <link rel="shortcut icon" href="img/favicon.ico">
+	<!-- ================== END BASE CSS STYLE ================== -->
+<style type="text/css">
+/*update 20161004*/
+
+.form-control {
+	height: 26px;
+	padding: 2px 12px;
+}
+.change .nav>li>a {
+	padding: 4px 10px;
+}
+.nav-tabs>li>a {
+	border-radius: 0;
+}
+.nav-tabs {
+	background: #c1ccd1;
+	border-radius: 0;
+}
+.nav-tabs>li>a {
+	margin-right: 0px;
+}
+</style> 
+</head>
+<body>
+	<!-- begin #page-loader -->
+<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<!-- begin #header -->
+		<div id="header" class="header navbar navbar-default navbar-fixed-top">
+			<!-- begin container-fluid -->
+			<div class="container-fluid">
+				<!-- begin mobile sidebar expand / collapse button -->
+				<div class="navbar-header">
+					<a href="index.html" class="navbar-brand"><span  style=" margin-right:12px;"><img src="img/WMLogo.png" width="30" height="30"></span>大气污染治理系统</a>
+                    <div class="left m-b-10 m-t-10 m-r-15" style="width:1px; height:35px; border-right:1px solid #b9bfc5;"></div>
+                    <a href="index.html"><div class="WMMap_back"></div></a>
+                    <div class="left f-s-20 m-t-15 m-l-10 f-w-600">预报预警</div>
+					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<!-- end mobile sidebar expand / collapse button -->
+				
+				<!-- begin header navigation right -->
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<form class="navbar-form full-width">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="查询" />
+								<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+							</div>
+						</form>
+					</li>
+					
+					<li class="dropdown navbar-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="img/user.jpg" alt="" /> 
+							<span class="hidden-xs">Administrator</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu animated fadeInLeft">
+							<li class="arrow"></li>
+							<li><a href="login.html">退出</a></li>
+						</ul>
+					</li>
+				</ul>
+				<!-- end header navigation right -->
+			</div>
+			<!-- end container-fluid -->
+		</div>
+		<!-- end #header -->
+		
+		<!-- begin #content -->			
+			<div class="Map-All">
+              <div id="WMMAP" style="height: 100%"></div>
+             
+             
+             
+             
+             
+            <!-- begin col-6 -->
+			    <div class="change col-md-6" style="position: absolute;left:230px; top: 90px; display:none;">
+					<ul class="nav nav-tabs f-s-12">
+						<li class="active"><a href="#default-tab-1" data-toggle="tab">PM2.5</a></li>
+						<li class=""><a href="#default-tab-2" data-toggle="tab">PM10</a></li>
+						<li class=""><a href="#default-tab-3" data-toggle="tab">NO2</a></li>
+						<li class=""><a href="#default-tab-4" data-toggle="tab">CO</a></li>
+						<li class=""><a href="#default-tab-5" data-toggle="tab">O3</a></li>
+						<li class=""><a href="#default-tab-6" data-toggle="tab">SO2</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane fade active in" id="default-tab-1">
+						   <div id="DataPM25" style="height:240px; width:100%;"></div>	
+						</div>
+						<div class="tab-pane fade" id="default-tab-2">
+						   <div id="DataPM10" style="height:240px; width:620px; overflow:hidden;"></div>	
+						</div>
+						<div class="tab-pane fade" id="default-tab-3">
+						  <div id="DataNO2" style="height:240px; width:620px; overflow:hidden;"></div>	
+						</div>
+						<div class="tab-pane fade" id="default-tab-4">
+						  <div id="DataCO" style="height:240px; width:620px; overflow:hidden;"></div>	
+						</div>
+						<div class="tab-pane fade" id="default-tab-5">
+						  <div id="DataO3" style="height:240px; width:620px; overflow:hidden;"></div>	
+						</div>
+                        <div class="tab-pane fade" id="default-tab-6">
+						  <div id="DataSO2" style="height:240px; width:620px; overflow:hidden;"></div>	
+						</div>
+					</div>
+				</div>
+			    <!-- end col-6 -->             
+             
+             
+             
+             
+             
+
+<div class="map-float-table width-sm hidden-xs">
+                    <div style="background-color:#d9e0e7;padding:14px;">
+                    <h4 class="m-t-0 f-s-20 f-w-600"><i class="fa fa-map-marker text-danger m-r-5"></i>北京</h4>
+                    <h3 class="f-s-12">2016年10月1日 23:59:59 实时发布</h3>
+                    </div>
+                    
+                    <div>
+                    <div class="f-s-16 m-l-15 m-r-15 m-t-15 AQI-4">预警信息</div>
+                    </div>
+                    
+                    <div>
+                    <div class="p-15 left f-s-12"><p><span class="f-s-12 AQI-4">[重污染]</span> 未来24小时，全城会出现重污染情况。</p><p><span class="f-s-12 AQI-4">[重污染]</span> 未来24小时，全城会出现重污染情况。</p>
+                    <br>
+                    <p><span class="right"><a href="#">查阅更多信息 >></a></span></p></div>
+                    <div class="blank0"></div>
+                    </div>
+                    
+                   
+                    
+                </div><div class="WMMapAQI f-s-12"> <a href="#"><i>AQI</i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i>PM<span class="sub f-s-8">10</span></i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i>SO<span class="sub f-s-8">2</span></i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i>NO<span class="sub f-s-8">2</span></i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i>CO</i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i>O<span class="sub f-s-8">3</span></i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i><span class="sub f-s-8">VOC</span></i></a> </div>  
+                 
+                 
+                 
+              <div class="Legend"><img src="img/color_bar_chinese.png" width="71" height="140"> </div> 
+               
+               
+                 
+              <div class="WMMapTools f-s-14">
+                 <a href="YBYJ_YB.html"><i>预报</i></a>
+                 <b class="tool-gap"></b>
+                 <a href="YBYJ_GJ.html"><i>告警</i></a>             
+                 <b class="tool-gap"></b>       
+                 <a href="YBYJ_GJTJ.html"><i>告警统计</i></a>
+              </div>
+                 
+
+<div class="WMMapHistoryTime f-s-14" style="width:480px;">
+
+<div>
+<div class="left time-pause" id="play-pause"></div>
+<div class=" left time-play m-l-10" id="btn-play"></div>
+<div>
+<div class="left time-bar m-l-10"></div>
+<div class="left m-l-10 f-s-12 m-t-5">当前时间:2016年10月11日48小时</div>
+</div>
+</div>
+
+</div>
+                
+
+    <div class="WMMapCitys f-s-12"> <a href="#" id="btn-china"><i>全国</i></a> <b class="tool-gap"></b> <a href="#" id="btn-jjy"><i>京津冀</i></a> <b class="tool-gap"></b> <a href="#" id="btn-beijing"><i>北京</i></a> <b class="tool-gap"></b> <a href="#" id="btn-hotmap"><i>热力图</i></a> </div>
+    
+    <!--    <div class="HeatmapLegend"><img src="img/HeatmapLegend.png" width="56" height="34"> </div>-->              
+                
+                
+                
+                
+            </div>
+		<!-- end #content -->
+		
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="plugins/jquery/jquery-1.9.1.min.js"></script>
+	<script src="plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	<script src="js/apps.min.js"></script>
+    <script src="plugins/echarts-3.1.10/dist/echarts.min.js"></script>
+	<!-- ================== END PAGE LEVEL JS ================== -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=09cy737KXfL8oKqjN51ql4ALFEyKG05y">
+</script> 
+<script src="js/Heatmap_min.js"></script> 
+<script src="js/amap.js"></script>      
+<script>
+		$(document).ready(function() {
+			App.init();
+		});
+</script>
+
+<script type="text/javascript">
+var myChart = echarts.init(document.getElementById('DataPM25'));
+var option = {
+    color:['#7030a0'],
+    title: {
+        text: 'PM2.5未来48小时变化趋势',
+		 x:'center',
+		textStyle: {color: '#333333',ontWeight: 'normal',fontSize: 16},
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+	grid: {
+		top: '30%',
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2:00','4:00','6:00','8:00','10:00','12:00','14:00','16:00','18:00','20:00','22:00','24:00','26:00','28:00','30:00','32:00','34:00','36:00','38:00','40:00','42:00','44:00','46:00','48:00']
+    },
+    yAxis: {
+        type: 'value',
+		splitNumber: 5,
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name:'PM2.5',
+            type:'line',
+            data:[22, 148, 142, 189, 194, 188, 133,148,140,168,175,235,214,199,183,146,112,124,134,36,45,55,45,25],
+            markPoint: {
+                data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: '平均值'}
+                ]
+            }
+        }
+    ]
+};
+
+myChart.setOption(option);
+</script> 
+    
+<script type="text/javascript">
+var myChart = echarts.init(document.getElementById('DataPM10'));
+var option = {
+    title: {
+        text: 'PM10未来48小时变化趋势',
+		 x:'center',
+		textStyle: {color: '#333333',ontWeight: 'normal',fontSize: 16},
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+	grid: {
+		top: '30%',
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2:00','4:00','6:00','8:00','10:00','12:00','14:00','16:00','18:00','20:00','22:00','24:00','26:00','28:00','30:00','32:00','34:00','36:00','38:00','40:00','42:00','44:00','46:00','48:00']
+    },
+    yAxis: {
+        type: 'value',
+		splitNumber: 5,
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name:'PM10',
+            type:'line',
+            data:[122, 248, 242, 119, 134, 288, 333,148,160,468,475,435,214,239,243,286,222,234,434,236,245,255,245,225],
+            markPoint: {
+                data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: '平均值'}
+                ]
+            }
+        }
+    ]
+};
+
+myChart.setOption(option);
+</script>
+
+<script type="text/javascript">
+var myChart = echarts.init(document.getElementById('DataNO2'));
+var option = {
+    color:['#7030a0'],
+    title: {
+        text: 'NO2未来48小时变化趋势',
+		 x:'center',
+		textStyle: {color: '#333333',ontWeight: 'normal',fontSize: 16},
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+	grid: {
+		top: '30%',
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2:00','4:00','6:00','8:00','10:00','12:00','14:00','16:00','18:00','20:00','22:00','24:00','26:00','28:00','30:00','32:00','34:00','36:00','38:00','40:00','42:00','44:00','46:00','48:00']
+    },
+    yAxis: {
+        type: 'value',
+		splitNumber: 5,
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name:'NO2',
+            type:'line',
+            data:[56, 123, 142, 345, 280, 310, 300,269,258,243,283,184,214,199,183,146,112,124,234,136,145,155,145,125],
+            markPoint: {
+                data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: '平均值'}
+                ]
+            }
+        }
+    ]
+};
+
+myChart.setOption(option);
+</script>
+
+<script type="text/javascript">
+var myChart = echarts.init(document.getElementById('DataCO'));
+var option = {
+    title: {
+        text: 'CO未来48小时变化趋势',
+		 x:'center',
+		textStyle: {color: '#333333',ontWeight: 'normal',fontSize: 16},
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+	grid: {
+		top: '30%',
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2:00','4:00','6:00','8:00','10:00','12:00','14:00','16:00','18:00','20:00','22:00','24:00','26:00','28:00','30:00','32:00','34:00','36:00','38:00','40:00','42:00','44:00','46:00','48:00']
+    },
+    yAxis: {
+        type: 'value',
+		splitNumber: 5,
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name:'CO',
+            type:'line',
+            data:[22, 11, 23, 43, 23, 35, 56,65,70,56,54,43,33,89,100,42,88,89,93,57,45,55,45,25],
+            markPoint: {
+                data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: '平均值'}
+                ]
+            }
+        }
+    ]
+};
+
+myChart.setOption(option);
+</script>
+
+<script type="text/javascript">
+var myChart = echarts.init(document.getElementById('DataO3'));
+var option = {
+    color:['#7030a0'],
+    title: {
+        text: 'O3未来48小时变化趋势',
+		 x:'center',
+		textStyle: {color: '#333333',ontWeight: 'normal',fontSize: 16},
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+	grid: {
+		top: '30%',
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2:00','4:00','6:00','8:00','10:00','12:00','14:00','16:00','18:00','20:00','22:00','24:00','26:00','28:00','30:00','32:00','34:00','36:00','38:00','40:00','42:00','44:00','46:00','48:00']
+    },
+    yAxis: {
+        type: 'value',
+		splitNumber: 5,
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name:'O3',
+            type:'line',
+            data:[22, 148, 142, 189, 194, 188, 133,148,140,168,175,235,214,199,183,146,112,124,134,36,45,55,45,25],
+            markPoint: {
+                data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: '平均值'}
+                ]
+            }
+        }
+    ]
+};
+
+myChart.setOption(option);
+</script>
+
+<script type="text/javascript">
+var myChart = echarts.init(document.getElementById('DataSO2'));
+var option = {
+    title: {
+        text: 'SO2未来48小时变化趋势',
+		 x:'center',
+		textStyle: {color: '#333333',ontWeight: 'normal',fontSize: 16},
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+	grid: {
+		top: '30%',
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2:00','4:00','6:00','8:00','10:00','12:00','14:00','16:00','18:00','20:00','22:00','24:00','26:00','28:00','30:00','32:00','34:00','36:00','38:00','40:00','42:00','44:00','46:00','48:00']
+    },
+    yAxis: {
+        type: 'value',
+		splitNumber: 5,
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name:'SO2',
+            type:'line',
+            data:[22, 43, 27, 65, 19, 78, 39,99,251,58,39,100,84,213,183,241,46,12,14,34,36,45,55,45,25],
+            markPoint: {
+                data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: '平均值'}
+                ]
+            }
+        }
+    ]
+};
+
+myChart.setOption(option);
+</script>
+
+</body>
+</html>

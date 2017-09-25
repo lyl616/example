@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>蛙鸣科技 | 空间分布</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+	<link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="css/animate.min.css" rel="stylesheet" />
+	<link href="css/style.min.css" rel="stylesheet" />
+	<link href="css/style-responsive.min.css" rel="stylesheet" />
+	<link href="css/theme/default.css" rel="stylesheet" id="theme" />
+    <link rel="shortcut icon" href="img/favicon.ico">
+	<!-- ================== END BASE CSS STYLE ================== -->
+
+
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+	<link href="plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+	<link href="plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" />
+	<!-- ================== END PAGE LEVEL STYLE ================== -->
+<style type="text/css">
+/*update 20161004*/
+
+.form-control {
+	height: 26px;
+	padding: 2px 12px;
+}
+.change .nav>li>a {
+	padding: 4px 10px;
+}
+.nav-tabs>li>a {
+	border-radius: 0;
+}
+.nav-tabs {
+	background: #c1ccd1;
+	border-radius: 0;
+}
+.nav-tabs>li>a {
+	margin-right: 0px;
+}
+
+.tab-content {
+    padding: 0px;
+    margin-bottom: 0px;
+}
+</style>	
+</head>
+<body>
+	<!-- begin #page-loader -->
+<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<!-- begin #header -->
+		<div id="header" class="header navbar navbar-default navbar-fixed-top">
+			<!-- begin container-fluid -->
+			<div class="container-fluid">
+				<!-- begin mobile sidebar expand / collapse button -->
+				<div class="navbar-header">
+					<a href="index.html" class="navbar-brand"><span  style=" margin-right:12px;"><img src="img/WMLogo.png" width="30" height="30"></span>大气污染治理系统</a>
+                    <div class="left m-b-10 m-t-10 m-r-15" style="width:1px; height:35px; border-right:1px solid #b9bfc5;"></div>
+                    <a href="index.html"><div class="WMMap_back"></div></a>
+                    <div class="left f-s-20 m-t-15 m-l-10 f-w-600">排放清单云计算</div>
+					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<!-- end mobile sidebar expand / collapse button -->
+				
+				<!-- begin header navigation right -->
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<form class="navbar-form full-width">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="查询" />
+								<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+							</div>
+						</form>
+					</li>
+					
+					<li class="dropdown navbar-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="img/user.jpg" alt="" /> 
+							<span class="hidden-xs">Administrator</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu animated fadeInLeft">
+							<li class="arrow"></li>
+							<li><a href="login.html">退出</a></li>
+						</ul>
+					</li>
+				</ul>
+				<!-- end header navigation right -->
+			</div>
+			<!-- end container-fluid -->
+		</div>
+		<!-- end #header -->
+		
+		
+		<!-- begin #sidebar -->
+		<div id="sidebar" class="sidebar">
+			<!-- begin sidebar scrollbar -->
+			<div data-scrollbar="true" data-height="100%">
+				<!-- begin sidebar nav -->
+				<ul class="nav f-s-12">
+					<li class="nav-header"></li>
+					<li class="has-sub">
+						<a href="javascript:;">
+						    <b class="caret pull-right"></b>
+						    <i class="fa fa-laptop"></i>
+						    <span>全国网格化排放清单</span>
+					    </a>
+						<ul class="sub-menu">                        	<li><a href="PFQDYJS_QGWGHPFQD_ALL.html">全国</a></li>
+						    <li><a href="PFQDYJS_QGWGHPFQD_Cement.html">水泥</a></li>
+                            <li><a href="PFQDYJS_QGWGHPFQD_Steel.html">钢铁</a></li>
+							<li><a href="PFQDYJS_QGWGHPFQD_ElectricPower.html">电力</a></li> </ul>
+					</li>
+					<li class="has-sub expand">
+						<a href="javascript:;">
+						    <b class="caret pull-right"></b>
+						    <i class="fa fa-laptop"></i>
+						    <span>区域排放清单</span>
+					    </a>
+						<ul class="sub-menu"  style="display: block;">
+						    <li><a href="PFQDYJS_QYPFQD_QYFB.html">企业分布</a></li>
+						    <li class="active"><a href="PFQDYJS_QYPFQD_KJFB.html">空间分布</a></li>
+						    <li><a href="PFQDYJS_QYPFQD_PFHZ.html">排放汇总</a></li>
+						    <li><a href="PFQDYJS_QYPFQD_WGHZS.html">网格化展示</a></li> 
+						</ul>
+					</li>
+					
+					<li class="has-sub">
+						<a href="javascript:;">
+						    <b class="caret pull-right"></b>
+						    <i class="fa fa-laptop"></i>
+						    <span>清单填报</span>
+					    </a>
+						<ul class="sub-menu">
+						    <li><a href="PFQDYJS_QYTBMAP.html">企业填报</a></li>
+						    <li><a href="PFQDYJS_JTTB.html">交通填报</a></li>
+						    <li><a href="PFQDYJS_MYTB.html">民用填报</a></li>
+						    <li><a href="PFQDYJS_SJGL.html">数据管理</a></li>
+						</ul>
+					</li>
+				</ul>
+				<!-- end sidebar nav -->
+			</div>
+			<!-- end sidebar scrollbar -->
+		</div>
+		<div class="sidebar-bg"></div>
+		<!-- end #sidebar -->
+		
+		<!-- begin #content -->
+		<div id="content" class="content">
+			<!-- begin breadcrumb -->
+			<ol class="breadcrumb pull-left f-s-12">
+				<li><a href="javascript:;">排放清单云计算</a></li>
+				<li><a href="javascript:;">区域排放清单</a></li>
+				<li class="active">行业分布</li>
+			</ol>
+			<!-- end breadcrumb -->
+   
+    <div class="Legend" style="left: 240px;"><img src="img/color_bar_chinese.png" width="71" height="140"> </div>			
+                        
+    <div class="WMMapCitys f-s-12"> <a href="#" id="HYFB-E"><i>电厂</i></a> <b class="tool-gap"></b> <a href="#" id="HYFB-S"><i>钢铁</i></a> <b class="tool-gap"></b> <a href="#" id="HYFB-C"><i>水泥</i></a> </div>            
+         
+            
+            <div class="map" id="WMMAP" style="height: 91%"></div>			
+		</div>
+		<!-- end #content -->
+
+		
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	</div>
+	<!-- end page container -->
+
+<!-- ================== BEGIN BASE JS ================== --> 
+<script src="plugins/jquery/jquery-1.9.1.min.js"></script> 
+<script src="plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script> 
+<script src="plugins/bootstrap/js/bootstrap.min.js"></script> 
+<script src="plugins/slimscroll/jquery.slimscroll.min.js"></script> 
+<!-- ================== END BASE JS ================== --> 
+
+<!-- ================== BEGIN PAGE LEVEL JS ================== --> 
+<script src="js/apps.min.js"></script> 
+<script src="plugins/echarts-3.1.10/dist/echarts.min.js"></script> 
+<script src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script> 
+<script src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script> 
+<script src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script> 
+<script src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script> 
+<!-- ================== END PAGE LEVEL JS ================== --> 
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D">
+</script> 
+<script src="js/hyfbmap.js"></script> 
+<script>
+		$(document).ready(function() {
+			App.init();
+		});
+</script>  
+    
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>蛙鸣科技 | 实时监测</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+	<link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="css/animate.min.css" rel="stylesheet" />
+	<link href="css/style.min.css" rel="stylesheet" />
+	<link href="css/style-responsive.min.css" rel="stylesheet" />
+	<link href="css/theme/default.css" rel="stylesheet" id="theme" />
+    <link rel="shortcut icon" href="img/favicon.ico">
+	<!-- ================== END BASE CSS STYLE ================== -->
+	
+</head>
+<body>
+	<!-- begin #page-loader -->
+	<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<!-- begin #header -->
+		<div id="header" class="header navbar navbar-default navbar-fixed-top">
+			<!-- begin container-fluid -->
+			<div class="container-fluid">
+				<!-- begin mobile sidebar expand / collapse button -->
+				<div class="navbar-header">
+					<a href="index.html" class="navbar-brand"><span  style=" margin-right:12px;"><img src="img/WMLogo.png" width="30" height="30"></span>大气污染治理系统</a>
+                    <div class="left m-b-10 m-t-10 m-r-15" style="width:1px; height:35px; border-right:1px solid #b9bfc5;"></div>
+                    <a href="index.html"><div class="WMMap_back"></div></a>
+                    <div class="left f-s-20 m-t-15 m-l-10 f-w-600">实时监测</div>
+					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<!-- end mobile sidebar expand / collapse button -->
+				
+				<!-- begin header navigation right -->
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<form class="navbar-form full-width">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="查询" />
+								<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+							</div>
+						</form>
+					</li>
+					
+					<li class="dropdown navbar-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="img/user.jpg" alt="" /> 
+							<span class="hidden-xs">Administrator</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu animated fadeInLeft">
+							<li class="arrow"></li>
+							<li><a href="login.html">退出</a></li>
+						</ul>
+					</li>
+				</ul>
+				<!-- end header navigation right -->
+			</div>
+			<!-- end container-fluid -->
+		</div>
+		<!-- end #header -->
+		
+		<!-- begin #content -->			
+			<div class="Map-All">
+            
+
+   <div class="SSTJ">
+      <div class="top-left" id="main-left01" style="height:260px; width:48%; overflow:hidden;"></div>
+      <div class="top-right" id="main-right01" style="height:260px; width:50%; overflow:hidden;"></div>
+      <div class="top-left" id="main-left02" style="height:270px; width:48%; overflow:hidden;"></div>
+      <div class="top-right" id="main-right02" style="height:270px; width:50%; overflow:hidden;"></div>              
+   </div>  
+            
+            
+              <div id="WMMAP" style="height: 100%"></div>
+                 
+                
+          
+               
+               
+               
+               
+               
+                 
+              <div class="WMMapTools f-s-14">
+                 <a href="#" id="ShowUserBoxclick" style="cursor:pointer"><i>北京市</i><em class="em-down"></em></a>
+                 <b class="tool-gap"></b>
+                 <a href="SSJC_SSSJ.html"><i>实时数据</i></a>
+                 <b class="tool-gap"></b>
+                 <a href="SSJC_LSSJ.html"><i>历史数据</i></a>             
+                 <b class="tool-gap"></b>       
+                 <a href="SSJC_JSTJ.html"><i>数据统计</i></a>
+                 </div>
+                 
+
+
+ <!-- showUserBox
+      ================================================== -->
+    <div id="ShowUserBoxMain" style="display:none">
+      <div class="ShowUserBoxArrow"></div>
+      <div class="ShowUserBox">
+        <ul>
+          <li><a href="#"><span>京津冀(257)</span></a></li>
+          <li><a href="#"><span>长三角(192)</span></a></li>
+          <li><a href="#"><span>珠三角(213)</span></a></li>
+          <li><a href="#"><span>成渝(122)</span></a></li>         
+          <div class="blank0"></div>
+        </ul>
+      </div>
+    </div>
+         
+                
+                
+            </div>
+		<!-- end #content -->
+		
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="plugins/jquery/jquery-1.9.1.min.js"></script>
+	<script src="plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	<script src="js/apps.min.js"></script>
+    <script src="plugins/echarts-3.1.10/dist/echarts.min.js"></script>
+	<!-- ================== END PAGE LEVEL JS ================== -->
+    
+<script>
+		$(document).ready(function() {
+			App.init();
+		});
+</script>
+
+<script type="text/javascript">
+                var myChart = echarts.init(document.getElementById('main-left01'));
+
+ var option = {
+	color:['#25e82c','#f0ef00','#ea9709','#fe0000','#7030a0','#c00002'],
+    title : {
+        text: '空气质量分级构成',
+		 x:'center',
+		textStyle: {color: '#333333',ontWeight: 'normal',fontSize: 16},
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+		grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'right',
+        data: ['优','良','轻度污染','中度污染','重度污染']
+    },
+    series : [
+        {
+            name: '空气质量',
+            type: 'pie',
+            radius : '70%',
+            center: ['50%', '50%'],
+            data:[
+                {value:1548, name:'优'},
+                {value:200, name:'良'},
+                {value:100, name:'轻度污染'},
+                {value:100, name:'中度污染'},
+                {value:100, name:'重度污染'}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};						
+				
+myChart.setOption(option);
+</script> 
+
+<script type="text/javascript">
+                var myChart = echarts.init(document.getElementById('main-right01'));
+
+var option = {
+	color:['#2ecc71','#e74c39','#65de98','#2ecc71','#209150','#e74c39','#d72712','#9b3124'],
+	    title : {
+        text: '站点达标率',
+		 x:'center',
+		textStyle: {color: '#333333',ontWeight: 'normal',fontSize: 16},
+    },
+    legend: {
+        orient: 'vertical',
+        x: 'left',
+    },
+
+    series: [
+        {
+            name:'站点达标率',
+            type:'pie',
+            selectedMode: 'single',
+            radius: [0, '35%'],
+
+            label: {
+                normal: {
+                    position: 'inner'
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data:[
+                {value:300, name:'达标'},
+                {value:100, name:'不达标', selected:true}
+            ]
+        },
+        {
+            name:'访问来源',
+            type:'pie',
+            radius: ['45%', '70%'],
+
+            data:[
+                {value:100, name:'居民点'},
+                {value:100, name:'工业点'},
+                {value:100, name:'交通点'},
+                {value:33, name:'居民点'},
+                {value:34, name:'工业点'},
+                {value:33, name:'交通点'}
+            ]
+        }
+    ]
+};	
+				
+
+
+myChart.setOption(option);
+</script> 
+
+<script type="text/javascript">
+                var myChart = echarts.init(document.getElementById('main-left02'));
+
+var option = {
+    title: {
+        text: '空气质量指数排行',
+		 x:'center',
+		textStyle: {color: '#333333',ontWeight: 'normal',fontSize: 16},
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['石家庄市','保定市','那曲','唐山市','北京市','沧州市','泸州市','咸阳市','秦皇岛市','滨州市']
+    },
+    series: [
+        {
+            name: '2016年10月2日',
+            type: 'bar',
+			barWidth : 8,
+            data: [372, 300, 286, 248, 241, 196,194,191,189,170]
+        }
+    ]
+};    
+
+myChart.setOption(option);
+</script> 
+<script type="text/javascript">
+                var myChart = echarts.init(document.getElementById('main-right02'));
+
+ var option = {
+    title: {
+        text: 'AQI变化趋势',
+		 x:'center',
+		textStyle: {color: '#333333',ontWeight: 'normal',fontSize: 16},
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+	grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: ['1:00','2:00','3:00','4:00','5:00','6:00','7:00','8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00','24:00']
+    },
+    yAxis: {
+        type: 'value',
+		splitNumber: 5,
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name:'AQI指数',
+            type:'line',
+            data:[22, 48, 42, 89, 94, 88, 33,48,40,48,35,35,54,29,33,46,12,24,34,36,45,55,45,25],
+            markPoint: {
+                data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: '平均值'}
+                ]
+            }
+        }
+    ]
+};		
+						
+
+myChart.setOption(option);
+</script>
+
+
+<script type="text/javascript">
+   function show(oEvent){
+     var UserBox=document.getElementById("ShowUserBoxMain");
+     //alert(obj.style.display);
+     if(UserBox.style.display=="block"){
+     	  document.getElementById("ShowUserBoxMain").style.display = "none";
+     	}else{
+     		document.getElementById("ShowUserBoxMain").style.display = "block";
+     		}
+     
+     e = window.event || oEvent;
+     if (e.stopPropagation)
+     {
+         e.stopPropagation();
+     }else{
+         e.cancelBubble = true;
+     }
+   }
+   function hide(){
+
+     document.getElementById("ShowUserBoxMain").style.display = "none";
+   }
+   
+   
+   
+   window.onload = function(){
+   	
+	  document.getElementById("ShowUserBoxMain").style.display = "none";
+      document.body.onclick = hide;
+	  document.getElementById("ShowUserBoxclick").onclick = show;
+	  
+   };
+  </script> 
+ 
+    
+</body>
+</html>

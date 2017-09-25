@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<title>蛙鸣科技 | 实时监测</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+<meta content="" name="description" />
+<meta content="" name="author" />
+
+<!-- ================== BEGIN BASE CSS STYLE ================== -->
+<link href="plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+<link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="css/animate.min.css" rel="stylesheet" />
+<link href="css/style.min.css" rel="stylesheet" />
+<link href="css/style-responsive.min.css" rel="stylesheet" />
+<link href="css/theme/default.css" rel="stylesheet" id="theme" />
+<link rel="shortcut icon" href="img/favicon.ico">
+<!-- ================== END BASE CSS STYLE ================== -->
+<style type="text/css">
+/*update 20161004*/
+
+
+.form-control {
+	height: 26px;
+	padding: 2px 12px;
+}
+.change .nav>li>a {
+	padding: 4px 10px;
+}
+.nav-tabs>li>a {
+	border-radius: 0;
+}
+.nav-tabs {
+	background: #c1ccd1;
+	border-radius: 0;
+}
+.nav-tabs>li>a {
+	margin-right: 0px;
+}
+.tab-content {
+	padding: 0px;
+	margin-bottom: 0px;
+}
+</style>
+</head>
+<body>
+<!-- begin #page-loader -->
+<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+<!-- end #page-loader --> 
+
+<!-- begin #page-container -->
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed"> 
+  <!-- begin #header -->
+  <div id="header" class="header navbar navbar-default navbar-fixed-top"> 
+    <!-- begin container-fluid -->
+    <div class="container-fluid"> 
+      <!-- begin mobile sidebar expand / collapse button -->
+      <div class="navbar-header"> <a href="index.html" class="navbar-brand"><span  style=" margin-right:12px;"><img src="img/WMLogo.png" width="30" height="30"></span>大气污染治理系统</a>
+        <div class="left m-b-10 m-t-10 m-r-15" style="width:1px; height:35px; border-right:1px solid #b9bfc5;"></div>
+        <a href="index.html">
+        <div class="WMMap_back"></div>
+        </a>
+        <div class="left f-s-20 m-t-15 m-l-10 f-w-600">实时监测</div>
+        <button type="button" class="navbar-toggle" data-click="sidebar-toggled"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      </div>
+      <!-- end mobile sidebar expand / collapse button --> 
+      
+      <!-- begin header navigation right -->
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <form class="navbar-form full-width">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="查询" />
+              <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+            </div>
+          </form>
+        </li>
+        <li class="dropdown navbar-user"> <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/user.jpg" alt="" /> <span class="hidden-xs">Administrator</span> <b class="caret"></b> </a>
+          <ul class="dropdown-menu animated fadeInLeft">
+            <li class="arrow"></li>
+            <li><a href="login.html">退出</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!-- end header navigation right --> 
+    </div>
+    <!-- end container-fluid --> 
+  </div>
+  <!-- end #header --> 
+  
+  <!-- begin #content -->
+  <div class="Map-All">
+    <div id="WMMAP" style="height: 100%"></div><div class="WMMapAQI f-s-12"> <a href="#"><i>AQI</i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i>PM<span class="sub f-s-8">10</span></i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i>SO<span class="sub f-s-8">2</span></i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i>NO<span class="sub f-s-8">2</span></i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i>CO</i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i>O<span class="sub f-s-8">3</span></i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i><span class="sub f-s-8">VOC</span></i></a> </div>
+    <div class="Legend"><img src="img/color_bar_chinese.png" width="71" height="140"> </div>
+    
+    
+    
+    <div class="map-float-popup width-md hidden-xs" style="display:none;">
+      <div style="background-color:#d9e0e7;padding:14px;">
+        <h4 class="m-t-0 f-s-20 f-w-600"><i class="fa fa-map-marker text-danger m-r-5"></i>北京</h4>
+        <h3 class="f-s-12">2016年10月1日 23:59:59 实时发布</h3>
+      </div>
+      <div>
+        <div class="f-s-20 m-l-15 m-r-15 m-t-15 AQI-4">中度污染</div>
+      </div>
+      <div>
+        <div class="p-15 left">
+          <div class="f-s-12">首要污染物</div>
+          <div class="f-s-20">PM<span class="f-s-8">2.5</span></div>
+        </div>
+        <div class="p-15 left">
+          <div class="f-s-12">空气质量指数</div>
+          <div class="f-s-20 AQI-4">999</div>
+        </div>
+        <div class="p-15 left">
+          <div class="f-s-12">空气质量级别</div>
+          <div class="f-s-20 AQI-4">二级</div>
+        </div>
+        <div class="blank0"></div>
+      </div>
+      <div>
+        <div class="f-s-12 f-w-600" style="background-color:#d9e0e7;padding:14px;">污染物浓度(ug/m3;)</div>
+        <table class="table-01">
+          <thead>
+            <tr>
+              <th class="W20">PM2.5</th>
+              <th class="W15">PM10</th>
+              <th class="W15">SO2</th>
+              <th class="W15">NO2</th>
+              <th class="W20">CO(mg/m3)</th>
+              <th class="W15">O3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="W20">112</td>
+              <td class="W15">70</td>
+              <td class="W15">40</td>
+              <td class="W15">80</td>
+              <td class="W15">12</td>
+              <td class="W15">100</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div style="background-color:#d9e0e7;padding:4px 14px;">
+          <div class="f-s-12 f-w-600 left" style="line-height:30px;">近24小时浓度曲线(ug/m3;CO为mg/m3)</div>
+          <div class="right col-md-4">
+            <select class="form-control selectpicker" data-size="8" data-live-search="true" data-style="btn-warning">
+              <option value="" selected>AQI</option>
+              <option value="PM2.5">PM2.5</option>
+              <option value="PM10">PM10</option>
+              <option value="SO2">SO2</option>
+              <option value="NO2">NO2</option>
+              <option value="CO">CO</option>
+              <option value="O3">O3</option>
+            </select>
+          </div>
+          <div class="blank0"></div>
+        </div>
+        <div id="main-right01" style="height:100px; width:100%; overflow:hidden;"></div>
+      </div>
+    </div>
+    <div class="WMMapTools f-s-14"> <a href="#" id="ShowUserBoxclick" style="cursor:pointer"><i>北京市</i><em class="em-down"></em></a> <b class="tool-gap"></b> <a href="SSJC_SSSJ.html"><i>实时数据</i></a> <b class="tool-gap"></b> <a href="SSJC_LSSJ.html"><i>历史数据</i></a> <b class="tool-gap"></b> <a href="SSJC_JSTJ.html"><i>数据统计</i></a> </div>
+    
+    <!-- showUserBox
+      ================================================== -->
+    <div id="ShowUserBoxMain" style="display:none">
+      <div class="ShowUserBoxArrow"></div>
+      <div class="ShowUserBox">
+        <ul>
+          <li><a href="#"><span>京津冀(257)</span></a></li>
+          <li><a href="#"><span>长三角(192)</span></a></li>
+          <li><a href="#"><span>珠三角(213)</span></a></li>
+          <li><a href="#"><span>成渝(122)</span></a></li>
+          <div class="blank0"></div>
+        </ul>
+      </div>
+    </div>
+    <div class="map-float-table width-sm hidden-xs">
+      <div style="background-color:#d9e0e7;padding:14px;">
+        <h4 class="m-t-0 f-s-20 f-w-600"><i class="fa fa-map-marker text-danger m-r-5"></i>北京</h4>
+        <h3 class="f-s-12">2016年10月1日 23:59:59 实时发布</h3>
+      </div>
+      <div>
+        <div class="f-s-20 m-l-15 m-r-15 m-t-15 AQI-4">中度污染</div>
+      </div>
+      <div>
+        <div class="p-15 left">
+          <div class="f-s-12">首要污染物</div>
+          <div class="f-s-20">PM<span class="f-s-8">2.5</span></div>
+        </div>
+        <div class="p-15 left">
+          <div class="f-s-12">空气质量指数</div>
+          <div class="f-s-20 AQI-4">999</div>
+        </div>
+        <div class="blank0"></div>
+      </div>
+      <div class="f-s-12 f-w-600" style="background-color:#d9e0e7;padding:14px;">站点排行</div>
+      <div class="change">
+        <ul class="nav nav-tabs f-s-12 left" style="width:45px;">
+          <li class="active"><a href="#All-tab-1" data-toggle="tab">全部</a></li>
+          <li class=""><a href="#All-tab-2" data-toggle="tab">国控</a></li>
+          <li class=""><a href="#All-tab-3" data-toggle="tab">断线</a></li>
+          <li class=""><a href="#All-tab-4" data-toggle="tab">超标</a></li>
+        </ul>
+        <div class="W84 left tab-content">
+          <div class="tab-pane fade active in" id="All-tab-1">
+            <table class="table-01">
+              <thead>
+                <tr>
+                  <th class="W15">排名</th>
+                  <th class="W50">站点名</th>
+                  <th class="W30">污染物(AQI)</th>
+                </tr>
+              </thead>
+            </table>
+            <div data-scrollbar="true" class="left height-xs w100">
+              <table class="table-01">
+                <tr>
+                  <td class="W15">1</td>
+                  <td class="W50">90039城区10</td>
+                  <td class="W30">70</td>
+                </tr>
+                <tr>
+                  <td class="W15">2</td>
+                  <td class="W50">90039城区11</td>
+                  <td class="W30">80</td>
+                </tr>
+                <tr>
+                  <td class="W15">3</td>
+                  <td class="W50">90039城区12</td>
+                  <td class="W30">90</td>
+                </tr>
+                <tr>
+                  <td class="W15">4</td>
+                  <td class="W50">90039城区13</td>
+                  <td class="W30">90</td>
+                </tr>
+                <tr>
+                  <td class="W15">5</td>
+                  <td class="W50">90039城区14</td>
+                  <td class="W30">60</td>
+                </tr>
+                <tr>
+                  <td class="W15">6</td>
+                  <td class="W50">90039城区15</td>
+                  <td class="W30">50</td>
+                </tr>
+                <tr>
+                  <td class="W15">7</td>
+                  <td class="W50">90039城区16</td>
+                  <td class="W30">40</td>
+                </tr>
+                <tr>
+                  <td class="W15">8</td>
+                  <td class="W50">90039城区17</td>
+                  <td class="W30">30</td>
+                </tr>
+                <tr>
+                  <td class="W15">9</td>
+                  <td class="W50">90039城区18</td>
+                  <td class="W30">20</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="All-tab-2">
+            <table class="table-01">
+              <thead>
+                <tr>
+                  <th class="W15">排名</th>
+                  <th class="W50">站点名</th>
+                  <th class="W30">污染物(AQI)</th>
+                </tr>
+              </thead>
+            </table>
+            <div data-scrollbar="true" class="left height-xs w100">
+              <table class="table-01">
+                <tr>
+                  <td class="W15">1</td>
+                  <td class="W50">90039城区10</td>
+                  <td class="W30">70</td>
+                </tr>
+                <tr>
+                  <td class="W15">2</td>
+                  <td class="W50">90039城区11</td>
+                  <td class="W30">80</td>
+                </tr>
+                <tr>
+                  <td class="W15">3</td>
+                  <td class="W50">90039城区12</td>
+                  <td class="W30">90</td>
+                </tr>
+                <tr>
+                  <td class="W15">4</td>
+                  <td class="W50">90039城区13</td>
+                  <td class="W30">90</td>
+                </tr>
+                <tr>
+                  <td class="W15">5</td>
+                  <td class="W50">90039城区14</td>
+                  <td class="W30">60</td>
+                </tr>
+                <tr>
+                  <td class="W15">6</td>
+                  <td class="W50">90039城区15</td>
+                  <td class="W30">50</td>
+                </tr>
+                <tr>
+                  <td class="W15">7</td>
+                  <td class="W50">90039城区16</td>
+                  <td class="W30">40</td>
+                </tr>
+                <tr>
+                  <td class="W15">8</td>
+                  <td class="W50">90039城区17</td>
+                  <td class="W30">30</td>
+                </tr>
+                <tr>
+                  <td class="W15">9</td>
+                  <td class="W50">90039城区18</td>
+                  <td class="W30">20</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="All-tab-3">
+            <table class="table-01">
+              <thead>
+                <tr>
+                  <th class="W15">排名</th>
+                  <th class="W50">站点名</th>
+                  <th class="W30">污染物(AQI)</th>
+                </tr>
+              </thead>
+            </table>
+            <div data-scrollbar="true" class="left height-xs w100">
+              <table class="table-01">
+                <tr>
+                  <td class="W15">1</td>
+                  <td class="W50">90039城区10</td>
+                  <td class="W30">70</td>
+                </tr>
+                <tr>
+                  <td class="W15">2</td>
+                  <td class="W50">90039城区11</td>
+                  <td class="W30">80</td>
+                </tr>
+                <tr>
+                  <td class="W15">3</td>
+                  <td class="W50">90039城区12</td>
+                  <td class="W30">90</td>
+                </tr>
+                <tr>
+                  <td class="W15">4</td>
+                  <td class="W50">90039城区13</td>
+                  <td class="W30">90</td>
+                </tr>
+                <tr>
+                  <td class="W15">5</td>
+                  <td class="W50">90039城区14</td>
+                  <td class="W30">60</td>
+                </tr>
+                <tr>
+                  <td class="W15">6</td>
+                  <td class="W50">90039城区15</td>
+                  <td class="W30">50</td>
+                </tr>
+                <tr>
+                  <td class="W15">7</td>
+                  <td class="W50">90039城区16</td>
+                  <td class="W30">40</td>
+                </tr>
+                <tr>
+                  <td class="W15">8</td>
+                  <td class="W50">90039城区17</td>
+                  <td class="W30">30</td>
+                </tr>
+                <tr>
+                  <td class="W15">9</td>
+                  <td class="W50">90039城区18</td>
+                  <td class="W30">20</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="All-tab-4">
+            <table class="table-01">
+              <thead>
+                <tr>
+                  <th class="W15">排名</th>
+                  <th class="W50">站点名</th>
+                  <th class="W30">污染物(AQI)</th>
+                </tr>
+              </thead>
+            </table>
+            <div data-scrollbar="true" class="left height-xs w100">
+              <table class="table-01">
+                <tr>
+                  <td class="W15">1</td>
+                  <td class="W50">90039城区10</td>
+                  <td class="W30">70</td>
+                </tr>
+                <tr>
+                  <td class="W15">2</td>
+                  <td class="W50">90039城区11</td>
+                  <td class="W30">80</td>
+                </tr>
+                <tr>
+                  <td class="W15">3</td>
+                  <td class="W50">90039城区12</td>
+                  <td class="W30">90</td>
+                </tr>
+                <tr>
+                  <td class="W15">4</td>
+                  <td class="W50">90039城区13</td>
+                  <td class="W30">90</td>
+                </tr>
+                <tr>
+                  <td class="W15">5</td>
+                  <td class="W50">90039城区14</td>
+                  <td class="W30">60</td>
+                </tr>
+                <tr>
+                  <td class="W15">6</td>
+                  <td class="W50">90039城区15</td>
+                  <td class="W30">50</td>
+                </tr>
+                <tr>
+                  <td class="W15">7</td>
+                  <td class="W50">90039城区16</td>
+                  <td class="W30">40</td>
+                </tr>
+                <tr>
+                  <td class="W15">8</td>
+                  <td class="W50">90039城区17</td>
+                  <td class="W30">30</td>
+                </tr>
+                <tr>
+                  <td class="W15">9</td>
+                  <td class="W50">90039城区18</td>
+                  <td class="W30">20</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="WMMapCitys f-s-12"> <a href="#" id="btn-china"><i>全国</i></a> <b class="tool-gap"></b> <a href="#" id="btn-jjy"><i>京津冀</i></a> <b class="tool-gap"></b> <a href="#" id="btn-beijing"><i>北京</i></a> <b class="tool-gap"></b> <a href="#" id="btn-hotmap"><i>热力图</i></a> </div>
+    
+    <!--    <div class="HeatmapLegend"><img src="img/HeatmapLegend.png" width="56" height="34"> </div>--> 
+  </div>
+  <!-- end #content --> 
+  
+  <!-- begin scroll to top btn --> 
+  <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a> 
+  <!-- end scroll to top btn --> 
+</div>
+<!-- end page container --> 
+
+<!-- ================== BEGIN BASE JS ================== --> 
+<script src="plugins/jquery/jquery-1.9.1.min.js"></script> 
+<script src="plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script> 
+<script src="plugins/bootstrap/js/bootstrap.min.js"></script> 
+<script src="plugins/slimscroll/jquery.slimscroll.min.js"></script> 
+<!-- ================== END BASE JS ================== --> 
+
+<!-- ================== BEGIN PAGE LEVEL JS ================== --> 
+<script src="js/apps.min.js"></script> 
+<script src="plugins/echarts-3.1.10/dist/echarts.min.js"></script> 
+<script src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script> 
+<script src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script> 
+<script src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script> 
+<script src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script> 
+<!-- ================== END PAGE LEVEL JS ================== --> 
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D">
+</script> 
+<script src="js/Heatmap_min.js"></script> 
+<script src="js/amap.js"></script> 
+<script>
+		$(document).ready(function() {
+			App.init();
+		});
+</script> 
+<script type="text/javascript">
+                var myChart = echarts.init(document.getElementById('main-right01'));
+  option = {
+    color: ['#3398DB'],
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    grid: {
+        top: '20%',
+        left: '4%',
+        right: '4%',
+        bottom: '8%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            data : ['13:00','15:00', '17:00','19:00','21:00','23:00','01:00','03:00','05:00','07:00','09:00','11:00'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+			splitNumber: 2,
+        }
+    ],
+    series : [
+        {
+            name:'浓度',
+            type:'bar',
+            barWidth: '20',
+            data:[0.05, 0.1, 0.02, 0.05, 0.07,0.05, 0.1, 0.02, 0.05, 0.07 ,0.01,0.09]
+        }
+    ]
+};
+
+
+myChart.setOption(option);
+</script> 
+<script type="text/javascript">
+   function show(oEvent){
+     var UserBox=document.getElementById("ShowUserBoxMain");
+     //alert(obj.style.display);
+     if(UserBox.style.display=="block"){
+     	  document.getElementById("ShowUserBoxMain").style.display = "none";
+     	}else{
+     		document.getElementById("ShowUserBoxMain").style.display = "block";
+     		}
+     
+     e = window.event || oEvent;
+     if (e.stopPropagation)
+     {
+         e.stopPropagation();
+     }else{
+         e.cancelBubble = true;
+     }
+   }
+   function hide(){
+
+     document.getElementById("ShowUserBoxMain").style.display = "none";
+   }
+   
+   
+   
+   window.onload = function(){
+   	
+	  document.getElementById("ShowUserBoxMain").style.display = "none";
+      document.body.onclick = hide;
+	  document.getElementById("ShowUserBoxclick").onclick = show;
+	  
+   };
+  </script>
+</body>
+</html>

@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>蛙鸣科技 | 实时监测</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+	<link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="css/animate.min.css" rel="stylesheet" />
+	<link href="css/style.min.css" rel="stylesheet" />
+	<link href="css/style-responsive.min.css" rel="stylesheet" />
+	<link href="css/theme/default.css" rel="stylesheet" id="theme" />
+    <link rel="shortcut icon" href="img/favicon.ico">
+	<!-- ================== END BASE CSS STYLE ================== -->
+
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    <link href="plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+	<!-- ================== END PAGE LEVEL STYLE ================== -->
+	<style type="text/css">
+	/*update 20161004*/
+	 .form-control{ height:26px;padding: 2px 12px;}
+     .change .nav>li>a {padding: 4px 10px;}
+	 .nav-tabs>li>a {border-radius:0;}
+     .nav-tabs {background: #c1ccd1;border-radius:0;}
+	 .nav-tabs>li>a {margin-right: 0px;}
+	 .tab-content {padding: 0px;margin-bottom: 0px;}
+	</style>
+   
+    
+</head>
+<body>
+	<!-- begin #page-loader -->
+	<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<!-- begin #header -->
+		<div id="header" class="header navbar navbar-default navbar-fixed-top">
+			<!-- begin container-fluid -->
+			<div class="container-fluid">
+				<!-- begin mobile sidebar expand / collapse button -->
+				<div class="navbar-header">
+					<a href="index.html" class="navbar-brand"><span  style=" margin-right:12px;"><img src="img/WMLogo.png" width="30" height="30"></span>大气污染治理系统</a>
+                    <div class="left m-b-10 m-t-10 m-r-15" style="width:1px; height:35px; border-right:1px solid #b9bfc5;"></div>
+                    <a href="index.html"><div class="WMMap_back"></div></a>
+                    <div class="left f-s-20 m-t-15 m-l-10 f-w-600">实时监测</div>
+					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<!-- end mobile sidebar expand / collapse button -->
+				
+				<!-- begin header navigation right -->
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<form class="navbar-form full-width">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="查询" />
+								<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+							</div>
+						</form>
+					</li>
+					
+					<li class="dropdown navbar-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="img/user.jpg" alt="" /> 
+							<span class="hidden-xs">Administrator</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu animated fadeInLeft">
+							<li class="arrow"></li>
+							<li><a href="login.html">退出</a></li>
+						</ul>
+					</li>
+				</ul>
+				<!-- end header navigation right -->
+			</div>
+			<!-- end container-fluid -->
+		</div>
+		<!-- end #header -->
+		
+		<!-- begin #content -->			
+			<div class="Map-All">
+              <div id="WMMAP" style="height: 100%"></div><div class="WMMapAQI f-s-12"> <a href="#"><i>AQI</i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i>PM<span class="sub f-s-8">10</span></i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i>SO<span class="sub f-s-8">2</span></i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i>NO<span class="sub f-s-8">2</span></i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i>CO</i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i>O<span class="sub f-s-8">3</span></i></a> <b class="WMMapAQI-gap"></b> <a href="#"><i><span class="sub f-s-8">VOC</span></i></a> </div>  
+                 
+                 
+                 
+              <div class="Legend"><img src="img/color_bar_chinese.png" width="71" height="140"> </div> 
+               
+               
+               
+               
+               
+               
+               
+               
+                 
+              <div class="WMMapTools f-s-14">
+                 <a href="#" id="ShowUserBoxclick" style="cursor:pointer"><i>北京市</i><em class="em-down"></em></a>
+                 <b class="tool-gap"></b>
+                 <a href="SSJC_SSSJ.html"><i>实时数据</i></a>
+                 <b class="tool-gap"></b>
+                 <a href="SSJC_LSSJ.html"><i>历史数据</i></a>             
+                 <b class="tool-gap"></b>       
+                 <a href="SSJC_JSTJ.html"><i>数据统计</i></a>
+                 </div>
+                 
+
+
+ <!-- showUserBox
+      ================================================== -->
+    <div id="ShowUserBoxMain" style="display:none">
+      <div class="ShowUserBoxArrow"></div>
+      <div class="ShowUserBox">
+        <ul>
+          <li><a href="#"><span>京津冀(257)</span></a></li>
+          <li><a href="#"><span>长三角(192)</span></a></li>
+          <li><a href="#"><span>珠三角(213)</span></a></li>
+          <li><a href="#"><span>成渝(122)</span></a></li>         
+          <div class="blank0"></div>
+        </ul>
+      </div>
+    </div>
+
+
+
+
+                 
+              <div class="map-float-table width-md hidden-xs" style="bottom:90px;">
+                    
+                    <div style="background-color:#d9e0e7;padding:4px 14px;">
+                    <div class="left f-s-12 m-t-5">行政区</div>
+                    <div class="left col-md-4">
+					<select class="form-control" data-size="8" data-live-search="true" data-style="btn-warning">
+                      <option value="" selected>全部</option>
+                      <option value="1" selected>1</option>
+                      <option value="2" selected>2</option>
+                      <option value="3" selected>3</option>
+                      <option value="4" selected>4</option>
+                    </select>
+					</div>   
+                    <div class="left f-s-12 m-t-5">站点类别</div>
+                    <div class="left col-md-4">
+					<select class="form-control" data-size="8" data-live-search="true" data-style="btn-warning">
+                      <option value="" selected>全部</option>
+                      <option value="1" selected>1</option>
+                      <option value="2" selected>2</option>
+                      <option value="3" selected>3</option>
+                      <option value="4" selected>4</option>
+                    </select>
+					</div> 
+                    <div class="blank0"></div>                     
+                    </div>
+                    
+
+
+               <div class="change width-md">
+					<ul class="nav nav-tabs f-s-12">
+						<li class="active"><a href="#default-tab-1" data-toggle="tab">近一天</a></li>
+						<li class=""><a href="#default-tab-2" data-toggle="tab">近一周</a></li>
+						<li class=""><a href="#default-tab-3" data-toggle="tab">近一月</a></li>
+						<li class=""><a href="#default-tab-4" data-toggle="tab">近一年</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane fade active in" id="default-tab-1">
+						  <table class="table-02">
+                            <thead>
+                                <tr>
+                                    <th class="W30"></th>
+                                    <th class="w10">AQI</th>
+                                    <th class="w10">PM2.5</th>
+                                    <th class="w10">PM10</th>
+                                    <th class="w10">SO2</th>
+                                    <th class="w10">NO2</th>
+                                    <th class="w10">CO</th>
+                                    <th class="w10">O3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="W30">最高</td>
+                                    <td class="W10">241</td>
+                                    <td class="W10">450</td>
+                                    <td class="W10">231</td>
+                                    <td class="W10">143</td>
+                                    <td class="W10">110</td>
+                                    <td class="W10">181</td>
+                                    <td class="W10">150</td>
+                                </tr>
+                                <tr>
+                                    <td class="W30">最低</td>
+                                    <td class="W10">41</td>
+                                    <td class="W10">50</td>
+                                    <td class="W10">31</td>
+                                    <td class="W10">43</td>
+                                    <td class="W10">80</td>
+                                    <td class="W10">91</td>
+                                    <td class="W10">100</td>
+                                </tr>
+                                 <tr>
+                                    <td class="W30">平均值</td>
+                                    <td class="W10">241</td>
+                                    <td class="W10">450</td>
+                                    <td class="W10">231</td>
+                                    <td class="W10">143</td>
+                                    <td class="W10">110</td>
+                                    <td class="W10">181</td>
+                                    <td class="W10">150</td>
+                                </tr> 
+                                 <tr>
+                                    <td class="W30">国际1级标准(%)</td>
+                                    <td class="W10">241</td>
+                                    <td class="W10">450</td>
+                                    <td class="W10">231</td>
+                                    <td class="W10">143</td>
+                                    <td class="W10">110</td>
+                                    <td class="W10">181</td>
+                                    <td class="W10">150</td>
+                                </tr>
+                                <tr>
+                                    <td class="W30">国际2级标准(%)</td>
+                                    <td class="W10">241</td>
+                                    <td class="W10">450</td>
+                                    <td class="W10">231</td>
+                                    <td class="W10">143</td>
+                                    <td class="W10">110</td>
+                                    <td class="W10">181</td>
+                                    <td class="W10">150</td>
+                                </tr>                                                             
+                            </tbody>
+                        </table>  
+						</div>
+						<div class="tab-pane fade" id="default-tab-2">
+						  <table class="table-02">
+                            <thead>
+                                <tr>
+                                    <th class="W30"></th>
+                                    <th class="w10">AQI</th>
+                                    <th class="w10">PM2.5</th>
+                                    <th class="w10">PM10</th>
+                                    <th class="w10">SO2</th>
+                                    <th class="w10">NO2</th>
+                                    <th class="w10">CO</th>
+                                    <th class="w10">O3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="W30">最高</td>
+                                    <td class="W10">241</td>
+                                    <td class="W10">450</td>
+                                    <td class="W10">231</td>
+                                    <td class="W10">143</td>
+                                    <td class="W10">110</td>
+                                    <td class="W10">181</td>
+                                    <td class="W10">150</td>
+                                </tr>
+                                <tr>
+                                    <td class="W30">最低</td>
+                                    <td class="W10">41</td>
+                                    <td class="W10">50</td>
+                                    <td class="W10">31</td>
+                                    <td class="W10">43</td>
+                                    <td class="W10">80</td>
+                                    <td class="W10">91</td>
+                                    <td class="W10">100</td>
+                                </tr>
+                                 <tr>
+                                    <td class="W30">平均值</td>
+                                    <td class="W10">241</td>
+                                    <td class="W10">450</td>
+                                    <td class="W10">231</td>
+                                    <td class="W10">143</td>
+                                    <td class="W10">110</td>
+                                    <td class="W10">181</td>
+                                    <td class="W10">150</td>
+                                </tr> 
+                                 <tr>
+                                    <td class="W30">国际1级标准(%)</td>
+                                    <td class="W10">241</td>
+                                    <td class="W10">450</td>
+                                    <td class="W10">231</td>
+                                    <td class="W10">143</td>
+                                    <td class="W10">110</td>
+                                    <td class="W10">181</td>
+                                    <td class="W10">150</td>
+                                </tr>
+                                <tr>
+                                    <td class="W30">国际2级标准(%)</td>
+                                    <td class="W10">241</td>
+                                    <td class="W10">450</td>
+                                    <td class="W10">231</td>
+                                    <td class="W10">143</td>
+                                    <td class="W10">110</td>
+                                    <td class="W10">181</td>
+                                    <td class="W10">150</td>
+                                </tr>                                                             
+                            </tbody>
+                        </table>  
+						</div>
+						<div class="tab-pane fade" id="default-tab-3">
+						 <table class="table-02">
+                            <thead>
+                                <tr>
+                                    <th class="W30"></th>
+                                    <th class="w10">AQI</th>
+                                    <th class="w10">PM2.5</th>
+                                    <th class="w10">PM10</th>
+                                    <th class="w10">SO2</th>
+                                    <th class="w10">NO2</th>
+                                    <th class="w10">CO</th>
+                                    <th class="w10">O3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="W30">最高</td>
+                                    <td class="W10">241</td>
+                                    <td class="W10">450</td>
+                                    <td class="W10">231</td>
+                                    <td class="W10">143</td>
+                                    <td class="W10">110</td>
+                                    <td class="W10">181</td>
+                                    <td class="W10">150</td>
+                                </tr>
+                                <tr>
+                                    <td class="W30">最低</td>
+                                    <td class="W10">41</td>
+                                    <td class="W10">50</td>
+                                    <td class="W10">31</td>
+                                    <td class="W10">43</td>
+                                    <td class="W10">80</td>
+                                    <td class="W10">91</td>
+                                    <td class="W10">100</td>
+                                </tr>
+                                 <tr>
+                                    <td class="W30">平均值</td>
+                                    <td class="W10">241</td>
+                                    <td class="W10">450</td>
+                                    <td class="W10">231</td>
+                                    <td class="W10">143</td>
+                                    <td class="W10">110</td>
+                                    <td class="W10">181</td>
+                                    <td class="W10">150</td>
+                                </tr> 
+                                 <tr>
+                                    <td class="W30">国际1级标准(%)</td>
+                                    <td class="W10">241</td>
+                                    <td class="W10">450</td>
+                                    <td class="W10">231</td>
+                                    <td class="W10">143</td>
+                                    <td class="W10">110</td>
+                                    <td class="W10">181</td>
+                                    <td class="W10">150</td>
+                                </tr>
+                                <tr>
+                                    <td class="W30">国际2级标准(%)</td>
+                                    <td class="W10">241</td>
+                                    <td class="W10">450</td>
+                                    <td class="W10">231</td>
+                                    <td class="W10">143</td>
+                                    <td class="W10">110</td>
+                                    <td class="W10">181</td>
+                                    <td class="W10">150</td>
+                                </tr>                                                             
+                            </tbody>
+                        </table>   
+						</div>
+						<div class="tab-pane fade" id="default-tab-4">
+						 <table class="table-02">
+                            <thead>
+                                <tr>
+                                    <th class="W30"></th>
+                                    <th class="w10">AQI</th>
+                                    <th class="w10">PM2.5</th>
+                                    <th class="w10">PM10</th>
+                                    <th class="w10">SO2</th>
+                                    <th class="w10">NO2</th>
+                                    <th class="w10">CO</th>
+                                    <th class="w10">O3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="W30">最高</td>
+                                    <td class="W10">241</td>
+                                    <td class="W10">450</td>
+                                    <td class="W10">231</td>
+                                    <td class="W10">143</td>
+                                    <td class="W10">110</td>
+                                    <td class="W10">181</td>
+                                    <td class="W10">150</td>
+                                </tr>
+                                <tr>
+                                    <td class="W30">最低</td>
+                                    <td class="W10">41</td>
+                                    <td class="W10">50</td>
+                                    <td class="W10">31</td>
+                                    <td class="W10">43</td>
+                                    <td class="W10">80</td>
+                                    <td class="W10">91</td>
+                                    <td class="W10">100</td>
+                                </tr>
+                                 <tr>
+                                    <td class="W30">平均值</td>
+                                    <td class="W10">241</td>
+                                    <td class="W10">450</td>
+                                    <td class="W10">231</td>
+                                    <td class="W10">143</td>
+                                    <td class="W10">110</td>
+                                    <td class="W10">181</td>
+                                    <td class="W10">150</td>
+                                </tr> 
+                                 <tr>
+                                    <td class="W30">国际1级标准(%)</td>
+                                    <td class="W10">241</td>
+                                    <td class="W10">450</td>
+                                    <td class="W10">231</td>
+                                    <td class="W10">143</td>
+                                    <td class="W10">110</td>
+                                    <td class="W10">181</td>
+                                    <td class="W10">150</td>
+                                </tr>
+                                <tr>
+                                    <td class="W30">国际2级标准(%)</td>
+                                    <td class="W10">241</td>
+                                    <td class="W10">450</td>
+                                    <td class="W10">231</td>
+                                    <td class="W10">143</td>
+                                    <td class="W10">110</td>
+                                    <td class="W10">181</td>
+                                    <td class="W10">150</td>
+                                </tr>                                                             
+                            </tbody>
+                        </table>  	
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+                    
+                    <div class="blank0"></div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+<div class="f-s-12 f-w-600" style="background-color:#d9e0e7;padding:4px 14px;">站点排行</div>                    
+                    
+               <div class="change width-md">
+					<ul class="nav nav-tabs f-s-12 left" style="width:45px;">
+						<li class="active"><a href="#All-tab-1" data-toggle="tab">全部</a></li>
+						<li class=""><a href="#All-tab-2" data-toggle="tab">国控</a></li>
+						<li class=""><a href="#All-tab-3" data-toggle="tab">断线</a></li>
+						<li class=""><a href="#All-tab-4" data-toggle="tab">超标</a></li>
+					</ul>
+					<div class="W89 left tab-content">
+						<div class="tab-pane fade active in" id="All-tab-1">
+						 
+  <table class="table-01">
+                     <thead>
+                                <tr>
+                                    <th class="W10">排名</th>
+                                    <th class="W30">监控点</th>
+                                    <th class="W20">污染物(AQI)</th>
+                                    <th class="W15">环比升降率</th>
+                                    <th class="W15">达标天数</th>
+                                </tr>
+                            </thead>
+                            </table>                        
+ <div data-scrollbar="true" class="left height-xs w100">
+                    <table class="table-01">
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                        </table>    
+                    </div>
+                         
+                         
+                         
+                            
+						</div>
+						<div class="tab-pane fade" id="All-tab-2">
+						  <table class="table-01">
+                     <thead>
+                                <tr>
+                                    <th class="W10">排名</th>
+                                    <th class="W30">监控点</th>
+                                    <th class="W20">污染物(AQI)</th>
+                                    <th class="W15">环比升降率</th>
+                                    <th class="W15">达标天数</th>
+                                </tr>
+                            </thead>
+                            </table>                        
+ <div data-scrollbar="true" class="left height-xs w100">
+                    <table class="table-01">
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                        </table>    
+                    </div> 
+						</div>
+						<div class="tab-pane fade" id="All-tab-3">
+						  <table class="table-01">
+                     <thead>
+                                <tr>
+                                    <th class="W10">排名</th>
+                                    <th class="W30">监控点</th>
+                                    <th class="W20">污染物(AQI)</th>
+                                    <th class="W15">环比升降率</th>
+                                    <th class="W15">达标天数</th>
+                                </tr>
+                            </thead>
+                            </table>                        
+ <div data-scrollbar="true" class="left height-xs w100">
+                    <table class="table-01">
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                        </table>    
+                    </div> 
+						</div>
+						<div class="tab-pane fade" id="All-tab-4">
+						 <table class="table-01">
+                     <thead>
+                                <tr>
+                                    <th class="W10">排名</th>
+                                    <th class="W30">监控点</th>
+                                    <th class="W20">污染物(AQI)</th>
+                                    <th class="W15">环比升降率</th>
+                                    <th class="W15">达标天数</th>
+                                </tr>
+                            </thead>
+                            </table>                        
+ <div data-scrollbar="true" class="left height-xs w100">
+                    <table class="table-01">
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                                <tr>
+                                    <td class="W10">1</td>
+                                    <td class="W30">东四环交通点</td>
+                                    <td class="W20">SO2</td>
+                                    <td class="W15">57.4</td>
+                                    <td class="W15">112</td>
+                                </tr>
+                        </table>    
+                    </div> 	
+						</div>
+					</div>
+				</div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                   
+                    
+                </div>
+
+
+
+<div class="WMMapHistoryTime f-s-14 col-lg-8">
+
+                                    <label class="col-md-2 control-label m-t-3" style="padding: 0px 0px 0px 8px;width: 68px;">起止时间</label>
+                                    <div class="col-md-4">
+                                        <div class="input-group input-daterange">
+                                            <input type="text" class="form-control" name="start" placeholder="Date Start" />
+                                            <span class="input-group-addon">to</span>
+                                            <input type="text" class="form-control" name="end" placeholder="Date End" />
+                                        </div>
+                                    </div>
+
+
+<div>
+<div class="left time-pause" id="play-pause"></div>
+<div class=" left time-play m-l-10" id="btn-play"></div>
+<div>
+<div class="left time-bar m-l-10"></div>
+<div class="left m-l-15 f-s-12 m-t-5">当前时间:2016年10月11日 -- 2016年10月12日</div>
+</div>
+</div>
+
+</div>
+                
+    <div class="WMMapCitys f-s-12"> <a href="#" id="btn-china"><i>全国</i></a> <b class="tool-gap"></b> <a href="#" id="btn-jjy"><i>京津冀</i></a> <b class="tool-gap"></b> <a href="#" id="btn-beijing"><i>北京</i></a> <b class="tool-gap"></b> <a href="#" id="btn-hotmap"><i>热力图</i></a> </div>
+    
+    <!--    <div class="HeatmapLegend"><img src="img/HeatmapLegend.png" width="56" height="34"> </div>-->              
+                
+                
+                
+                
+                
+                
+                
+            </div>
+		<!-- end #content -->
+		
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="plugins/jquery/jquery-1.9.1.min.js"></script>
+	<script src="plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	<script src="js/apps.min.js"></script>
+    <script src="plugins/echarts-3.1.10/dist/echarts.min.js"></script>
+	<script src="plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script src="plugins/ionRangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
+	<script src="plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+	<script src="plugins/masked-input/masked-input.min.js"></script>
+	<script src="plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+	<script src="plugins/password-indicator/js/password-indicator.js"></script>
+	<script src="plugins/bootstrap-combobox/js/bootstrap-combobox.js"></script>
+	<script src="plugins/bootstrap-select/bootstrap-select.min.js"></script>
+	<script src="plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+	<script src="plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.js"></script>
+	<script src="plugins/jquery-tag-it/js/tag-it.min.js"></script>
+    <script src="plugins/bootstrap-daterangepicker/moment.js"></script>
+    <script src="plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="plugins/select2/dist/js/select2.min.js"></script>
+    <script src="plugins/bootstrap-eonasdan-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="js/form-plugins.demo.min.js"></script> 
+	<!-- ================== END PAGE LEVEL JS ================== -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=09cy737KXfL8oKqjN51ql4ALFEyKG05y">
+</script> 
+<script src="js/Heatmap_min.js"></script> 
+<script src="js/amap.js"></script>     
+<script>
+		$(document).ready(function() {
+			App.init();
+			FormPlugins.init();
+		});
+</script>
+	
+ <script type="text/javascript">
+
+
+
+       </script>   
+
+
+<script type="text/javascript">
+                var myChart = echarts.init(document.getElementById('main-right01'));
+  option = {
+    color: ['#3398DB'],
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    grid: {
+        top: '20%',
+        left: '4%',
+        right: '4%',
+        bottom: '8%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            data : ['13:00','15:00', '17:00','19:00','21:00','23:00','01:00','03:00','05:00','07:00','09:00','11:00'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+			splitNumber: 2,
+        }
+    ],
+    series : [
+        {
+            name:'浓度',
+            type:'bar',
+            barWidth: '20',
+            data:[0.05, 0.1, 0.02, 0.05, 0.07,0.05, 0.1, 0.02, 0.05, 0.07 ,0.01,0.09]
+        }
+    ]
+};
+
+
+myChart.setOption(option);
+</script> 
+
+<script type="text/javascript">
+   function show(oEvent){
+     var UserBox=document.getElementById("ShowUserBoxMain");
+     //alert(obj.style.display);
+     if(UserBox.style.display=="block"){
+     	  document.getElementById("ShowUserBoxMain").style.display = "none";
+     	}else{
+     		document.getElementById("ShowUserBoxMain").style.display = "block";
+     		}
+     
+     e = window.event || oEvent;
+     if (e.stopPropagation)
+     {
+         e.stopPropagation();
+     }else{
+         e.cancelBubble = true;
+     }
+   }
+   function hide(){
+
+     document.getElementById("ShowUserBoxMain").style.display = "none";
+   }
+   
+   
+   
+   window.onload = function(){
+   	
+	  document.getElementById("ShowUserBoxMain").style.display = "none";
+      document.body.onclick = hide;
+	  document.getElementById("ShowUserBoxclick").onclick = show;
+	  
+   };
+  </script> 
+ 
+    
+</body>
+</html>
