@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+<div id="container" style="height: 500px"></div>
+
+
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+<script type="text/javascript"
+        src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+<script type="text/javascript">
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+
+
+    $.getJSON('data/asset/data/wind-barb-hobart-1.json', function (rawData) {
+
+        var weatherIcons = {
+            'Showers': './data/asset/img/weather/showers_128.png',
+            'Sunny': './data/asset/img/weather/sunny_128.png',
+            'Cloudy': './data/asset/img/weather/cloudy_128.png'
+        };
+
+        var directionMap = {};
+        echarts.util.each(
+            ['W', 'WSW', 'SW', 'SSW', 'S', 'SSE', 'SE', 'ESE', 'E', 'ENE', 'NE', 'NNE', 'N', 'NNW', 'NW', 'WNW'],
+            function (name, index) {
+                directionMap[name] = Math.PI / 8 * index;
+            }
+        );
+
+
+        var data = echarts.util.map(rawData.data, function (entry) {
+            return [entry.time, entry.windSpeed, entry.R];
+        });
+
+        var category = ["2017-06-27 11:00:00", "2017-06-27 12:00:00", "2017-06-27 13:00:00", "2017-06-27 14:00:00",
+            "2017-06-27 15:00:00", "2017-06-27 16:00:00", "2017-06-27 17:00:00", "2017-06-27 18:00:00", "2017-06-27 19:00:00"];
+
+        var dims = {
+            time: 0,
+            windSpeed: 1,
+            R: 2,
+            waveHeight: 3,
+            weatherIcon: 2,
+            minTemp: 3,
+            maxTemp: 4
+        };
+        var arrowSize = 18;
+        var weatherIconSize = 45;
+
+        function renderArrow(param, api) {
+            var point = api.coord([
+                api.value(dims.time),
+                api.value(dims.windSpeed)
+            ]);
+
+            return {
+                type: 'path',
+                shape: {
+                    pathData: 'M31 16l-15-15v9h-26v12h26v9z',
+                    x: -arrowSize / 2,
+                    y: -arrowSize / 2,
+                    width: arrowSize,
+                    height: arrowSize
+                },
+                rotation: directionMap[api.value(dims.R)],
+                position: point,
+                style: api.style({
+                    stroke: '#555',
+                    lineWidth: 1
+                })
+            };
+        }
+
+
+        option = {
+            title: {
+                text: '风向 风速',
+                left: 'center'
+            },
+            legend: {data: category},
+            tooltip: {
+                trigger: 'axis',
+                formatter: function (params) {
+                    return [
+                        echarts.format.formatTime('yyyy-MM-dd', params[0].value[dims.time])
+                        + ' ' + echarts.format.formatTime('hh:mm', params[0].value[dims.time]),
+                        '风速：' + params[0].value[dims.windSpeed],
+                        '风向：' + params[0].value[dims.R],
+                    ].join('<br>');
+                }
+            },
+            grid: {
+                top: 160,
+                bottom: 125
+            },
+            xAxis: {
+                type: 'time',
+                maxInterval: 3600 * 1000 * 24,
+                splitLine: {
+                    lineStyle: {
+                        color: '#ddd'
+                    }
+                }, data: category
+            },
+            yAxis: [
+                {
+                    type: "value",
+                    axisLabel: {
+                        formatter: "{value}"
+                    }
+                }, {
+                    name: '风速（节）',
+                    nameLocation: 'middle',
+                    nameGap: 35,
+                    axisLine: {
+                        lineStyle: {
+                            color: '#666'
+                        }
+                    },
+                    splitLine: {
+                        lineStyle: {
+                            color: '#ddd'
+                        }
+                    }
+                }],
+            visualMap: {
+                type: 'piecewise',
+                // show: false,
+                orient: 'horizontal',
+                left: 'center',
+                bottom: 10,
+                pieces: [{
+                    gte: 17,
+                    color: '#18BF12',
+                    label: '大风（>=17节）'
+                }, {
+                    gte: 11,
+                    lt: 17,
+                    color: '#f4e9a3',
+                    label: '中风（11  ~ 17 节）'
+                }, {
+                    lt: 11,
+                    color: '#D33C3E',
+                    label: '微风（小于 11 节）'
+                }],
+                seriesIndex: 1,
+                dimension: 1
+            },
+            dataZoom: [{
+                type: 'inside',
+                xAxisIndex: 0,
+                minSpan: 5
+            }, {
+                type: 'slider',
+                xAxisIndex: 0,
+                minSpan: 5,
+                height: 20,
+                bottom: 50,
+                handleIcon: 'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                handleSize: '120%'
+            }],
+            series: [
+                {
+                    type: 'line',
+                    yAxisIndex: 1,
+                    showSymbol: false,
+                    hoverAnimation: false,
+                    symbolSize: 1,
+                    areaStyle: {},
+                    lineStyle: {
+                        normal: {
+                            color: 'rgba(88,160,253,1)'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: 'rgba(88,160,253,1)'
+                        }
+                    },
+                    data: data,
+                    z: 2
+                }, {
+                    type: 'custom',
+                    renderItem: renderArrow,
+                    encode: {},
+                    data: data,
+                    z: 10
+                }
+            ]
+        };
+
+        myChart.setOption(option);
+    });
+
+
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>
+</body>
+</html>
