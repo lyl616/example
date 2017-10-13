@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.4.0/echarts.js"></script>
+
+
+    <script>
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "../data/chardata2.json",
+                dataType: "json",
+                success: function (r) {
+                    var data = r.result;
+                    var j = 0;
+                    $.each(data, function (key, values) {
+
+                        var result = values;
+
+                        var a = {
+                            tooltip: {
+                                trigger: "axis",
+                                formatter: function (params) {
+                                    var obj = JSON.parse(JSON.stringify(params))
+                                    var itemName = obj[0].name;
+                                    var str = "<div class=\"tooltip-tit\">" + itemName + "</div>";
+                                    var fsize = 12,
+                                        changeWid = 120;
+                                    if (obj[0].seriesName.length <= 5) {
+                                        changeWid = 100;
+                                    } else {
+                                        changeWid = 120;
+                                    }
+                                    for (var i = 0; i < obj.length; i++) {
+                                        if (obj[i].value == undefined) {
+                                            obj[i].value = '-';
+                                        }
+                                        str = str + "<div class=\"tooltip-data\" style=\"width:"
+                                            + changeWid + "px;\"><b style=\"color: "
+                                            + obj[i].color + ";\"> &bull;</b><i style=\"width:"
+                                            + (changeWid - 30) + "px;\">" + obj[i].seriesName + ":" + obj[i].value + "</i>";
+                                        str += "</div>";
+
+                                    }
+                                    return '<div style="font-size:' + fsize + 'px">' + str + '</div>';
+                                },
+                                position: ['5%', '5%']
+                            },
+                            toolbox: {
+                                right: "0px",
+                                show: true,
+                                feature: {
+                                    saveAsImage: {
+                                        show: true
+                                    }
+                                }
+                            },dataZoom: [{
+                                type: 'slider',
+                                showDetail: false,
+
+                                height: "20px",
+                                width: "94%",
+//                                // 开始位置的数值
+//                                startValue: startZoom,
+//                                // 结束位置的数值
+//                                endValue: endZoom
+                            }],
+                            legend: {
+                                data: [],
+                                top: '10px',
+                                right: '50px',
+                                left: '50px'
+                            },
+                            grid: {
+                                top: '35px',
+                                left: '2%',
+                                right: '2%', //190px ok
+                                bottom: '18%',
+                                containLabel: true
+                            },
+                            xAxis: [{
+                                type: "category",
+//                                boundaryGap: !1,
+                                data: [],
+                                splitLine: {
+                                    show: false
+                                },axisLabel: {
+                                    rotate: '45',
+                                    margin: 10
+                                }
+                            }],
+                            yAxis: [{
+                                type: "value",
+                                axisLabel: {
+                                    formatter: "{value}"
+                                }
+                            }],
+                            series: []
+                        };
+                        //////////////////////////////
+                        a.legend.data = result.legend;
+                        a.xAxis[0].data = result.category;
+                        if (result.series) {
+                            for (var i = 0; i < result.series.length; i++) {
+                                var arr = {
+                                    name: result.series[i].name,
+                                    type: result.series[i].type,
+                                    data: result.series[i].data,
+                                    showSymbol: true,
+                                    legendHoverLink: true,
+                                    hoverAnimation: false
+                                };
+                                a.series.push(arr);
+                            }
+
+                            var chartId = "dataChart" + j;
+                            var rankHtml = "<div class='row'>" +
+                                "    <div class='col-sm-12'>" +
+                                "         <div class='ibox float-e-margins'>" +
+                                "             <div class='ibox-content'>" +
+                                "                 <div class='echarts' style='width: 1024px;height: 220px' id='" + chartId + "'></div>" +
+                                "             </div>" +
+                                "         </div>" +
+                                "    </div>" +
+                                " </div>";
+                            $("#allCharts").append(rankHtml);
+                            var e1 = echarts.init(document.getElementById(chartId));
+                            e1.hideLoading();
+                            e1.setOption(a);
+                            j++;
+                        }
+
+                    });
+                }
+
+            });
+        })
+    </script>
+
+</head>
+<body>
+<div id="allCharts" style="width: 1024px;height: auto;border: 1px solid skyblue"></div>
+</body>
+</html>
