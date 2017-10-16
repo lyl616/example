@@ -6,10 +6,108 @@
     <!-- 引入 echarts.js -->
     <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdn.bootcss.com/echarts/3.7.2/echarts.min.js"></script>
+
+
+    <style>
+
+        .none {
+            display: none
+        }
+    </style>
+
 </head>
 <body>
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-<div id="main" style="width: 1024px;height: auto;border: 1px solid skyblue"></div>
+<div id="main" style="width: 100%;height: auto;border: 1px solid skyblue">
+    <div class='row none' id="char-aqi">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-aqi'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-pm25">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-pm25'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-pm10">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-pm10'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-so2">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-so2'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-no2">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-no2'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-co">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-co'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-o3">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-o3'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-no">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-no'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
 <script type="text/javascript">
 
 
@@ -219,23 +317,28 @@
                         };
                     }
                 });
-                var chartId = "dataChart" + k;
-                var rankHtml = "<div class='row'>" +
-                    "    <div class='col-sm-12'>" +
-                    "         <div class='ibox float-e-margins'>" +
-                    "             <div class='ibox-content'>" +
-                    "                 <div class='echarts' style='width: 1024px;height: 320px' id='" + chartId + "'></div>" +
-                    "             </div>" +
-                    "         </div>" +
-                    "    </div>" +
-                    " </div>";
-                $("#main").append(rankHtml);
+
+                $("#char-" + key).show();
+                var e1 = echarts.init(document.getElementById("dataChart-" + key));
+                var chartId = "dataChart-" + key;
+//                var chartId = "dataChart" + k;
+//                var rankHtml = "<div class='row'>" +
+//                    "    <div class='col-sm-12'>" +
+//                    "         <div class='ibox float-e-margins'>" +
+//                    "             <div class='ibox-content'>" +
+//                    "                 <div class='echarts' style='width: 1024px;height: 320px' id='" + chartId + "'></div>" +
+//                    "             </div>" +
+//                    "         </div>" +
+//                    "    </div>" +
+//                    " </div>";
+//                $("#main").append(rankHtml);
                 var e1 = echarts.init(document.getElementById(chartId));
                 e1.hideLoading();
                 e1.setOption(option);
-                k++;
+
             });
 
+            echarts.connect('group1');
 
         }
     });

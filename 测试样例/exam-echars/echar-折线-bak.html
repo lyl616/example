@@ -6,9 +6,15 @@
 
 
     <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.4.0/echarts.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.7.0/echarts.js"></script>-->
+    <script src="https://cdn.bootcss.com/echarts/3.7.2/echarts.min.js"></script>
 
+    <style>
 
+        .none {
+            display: none
+        }
+    </style>
     <script>
 
 
@@ -23,11 +29,12 @@
                 success: function (r) {
                     var data = r.result;
                     var j = 0;
+                    var arrayChars = new Array();
                     $.each(data, function (key, values) {
 
                         var result = values;
                         var len = result.series.length;
-                        var a = {
+                        var option = {
                             tooltip: {
                                 trigger: "axis",
                                 formatter: function (params) {
@@ -105,64 +112,40 @@
                             series: []
                         };
                         //////////////////////////////
-                        a.legend.data = result.legend;
-                        a.xAxis[0].data = result.category;
+                        option.legend.data = result.legend;
+                        option.xAxis[0].data = result.category;
                         if (result.series) {
+
                             for (var i = 0; i < result.series.length; i++) {
                                 var arr = {
                                     name: result.series[i].name,
-                                    type: result.series[i].type,
+                                    type: 'line',
                                     data: result.series[i].data,
                                     showSymbol: true,
                                     legendHoverLink: true,
-                                    hoverAnimation: false
+//                                    hoverAnimation: false
                                 };
-                                a.series.push(arr);
+                                option.series.push(arr);
                             }
 
-                            var chartId = "dataChart" + j;
 
-                            var rankHtml = "<div class='row'>" +
-                                "    <div class='col-sm-12'>" +
-                                "         <div class='ibox float-e-margins'>" +
-                                "             <div class='ibox-content'>" +
-                                "                 <div class='echarts' style='width: 1024px;height: 220px' id='" + chartId + "'></div>" +
-                                "             </div>" +
-                                "         </div>" +
-                                "    </div>" +
-                                " </div>";
-                            $("#allCharts").append(rankHtml);
-                            var e1 = echarts.init(document.getElementById(chartId));
+                            $("#char-" + key).show();
+                            var e1 = echarts.init(document.getElementById("dataChart-" + key));
                             e1.hideLoading();
-                            e1.setOption(a);
+                            e1.group = 'group1';
+                            e1.setOption(option);
+                            arrayChars.push(e1);
 
-                            e1.on('datazoom', function (params) {
-                                var opt = e1.getOption();
-                                var dz = opt.dataZoom[0];
-                                startZoom = dz.startValue;
-                                endZoom = dz.endValue;
-                                console.log("startZoom:" + startZoom + "------endZoom:" + endZoom);
-
-                                for (var k = 0; k < len; k++) {
-                                    var e2 = echarts.init(document.getElementById("dataChart" + k));
-                                    var eption = {
-                                        dataZoom: [{
-                                            type: 'slider',
-                                            showDetail: false,
-                                            height: "20px",
-                                            width: "94%",
-                                            startValue: startZoom == "" ? 1 : startZoom,
-                                            // 结束位置的数值
-                                            endValue: endZoom == "" ? result.series[0].length : endZoom
-                                        }]
-                                    };
-                                    e2.setOption(eption);
-                                }
-                            });
-
-
-                            j++;
                         }
+
+                        echarts.connect('group1');
+
+//
+//                        var e2 = echarts.init(document.getElementById("dataChart0"));
+//                        var e3 = echarts.init(document.getElementById("dataChart1"));
+//                        var e4 = echarts.init(document.getElementById("dataChart2"));
+//                        e2.connect([e3,e2]);
+
 
                     });
                 }
@@ -173,6 +156,96 @@
 
 </head>
 <body>
-<div id="allCharts" style="width: 1024px;height: auto;border: 1px solid skyblue"></div>
+<div id="allCharts" style="width: 100% ;height: auto;border: 1px solid skyblue">
+
+
+    <div class='row none' id="char-aqi">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-aqi'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-pm25">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-pm25'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-pm10">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-pm10'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-so2">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-so2'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-no2">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-no2'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-co">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-co'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-o3">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-o3'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-no">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-no'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>
