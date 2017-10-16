@@ -9,7 +9,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.4.0/echarts.js"></script>
 
 
+
     <script>
+
+
+        var startZoom ="";
+        var endZoom ="";
+
         $(function () {
             $.ajax({
                 type: "GET",
@@ -89,9 +95,6 @@
                                 data: [],
                                 splitLine: {
                                     show: false
-                                },axisLabel: {
-                                    rotate: '45',
-                                    margin: 10
                                 }
                             }],
                             yAxis: [{
@@ -119,6 +122,7 @@
                             }
 
                             var chartId = "dataChart" + j;
+
                             var rankHtml = "<div class='row'>" +
                                 "    <div class='col-sm-12'>" +
                                 "         <div class='ibox float-e-margins'>" +

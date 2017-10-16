@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/3.7.2/echarts.min.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 1024px;height: auto;border: 1px solid skyblue"></div>
+<script type="text/javascript">
+
+
+    $.ajax({
+        type: "GET",
+        url: "../data/chardata-win.json",
+        dataType: "json",
+        success: function (resp) {
+            var result = resp.result;
+            var keys = result.keys;
+            var lend = new Array();
+
+
+            var series = result.series;
+
+            var directionMap = {};
+            echarts.util.each(
+                ['W', 'WSW', 'SW', 'SSW', 'S', 'SSE', 'SE', 'ESE', 'E', 'ENE', 'NE', 'NNE', 'N', 'NNW', 'NW', 'WNW'],
+                function (name, index) {
+                    directionMap[name] = Math.PI / 8 * index;
+                }
+            );
+
+            var dims = {};
+            for (var i = 0; i < keys.length; i++) {
+                var key = keys[i];
+                dims[key] = i;
+                if (i > 2) {
+                    lend[i - 3] = key.split("-")[1];
+                }
+            }
+            var arrowSize = 18;
+            var weatherIconSize = 45;
+
+            function renderArrow(param, api) {
+                var point = api.coord([
+                    api.value(dims.time),
+                    api.value(dims.windSpeed)
+                ]);
+                return {
+                    type: 'path',
+                    shape: {
+                        pathData: 'M31 16l-15-15v9h-26v12h26v9z',
+                        x: -arrowSize / 2,
+                        y: -arrowSize / 2,
+                        width: arrowSize,
+                        height: arrowSize
+                    },
+                    rotation: directionMap[api.value(dims.R)],
+                    position: point,
+                    style: api.style({
+                        stroke: '#555',
+                        lineWidth: 1
+                    })
+                };
+            }
+
+            var k = 0;
+            //遍历数组信息
+            $.each(series, function (key, values) {
+
+                var rowData = values;
+                var data = echarts.util.map(rowData, function (entry) {
+                    var arr = new Array()
+                    for (var i = 0; i < keys.length; i++) {
+                        var key = keys[i];
+                        arr[i] = entry[key];
+                    }
+                    return arr;
+                });
+
+                option = {
+                    title: {
+//                text: '天气 风向 风速 海浪 预报',
+//                left: 'center'
+                    }, legend: {
+                        data: lend,
+                        top: '10px',
+                        right: '50px',
+                        left: '50px'
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        formatter: function (params) {
+                            var data = new Array();
+                            data[0] = echarts.format.formatTime('yyyy-MM-dd', params[0].value[dims.time])
+                                + ' ' + echarts.format.formatTime('hh:mm', params[0].value[dims.time]);
+                            data[1] = '风速：' + params[0].value[dims.windSpeed];
+                            data[2] = '风向：' + params[0].value[dims.R];
+                            for (var j = 3; j < keys.length; j++) {
+                                data[j] = keys[j].split("-")[1] + "  :  " + params[0].value[dims[keys[j]]];
+                            }
+                            return data.join('<br>');
+                        }
+                    }, dataZoom: [{
+                        type: 'slider',
+                        showDetail: false,
+                        height: "20px",
+                        width: "80%",
+                        bottom: 40,
+//                                // 开始位置的数值
+//                                startValue: startZoom,
+//                                // 结束位置的数值
+//                                endValue: endZoom
+                    }],
+                    grid: {
+                        top: 60,
+                        bottom: 100
+                    },
+                    xAxis: {
+                        type: 'time',
+                        maxInterval: 3600 * 1000 * 24,
+                        splitLine: {
+                            lineStyle: {
+                                color: '#ddd'
+                            }
+                        }
+                    },
+                    visualMap: {
+                        type: 'piecewise',
+                        // show: false,
+                        orient: 'horizontal',
+                        left: 'center',
+                        bottom: 10,
+                        pieces: [{
+                            gte: 17,
+                            color: '#18BF12',
+                            label: '大风（>=17节）'
+                        }, {
+                            gte: 11,
+                            lt: 17,
+                            color: '#f4e9a3',
+                            label: '中风（11  ~ 17 节）'
+                        }, {
+                            lt: 11,
+                            color: '#D33C3E',
+                            label: '微风（小于 11 节）'
+                        }],
+                        seriesIndex: 0,
+                        dimension: 1
+                    },
+                    yAxis: [{
+                        name: '污染浓度',
+                        nameLocation: 'middle',
+                        nameGap: 35,
+                        axisLine: {
+                            lineStyle: {
+                                color: '#015DD5'
+                            }
+                        },
+                        splitLine: {show: false}
+                    }, {
+                        name: '风速（节）',
+                        nameLocation: 'middle',
+                        nameGap: 35,
+                        axisLine: {
+                            lineStyle: {
+                                color: '#666'
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                color: '#ddd'
+                            }
+                        }
+                    }],
+                    series: [{
+                        yAxisIndex: 1,
+                        type: 'custom',
+                        renderItem: renderArrow,
+                        encode: {
+                            x: dims.time,
+                            y: dims.windSpeed
+                        },
+                        data: data,
+                        z: 10
+                    }, {
+                        yAxisIndex: 1,
+                        type: 'line',
+                        symbol: 'none',
+                        encode: {
+                            x: dims.time,
+                            y: dims.windSpeed
+                        },
+                        lineStyle: {
+                            normal: {
+                                color: '#aaa',
+                                type: 'dotted'
+                            }
+                        },
+                        data: data,
+                        z: 1
+                    }]
+                };
+                $.each(keys, function (i, val) {
+                    if (i >= 2) {
+                        option.series[i] = {
+                            yAxisIndex: 0,
+                            type: 'line',
+                            name: val.split("-")[1],
+                            encode: {
+                                x: dims.time,
+                                y: dims[val]
+                            },
+                            data: data,
+                            z: 10
+                        };
+                    }
+                });
+                var chartId = "dataChart" + k;
+                var rankHtml = "<div class='row'>" +
+                    "    <div class='col-sm-12'>" +
+                    "         <div class='ibox float-e-margins'>" +
+                    "             <div class='ibox-content'>" +
+                    "                 <div class='echarts' style='width: 1024px;height: 320px' id='" + chartId + "'></div>" +
+                    "             </div>" +
+                    "         </div>" +
+                    "    </div>" +
+                    " </div>";
+                $("#main").append(rankHtml);
+                var e1 = echarts.init(document.getElementById(chartId));
+                e1.hideLoading();
+                e1.setOption(option);
+                k++;
+            });
+
+
+        }
+    });
+
+
+</script>
+</body>
+</html>

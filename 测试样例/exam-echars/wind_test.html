@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/3.7.2/echarts.min.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 1200px;height:800px;"></div>
+<script type="text/javascript">
+    var datajson = [
+        {
+            "time": "2017-06-27T11:00:00.000Z",
+            "windSpeed": 9,
+            "R": "NNW",
+            "station01Aqi": 23,
+            "station02Aqi": 45
+        },
+        {
+            "time": "2017-06-27T12:30:00.000Z",
+            "windSpeed": 10,
+            "R": "NNW",
+            "station01Aqi": 11,
+            "station02Aqi": 34
+        },
+        {
+            "time": "2017-06-27T14:00:00.000Z",
+            "windSpeed": 12,
+            "R": "NNW",
+            "station01Aqi": 23,
+            "station02Aqi": 42
+        },
+        {
+            "time": "2017-06-27T15:30:00.000Z",
+            "windSpeed": 12,
+            "R": "NNW",
+            "station01Aqi": 123,
+            "station02Aqi": 21
+        },
+        {
+            "time": "2017-06-27T17:00:00.000Z",
+            "windSpeed": 11,
+            "R": "NNW",
+            "station01Aqi": 231,
+            "station02Aqi": 334
+        },
+        {
+            "time": "2017-06-27T18:30:00.000Z",
+            "windSpeed": 10,
+            "R": "NNW",
+            "station01Aqi": 132,
+            "station02Aqi": 123
+        },
+        {
+            "time": "2017-06-27T20:00:00.000Z",
+            "windSpeed": 10,
+            "R": "N",
+            "station01Aqi": 312,
+            "station02Aqi": 21
+        },
+        {
+            "time": "2017-06-27T21:30:00.000Z",
+            "windSpeed": 11,
+            "R": "NNW",
+            "station01Aqi": 11,
+            "station02Aqi": 123
+        },
+        {
+            "time": "2017-06-27T23:00:00.000Z",
+            "windSpeed": 12,
+            "R": "NNW",
+            "station01Aqi": 12,
+            "station02Aqi": 111
+        },
+        {
+            "time": "2017-06-28T00:30:00.000Z",
+            "windSpeed": 12,
+            "R": "N",
+            "station01Aqi": 123,
+            "station02Aqi": 135
+        },
+        {
+            "time": "2017-06-28T02:00:00.000Z",
+            "windSpeed": 12,
+            "R": "N",
+            "station01Aqi": 132,
+            "station02Aqi": 12
+        },
+        {
+            "time": "2017-06-28T03:30:00.000Z",
+            "windSpeed": 12,
+            "R": "N",
+            "station01Aqi": 23,
+            "station02Aqi": 12
+        },
+        {
+            "time": "2017-06-28T05:00:00.000Z",
+            "windSpeed": 12,
+            "R": "NNE",
+            "station01Aqi": 67,
+            "station02Aqi": 213
+        },
+        {
+            "time": "2017-06-28T06:30:00.000Z",
+            "windSpeed": 10,
+            "R": "N",
+            "station01Aqi": 76,
+            "station02Aqi": 56
+        },
+        {
+            "time": "2017-06-28T08:00:00.000Z",
+            "windSpeed": 9,
+            "R": "N",
+            "station01Aqi": 67,
+            "station02Aqi": 97
+        },
+        {
+            "time": "2017-06-28T09:30:00.000Z",
+            "windSpeed": 8,
+            "R": "NNW",
+            "station01Aqi": 42,
+            "station02Aqi": 76
+        },
+        {
+            "time": "2017-06-28T11:00:00.000Z",
+            "windSpeed": 8,
+            "R": "NW",
+            "station01Aqi": 332,
+            "station02Aqi": 23
+        },
+        {
+            "time": "2017-06-28T12:30:00.000Z",
+            "windSpeed": 8,
+            "R": "NW",
+            "station01Aqi": 231,
+            "station02Aqi": 134
+        },
+        {
+            "time": "2017-06-28T14:00:00.000Z",
+            "windSpeed": 9,
+            "R": "WNW",
+            "station01Aqi": 23,
+            "station02Aqi": 43
+        },
+        {
+            "time": "2017-06-28T15:30:00.000Z",
+            "windSpeed": 10,
+            "R": "WNW",
+            "station01Aqi": 134,
+            "station02Aqi": 43
+        },
+        {
+            "time": "2017-06-28T17:00:00.000Z",
+            "windSpeed": 11,
+            "R": "WNW",
+            "station01Aqi": 123,
+            "station02Aqi": 21
+        },
+        {
+            "time": "2017-06-28T18:30:00.000Z",
+            "windSpeed": 12,
+            "R": "WNW",
+            "station01Aqi": 32,
+            "station02Aqi": 123
+        },
+        {
+            "time": "2017-06-28T20:00:00.000Z",
+            "windSpeed": 13,
+            "R": "NW",
+            "station01Aqi": 212,
+            "station02Aqi": 32
+        },
+        {
+            "time": "2017-06-28T21:30:00.000Z",
+            "windSpeed": 13,
+            "R": "NW",
+            "station01Aqi": 423,
+            "station02Aqi": 12
+        },
+        {
+            "time": "2017-06-28T23:00:00.000Z",
+            "windSpeed": 14,
+            "R": "NW",
+            "station01Aqi": 234,
+            "station02Aqi": 12
+        },
+        {
+            "time": "2017-06-29T00:30:00.000Z",
+            "windSpeed": 16,
+            "R": "NW",
+            "station01Aqi": 123,
+            "station02Aqi": 124
+        },
+        {
+            "time": "2017-06-29T02:00:00.000Z",
+            "windSpeed": 18,
+            "R": "NNW",
+            "station01Aqi": 231,
+            "station02Aqi": 123
+        },
+        {
+            "time": "2017-06-29T03:30:00.000Z",
+            "windSpeed": 20,
+            "R": "WNW",
+            "station01Aqi": 23,
+            "station02Aqi": 211
+        },
+        {
+            "time": "2017-06-29T05:00:00.000Z",
+            "windSpeed": 22,
+            "R": "W",
+            "station01Aqi": 43,
+            "station02Aqi": 23
+        },
+        {
+            "time": "2017-06-29T06:30:00.000Z",
+            "windSpeed": 26,
+            "R": "WSW",
+            "station01Aqi": 123,
+            "station02Aqi": 42
+        },
+        {
+            "time": "2017-06-29T08:00:00.000Z",
+            "windSpeed": 30,
+            "R": "WSW",
+            "station01Aqi": 123,
+            "station02Aqi": 231
+        },
+        {
+            "time": "2017-06-29T09:30:00.000Z",
+            "windSpeed": 30,
+            "R": "SW",
+            "station01Aqi": 213,
+            "station02Aqi": 123
+        },
+        {
+            "time": "2017-06-29T11:00:00.000Z",
+            "windSpeed": 29,
+            "R": "SW",
+            "station01Aqi": 97,
+            "station02Aqi": 53
+        },
+        {
+            "time": "2017-06-29T12:30:00.000Z",
+            "windSpeed": 29,
+            "R": "SW",
+            "station01Aqi": 111,
+            "station02Aqi": 314
+        },
+        {
+            "time": "2017-06-29T14:00:00.000Z",
+            "windSpeed": 29,
+            "R": "SW",
+            "station01Aqi": 121,
+            "station02Aqi": 23
+        },
+        {
+            "time": "2017-06-29T15:30:00.000Z",
+            "windSpeed": 28,
+            "R": "SW",
+            "station01Aqi": 2,
+            "station02Aqi": 344
+        },
+        {
+            "time": "2017-06-29T17:00:00.000Z",
+            "windSpeed": 28,
+            "R": "SW",
+            "station01Aqi": 212,
+            "station02Aqi": 42
+        },
+        {
+            "time": "2017-06-29T18:30:00.000Z",
+            "windSpeed": 29,
+            "R": "SSW",
+            "station01Aqi": 131,
+            "station02Aqi": 12
+        },
+        {
+            "time": "2017-06-29T20:00:00.000Z",
+            "windSpeed": 30,
+            "R": "SSW",
+            "station01Aqi": 123,
+            "station02Aqi": 123
+        },
+        {
+            "time": "2017-06-29T21:30:00.000Z",
+            "windSpeed": 29,
+            "R": "SSW",
+            "station01Aqi": 321,
+            "station02Aqi": 12
+        },
+        {
+            "time": "2017-06-29T23:00:00.000Z",
+            "windSpeed": 27,
+            "R": "SSW",
+            "station01Aqi": 34,
+            "station02Aqi": 12
+        },
+        {
+            "time": "2017-06-30T00:30:00.000Z",
+            "windSpeed": 26,
+            "R": "SSW",
+            "station01Aqi": 123,
+            "station02Aqi": 21
+        },
+        {
+            "time": "2017-06-30T02:00:00.000Z",
+            "windSpeed": 25,
+            "R": "SSW",
+            "station01Aqi": 123,
+            "station02Aqi": 23
+        },
+        {
+            "time": "2017-06-30T03:30:00.000Z",
+            "windSpeed": 22,
+            "R": "SSW",
+            "station01Aqi": 421,
+            "station02Aqi": 123
+        }
+    ];
+
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+
+    var renderWind = function (rawData) {
+
+        var directionMap = {};
+        echarts.util.each(
+            ['W', 'WSW', 'SW', 'SSW', 'S', 'SSE', 'SE', 'ESE', 'E', 'ENE', 'NE', 'NNE', 'N', 'NNW', 'NW', 'WNW'],
+            function (name, index) {
+                directionMap[name] = Math.PI / 8 * index;
+            }
+        );
+
+        var keys = ['time', "windSpeed", "R", "station01Aqi", "station02Aqi"];
+
+        var dims = {};
+        for (var i = 0; i < keys.length; i++) {
+            var key = keys[i];
+            dims[key] = i;
+        }
+
+
+        var data = echarts.util.map(rawData, function (entry) {
+            var arr = new Array()
+            for (var i = 0; i < keys.length; i++) {
+                var key = keys[i];
+                arr[i] = entry[key];
+            }
+            return arr;
+//            return [entry.time, entry.windSpeed, entry.R, entry.waveHeight, entry.station01Aqi, entry.station02Aqi];
+        });
+
+//        var dims = {
+//            time: 0,
+//            windSpeed: 1,
+//            R: 2,
+//            waveHeight: 3,
+//            station01Aqi: 4,
+//            station02Aqi: 5,
+//        };
+        var arrowSize = 18;
+        var weatherIconSize = 45;
+
+        function renderArrow(param, api) {
+            var point = api.coord([
+                api.value(dims.time),
+                api.value(dims.windSpeed)
+            ]);
+
+            return {
+                type: 'path',
+                shape: {
+                    pathData: 'M31 16l-15-15v9h-26v12h26v9z',
+                    x: -arrowSize / 2,
+                    y: -arrowSize / 2,
+                    width: arrowSize,
+                    height: arrowSize
+                },
+                rotation: directionMap[api.value(dims.R)],
+                position: point,
+                style: api.style({
+                    stroke: '#555',
+                    lineWidth: 1
+                })
+            };
+        }
+
+        option = {
+            title: {
+//                text: '天气 风向 风速 海浪 预报',
+//                subtext: '示例数据源于 www.seabreeze.com.au',
+//                left: 'center'
+            }, legend: {
+                data: ["station01Aqi", "station02Aqi"],
+                top: '10px',
+                right: '50px',
+                left: '50px'
+            },
+            tooltip: {
+                trigger: 'axis',
+                formatter: function (params) {
+                    var data = new Array();
+                    data[0] = echarts.format.formatTime('yyyy-MM-dd', params[0].value[dims.time])
+                        + ' ' + echarts.format.formatTime('hh:mm', params[0].value[dims.time]);
+                    data[1] = '风速：' + params[0].value[dims.windSpeed];
+                    data[2] = '风向：' + params[0].value[dims.R];
+                    for (var j = 3; j < keys.length; j++) {
+                        data[j] = keys[j] + "  :  " + params[0].value[dims[keys[j]]];
+                    }
+                    return data.join('<br>');
+                }
+            },dataZoom: [{
+                type: 'slider',
+                showDetail: false,
+                height: "20px",
+                width: "80%",bottom: 60,
+//                                // 开始位置的数值
+//                                startValue: startZoom,
+//                                // 结束位置的数值
+//                                endValue: endZoom
+            }],
+            grid: {
+                top: 160,
+                bottom: 125
+            },
+            xAxis: {
+                type: 'time',
+                maxInterval: 3600 * 1000 * 24,
+                splitLine: {
+                    lineStyle: {
+                        color: '#ddd'
+                    }
+                }
+            },
+            visualMap: {
+                type: 'piecewise',
+                // show: false,
+                orient: 'horizontal',
+                left: 'center',
+                bottom: 10,
+                pieces: [{
+                    gte: 17,
+                    color: '#18BF12',
+                    label: '大风（>=17节）'
+                }, {
+                    gte: 11,
+                    lt: 17,
+                    color: '#f4e9a3',
+                    label: '中风（11  ~ 17 节）'
+                }, {
+                    lt: 11,
+                    color: '#D33C3E',
+                    label: '微风（小于 11 节）'
+                }],
+                seriesIndex: 0,
+                dimension: 1
+            },
+            yAxis: [{
+                name: '污染浓度',
+                nameLocation: 'middle',
+                nameGap: 35,
+                axisLine: {
+                    lineStyle: {
+                        color: '#015DD5'
+                    }
+                },
+                splitLine: {show: false}
+            }, {
+                name: '风速（节）',
+                nameLocation: 'middle',
+                nameGap: 35,
+                axisLine: {
+                    lineStyle: {
+                        color: '#666'
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: '#ddd'
+                    }
+                }
+            }],
+            series: [{
+                yAxisIndex: 1,
+                type: 'custom',
+                renderItem: renderArrow,
+                encode: {
+                    x: dims.time,
+                    y: dims.windSpeed
+                },
+                data: data,
+                z: 10
+            }, {
+                yAxisIndex: 1,
+                type: 'line',
+                symbol: 'none',
+                encode: {
+                    x: dims.time,
+                    y: dims.windSpeed
+                },
+                lineStyle: {
+                    normal: {
+                        color: '#aaa',
+                        type: 'dotted'
+                    }
+                },
+                data: data,
+                z: 1
+            }]
+        };
+
+        $.each(keys, function (i, val) {
+            if (i >= 2) {
+                option.series[i] = {
+                    yAxisIndex: 0,
+                    type: 'line',
+                    name: val,
+                    encode: {
+                        x: dims.time,
+                        y: dims[val]
+                    },
+                    data: data,
+                    z: 10
+                };
+            }
+        });
+
+
+        myChart.setOption(option);
+    };
+
+    renderWind(datajson);
+</script>
+</body>
+</html>
