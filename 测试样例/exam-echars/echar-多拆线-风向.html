@@ -23,7 +23,7 @@
         <div class='col-sm-12'>
             <div class='ibox float-e-margins'>
                 <div class='ibox-content'>
-                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-aqi'></div>
+                    <div class='echarts' style='width: 100%;height: 320px' id="dataChart-aqi"></div>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
         <div class='col-sm-12'>
             <div class='ibox float-e-margins'>
                 <div class='ibox-content'>
-                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-pm25'></div>
+                    <div class='echarts' style='width: 100%;height: 320px' id="dataChart-pm25"></div>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
         <div class='col-sm-12'>
             <div class='ibox float-e-margins'>
                 <div class='ibox-content'>
-                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-pm10'></div>
+                    <div class='echarts' style='width: 100%;height: 320px' id="dataChart-pm10"></div>
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
         <div class='col-sm-12'>
             <div class='ibox float-e-margins'>
                 <div class='ibox-content'>
-                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-so2'></div>
+                    <div class='echarts' style='width: 100%;height: 320px' id="dataChart-so2"></div>
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
         <div class='col-sm-12'>
             <div class='ibox float-e-margins'>
                 <div class='ibox-content'>
-                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-no2'></div>
+                    <div class='echarts' style='width: 100%;height: 320px' id="dataChart-no2"></div>
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@
         <div class='col-sm-12'>
             <div class='ibox float-e-margins'>
                 <div class='ibox-content'>
-                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-co'></div>
+                    <div class='echarts' style='width: 100%;height: 320px' id="dataChart-co"></div>
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
         <div class='col-sm-12'>
             <div class='ibox float-e-margins'>
                 <div class='ibox-content'>
-                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-o3'></div>
+                    <div class='echarts' style='width: 100%;height: 320px' id="dataChart-o3"></div>
                 </div>
             </div>
         </div>
@@ -100,7 +100,7 @@
         <div class='col-sm-12'>
             <div class='ibox float-e-margins'>
                 <div class='ibox-content'>
-                    <div class='echarts' style='width: 100%;height: 220px' id='dataChart-no'></div>
+                    <div class='echarts' style='width: 100%;height: 320px' id="dataChart-no"></div>
                 </div>
             </div>
         </div>
@@ -109,8 +109,6 @@
 
 </div>
 <script type="text/javascript">
-
-
     $.ajax({
         type: "GET",
         url: "../data/chardata-win.json",
@@ -119,10 +117,7 @@
             var result = resp.result;
             var keys = result.keys;
             var lend = new Array();
-
-
             var series = result.series;
-
             var directionMap = {};
             echarts.util.each(
                 ['W', 'WSW', 'SW', 'SSW', 'S', 'SSE', 'SE', 'ESE', 'E', 'ENE', 'NE', 'NNE', 'N', 'NNW', 'NW', 'WNW'],
@@ -165,7 +160,6 @@
                 };
             }
 
-            var k = 0;
             //遍历数组信息
             $.each(series, function (key, values) {
 
@@ -180,10 +174,7 @@
                 });
 
                 option = {
-                    title: {
-//                text: '天气 风向 风速 海浪 预报',
-//                left: 'center'
-                    }, legend: {
+                    legend: {
                         data: lend,
                         top: '10px',
                         right: '50px',
@@ -202,20 +193,36 @@
                             }
                             return data.join('<br>');
                         }
-                    }, dataZoom: [{
-                        type: 'slider',
-                        showDetail: false,
-                        height: "20px",
-                        width: "80%",
-                        bottom: 40,
-//                                // 开始位置的数值
-//                                startValue: startZoom,
-//                                // 结束位置的数值
-//                                endValue: endZoom
+                    },
+                    dataZoom: [{
+                        textStyle: {
+                            color: '#8392A5'
+                        },
+                        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                        handleSize: '80%',
+                        bottom: 10,
+                        dataBackground: {
+                            areaStyle: {
+                                color: '#8392A5'
+                            },
+                            lineStyle: {
+                                opacity: 0.8,
+                                color: '#8392A5'
+                            }
+                        },
+                        handleStyle: {
+                            color: '#fff',
+                            shadowBlur: 3,
+                            shadowColor: 'rgba(0, 0, 0, 0.6)',
+                            shadowOffsetX: 2,
+                            shadowOffsetY: 2
+                        }
+                    }, {
+                        type: 'inside'
                     }],
                     grid: {
                         top: 60,
-                        bottom: 100
+                        bottom: 80
                     },
                     xAxis: {
                         type: 'time',
@@ -228,23 +235,14 @@
                     },
                     visualMap: {
                         type: 'piecewise',
-                        // show: false,
+                        show: false,
                         orient: 'horizontal',
                         left: 'center',
                         bottom: 10,
                         pieces: [{
-                            gte: 17,
-                            color: '#18BF12',
-                            label: '大风（>=17节）'
-                        }, {
-                            gte: 11,
-                            lt: 17,
-                            color: '#f4e9a3',
-                            label: '中风（11  ~ 17 节）'
-                        }, {
-                            lt: 11,
-                            color: '#D33C3E',
-                            label: '微风（小于 11 节）'
+                            lt: 999,
+                            color: '#3095FF',
+                            label: '微风（小于 999 节）'
                         }],
                         seriesIndex: 0,
                         dimension: 1
@@ -253,11 +251,6 @@
                         name: '污染浓度',
                         nameLocation: 'middle',
                         nameGap: 35,
-                        axisLine: {
-                            lineStyle: {
-                                color: '#015DD5'
-                            }
-                        },
                         splitLine: {show: false}
                     }, {
                         name: '风速（节）',
@@ -307,6 +300,7 @@
                         option.series[i] = {
                             yAxisIndex: 0,
                             type: 'line',
+                            symbolSize: 1,
                             name: val.split("-")[1],
                             encode: {
                                 x: dims.time,
@@ -320,20 +314,8 @@
 
                 $("#char-" + key).show();
                 var e1 = echarts.init(document.getElementById("dataChart-" + key));
-                var chartId = "dataChart-" + key;
-//                var chartId = "dataChart" + k;
-//                var rankHtml = "<div class='row'>" +
-//                    "    <div class='col-sm-12'>" +
-//                    "         <div class='ibox float-e-margins'>" +
-//                    "             <div class='ibox-content'>" +
-//                    "                 <div class='echarts' style='width: 1024px;height: 320px' id='" + chartId + "'></div>" +
-//                    "             </div>" +
-//                    "         </div>" +
-//                    "    </div>" +
-//                    " </div>";
-//                $("#main").append(rankHtml);
-                var e1 = echarts.init(document.getElementById(chartId));
                 e1.hideLoading();
+                e1.group = 'group1';
                 e1.setOption(option);
 
             });
