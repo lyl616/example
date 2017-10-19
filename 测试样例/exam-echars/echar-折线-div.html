@@ -31,7 +31,6 @@
                     var j = 0;
                     var arrayChars = new Array();
                     $.each(data, function (key, values) {
-
                         var result = values;
                         var len = result.series.length;
 
@@ -98,7 +97,7 @@
                                     shadowOffsetY: 2
                                 }
                             }, {
-                                type: 'inside'
+                                type: 'inside',filterMode:'filter'
                             }],
 
                             legend: {

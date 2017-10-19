@@ -5,21 +5,15 @@
     <title>Title</title>
     <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1XjLLEhZhQNUzd93EjU5nOGQ"></script>
-
-    <!--<script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>-->
-    <!--<script type="text/javascript" src="js/Heatmap_min.js"></script>-->
-
 </head>
 <body>
-<input type="text" id="cityName">
-<button onclick="queryList()">查询</button>
 <div id="bMap" style="width: 1256px;height: 600px;"></div>
 <script type="application/javascript">
     var map = "";
     $(function () {
         map = new BMap.Map("bMap");
         map.enableScrollWheelZoom(true);
-        map.centerAndZoom("成都", 9);
+        map.centerAndZoom("济宁市", 9);
         getBoundary();
     })
 
@@ -27,152 +21,75 @@
     function getBoundary() {
         for (var i = 0; i < dd.length; i++) {
             var bdary = new BMap.Boundary();
-//            var name = document.getElementById("districtName").value;
-            var name = dd[i];
-            bdary.get(name, function (rs) {       //获取行政区域
-//                map.clearOverlays();        //清除地图覆盖物
-                var count = rs.boundaries.length; //行政区域的点有多少个
+            var name = dd[i].district;
+            bdary.get(name, function (rs) {
+                var count = rs.boundaries.length;
                 for (var i = 0; i < count; i++) {
-                    var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight: 10, strokeColor: "#ff0000"}); //建立多边形覆盖物
+                    var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight: 2, strokeColor: "#ff0000"}); //建立多边形覆盖物
                     map.addOverlay(ply);  //添加覆盖物
-//                    map.setViewport(ply.getPath());    //调整视野
+                    map.setViewport(ply.getPath());    //调整视野
                 }
             });
         }
     }
 
-
-    var dd = ["成华区",
-        "崇州市",
-        "大邑县",
-        "都江堰市",
-        "金牛区",
-        "金堂县",
-        "锦江区",
-        "龙泉驿区",
-        "彭州市",
-        "蒲江县",
-        "青白江区",
-        "青羊区",
-        "双流县",
-        "温江区",
-        "武侯区",
-        "新都区",
-        "新津县",
-        "邛崃市",
-        "郫县","简阳市"];
-
-    var districts = [
-//        {
-//            "cityId": 510100,
-//            "district": "市辖区",
-//            "id": 510101
-//        },
-        {
-            "cityId": 510100,
-            "district": "高新区",
-            "id": 510102
-        },
-        {
-            "cityId": 510100,
-            "district": "锦江区",
-            "id": 510104
-        },
-        {
-            "cityId": 510100,
-            "district": "青羊区",
-            "id": 510105
-        },
-        {
-            "cityId": 510100,
-            "district": "金牛区",
-            "id": 510106
-        },
-        {
-            "cityId": 510100,
-            "district": "武侯区",
-            "id": 510107
-        },
-        {
-            "cityId": 510100,
-            "district": "成华区",
-            "id": 510108
-        },
-        {
-            "cityId": 510100,
-            "district": "龙泉驿区",
-            "id": 510112
-        },
-        {
-            "cityId": 510100,
-            "district": "青白江区",
-            "id": 510113
-        },
-        {
-            "cityId": 510100,
-            "district": "新都区",
-            "id": 510114
-        },
-        {
-            "cityId": 510100,
-            "district": "温江区",
-            "id": 510115
-        },
-        {
-            "cityId": 510100,
-            "district": "金堂县",
-            "id": 510121
-        },
-        {
-            "cityId": 510100,
-            "district": "双流县",
-            "id": 510122
-        },
-        {
-            "cityId": 510100,
-            "district": "郫县",
-            "id": 510124
-        },
-        {
-            "cityId": 510100,
-            "district": "大邑县",
-            "id": 510129
-        },
-        {
-            "cityId": 510100,
-            "district": "蒲江县",
-            "id": 510131
-        },
-        {
-            "cityId": 510100,
-            "district": "新津县",
-            "id": 510132
-        },
-        {
-            "cityId": 510100,
-            "district": "都江堰市",
-            "id": 510181
-        },
-        {
-            "cityId": 510100,
-            "district": "彭州市",
-            "id": 510182
-        },
-        {
-            "cityId": 510100,
-            "district": "邛崃市",
-            "id": 510183
-        },
-        {
-            "cityId": 510100,
-            "district": "崇州市",
-            "id": 510184
-        },{
-            "cityId": 510100,
-            "district": "简阳市",
-            "id": 510185
-        }
-    ];
+    var dd = [{
+        "cityId": 370800,
+        "district": "市辖区",
+        "id": 370801
+    }, {
+        "cityId": 370800,
+        "district": "高新区",
+        "id": 370803
+    }, {
+        "cityId": 370800,
+        "district": "太白湖区",
+        "id": 370805
+    }, {
+        "cityId": 370800,
+        "district": "任城区",
+        "id": 370811
+    }, {
+        "cityId": 370800,
+        "district": "兖州区",
+        "id": 370812
+    }, {
+        "cityId": 370800,
+        "district": "微山县",
+        "id": 370826
+    }, {
+        "cityId": 370800,
+        "district": "鱼台县",
+        "id": 370827
+    }, {
+        "cityId": 370800,
+        "district": "金乡县",
+        "id": 370828
+    }, {
+        "cityId": 370800,
+        "district": "嘉祥县",
+        "id": 370829
+    }, {
+        "cityId": 370800,
+        "district": "汶上县",
+        "id": 370830
+    }, {
+        "cityId": 370800,
+        "district": "泗水县",
+        "id": 370831
+    }, {
+        "cityId": 370800,
+        "district": "梁山县",
+        "id": 370832
+    }, {
+        "cityId": 370800,
+        "district": "曲阜市",
+        "id": 370881
+    }, {
+        "cityId": 370800,
+        "district": "邹城市",
+        "id": 370883
+    }];
 
 
 </script>

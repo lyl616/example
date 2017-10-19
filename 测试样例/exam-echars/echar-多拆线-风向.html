@@ -218,11 +218,13 @@
                             shadowOffsetY: 2
                         }
                     }, {
-                        type: 'inside'
+                        type: 'inside', disabled: true
                     }],
                     grid: {
                         top: 60,
-                        bottom: 80
+                        bottom: 80,
+                        left:50,
+                        right:50
                     },
                     xAxis: {
                         type: 'time',
@@ -250,12 +252,13 @@
                     yAxis: [{
                         name: '污染浓度',
                         nameLocation: 'middle',
-                        nameGap: 35,
+                        boundaryGap:false,
+                        nameGap: 30,
                         splitLine: {show: false}
                     }, {
                         name: '风速（节）',
                         nameLocation: 'middle',
-                        nameGap: 35,
+                        nameGap: 30, boundaryGap:false,
                         axisLine: {
                             lineStyle: {
                                 color: '#666'
