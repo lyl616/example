@@ -189,7 +189,7 @@
                             data[1] = '风速：' + params[0].value[dims.windSpeed];
                             data[2] = '风向：' + params[0].value[dims.R];
                             for (var j = 3; j < keys.length; j++) {
-                                data[j] = keys[j].split("-")[1] + "  :  " + params[0].value[dims[keys[j]]];
+                                data[j - 1] = keys[j].split("-")[1] + "  :  " + params[0].value[dims[keys[j]]];
                             }
                             return data.join('<br>');
                         }
@@ -223,8 +223,8 @@
                     grid: {
                         top: 60,
                         bottom: 80,
-                        left:50,
-                        right:50
+                        left: 50,
+                        right: 50
                     },
                     xAxis: {
                         type: 'time',
@@ -252,13 +252,13 @@
                     yAxis: [{
                         name: '污染浓度',
                         nameLocation: 'middle',
-                        boundaryGap:false,
+                        boundaryGap: false,
                         nameGap: 30,
                         splitLine: {show: false}
                     }, {
                         name: '风速（节）',
                         nameLocation: 'middle',
-                        nameGap: 30, boundaryGap:false,
+                        nameGap: 30, boundaryGap: false,
                         axisLine: {
                             lineStyle: {
                                 color: '#666'
