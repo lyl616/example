@@ -108,10 +108,12 @@
 
 
 </div>
+
+
 <script type="text/javascript">
     $.ajax({
         type: "GET",
-        url: "../data/chardata3.json",
+        url: "../data/chardata-win3.json",
         dataType: "json",
         success: function (resp) {
             var result = resp.result;
@@ -134,6 +136,7 @@
                     lend[i - 4] = key.split("-")[1];
                 }
             }
+
             var arrowSize = 18;
             var weatherIconSize = 45;
 
@@ -162,36 +165,65 @@
 
             //遍历数组信息
             $.each(series, function (key, values) {
-
                 var rowData = values;
+
+
                 var data = echarts.util.map(rowData, function (entry) {
                     var arr = new Array()
-                    for (var i = 0; i < keys.length; i++) {
+                    for (var i in keys) {
                         var key = keys[i];
                         arr[i] = entry[key];
                     }
                     return arr;
                 });
+                var data1 = echarts.util.map(rowData, function (entry) {
+                    var arr = new Array()
+                    for (var i in keys) {
+                        if (i < 4) {
+
+                            var key = keys[i];
+                            arr[i] = entry[key];
+                        }
+                    }
+                    return arr;
+                });
+
 
                 option = {
                     legend: {
-                        data: lend,
-                        top: '10px',
-                        right: '50px',
-                        left: '50px'
+                        data: lend
                     },
                     tooltip: {
                         trigger: 'axis',
                         formatter: function (params) {
+
+                            console.log(params);
                             var data = new Array();
-                            data[0] = echarts.format.formatTime('yyyy-MM-dd', params[0].value[dims.time])
-                                + ' ' + echarts.format.formatTime('hh:mm', params[0].value[dims.time]);
-                            data[1] = '风速：' + params[0].value[dims.windSpeed];
-                            data[2] = '风向：' + params[0].value[dims.R];
-                            for (var j = 3; j < keys.length; j++) {
-                                data[j] = keys[j].split("-")[1] + "  :  " + params[0].value[dims[keys[j]]];
+                            var str = '<div class=\"tooltip-tit\" style="font-size:12px">';
+
+                            data[0] = echarts.format.formatTime('yyyy-MM-dd', params[0].value[dims.time]) +
+                                ' ' + echarts.format.formatTime('hh:mm', params[0].value[dims.time]);
+                            data[1] = '   风速：' + params[0].value[dims.windSpeed];
+                            data[2] = '   风向：' + params[0].value[dims.windDirection];
+                            // data[2] = '   风向：' + params[0].value[dims.R];
+                            str += "<div class=\"clear\">" + data[0] + "       " + data[1] + "      " + data[2] + "</div>";
+
+                            for (var j = 4; j < keys.length; j++) {
+                                data[j - 1] = keys[j].split("-")[1] + "  :  " + params[2].value[dims[keys[j]]];
+                                str += '<div class="tooltip-data" style="width:120px;display: inline">' + data[j - 1] + "</div>";
                             }
-                            return data.join('<br>');
+                            str += '</div>';
+                            return str;
+                        },
+                        position: ['5%', '5%']
+                    },
+                    toolbox: {
+                        right: "0px",
+                        show: true,
+                        feature: {
+                            saveAsImage: {
+                                show: true
+                            }
                         }
                     },
                     dataZoom: [{
@@ -200,7 +232,7 @@
                         },
                         handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
                         handleSize: '80%',
-                        bottom: 10,
+                        height: "25px",
                         dataBackground: {
                             areaStyle: {
                                 color: '#8392A5'
@@ -218,13 +250,14 @@
                             shadowOffsetY: 2
                         }
                     }, {
-                        type: 'inside', disabled: true
+                        type: 'inside',
+                        disabled: true
                     }],
                     grid: {
-                        top: 60,
-                        bottom: 80,
-                        left:50,
-                        right:50
+                        top: 75,
+                        bottom: 66,
+                        left: 80,
+                        right: 50
                     },
                     xAxis: {
                         type: 'time',
@@ -244,21 +277,24 @@
                         pieces: [{
                             lt: 999,
                             color: '#3095FF',
-                            label: '微风（小于 999 节）'
+                            label: '微风（小于 999 m/s）'
                         }],
                         seriesIndex: 0,
                         dimension: 1
                     },
                     yAxis: [{
-                        name: '污染浓度',
+                        name: yaxisTitle(key),
                         nameLocation: 'middle',
-                        boundaryGap:false,
-                        nameGap: 30,
-                        splitLine: {show: false}
+                        nameGap: 50,
+                        boundaryGap: [0, 0.1],
+                        splitLine: {
+                            show: false
+                        }
                     }, {
-                        name: '风速（节）',
+                        name: '风速（m/s）',
                         nameLocation: 'middle',
-                        nameGap: 30, boundaryGap:false,
+                        nameGap: 28,
+                        boundaryGap: [0, 0.1],
                         axisLine: {
                             lineStyle: {
                                 color: '#666'
@@ -270,47 +306,50 @@
                             }
                         }
                     }],
-                    series: [{
-                        yAxisIndex: 1,
-                        type: 'custom',
-                        renderItem: renderArrow,
-                        encode: {
-                            x: dims.time,
-                            y: dims.windSpeed
+                    series: [
+                        {
+                            yAxisIndex: 1,
+                            type: 'custom',
+                            renderItem: renderArrow,
+                            encode: {
+                                x: dims.time,
+                                y: dims.windSpeed
+                            },
+                            data: data1,
+                            z: 3
                         },
-                        data: data,
-                        z: 10
-                    }, {
-                        yAxisIndex: 1,
-                        type: 'line',
-                        symbol: 'none',
-                        encode: {
-                            x: dims.time,
-                            y: dims.windSpeed
-                        },
-                        lineStyle: {
-                            normal: {
-                                color: '#aaa',
-                                type: 'dotted'
-                            }
-                        },
-                        data: data,
-                        z: 1
-                    }]
+                        {
+                            yAxisIndex: 1,
+                            type: 'line',
+                            symbol: 'none',
+                            encode: {
+                                x: dims.time,
+                                y: dims.windSpeed
+                            },
+                            lineStyle: {
+                                normal: {
+                                    color: '#aaa',
+                                    type: 'dotted'
+                                }
+                            },
+                            data: data1,
+                            z: 1
+                        }]
                 };
+
                 $.each(keys, function (i, val) {
-                    if (i >= 2) {
-                        option.series[i] = {
+                    if (i >= 3) {
+                        option.series[i - 1] = {
                             yAxisIndex: 0,
                             type: 'line',
-                            symbolSize: 1,
                             name: val.split("-")[1],
                             encode: {
                                 x: dims.time,
                                 y: dims[val]
                             },
+                            symbolSize: 1,
                             data: data,
-                            z: 10
+                            z: 2
                         };
                     }
                 });
@@ -328,6 +367,44 @@
         }
     });
 
+    function yaxisTitle(key) {
+        var chartsTitle = titlehtml(key);
+        switch (key) {
+            case 'co': {
+                chartsTitle += ' (mg/m³)';
+            }
+                break;
+            case 'no':
+            case 'no2':
+            case 'o3':
+            case 'pm10':
+            case 'pm25':
+            case 'so2': {
+                chartsTitle += ' (μg/m³)';
+            }
+                break;
+        }
+        return chartsTitle;
+    }
+    function titlehtml(value) {
+        var num_pollution = getnumber(value),
+            str_pollution = getletter(value).toUpperCase();
+        if (num_pollution == 25) {
+            num_pollution = 2.5;
+        }
+        var titleHtml = str_pollution + num_pollution;
+        return titleHtml;
+    }
+
+    function getnumber(value) { //获取数字
+        var num = value.replace(/[^0-9]/ig, "");
+        return num;
+    }
+
+    function getletter(value) { //获取字母
+        var letter = value.replace(/[^a-z]+/ig, "");
+        return letter;
+    }
 
 </script>
 </body>
