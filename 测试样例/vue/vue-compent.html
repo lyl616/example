@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script type="application/javascript" src="vue1.0.js"></script>
+    <script type="application/javascript" src="../My97DatePicker/WdatePicker.js"></script>
+    <script type="application/javascript" src="../js/JSUtils.js "></script>
+
+</head>
+<body id="box">
+
+<input type="radio" name="sex"> 男
+<div> 　　
+    <bbb @sedmsg="get"></bbb>
+    <hr/>
+    <mycontent v-if="timetype=='month'" :timetype="timetype"
+               :idx="'drate'"></mycontent>
+</div>
+
+<script type="text/javascript">
+
+
+    Vue.component("mycontent", {
+        props: ['timetype', 'idx'],
+        data: function () {
+            return {
+                start: "",
+                end: ''
+            }
+        },
+        created: function () {
+            this.toggle();
+        },
+        methods: {
+            toggle: function () {
+                this.$options._linkerCachable = false;
+                var temp = makeHtml(this.timetype, this.idx);
+                this.$options.template = temp;
+            }, monthYear: function (data, index) {
+                if (this.timetype == 'year') {
+                    addActivebtn('grounp_' + this.idx, 2 - index);
+                    addActivebtn('grounp_' + this.idx, 2 - index);
+                } else if (this.timetype == 'month') {
+                    addActivebtn('grounp_' + this.idx, 11 - index);
+                    addActivebtn('grounp_' + this.idx, 11 - index);
+                }
+                this.$dispatch('vuetable:monthYear', data);
+            }, customChange: function (flag) {
+                var _self = this;
+                _self.$dispatch('vuetable:coustomTime', flag, flag == 1 ? _self.start : _self.end);
+            }, customStart: function () {
+                var _self = this;
+                WdatePicker({
+                    dateFmt: 'yyyy-MM-dd',
+                    maxDate: '%y-%M-%d',
+                    autoPickDate: true,
+                    onpicked: function () {
+                        $(this).blur();
+                        _self.customChange(1);
+                    }
+                });
+            }, customEnd: function () {
+                var _self = this;
+                WdatePicker({
+                    dateFmt: 'yyyy-MM-dd',
+                    maxDate: '%y-%M-%d',
+                    autoPickDate: true,
+                    onpicked: function () {
+                        $(this).blur();
+                        _self.customChange(2);
+                    }
+                });
+            }
+        },
+        template: ''
+    });
+
+
+    function makeHtml(timeType, tabIndex) {
+        var date = new Date();
+        var html = "";
+        var groupName = "grounp_" + tabIndex;
+        if (timeType == "month") {
+            for (var i = 11; i >= 0; i--) {
+                var time = new Date(monthDecre(date, i)).Format("yyyy-MM-dd");
+                var show = new Date(monthDecre(date, i)).Format("yyyy-MM");
+                if (i == 1) {
+                    html += '<button class="btn btn-xs btn-default bf08a ' + groupName + '" @click="monthYear(\'' + time + '\',' + i + ')">' + show + ' </button>';
+                } else {
+                    html += '<button class="btn btn-xs btn-default ' + groupName + '" @click="monthYear(\'' + time + '\',' + i + ')">' + show + ' </button>';
+                }
+            }
+
+        } else if (timeType == "year") {
+            for (var i = 2; i >= 0; i--) {
+                var time = new Date(yearDecre2(date, i)).Format("yyyy-MM-dd");
+                var show = new Date(yearDecre2(date, i)).Format("yyyy");
+                if (i == 1) {
+                    html += '<button class="btn btn-xs  btn-default bf08a ' + groupName + ' " @click="monthYear(\'' + time + '\',' + i + ')">' + show + ' </button>';
+                } else {
+                    html += '<button class="btn btn-xs btn-default ' + groupName + '" @click="monthYear(\'' + time + '\')",' + i + '>' + show + ' </button>';
+                }
+            }
+        } else if (timeType == "custom") {
+            var end = new Date(dayDecre(date, 1)).Format("yyyy-MM-dd");
+            var start = new Date(monthDecre(end, 6)).Format("yyyy-MM-dd");
+            html = '<input id="startTime" v-model="start" value="' + start + '"  class="form-control btn-xs Wdate" @click="customStart" type="text" @change="customChange"   placeholder="开始时间" /> ' +
+                '  <span class="input-group-addon" style="padding: 0 5px;">-</span>  ' +
+                '<input id="endTime" v-model="end" value="' + end + '" class="form-control btn-xs Wdate" type="text" @click="customEnd" @change="customChange"  placeholder="结束时间" />';
+        }
+
+        return html;
+
+    }
+    Vue.component(
+        'bbb', {
+            data: function () {
+                return {
+                    a: '2017-12-12'
+                }
+            },
+            template: '<input id="startTime" v-model="a" @change="send()" class="Wdate" onclick="WdatePicker({dateFmt:\'yyyy-MM-dd\' })" type="text"    /> ',
+            methods: {
+                send: function () {
+                    alert(1);
+                    this.$emit('sedmsg', this.a);
+                }
+            }
+        });
+
+
+    new Vue({
+        el: '#box',
+        data: {
+            test: '123',
+            timetype: 'month'
+        },
+        methods: {
+            get: function (msg) {
+                this.test = msg;
+            }
+        },
+        watch: {
+            mymsg: function () {
+                console.log(this.test);
+            }
+        }, created: function () {
+
+            console.log(this.test);
+        }
+
+    });
+</script>
+</body>
+</html>
