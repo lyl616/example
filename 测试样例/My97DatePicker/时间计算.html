@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="WdatePicker.js"></script>
+    <script src="../js/JSUtils.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="text" id="nowDate" class="Wdate"
+       onFocus="WdatePicker({ dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true,isShowWeek:true})"/>
+<input type="button" value="计算" onclick="alert(showTimeDiff('month','2017-11-12'))">
+</body>
+
+<script type="text/javascript">
+
+
+    //    /**
+    //         now 当前 时间，time需要对比 的时间
+    //     * /
+
+
+    function showTimeDiff(type,startTime) {
+
+        var now = new Date(dayDecre(new Date(), 1));
+
+        var show = new Date(startTime);
+
+        var day = 0;
+        if (type == 'month') {
+            var nowMonth = now.getMonth();
+            var starMonth = show.getMonth();
+
+            if (nowMonth == starMonth) {
+                day = now.getDate();
+            } else {
+                day = getCountDaysByMonth(show);
+            }
+
+        }
+        else if (type == 'year') {
+            var nowYear = now.getFullYear();
+            var showYear = show.getFullYear();
+            if (nowYear == showYear) {
+                day = getDaysOfYear(now);
+            } else {
+                day = isLeapYear(showYear);
+            }
+        }
+        return day;
+
+    }
+
+    //查看某月有多少天
+    function getCountDaysByMonth(date) {
+        var curDate = new Date(date);
+        /* 获取当前月份 */
+        var curMonth = curDate.getMonth();
+        /*  生成实际的月份: 由于curMonth会比实际月份小1, 故需加1 */
+        curDate.setMonth(curMonth + 1);
+        /* 将日期设置为0, 这里为什么要这样设置, 我不知道原因, 这是从网上学来的 */
+        curDate.setDate(0);
+        /* 返回当月的天数 */
+        return curDate.getDate();
+    }
+
+
+    function isLeapYear(year) {
+        var cond1 = year % 4 == 0;  //条件1：年份必须要能被4整除
+        var cond2 = year % 100 != 0;  //条件2：年份不能是整百数
+        var cond3 = year % 400 == 0;  //条件3：年份是400的倍数
+        //当条件1和条件2同时成立时，就肯定是闰年，所以条件1和条件2之间为“与”的关系。
+        //如果条件1和条件2不能同时成立，但如果条件3能成立，则仍然是闰年。所以条件3与前2项为“或”的关系。
+        //所以得出判断闰年的表达式：
+        var cond = cond1 && cond2 || cond3;
+        if (cond) {
+//            alert(year + "是闰年");
+            return 366;
+        } else {
+//            alert(year + "不是闰年");
+            return 365;
+        }
+    }
+
+
+    function getDaysOfYear(currentDate) {
+        var year = currentDate.getFullYear();
+        var month = currentDate.getMonth() + 1;
+        var day = currentDate.getDate();
+        var x = 0,
+            y = 0,
+            z = 28; //数据的初始化
+        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) //闰年判断
+        {
+            z = 29;
+        }
+        switch (month) //对月份进行核对
+        {
+
+            case 1:
+                x = 0, z = 0;
+                break;
+            case 2:
+                x = 1, z = 0;
+                break;
+            case 3:
+                x = 1;
+                break;
+            case 4:
+                x = 2;
+                break;
+            case 5:
+                x = 2, y = 1;
+                break;
+            case 6:
+                x = 3, y = 1;
+                break;
+            case 7:
+                x = 3, y = 2;
+                break;
+            case 8:
+                x = 4, y = 2;
+                break;
+            case 9:
+                x = 5, y = 2;
+                break;
+            case 10:
+                x = 5, y = 3;
+                break;
+            case 11:
+                x = 6, y = 3;
+                break;
+            case 12:
+                x = 6, y = 4;
+                break;
+
+        }
+        return 31 * x + 30 * y + z + day; //天数的计算公式
+    }
+</script>
+</html>

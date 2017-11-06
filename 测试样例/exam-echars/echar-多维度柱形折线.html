@@ -64,7 +64,7 @@
 
 
     //    var type = ["pm25", "aqi", "so2", "pm10", "no2", "co"];
-    var type = ["so2", "pm25", "pm10", "no2","aqi", "co"];
+    var type = ["so2", "pm25", "pm10", "no2", "aqi", "co"];
 
     var legends = [];
     $.each(legend, function (i, val) {
@@ -74,7 +74,7 @@
 
     });
 
-    myChar = echarts.init(document.getElementById('main'), 'infographic');
+    var myChar = echarts.init(document.getElementById('main'), 'infographic');
 
     var colors = {
         "aqi": "#DB2727",
@@ -86,39 +86,49 @@
         "o3": "#A1007E",
         "no": "#00A4A4"
     };
-    option = {
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'cross'
-            },
-            formatter: function (params) {
-                var obj = JSON.parse(JSON.stringify(params)), fsize = 12,
-                    itemName = obj[0].name;
-                var str = '';
-                for (var i = 0; i < obj.length; i++) {
-                    if (obj[i].value == undefined) {
-                        obj[i].value = '-';
-                    }
-                    if (obj[i].seriesName == 'CO' && obj[i].value % 1 === 0) {
-                        obj[i].value = obj[i].value + '.0';
-                    }
-                    str += "<div class=\"tooltip-data clear\"><b style=\"color: " + obj[i].color + "; \"> &bull;</b><i>" + titlePollution(obj[i].seriesName) + " : " + obj[i].value + "</i>";
-                    str += "</div>";
-                }
-                return '<div style="font-size:' + fsize + 'px">' + str + '</div>';
-            }
-        },
+    var option = {
+        tooltip: {},
         legend: {
             left: 'center',
             data: legends
         },
         toolbox: {
-            show: true,
             right: 250,
             feature: {
+                myAxisTool: {
+                    show: true,
+                    title: '多维度数据',
+                    icon: 'image://../images/axis.png',
+                    onclick: function () {
+                        option.tooltip = tooltip_axis();
+                        myChar.setOption(option);
+
+                    }
+                }, myItemTool: {
+                    show: true,
+                    title: '单线数据',
+                    icon: 'image://../images/item.png',
+                    onclick: function () {
+
+                        option.tooltip = tooltip_item();
+                        myChar.setOption(option);
+
+                    }
+                },
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                restore: {
+                    iconStyle: {
+                        normal: {},
+                        emphasis: {}
+                    }
+                },
                 saveAsImage: {
-                    show: true
+                    show: true,
+                    title: '保存为图片',
+                    type: 'png',
+                    lang: ['点击保存']
                 }
             }
         },
@@ -177,7 +187,7 @@
         }],
         yAxis: [],
         series: []
-    };
+    }
 
     var j = 0;
     for (var i = 0; i < legend.length; i++) {
@@ -281,8 +291,66 @@
         }
 
     }
-    console.log(option);
+    option.tooltip = tooltip_item();
     myChar.setOption(option);
+
+
+    function hideLend() {
+        return {
+            show: true,
+            title: '隐藏图例',
+            icon: 'image://../images/axis.png',
+            onclick: function () {
+                var opt = {
+                    legend: {
+                        show: false
+                    }
+                };
+
+            }
+        }
+    }
+    function tooltip_item() {
+        return {
+            trigger: 'item',
+            axisPointer: {
+                type: 'cross'
+            },
+            formatter: function (params) {
+                var res = "";
+                var nowtime = new Date(params.name).Format("dd日HH时");
+                var itemName = params.seriesName;
+                var marker = params.marker;
+                res = nowtime + '<br/>';
+                res += marker + itemName + ":" + params.value + '<br/>';
+                return res;
+            }
+        };
+    }
+
+    function tooltip_axis() {
+        return {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            },
+            formatter: function (params) {
+                var obj = JSON.parse(JSON.stringify(params)), fsize = 12, itemName = obj[0].name;
+                var str = '<div class="tooltip-tit">' + (itemName == "" ? "" : new Date(itemName).Format("dd日HH时")) + '</div>';
+                for (var i = 0; i < obj.length; i++) {
+                    if (obj[i].value == undefined) {
+                        obj[i].value = '-';
+                    }
+                    if (obj[i].seriesName == 'CO' && obj[i].value % 1 === 0) {
+                        obj[i].value = obj[i].value + '.0';
+                    }
+                    str += "<div class=\"tooltip-data clear\"><b style=\"color: " + obj[i].color + "; \"> &bull;</b><i>" + obj[i].seriesName + ":" + obj[i].value + "</i>";
+                    str += "</div>";
+                }
+                return '<div style="font-size:' + fsize + 'px">' + str + '</div>';
+            }
+        };
+    }
 
 </script>
 </body>
