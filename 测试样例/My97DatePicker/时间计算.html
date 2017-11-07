@@ -11,7 +11,7 @@
 
 <input type="text" id="nowDate" class="Wdate"
        onFocus="WdatePicker({ dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true,isShowWeek:true})"/>
-<input type="button" value="计算" onclick="alert(showTimeDiff('month','2017-11-12'))">
+<input type="button" value="计算" onclick="alert(showTimeDiff('year','2017-01-01'))">
 </body>
 
 <script type="text/javascript">
@@ -22,9 +22,12 @@
     //     * /
 
 
-    function showTimeDiff(type,startTime) {
+    function showTimeDiff(type, startTime) {
 
-        var now = new Date(dayDecre(new Date(), 1));
+//        var now = new Date(dayDecre(new Date('20'), 1));
+//
+//        var show = new Date(startTime);
+        var now = new Date('2017-01-01');
 
         var show = new Date(startTime);
 
@@ -35,6 +38,8 @@
 
             if (nowMonth == starMonth) {
                 day = now.getDate();
+                if (day == 1)
+                    day = 0;
             } else {
                 day = getCountDaysByMonth(show);
             }
@@ -45,6 +50,8 @@
             var showYear = show.getFullYear();
             if (nowYear == showYear) {
                 day = getDaysOfYear(now);
+                if (day == 1)
+                    day = 0;
             } else {
                 day = isLeapYear(showYear);
             }
