@@ -27,6 +27,7 @@
 <script type="text/javascript">
 
 
+
     function titlePollution(value) {
         var num_pollution = getnumber(value),
             str_pollution = getletter(value).toUpperCase();
@@ -135,7 +136,7 @@
         dataZoom: [{
             textStyle: {
                 color: '#8392A5',
-                formatter:function (r) {
+                formatter: function (r) {
                     console.log(r);
                 }
             },
@@ -173,17 +174,17 @@
         xAxis: [{
             type: 'category',
             data: xAxis,
-            axisLabel: {
-                textStyle: {
-                    fontSize: 10
-                },
-                formatter: function (value, idx) {
-                    if (!value) {
-                        return "无时间数据";
-                    }
-                    return new Date(value).Format("dd日HH时");
-                }
-            },
+//            axisLabel: {
+//                textStyle: {
+//                    fontSize: 10
+//                },
+//                formatter: function (value, idx) {
+//                    if (!value) {
+//                        return "无时间数据";
+//                    }
+//                    return new Date(value).Format("dd日HH时");
+//                }
+//            },
             axisTick: {
                 alignWithLabel: true
             }
@@ -315,7 +316,7 @@
         }
     }
 
-    function tooltip_item() {
+        function tooltip_item() {
         return {
             trigger: 'item',
             axisPointer: {

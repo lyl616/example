@@ -1387,12 +1387,25 @@ function hideParentInput(treeId) {
 Array.prototype.hasVal = function (val) {
     var flag = false;
     for (var i = 0; i < this.length; i++) {
+        debugger
         if (this[i] == val) {
             flag = true;
             break;
         }
     }
     return flag;
+}
+
+
+function getDiffArray(longArray, shortArray) {
+    var arr = [];
+    $.each(longArray, function (i, val) {
+        if (!shortArray.hasVal(val)) {
+            arr.push(val)
+        }
+    });
+
+    return arr;
 }
 
 /**

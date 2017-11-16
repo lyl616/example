@@ -166,8 +166,6 @@
             //遍历数组信息
             $.each(series, function (key, values) {
                 var rowData = values;
-
-
                 var data = echarts.util.map(rowData, function (entry) {
                     var arr = new Array()
                     for (var i in keys) {
@@ -194,28 +192,52 @@
                         data: lend
                     },
                     tooltip: {
-                        trigger: 'axis',
+//                        trigger: 'axis',
+//                        formatter: function (params) {
+//
+//                            console.log(params);
+//                            var data = new Array();
+//                            var str = '<div class=\"tooltip-tit\" style="font-size:12px">';
+//
+//                            data[0] = echarts.format.formatTime('yyyy-MM-dd', params[0].value[dims.time]) +
+//                                ' ' + echarts.format.formatTime('hh:mm', params[0].value[dims.time]);
+//                            data[1] = '   风速：' + params[0].value[dims.windSpeed];
+//                            data[2] = '   风向：' + params[0].value[dims.windDirection];
+//                            // data[2] = '   风向：' + params[0].value[dims.R];
+//                            str += "<div class=\"clear\">" + data[0] + "       " + data[1] + "      " + data[2] + "</div>";
+//
+//                            for (var j = 4; j < keys.length; j++) {
+//                                data[j - 1] = keys[j].split("-")[1] + "  :  " + params[2].value[dims[keys[j]]];
+//                                str += '<div class="tooltip-data" style="width:120px;display: inline">' + data[j - 1] + "</div>";
+//                            }
+//                            str += '</div>';
+//                            return str;
+//                        },
+                        trigger: 'item',
                         formatter: function (params) {
-
                             console.log(params);
+                            var str = "";
+                            var dt = params.data;
+//
                             var data = new Array();
-                            var str = '<div class=\"tooltip-tit\" style="font-size:12px">';
+                            data[0] = echarts.format.formatTime('yyyy-MM-dd', dt[0]) +
+                                ' ' + echarts.format.formatTime('hh:mm', dt[0]);
+                            data[1] = '   风速：' + dt[1];
+                            data[2] = '   风向：' + dt[2];
+                            str += "<div class=\"clear\">" + data[0] + "       " + data[1] + "      " + data[2];
 
-                            data[0] = echarts.format.formatTime('yyyy-MM-dd', params[0].value[dims.time]) +
-                                ' ' + echarts.format.formatTime('hh:mm', params[0].value[dims.time]);
-                            data[1] = '   风速：' + params[0].value[dims.windSpeed];
-                            data[2] = '   风向：' + params[0].value[dims.windDirection];
-                            // data[2] = '   风向：' + params[0].value[dims.R];
-                            str += "<div class=\"clear\">" + data[0] + "       " + data[1] + "      " + data[2] + "</div>";
+                            var seriesName = params.seriesName;
+                            var seriesIndex = params.seriesIndex;
 
-                            for (var j = 4; j < keys.length; j++) {
-                                data[j - 1] = keys[j].split("-")[1] + "  :  " + params[2].value[dims[keys[j]]];
-                                str += '<div class="tooltip-data" style="width:120px;display: inline">' + data[j - 1] + "</div>";
+                            if (seriesIndex == 0) {
+                                str += "</div>";
+                            } else {
+                                data[3] = seriesName + ":" + params.value[seriesIndex];
+                                str += "<br/>" + params.marker + data[3] + "</div>";
                             }
-                            str += '</div>';
                             return str;
                         },
-                        position: ['5%', '5%']
+//                        position: ['5%', '5%']
                     },
                     toolbox: {
                         right: "0px",
@@ -347,12 +369,13 @@
                                 x: dims.time,
                                 y: dims[val]
                             },
-                            symbolSize: 1,
+                            symbolSize: 5,
                             data: data,
                             z: 2
                         };
                     }
                 });
+
 
                 $("#char-" + key).show();
                 var e1 = echarts.init(document.getElementById("dataChart-" + key));
