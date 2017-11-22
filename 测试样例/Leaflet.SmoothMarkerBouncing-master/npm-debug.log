@@ -1,0 +1,526 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'D:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'D:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '--scripts-prepend-node-path=auto' ]
+2 info using npm@3.10.10
+3 info using node@v6.11.3
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly install normalizeTree
+8 silly loadCurrentTree Finishing
+9 silly loadIdealTree Starting
+10 silly install loadIdealTree
+11 silly cloneCurrentTree Starting
+12 silly install cloneCurrentTreeToIdealTree
+13 silly cloneCurrentTree Finishing
+14 silly loadShrinkwrap Starting
+15 silly install loadShrinkwrap
+16 silly loadShrinkwrap Finishing
+17 silly loadAllDepsIntoIdealTree Starting
+18 silly install loadAllDepsIntoIdealTree
+19 silly fetchNamedPackageData leaflet
+20 silly mapToRegistry name leaflet
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npmjs.org/
+23 silly mapToRegistry data Result {
+23 silly mapToRegistry   raw: 'leaflet',
+23 silly mapToRegistry   scope: null,
+23 silly mapToRegistry   escapedName: 'leaflet',
+23 silly mapToRegistry   name: 'leaflet',
+23 silly mapToRegistry   rawSpec: '',
+23 silly mapToRegistry   spec: 'latest',
+23 silly mapToRegistry   type: 'tag' }
+24 silly mapToRegistry uri https://registry.npmjs.org/leaflet
+25 silly fetchNamedPackageData leaflet.markercluster
+26 silly mapToRegistry name leaflet.markercluster
+27 silly mapToRegistry using default registry
+28 silly mapToRegistry registry https://registry.npmjs.org/
+29 silly mapToRegistry data Result {
+29 silly mapToRegistry   raw: 'leaflet.markercluster',
+29 silly mapToRegistry   scope: null,
+29 silly mapToRegistry   escapedName: 'leaflet.markercluster',
+29 silly mapToRegistry   name: 'leaflet.markercluster',
+29 silly mapToRegistry   rawSpec: '',
+29 silly mapToRegistry   spec: 'latest',
+29 silly mapToRegistry   type: 'tag' }
+30 silly mapToRegistry uri https://registry.npmjs.org/leaflet.markercluster
+31 silly fetchNamedPackageData lodash
+32 silly mapToRegistry name lodash
+33 silly mapToRegistry using default registry
+34 silly mapToRegistry registry https://registry.npmjs.org/
+35 silly mapToRegistry data Result {
+35 silly mapToRegistry   raw: 'lodash',
+35 silly mapToRegistry   scope: null,
+35 silly mapToRegistry   escapedName: 'lodash',
+35 silly mapToRegistry   name: 'lodash',
+35 silly mapToRegistry   rawSpec: '',
+35 silly mapToRegistry   spec: 'latest',
+35 silly mapToRegistry   type: 'tag' }
+36 silly mapToRegistry uri https://registry.npmjs.org/lodash
+37 verbose request uri https://registry.npmjs.org/leaflet
+38 verbose request no auth needed
+39 info attempt registry request try #1 at 20:45:32
+40 verbose request id dfdc7c5e76bf79bb
+41 http request GET https://registry.npmjs.org/leaflet
+42 verbose request uri https://registry.npmjs.org/leaflet.markercluster
+43 verbose request no auth needed
+44 info attempt registry request try #1 at 20:45:32
+45 http request GET https://registry.npmjs.org/leaflet.markercluster
+46 verbose request uri https://registry.npmjs.org/lodash
+47 verbose request no auth needed
+48 info attempt registry request try #1 at 20:45:32
+49 verbose etag W/"59b90f71-29e20"
+50 verbose lastModified Wed, 13 Sep 2017 10:58:57 GMT
+51 http request GET https://registry.npmjs.org/lodash
+52 http 200 https://registry.npmjs.org/lodash
+53 verbose headers { server: 'nginx/1.10.1',
+53 verbose headers   'content-type': 'application/json',
+53 verbose headers   'last-modified': 'Wed, 22 Nov 2017 08:36:23 GMT',
+53 verbose headers   etag: 'W/"5a153707-2a4dd"',
+53 verbose headers   'content-encoding': 'gzip',
+53 verbose headers   'cache-control': 'max-age=300',
+53 verbose headers   'content-length': '19174',
+53 verbose headers   'accept-ranges': 'bytes',
+53 verbose headers   date: 'Wed, 22 Nov 2017 12:45:36 GMT',
+53 verbose headers   via: '1.1 varnish',
+53 verbose headers   age: '171',
+53 verbose headers   connection: 'keep-alive',
+53 verbose headers   'x-served-by': 'cache-nrt6123-NRT',
+53 verbose headers   'x-cache': 'HIT',
+53 verbose headers   'x-cache-hits': '3',
+53 verbose headers   'x-timer': 'S1511354737.718129,VS0,VE0',
+53 verbose headers   vary: 'Accept-Encoding, Accept' }
+54 silly get cb [ 200,
+54 silly get   { server: 'nginx/1.10.1',
+54 silly get     'content-type': 'application/json',
+54 silly get     'last-modified': 'Wed, 22 Nov 2017 08:36:23 GMT',
+54 silly get     etag: 'W/"5a153707-2a4dd"',
+54 silly get     'content-encoding': 'gzip',
+54 silly get     'cache-control': 'max-age=300',
+54 silly get     'content-length': '19174',
+54 silly get     'accept-ranges': 'bytes',
+54 silly get     date: 'Wed, 22 Nov 2017 12:45:36 GMT',
+54 silly get     via: '1.1 varnish',
+54 silly get     age: '171',
+54 silly get     connection: 'keep-alive',
+54 silly get     'x-served-by': 'cache-nrt6123-NRT',
+54 silly get     'x-cache': 'HIT',
+54 silly get     'x-cache-hits': '3',
+54 silly get     'x-timer': 'S1511354737.718129,VS0,VE0',
+54 silly get     vary: 'Accept-Encoding, Accept' } ]
+55 verbose get saving lodash to C:\Users\YuLong\AppData\Roaming\npm-cache\registry.npmjs.org\lodash\.cache.json
+56 verbose correctMkdir C:\Users\YuLong\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+57 silly resolveWithNewModule lodash@3.8.0 checking installable status
+58 silly cache add args [ 'lodash@~3.8.0', null ]
+59 verbose cache add spec lodash@~3.8.0
+60 silly cache add parsed spec Result {
+60 silly cache add   raw: 'lodash@~3.8.0',
+60 silly cache add   scope: null,
+60 silly cache add   escapedName: 'lodash',
+60 silly cache add   name: 'lodash',
+60 silly cache add   rawSpec: '~3.8.0',
+60 silly cache add   spec: '>=3.8.0 <3.9.0',
+60 silly cache add   type: 'range' }
+61 silly addNamed lodash@>=3.8.0 <3.9.0
+62 verbose addNamed ">=3.8.0 <3.9.0" is a valid semver range for lodash
+63 silly addNameRange { name: 'lodash', range: '>=3.8.0 <3.9.0', hasData: false }
+64 silly mapToRegistry name lodash
+65 silly mapToRegistry using default registry
+66 silly mapToRegistry registry https://registry.npmjs.org/
+67 silly mapToRegistry data Result {
+67 silly mapToRegistry   raw: 'lodash',
+67 silly mapToRegistry   scope: null,
+67 silly mapToRegistry   escapedName: 'lodash',
+67 silly mapToRegistry   name: 'lodash',
+67 silly mapToRegistry   rawSpec: '',
+67 silly mapToRegistry   spec: 'latest',
+67 silly mapToRegistry   type: 'tag' }
+68 silly mapToRegistry uri https://registry.npmjs.org/lodash
+69 verbose addNameRange registry:https://registry.npmjs.org/lodash not in flight; fetching
+70 verbose get https://registry.npmjs.org/lodash not expired, no request
+71 silly addNameRange number 2 { name: 'lodash', range: '>=3.8.0 <3.9.0', hasData: true }
+72 silly addNameRange versions [ 'lodash',
+72 silly addNameRange   [ '0.1.0',
+72 silly addNameRange     '0.2.0',
+72 silly addNameRange     '0.2.1',
+72 silly addNameRange     '0.2.2',
+72 silly addNameRange     '0.3.0',
+72 silly addNameRange     '0.3.1',
+72 silly addNameRange     '0.3.2',
+72 silly addNameRange     '0.4.0',
+72 silly addNameRange     '0.4.1',
+72 silly addNameRange     '0.4.2',
+72 silly addNameRange     '0.5.0-rc.1',
+72 silly addNameRange     '0.5.0',
+72 silly addNameRange     '0.5.1',
+72 silly addNameRange     '0.5.2',
+72 silly addNameRange     '0.6.0',
+72 silly addNameRange     '0.6.1',
+72 silly addNameRange     '0.7.0',
+72 silly addNameRange     '0.8.0',
+72 silly addNameRange     '0.8.1',
+72 silly addNameRange     '0.8.2',
+72 silly addNameRange     '0.9.0',
+72 silly addNameRange     '0.9.1',
+72 silly addNameRange     '0.9.2',
+72 silly addNameRange     '0.10.0',
+72 silly addNameRange     '1.0.0-rc.1',
+72 silly addNameRange     '1.0.0-rc.2',
+72 silly addNameRange     '1.0.0-rc.3',
+72 silly addNameRange     '1.0.0',
+72 silly addNameRange     '1.0.1',
+72 silly addNameRange     '1.1.0',
+72 silly addNameRange     '1.1.1',
+72 silly addNameRange     '1.2.0',
+72 silly addNameRange     '1.2.1',
+72 silly addNameRange     '1.3.0',
+72 silly addNameRange     '1.3.1',
+72 silly addNameRange     '2.0.0',
+72 silly addNameRange     '2.1.0',
+72 silly addNameRange     '2.2.0',
+72 silly addNameRange     '2.2.1',
+72 silly addNameRange     '2.3.0',
+72 silly addNameRange     '2.4.0',
+72 silly addNameRange     '2.4.1',
+72 silly addNameRange     '3.0.0',
+72 silly addNameRange     '3.0.1',
+72 silly addNameRange     '3.1.0',
+72 silly addNameRange     '3.2.0',
+72 silly addNameRange     '3.3.0',
+72 silly addNameRange     '3.3.1',
+72 silly addNameRange     '3.4.0',
+72 silly addNameRange     '3.5.0',
+72 silly addNameRange     '3.6.0',
+72 silly addNameRange     '1.0.2',
+72 silly addNameRange     '3.7.0',
+72 silly addNameRange     '2.4.2',
+72 silly addNameRange     '3.8.0',
+72 silly addNameRange     '3.9.0',
+72 silly addNameRange     '3.9.1',
+72 silly addNameRange     '3.9.2',
+72 silly addNameRange     '3.9.3',
+72 silly addNameRange     '3.10.0',
+72 silly addNameRange     '3.10.1',
+72 silly addNameRange     '4.0.0',
+72 silly addNameRange     '4.0.1',
+72 silly addNameRange     '4.1.0',
+72 silly addNameRange     '4.2.0',
+72 silly addNameRange     '4.2.1',
+72 silly addNameRange     '4.3.0',
+72 silly addNameRange     '4.4.0',
+72 silly addNameRange     '4.5.0',
+72 silly addNameRange     '4.5.1',
+72 silly addNameRange     '4.6.0',
+72 silly addNameRange     '4.6.1',
+72 silly addNameRange     '4.7.0',
+72 silly addNameRange     '4.8.0',
+72 silly addNameRange     '4.8.1',
+72 silly addNameRange     '4.8.2',
+72 silly addNameRange     '4.9.0',
+72 silly addNameRange     '4.10.0',
+72 silly addNameRange     '4.11.0',
+72 silly addNameRange     '4.11.1',
+72 silly addNameRange     '4.11.2',
+72 silly addNameRange     '4.12.0',
+72 silly addNameRange     '4.13.0',
+72 silly addNameRange     '4.13.1',
+72 silly addNameRange     '4.14.0',
+72 silly addNameRange     '4.14.1',
+72 silly addNameRange     '4.14.2',
+72 silly addNameRange     '4.15.0',
+72 silly addNameRange     '4.16.0',
+72 silly addNameRange     '4.16.1',
+72 silly addNameRange     '4.16.2',
+72 silly addNameRange     '4.16.3',
+72 silly addNameRange     '4.16.4',
+72 silly addNameRange     '4.16.5',
+72 silly addNameRange     '4.16.6',
+72 silly addNameRange     '4.17.0',
+72 silly addNameRange     '4.17.1',
+72 silly addNameRange     '4.17.2',
+72 silly addNameRange     '4.17.3',
+72 silly addNameRange     '4.17.4' ] ]
+73 silly addNamed lodash@3.8.0
+74 verbose addNamed "3.8.0" is a plain semver version for lodash
+75 silly mapToRegistry name lodash
+76 silly mapToRegistry using default registry
+77 silly mapToRegistry registry https://registry.npmjs.org/
+78 silly mapToRegistry data Result {
+78 silly mapToRegistry   raw: 'lodash',
+78 silly mapToRegistry   scope: null,
+78 silly mapToRegistry   escapedName: 'lodash',
+78 silly mapToRegistry   name: 'lodash',
+78 silly mapToRegistry   rawSpec: '',
+78 silly mapToRegistry   spec: 'latest',
+78 silly mapToRegistry   type: 'tag' }
+79 silly mapToRegistry uri https://registry.npmjs.org/lodash
+80 verbose addRemoteTarball https://registry.npmjs.org/lodash/-/lodash-3.8.0.tgz not in flight; adding
+81 verbose addRemoteTarball [ 'https://registry.npmjs.org/lodash/-/lodash-3.8.0.tgz',
+81 verbose addRemoteTarball   '376eb98bdcd9382a9365c33c4cb8250de1325b91' ]
+82 info retry fetch attempt 1 at 20:45:34
+83 info attempt registry request try #1 at 20:45:34
+84 http fetch GET https://registry.npmjs.org/lodash/-/lodash-3.8.0.tgz
+85 http fetch 200 https://registry.npmjs.org/lodash/-/lodash-3.8.0.tgz
+86 http 200 https://registry.npmjs.org/leaflet
+87 verbose headers { server: 'nginx/1.10.1',
+87 verbose headers   'content-type': 'application/json',
+87 verbose headers   'last-modified': 'Thu, 19 Oct 2017 05:15:31 GMT',
+87 verbose headers   etag: 'W/"59e834f3-931a"',
+87 verbose headers   'content-encoding': 'gzip',
+87 verbose headers   'cache-control': 'max-age=300',
+87 verbose headers   'content-length': '5786',
+87 verbose headers   'accept-ranges': 'bytes',
+87 verbose headers   date: 'Wed, 22 Nov 2017 12:45:36 GMT',
+87 verbose headers   via: '1.1 varnish',
+87 verbose headers   age: '0',
+87 verbose headers   connection: 'keep-alive',
+87 verbose headers   'x-served-by': 'cache-nrt6131-NRT',
+87 verbose headers   'x-cache': 'HIT',
+87 verbose headers   'x-cache-hits': '1',
+87 verbose headers   'x-timer': 'S1511354736.182602,VS0,VE535',
+87 verbose headers   vary: 'Accept-Encoding, Accept' }
+88 silly get cb [ 200,
+88 silly get   { server: 'nginx/1.10.1',
+88 silly get     'content-type': 'application/json',
+88 silly get     'last-modified': 'Thu, 19 Oct 2017 05:15:31 GMT',
+88 silly get     etag: 'W/"59e834f3-931a"',
+88 silly get     'content-encoding': 'gzip',
+88 silly get     'cache-control': 'max-age=300',
+88 silly get     'content-length': '5786',
+88 silly get     'accept-ranges': 'bytes',
+88 silly get     date: 'Wed, 22 Nov 2017 12:45:36 GMT',
+88 silly get     via: '1.1 varnish',
+88 silly get     age: '0',
+88 silly get     connection: 'keep-alive',
+88 silly get     'x-served-by': 'cache-nrt6131-NRT',
+88 silly get     'x-cache': 'HIT',
+88 silly get     'x-cache-hits': '1',
+88 silly get     'x-timer': 'S1511354736.182602,VS0,VE535',
+88 silly get     vary: 'Accept-Encoding, Accept' } ]
+89 verbose get saving leaflet to C:\Users\YuLong\AppData\Roaming\npm-cache\registry.npmjs.org\leaflet\.cache.json
+90 verbose correctMkdir C:\Users\YuLong\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+91 silly resolveWithNewModule leaflet@0.7.7 checking installable status
+92 silly cache add args [ 'leaflet@~0.7.3', null ]
+93 verbose cache add spec leaflet@~0.7.3
+94 silly cache add parsed spec Result {
+94 silly cache add   raw: 'leaflet@~0.7.3',
+94 silly cache add   scope: null,
+94 silly cache add   escapedName: 'leaflet',
+94 silly cache add   name: 'leaflet',
+94 silly cache add   rawSpec: '~0.7.3',
+94 silly cache add   spec: '>=0.7.3 <0.8.0',
+94 silly cache add   type: 'range' }
+95 silly addNamed leaflet@>=0.7.3 <0.8.0
+96 verbose addNamed ">=0.7.3 <0.8.0" is a valid semver range for leaflet
+97 silly addNameRange { name: 'leaflet', range: '>=0.7.3 <0.8.0', hasData: false }
+98 silly mapToRegistry name leaflet
+99 silly mapToRegistry using default registry
+100 silly mapToRegistry registry https://registry.npmjs.org/
+101 silly mapToRegistry data Result {
+101 silly mapToRegistry   raw: 'leaflet',
+101 silly mapToRegistry   scope: null,
+101 silly mapToRegistry   escapedName: 'leaflet',
+101 silly mapToRegistry   name: 'leaflet',
+101 silly mapToRegistry   rawSpec: '',
+101 silly mapToRegistry   spec: 'latest',
+101 silly mapToRegistry   type: 'tag' }
+102 silly mapToRegistry uri https://registry.npmjs.org/leaflet
+103 verbose addNameRange registry:https://registry.npmjs.org/leaflet not in flight; fetching
+104 verbose get https://registry.npmjs.org/leaflet not expired, no request
+105 silly addNameRange number 2 { name: 'leaflet', range: '>=0.7.3 <0.8.0', hasData: true }
+106 silly addNameRange versions [ 'leaflet',
+106 silly addNameRange   [ '0.5.1',
+106 silly addNameRange     '0.6.0',
+106 silly addNameRange     '0.6.1',
+106 silly addNameRange     '0.6.2',
+106 silly addNameRange     '0.6.3',
+106 silly addNameRange     '0.6.4',
+106 silly addNameRange     '0.7.0',
+106 silly addNameRange     '0.7.1',
+106 silly addNameRange     '0.7.2',
+106 silly addNameRange     '0.7.3',
+106 silly addNameRange     '1.0.0-beta.1',
+106 silly addNameRange     '0.7.4',
+106 silly addNameRange     '0.7.5',
+106 silly addNameRange     '1.0.0-beta.2',
+106 silly addNameRange     '0.7.7',
+106 silly addNameRange     '1.0.0-rc.1',
+106 silly addNameRange     '1.0.0-rc.2',
+106 silly addNameRange     '1.0.0-rc.3',
+106 silly addNameRange     '1.0.0',
+106 silly addNameRange     '1.0.1',
+106 silly addNameRange     '1.0.2',
+106 silly addNameRange     '1.0.3',
+106 silly addNameRange     '1.1.0',
+106 silly addNameRange     '1.2.0' ] ]
+107 silly addNamed leaflet@0.7.7
+108 verbose addNamed "0.7.7" is a plain semver version for leaflet
+109 silly mapToRegistry name leaflet
+110 silly mapToRegistry using default registry
+111 silly mapToRegistry registry https://registry.npmjs.org/
+112 silly mapToRegistry data Result {
+112 silly mapToRegistry   raw: 'leaflet',
+112 silly mapToRegistry   scope: null,
+112 silly mapToRegistry   escapedName: 'leaflet',
+112 silly mapToRegistry   name: 'leaflet',
+112 silly mapToRegistry   rawSpec: '',
+112 silly mapToRegistry   spec: 'latest',
+112 silly mapToRegistry   type: 'tag' }
+113 silly mapToRegistry uri https://registry.npmjs.org/leaflet
+114 verbose addRemoteTarball https://registry.npmjs.org/leaflet/-/leaflet-0.7.7.tgz not in flight; adding
+115 verbose addRemoteTarball [ 'https://registry.npmjs.org/leaflet/-/leaflet-0.7.7.tgz',
+115 verbose addRemoteTarball   '1e352ba54e63d076451fa363c900890cb2cf75ee' ]
+116 info retry fetch attempt 1 at 20:45:35
+117 info attempt registry request try #1 at 20:45:35
+118 http fetch GET https://registry.npmjs.org/leaflet/-/leaflet-0.7.7.tgz
+119 http 200 https://registry.npmjs.org/leaflet.markercluster
+120 verbose headers { server: 'nginx/1.10.3',
+120 verbose headers   'content-type': 'application/json',
+120 verbose headers   'last-modified': 'Mon, 06 Nov 2017 19:12:27 GMT',
+120 verbose headers   etag: 'W/"5a00b41b-93b7"',
+120 verbose headers   'content-encoding': 'gzip',
+120 verbose headers   'cache-control': 'max-age=300',
+120 verbose headers   'content-length': '8840',
+120 verbose headers   'accept-ranges': 'bytes',
+120 verbose headers   date: 'Wed, 22 Nov 2017 12:45:36 GMT',
+120 verbose headers   via: '1.1 varnish',
+120 verbose headers   age: '0',
+120 verbose headers   connection: 'keep-alive',
+120 verbose headers   'x-served-by': 'cache-nrt6124-NRT',
+120 verbose headers   'x-cache': 'MISS',
+120 verbose headers   'x-cache-hits': '0',
+120 verbose headers   'x-timer': 'S1511354736.183069,VS0,VE139',
+120 verbose headers   vary: 'Accept-Encoding, Accept' }
+121 silly get cb [ 200,
+121 silly get   { server: 'nginx/1.10.3',
+121 silly get     'content-type': 'application/json',
+121 silly get     'last-modified': 'Mon, 06 Nov 2017 19:12:27 GMT',
+121 silly get     etag: 'W/"5a00b41b-93b7"',
+121 silly get     'content-encoding': 'gzip',
+121 silly get     'cache-control': 'max-age=300',
+121 silly get     'content-length': '8840',
+121 silly get     'accept-ranges': 'bytes',
+121 silly get     date: 'Wed, 22 Nov 2017 12:45:36 GMT',
+121 silly get     via: '1.1 varnish',
+121 silly get     age: '0',
+121 silly get     connection: 'keep-alive',
+121 silly get     'x-served-by': 'cache-nrt6124-NRT',
+121 silly get     'x-cache': 'MISS',
+121 silly get     'x-cache-hits': '0',
+121 silly get     'x-timer': 'S1511354736.183069,VS0,VE139',
+121 silly get     vary: 'Accept-Encoding, Accept' } ]
+122 verbose get saving leaflet.markercluster to C:\Users\YuLong\AppData\Roaming\npm-cache\registry.npmjs.org\leaflet.markercluster\.cache.json
+123 verbose correctMkdir C:\Users\YuLong\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+124 silly resolveWithNewModule leaflet.markercluster@0.5.0 checking installable status
+125 silly cache add args [ 'leaflet.markercluster@~0.5.0', null ]
+126 verbose cache add spec leaflet.markercluster@~0.5.0
+127 silly cache add parsed spec Result {
+127 silly cache add   raw: 'leaflet.markercluster@~0.5.0',
+127 silly cache add   scope: null,
+127 silly cache add   escapedName: 'leaflet.markercluster',
+127 silly cache add   name: 'leaflet.markercluster',
+127 silly cache add   rawSpec: '~0.5.0',
+127 silly cache add   spec: '>=0.5.0 <0.6.0',
+127 silly cache add   type: 'range' }
+128 silly addNamed leaflet.markercluster@>=0.5.0 <0.6.0
+129 verbose addNamed ">=0.5.0 <0.6.0" is a valid semver range for leaflet.markercluster
+130 silly addNameRange { name: 'leaflet.markercluster',
+130 silly addNameRange   range: '>=0.5.0 <0.6.0',
+130 silly addNameRange   hasData: false }
+131 silly mapToRegistry name leaflet.markercluster
+132 silly mapToRegistry using default registry
+133 silly mapToRegistry registry https://registry.npmjs.org/
+134 silly mapToRegistry data Result {
+134 silly mapToRegistry   raw: 'leaflet.markercluster',
+134 silly mapToRegistry   scope: null,
+134 silly mapToRegistry   escapedName: 'leaflet.markercluster',
+134 silly mapToRegistry   name: 'leaflet.markercluster',
+134 silly mapToRegistry   rawSpec: '',
+134 silly mapToRegistry   spec: 'latest',
+134 silly mapToRegistry   type: 'tag' }
+135 silly mapToRegistry uri https://registry.npmjs.org/leaflet.markercluster
+136 verbose addNameRange registry:https://registry.npmjs.org/leaflet.markercluster not in flight; fetching
+137 verbose get https://registry.npmjs.org/leaflet.markercluster not expired, no request
+138 silly addNameRange number 2 { name: 'leaflet.markercluster',
+138 silly addNameRange   range: '>=0.5.0 <0.6.0',
+138 silly addNameRange   hasData: true }
+139 silly addNameRange versions [ 'leaflet.markercluster',
+139 silly addNameRange   [ '0.3.0',
+139 silly addNameRange     '0.4.0',
+139 silly addNameRange     '0.5.0',
+139 silly addNameRange     '1.0.0-rc.1.0',
+139 silly addNameRange     '1.0.0',
+139 silly addNameRange     '1.0.1',
+139 silly addNameRange     '1.0.2',
+139 silly addNameRange     '1.0.3',
+139 silly addNameRange     '1.0.4',
+139 silly addNameRange     '1.0.5',
+139 silly addNameRange     '1.0.6',
+139 silly addNameRange     '1.1.0',
+139 silly addNameRange     '1.2.0' ] ]
+140 silly addNamed leaflet.markercluster@0.5.0
+141 verbose addNamed "0.5.0" is a plain semver version for leaflet.markercluster
+142 silly mapToRegistry name leaflet.markercluster
+143 silly mapToRegistry using default registry
+144 silly mapToRegistry registry https://registry.npmjs.org/
+145 silly mapToRegistry data Result {
+145 silly mapToRegistry   raw: 'leaflet.markercluster',
+145 silly mapToRegistry   scope: null,
+145 silly mapToRegistry   escapedName: 'leaflet.markercluster',
+145 silly mapToRegistry   name: 'leaflet.markercluster',
+145 silly mapToRegistry   rawSpec: '',
+145 silly mapToRegistry   spec: 'latest',
+145 silly mapToRegistry   type: 'tag' }
+146 silly mapToRegistry uri https://registry.npmjs.org/leaflet.markercluster
+147 verbose addRemoteTarball https://registry.npmjs.org/leaflet.markercluster/-/leaflet.markercluster-0.5.0.tgz not in flight; adding
+148 verbose addRemoteTarball [ 'https://registry.npmjs.org/leaflet.markercluster/-/leaflet.markercluster-0.5.0.tgz',
+148 verbose addRemoteTarball   '804a5c2b02ecacb19c064a253396ab60d5df699b' ]
+149 info retry fetch attempt 1 at 20:45:35
+150 info attempt registry request try #1 at 20:45:35
+151 http fetch GET https://registry.npmjs.org/leaflet.markercluster/-/leaflet.markercluster-0.5.0.tgz
+152 http fetch 200 https://registry.npmjs.org/leaflet/-/leaflet-0.7.7.tgz
+153 http fetch 200 https://registry.npmjs.org/leaflet.markercluster/-/leaflet.markercluster-0.5.0.tgz
+154 info retry will retry, error on last attempt: Error: 101057795:error:1408F119:SSL routines:SSL3_GET_RECORD:decryption failed or bad record mac:openssl\ssl\s3_pkt.c:535:
+155 silly fetchAndShaCheck shasum 804a5c2b02ecacb19c064a253396ab60d5df699b
+156 info attempt registry request try #2 at 20:45:51
+157 http fetch GET https://registry.npmjs.org/leaflet.markercluster/-/leaflet.markercluster-0.5.0.tgz
+158 http fetch 200 https://registry.npmjs.org/leaflet.markercluster/-/leaflet.markercluster-0.5.0.tgz
+159 silly fetchAndShaCheck shasum 376eb98bdcd9382a9365c33c4cb8250de1325b91
+160 verbose addTmpTarball C:\Users\YuLong\AppData\Local\Temp\npm-5044-b96f0a55\registry.npmjs.org\lodash\-\lodash-3.8.0.tgz not in flight; adding
+161 verbose addTmpTarball already have metadata; skipping unpack for lodash@3.8.0
+162 verbose correctMkdir C:\Users\YuLong\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+163 silly cache afterAdd lodash@3.8.0
+164 verbose afterAdd C:\Users\YuLong\AppData\Roaming\npm-cache\lodash\3.8.0\package\package.json not in flight; writing
+165 verbose correctMkdir C:\Users\YuLong\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+166 verbose afterAdd C:\Users\YuLong\AppData\Roaming\npm-cache\lodash\3.8.0\package\package.json written
+167 info retry will retry, error on last attempt: Error: read ECONNRESET
+168 silly fetchAndShaCheck shasum 1e352ba54e63d076451fa363c900890cb2cf75ee
+169 silly rollbackFailedOptional Starting
+170 silly rollbackFailedOptional Finishing
+171 silly runTopLevelLifecycles Finishing
+172 silly install printInstalled
+173 verbose stack Error: shasum check failed for C:\Users\YuLong\AppData\Local\Temp\npm-5044-b96f0a55\registry.npmjs.org\leaflet.markercluster\-\leaflet.markercluster-0.5.0.tgz
+173 verbose stack Expected: 804a5c2b02ecacb19c064a253396ab60d5df699b
+173 verbose stack Actual:   621e7f569d39949683649ebbe28ef41782a9c19a
+173 verbose stack From:     https://registry.npmjs.org/leaflet.markercluster/-/leaflet.markercluster-0.5.0.tgz
+173 verbose stack     at D:\Program Files\nodejs\node_modules\npm\node_modules\sha\index.js:25:8
+173 verbose stack     at ReadStream.<anonymous> (D:\Program Files\nodejs\node_modules\npm\node_modules\sha\index.js:72:7)
+173 verbose stack     at emitNone (events.js:91:20)
+173 verbose stack     at ReadStream.emit (events.js:185:7)
+173 verbose stack     at endReadableNT (_stream_readable.js:974:12)
+173 verbose stack     at _combinedTickCallback (internal/process/next_tick.js:80:11)
+173 verbose stack     at process._tickCallback (internal/process/next_tick.js:104:9)
+174 verbose cwd D:\WM\example\测试样例\Leaflet.SmoothMarkerBouncing-master
+175 error Windows_NT 6.1.7601
+176 error argv "D:\\Program Files\\nodejs\\node.exe" "D:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "--scripts-prepend-node-path=auto"
+177 error node v6.11.3
+178 error npm  v3.10.10
+179 error shasum check failed for C:\Users\YuLong\AppData\Local\Temp\npm-5044-b96f0a55\registry.npmjs.org\leaflet.markercluster\-\leaflet.markercluster-0.5.0.tgz
+179 error Expected: 804a5c2b02ecacb19c064a253396ab60d5df699b
+179 error Actual:   621e7f569d39949683649ebbe28ef41782a9c19a
+179 error From:     https://registry.npmjs.org/leaflet.markercluster/-/leaflet.markercluster-0.5.0.tgz
+180 error If you need help, you may report this error at:
+180 error     <https://github.com/npm/npm/issues>
+181 verbose exit [ 1, true ]
