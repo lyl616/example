@@ -5,6 +5,9 @@ import VuetablePaginationDropdown from './components/VuetablePaginationDropdown.
 import VuetablePaginationInfo from './components/VuetablePaginationInfo.vue'
 import axios from 'axios'
 
+
+
+
 let E_SERVER_ERROR = 'Error communicating with the server'
 
 Vue.component('custom-actions', {
@@ -238,7 +241,7 @@ let tableColumns = [
     titleClass: 'center aligned',
     dataClass: 'center aligned',
     callback: 'gender',
-    width: '100px',
+    width: '100px'
   },
   {
     name: '__component:custom-actions',
