@@ -1,21 +1,13 @@
-import Vue from 'vue'
-import Vuetable from './components/Vuetable.vue'
-import VuetablePagination from './components/VuetablePagination.vue'
-import VuetablePaginationDropdown from './components/VuetablePaginationDropdown.vue'
-import VuetablePaginationInfo from './components/VuetablePaginationInfo.vue'
-import axios from 'axios'
 
 
-
-
-let E_SERVER_ERROR = 'Error communicating with the server'
+var  E_SERVER_ERROR = 'Error communicating with the server'
 
 Vue.component('custom-actions', {
   template: [
     '<div>',
       '<button class="ui red button" @click="onClick(\'view-item\', rowData)"><i class="zoom icon"></i></button>',
       '<button class="ui blue button" @click="onClick(\'edit-item\', rowData)"><i class="edit icon"></i></button>',
-      '<button class="ui green button" @click="onClick(\'delete-item\', rowData)"><i class="delete icon"></i></button>',
+      '<button class="ui green button" @click="onClick(\'devar e-item\', rowData)"><i class="devar e icon"></i></button>',
     '</div>'
   ].join(''),
   props: {
@@ -25,7 +17,7 @@ Vue.component('custom-actions', {
     }
   },
   methods: {
-    onClick (action, data) {
+    onClick :function(action, data) {
       console.log('actions: on-click', data.name)
       sweetAlert(action, data.name)
     },
@@ -64,7 +56,7 @@ Vue.component('my-detail-row', {
     }
   },
   methods: {
-    onClick (event) {
+    onClick :function(event) {
       console.log('my-detail-row: on-click', event.target)
     }
   },
@@ -129,15 +121,15 @@ Vue.component('settings-modal', {
     </div>
   `,
   props: ['vuetableFields'],
-  data () {
+  data:function () {
     return {
     }
   },
   methods: {
-    getFieldTitle (field) {
+    getFieldTitle :function(field) {
       if (typeof(field.title) === 'function') return field.title(true)
 
-      let title = field.title
+      var  title = field.title
       if (title !== '') return this.stripHTML(title)
 
       title = ''
@@ -149,14 +141,14 @@ Vue.component('settings-modal', {
 
       return title
     },
-    stripHTML (str) {
+    stripHTML :function(str) {
       return str ? str.replace(/(<([^>]+)>)/ig,"") : ''
     },
-    toggleField (index, event) {
+    toggleField :function(index, event) {
       console.log('toggleField: ', index, event.target.checked)
       this.$parent.$refs.vuetable.toggleField(index)
     },
-    setTableHeight (event) {
+    setTableHeight :function(event) {
       if (event.target.checked) {
         this.$parent.tableHeight = '600px'
         return
@@ -167,12 +159,13 @@ Vue.component('settings-modal', {
   }
 })
 
-let lang = {
+var  lang = {
   'nickname': 'Nickname',
   'birthdate': 'Birthdate',
 }
 
-let tableColumns = [
+var  tableColumns =
+    [
   { name: '__handle',
     width: '50px'
   },
@@ -215,8 +208,7 @@ let tableColumns = [
   {
     name: 'nickname',
     title: (nameOnly = false) => {
-      return nameOnly
-        ? lang['nickname']
+      return nameOnly ? lang['nickname']
         : `<i class="paw icon"></i> ${lang['nickname']}`
     },
     sortField: 'nickname',
@@ -241,7 +233,7 @@ let tableColumns = [
     titleClass: 'center aligned',
     dataClass: 'center aligned',
     callback: 'gender',
-    width: '100px'
+    width: '100px',
   },
   {
     name: '__component:custom-actions',
@@ -252,14 +244,25 @@ let tableColumns = [
   }
 ]
 
+
+
+
+var Vuetable = require('./components/Vuetable.vue')
+var VuetablePagination = require('./components/VuetablePagination.vue')
+var VuetablePaginationDropDown = require('./components/VuetablePaginationDropdown.vue')
+var VuetablePaginationInfo = require('./components/VuetablePaginationInfo.vue')
+var VuetablePaginationMixin = require('./components/VuetablePaginationMixin.vue')
+var VuetablePaginationInfoMixin = require('./components/VuetablePaginationInfoMixin.vue')
+
+
 /* eslint-disable no-new */
-let vm = new Vue({
+var  vm = new Vue({
   el: '#app',
   components: {
-    Vuetable,
-    VuetablePagination,
-    VuetablePaginationDropdown,
-    VuetablePaginationInfo,
+      Vuetable: Vuetable ,
+    VuetablePagination: VuetablePagination ,
+    VuetablePaginationDropdown: VuetablePaginationDropdown ,
+    VuetablePaginationInfo:  VuetablePaginationInfo,
   },
   data: {
     loading: '',
@@ -279,20 +282,20 @@ let vm = new Vue({
     lang: lang,
   },
   watch: {
-    'perPage' (val, oldVal) {
+    'perPage':function (val, oldVal) {
       this.$nextTick(function() {
         this.$refs.vuetable.refresh()
       })
     },
-    'paginationComponent' (val, oldVal) {
+    'paginationComponent':function (val, oldVal) {
       this.$nextTick(function() {
         this.$refs.pagination.setPaginationData(this.$refs.vuetable.tablePagination)
       })
     }
   },
   methods: {
-    transform (data) {
-      let transformed = {}
+    transform:function   (data) {
+      var  transformed = {}
       transformed.pagination = {
         total: data.total,
         per_page: data.per_page,
@@ -306,7 +309,7 @@ let vm = new Vue({
 
       transformed.data = []
       data = data.data
-      for (let i = 0; i < data.length; i++) {
+      for (var  i = 0; i < data.length; i++) {
         transformed['data'].push({
           id: data[i].id,
           name: data[i].name,
@@ -321,43 +324,43 @@ let vm = new Vue({
 
       return transformed
     },
-    showSettingsModal () {
-      let self = this
+    showSettingsModal:function () {
+      var  self = this
       $('#settingsModal').modal({
         detachable: true,
-        onVisible () {
+        onVisible :function() {
           $('.ui.checkbox').checkbox()
         }
       }).modal('show')
     },
-    showLoader () {
+    showLoader :function() {
       this.loading = 'loading'
     },
-    hideLoader () {
+    hideLoader :function() {
       this.loading = ''
     },
-    allCap (value) {
+    allCap :function(value) {
       return value.toUpperCase()
     },
-    formatDate (value, fmt) {
+    formatDate :function(value, fmt) {
       if (value === null) return ''
       fmt = (typeof(fmt) === 'undefined') ? 'D MMM YYYY' : fmt
       return moment(value, 'YYYY-MM-DD').format(fmt)
     },
-    gender (value) {
+    gender :function(value) {
       return value === 'M'
         ? '<span class="ui teal label"><i class="male icon"></i>Male</span>'
         : '<span class="ui pink label"><i class="female icon"></i>Female</span>'
     },
-    showDetailRow (value) {
-      let icon = this.$refs.vuetable.isVisibleDetailRow(value) ? 'down' : 'right'
+    showDetailRow:function(value) {
+      var  icon = this.$refs.vuetable.isVisibleDetailRow(value) ? 'down' : 'right'
       return [
         '<a class="show-detail-row">',
             '<i class="chevron circle ' + icon + ' icon"></i>',
         '</a>'
       ].join('')
     },
-    setFilter () {
+    setFilter :function() {
       this.moreParams = {
         'filter': this.searchFor
       }
@@ -365,11 +368,11 @@ let vm = new Vue({
         this.$refs.vuetable.refresh()
       })
     },
-    resetFilter () {
+    resetFilter :function() {
       this.searchFor = ''
       this.setFilter()
     },
-    preg_quote ( str ) {
+    preg_quote :function( str ) {
       // http://kevin.vanzonneveld.net
       // +   original by: booeyOH
       // +   improved by: Ates Goral (http://magnetiq.com)
@@ -384,55 +387,55 @@ let vm = new Vue({
 
       return (str+'').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
     },
-    highlight (needle, haystack) {
+    highlight :function(needle, haystack) {
       return haystack.replace(
         new RegExp('(' + this.preg_quote(needle) + ')', 'ig'),
         '<span class="highlight">$1</span>'
       )
     },
-    rowClassCB (data, index) {
+    rowClassCB :function(data, index) {
       return (index % 2) === 0 ? 'odd' : 'even'
     },
-    onCellClicked (data, field, event) {
+    onCellClicked :function(data, field, event) {
       console.log('cellClicked', field.name)
       if (field.name !== '__actions') {
         this.$refs.vuetable.toggleDetailRow(data.id)
       }
     },
-    onCellDoubleClicked (data, field, event) {
+    onCellDoubleClicked :function(data, field, event) {
       console.log('cellDoubleClicked:', field.name)
     },
-    onLoadSuccess (response) {
+    onLoadSuccess :function(response) {
       // set pagination data to pagination-info component
       this.$refs.paginationInfo.setPaginationData(response.data)
 
-      let data = response.data.data
+      var  data = response.data.data
       if (this.searchFor !== '') {
-        for (let n in data) {
+        for (var  n in data) {
           data[n].name = this.highlight(this.searchFor, data[n].name)
           data[n].email = this.highlight(this.searchFor, data[n].email)
         }
       }
     },
-    onLoadError (response) {
+    onLoadError :function(response) {
       if (response.status == 400) {
         sweetAlert('Something\'s Wrong!', response.data.message, 'error')
       } else {
         sweetAlert('Oops', E_SERVER_ERROR, 'error')
       }
     },
-    onPaginationData (tablePagination) {
+    onPaginationData :function(tablePagination) {
       this.$refs.paginationInfo.setPaginationData(tablePagination)
       this.$refs.pagination.setPaginationData(tablePagination)
     },
-    onChangePage (page) {
+    onChangePage :function(page) {
       this.$refs.vuetable.changePage(page)
     },
-    onInitialized (fields) {
+    onInitialized :function(fields) {
       console.log('onInitialized', fields)
       this.vuetableFields = fields
     },
-    onDataReset () {
+    onDataReset :function() {
       console.log('onDataReset')
       this.$refs.paginationInfo.resetData()
       this.$refs.pagination.resetData()
