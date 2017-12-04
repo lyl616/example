@@ -258,7 +258,6 @@
     <div class="table-responsive">
         <vuetable v-ref:vuetable
                   api-url="data/tableData.json"
-                  show-pagination="showPagination"
                   pagination-path=""
                   :fields="fields"
                   :sort-order="sortOrder"
@@ -427,7 +426,6 @@
                 direction: 'asc'
             }],
             multiSort: true,
-            showPagination: false,
             perPage: 10,
             paginationComponent: 'vuetable-pagination',
             paginationInfoTemplate: 'แสดง {from} ถึง {to} จากทั้งหมด {total} รายการ',

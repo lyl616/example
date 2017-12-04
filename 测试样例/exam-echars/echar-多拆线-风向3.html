@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <title>ECharts</title>
     <!-- 引入 echarts.js -->
-    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdn.bootcss.com/echarts/3.7.2/echarts.min.js"></script>
+    <!--<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>-->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/echarts.min.js"></script>
+    <!--<script src="https://cdn.bootcss.com/echarts/3.7.2/echarts.min.js"></script>-->
 
 
     <style>
@@ -113,7 +115,7 @@
 <script type="text/javascript">
     $.ajax({
         type: "GET",
-        url: "../data/chardata-win3.json",
+        url: "../data/chardata-win2.json",
         dataType: "json",
         success: function (resp) {
             var result = resp.result;
@@ -129,13 +131,21 @@
             );
 
             var dims = {};
+            var dims2 = {};
+            var j = 1;
             for (var i = 0; i < keys.length; i++) {
                 var key = keys[i];
                 dims[key] = i;
+                if (i == 0) {
+                    dims2[key] = i;
+                }
                 if (i > 3) {
-                    lend[i - 4] = key.split("-")[1];
+                    lend[i - 4] = key.split("$")[1];
+                    dims2[key] = j;
+                    j++;
                 }
             }
+
 
             var arrowSize = 18;
             var weatherIconSize = 45;
@@ -165,22 +175,29 @@
 
             //遍历数组信息
             $.each(series, function (key, values) {
+
                 var rowData = values;
                 var data = echarts.util.map(rowData, function (entry) {
                     var arr = new Array()
+                    var j = 0;
                     for (var i in keys) {
-                        var key = keys[i];
-                        arr[i] = entry[key];
+                        if (i == 0 || i > 3) {
+                            var key = keys[i];
+                            arr[j] = entry[key];
+                            j++;
+                        }
                     }
                     return arr;
                 });
+                console.log(data);
                 var data1 = echarts.util.map(rowData, function (entry) {
                     var arr = new Array()
+                    var j = 0;
                     for (var i in keys) {
                         if (i < 4) {
-
                             var key = keys[i];
-                            arr[i] = entry[key];
+                            arr[j] = entry[key];
+                            j++;
                         }
                     }
                     return arr;
@@ -215,29 +232,29 @@
 //                        },
                         trigger: 'item',
                         formatter: function (params) {
-                            console.log(params);
-                            var str = "";
+                            var str = '';
                             var dt = params.data;
-//
+
                             var data = new Array();
-                            data[0] = echarts.format.formatTime('yyyy-MM-dd', dt[0]) +
-                                ' ' + echarts.format.formatTime('hh:mm', dt[0]);
+                            data[0] = dt[0];
                             data[1] = '   风速：' + dt[1];
                             data[2] = '   风向：' + dt[2];
-                            str += "<div class=\"clear\">" + data[0] + "       " + data[1] + "      " + data[2];
+
 
                             var seriesName = params.seriesName;
                             var seriesIndex = params.seriesIndex;
+                            console.log(lend, seriesName);
+                            var idx = findIndex(lend, seriesName) + 1;
 
                             if (seriesIndex == 0) {
-                                str += "</div>";
+                                str += "<div class=\"clear\">" + data[0] + "       " + data[1] + "      " + data[2] + "</div>";
                             } else {
-                                data[3] = seriesName + ":" + params.value[seriesIndex];
-                                str += "<br/>" + params.marker + data[3] + "</div>";
+                                data[3] = seriesName + ":" + params.value[idx];
+                                str += "<div class=\"clear\">" + data[0] + "       " + params.marker + data[3] + "</div>";
                             }
                             return str;
                         },
-//                        position: ['5%', '5%']
+//                       position: ['5%', '5%']
                     },
                     toolbox: {
                         right: "0px",
@@ -360,14 +377,15 @@
                 };
 
                 $.each(keys, function (i, val) {
-                    if (i >= 3) {
-                        option.series[i - 1] = {
+                    if (i > 3) {
+                        console.log(val);
+                        option.series[i - 2] = {
                             yAxisIndex: 0,
                             type: 'line',
-                            name: val.split("-")[1],
+                            name: val.split("$")[1],
                             encode: {
-                                x: dims.time,
-                                y: dims[val]
+                                x: dims2.time,
+                                y: dims2[val]
                             },
                             symbolSize: 5,
                             data: data,
@@ -427,6 +445,17 @@
     function getletter(value) { //获取字母
         var letter = value.replace(/[^a-z]+/ig, "");
         return letter;
+    }
+    function findIndex(arr, vl) {
+        var index = 0;
+        $.each(arr, function (i, val) {
+            if (vl == val) {
+
+                index = i;
+                return
+            }
+        });
+        return index;
     }
 
 </script>
