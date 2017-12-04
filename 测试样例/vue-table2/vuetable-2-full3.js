@@ -2657,10 +2657,10 @@
                         type: Object,
                         default: function _default() {
                             return {
-                                tableClass: 'table table-bordered table-striped table-hover',
+                                tableClass: 'ui blue selectable celled stackable attached table',
                                 loadingClass: 'loading',
-                                ascendingIcon: 'glyphicon glyphicon-chevron-up',
-                                descendingIcon: 'glyphicon glyphicon-chevron-down',
+                                ascendingIcon: 'blue chevron up icon',
+                                descendingIcon: 'blue chevron down icon',
                                 ascendingClass: 'sorted-asc',
                                 descendingClass: 'sorted-desc',
                                 sortableIcon: '',
@@ -3515,7 +3515,7 @@
                         type: Object,
                         default: function _default() {
                             return {
-                                infoClass: 'left floated left aligned six wide column'//分页左侧的当前页面记录个数
+                                infoClass: 'left floated left aligned six wide column'
                             };
                         }
                     },
@@ -3571,11 +3571,11 @@
                         type: Object,
                         default: function _default() {
                             return {
-                                wrapperClass: 'vuetable-pagination-component pagination',
-                                activeClass: 'large',
+                                wrapperClass: 'ui right floated pagination menu',
+                                activeClass: 'active large',
                                 disabledClass: 'disabled',
-                                pageClass: 'btn btn-white',
-                                linkClass: 'icon btn',
+                                pageClass: 'item',
+                                linkClass: 'icon item',
                                 paginationClass: 'ui bottom attached segment grid',
                                 paginationInfoClass: 'left floated left aligned six wide column',
                                 dropdownClass: 'ui search dropdown',
@@ -4148,7 +4148,6 @@
             module.exports = {
                 render: function () {
                     var _vm = this;
-                    var TableHeight=(parseInt(_vm.tableHeight)-300)+"px";
                     var _h = _vm.$createElement;
                     var _c = _vm._self._c || _h;
                     return (_vm.isFixedHeader) ? _c('div', [_c('div', {
@@ -4246,7 +4245,7 @@
                     }) : _vm._e()], 2)])])]), _vm._v(" "), _c('div', {
                         staticClass: "vuetable-body-wrapper",
                         style: ({
-                            height: TableHeight
+                            height: _vm.tableHeight
                         })
                     }, [_c('table', {
                         class: ['vuetable', _vm.css.tableClass, _vm.css.tableBodyClass]
