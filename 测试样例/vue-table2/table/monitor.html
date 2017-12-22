@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <title>用户统计</title>
+    <title>监测点管理</title>
 
     <link rel="stylesheet" href="../js/semantic.min.2.2.2.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="../js/sweetalert.min.1.1.3.css" media="screen" title="no title" charset="utf-8">
@@ -97,34 +97,36 @@
 </head>
 <body>
 
-<div id="app">
+<div id="app" style="width: 800px;height: 600px">
+    <div  >
 
+        <vuetable ref="vuetable"
+                  api-url="monitor.json"
+                  :fields="fields"
+                  :table-height="tableHeight"
+                  pagination-path="pagination"
+                  :sort-order="sortOrder"
+                  :multi-sort="multiSort"
+                  :per-page="perPage"
+                  :append-params="moreParams"
+                  @vuetable:pagination-data="onPaginationData"
+                  @vuetable:load-success="onLoadSuccess"
+        >
 
-    <vuetable ref="vuetable"
-              api-url="monitor.json"
-              :fields="fields"
-              :table-height="tableHeight"
-              pagination-path="pagination"
-              :sort-order="sortOrder"
-              :multi-sort="multiSort"
-              :per-page="perPage"
-              :append-params="moreParams"
-              @vuetable:pagination-data="onPaginationData"
-              @vuetable:load-success="onLoadSuccess"
-    >
+        </vuetable>
+    </div>
+    <div style="clear: both;height: 100px;width: 100%">
+        <vuetable-pagination-info ref="paginationInfo" :info-template="paginationInfoTemplate"></vuetable-pagination-info>
+        <component :is="paginationComponent" ref="pagination" @vuetable-pagination:change-page="onChangePage"></component>
+    </div>
 
-    </vuetable>
-</div>
-<div style="clear: both;height: 100px;width: 100%">
-    <vuetable-pagination-info ref="paginationInfo" :info-template="paginationInfoTemplate"></vuetable-pagination-info>
-    <component :is="paginationComponent" ref="pagination" @vuetable-pagination:change-page="onChangePage"></component>
 </div>
 
 
 </div><!-- app -->
 
 
-<script src="overstand.js"></script>
+<script src="monitor.js"></script>
 
 
 </body>
