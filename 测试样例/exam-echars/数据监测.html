@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/echarts.min.js"></script>
+    <script src="echar-common.js"></script>
+    <style>
+
+        .none {
+            display: none
+        }
+    </style>
+</head>
+<body>
+<div class="magin10 surver_echarts" id="allCharts">
+    <div class='none' id="char-aqi">
+        <div class='ibox float-e-margins'>
+            <div class='ibox-content'>
+                <div class='echarts' style='width: 100%;height: 320px' id="dataChart-aqi"></div>
+            </div>
+        </div>
+    </div>
+    <div class='none' id="char-pm25">
+        <div class='ibox float-e-margins'>
+            <div class='ibox-content'>
+                <div class='echarts' style='width: 100%;height: 320px' id="dataChart-pm25"></div>
+            </div>
+        </div>
+    </div>
+    <div class='none' id="char-pm10">
+        <div class='ibox float-e-margins'>
+            <div class='ibox-content'>
+                <div class='echarts' style='width: 100%;height: 320px' id="dataChart-pm10"></div>
+            </div>
+        </div>
+    </div>
+    <div class='none' id="char-so2">
+        <div class='ibox float-e-margins'>
+            <div class='ibox-content'>
+                <div class='echarts' style='width: 100%;height: 320px' id="dataChart-so2"></div>
+            </div>
+        </div>
+    </div>
+    <div class='none' id="char-no2">
+        <div class='ibox float-e-margins'>
+            <div class='ibox-content'>
+                <div class='echarts' style='width: 100%;height: 320px' id="dataChart-no2"></div>
+            </div>
+        </div>
+    </div>
+    <div class='none' id="char-co">
+        <div class='ibox float-e-margins'>
+            <div class='ibox-content'>
+                <div class='echarts' style='width: 100%;height: 320px' id="dataChart-co"></div>
+            </div>
+        </div>
+    </div>
+    <div class='none' id="char-o3">
+        <div class='ibox float-e-margins'>
+            <div class='ibox-content'>
+                <div class='echarts' style='width: 100%;height: 320px' id="dataChart-o3"></div>
+            </div>
+        </div>
+    </div>
+    <div class='none' id="char-no">
+        <div class='ibox float-e-margins'>
+            <div class='ibox-content'>
+                <div class='echarts' style='width: 100%;height: 320px' id="dataChart-no"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+    $.ajax({
+        type: "GET",
+        url: "../data/survery.json",
+        dataType: "json",
+        success: function (response) {
+            var dataMap = response.result;
+            var j = 0;
+            $.each(dataMap, function (key, values) {
+                var result = values;
+                var option = {
+                    tooltip: tooltip_axis(),
+                    toolbox: toolBox_dataZoom(),
+                    dataZoom: dataZoom_inside,
+                    legend: {
+                        top: 30,
+                        data: []
+                    },
+                    grid: {
+                        top: 95,
+                        bottom: 66,
+                        left: 80,
+                        right: 20
+                    },
+                    xAxis: [{
+                        type: "category",
+                        boundaryGap: !1,
+                        data: [],
+                        splitLine: {
+                            lineStyle: {
+                                color: '#ddd'
+                            }
+                        }
+                    }],
+                    yAxis: [{
+                        name: yaxisTitle(key),
+                        nameLocation: 'middle',
+                        nameGap: 50,
+                        boundaryGap: [0, 0.1],
+                        type: "value",
+                        axisLabel: {
+                            formatter: "{value}"
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                color: '#ddd'
+                            }
+                        }
+                    }],
+                    series: []
+                };
+                //////////////////////////////
+                option.legend.data = result.legend;
+                option.xAxis[0].data = result.category;
+                if (result.series) {
+                    for (var i = 0; i < result.series.length; i++) {
+                        var arr = {
+                            name: result.series[i].name,
+                            type: 'line',
+                            data: result.series[i].data,
+                            symbolSize: 5,
+                            itemStyle: {
+                                normal: {
+                                    color: myColors[i]
+                                },
+                                emphasis: {
+                                    color: myColors[i]
+                                }
+                            }
+                        };
+                        option.series.push(arr);
+                    }
+                    $("#char-" + key).show();
+                    var myChar = echarts.init(document.getElementById("dataChart-" + key));
+                    myChar.hideLoading();
+                    myChar.group = 'group1';
+                    myChar.setOption(option);
+                }
+                echarts.connect('group1');
+            });
+        }
+    });
+
+    function yaxisTitle(key) {
+        var chartsTitle = titlehtml(key);
+        switch (key) {
+            case 'co': {
+                chartsTitle += ' (mg/m³)';
+            }
+                break;
+            case 'no':
+            case 'no2':
+            case 'o3':
+            case 'pm10':
+            case 'pm25':
+            case 'so2': {
+                chartsTitle += ' (μg/m³)';
+            }
+                break;
+        }
+        return chartsTitle;
+    }
+
+    function titlehtml(value) {
+        var num_pollution = getnumber(value),
+            str_pollution = getletter(value).toUpperCase();
+        if (num_pollution == 25) {
+            num_pollution = 2.5;
+        }
+        var titleHtml = str_pollution + num_pollution;
+        return titleHtml;
+    }
+
+    function getnumber(value) { //获取数字
+        var num = value.replace(/[^0-9]/ig, "");
+        return num;
+    }
+
+    function getletter(value) { //获取字母
+        var letter = value.replace(/[^a-z]+/ig, "");
+        return letter;
+    }
+
+    function findIndex(arr, vl) {
+        var index = 0;
+        $.each(arr, function (i, val) {
+            if (vl == val) {
+
+                index = i;
+                return
+            }
+        });
+        return index;
+    }
+
+
+</script>
+</html>
