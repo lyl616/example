@@ -190,6 +190,7 @@ function dateFormat(dateString, format) {
     return format;
 
 }
+
 /**********************************对Ajax方式进行封装Start**************************************************/
 /**
  * 以post方式请求 不带加载效果
@@ -202,11 +203,13 @@ function dateFormat(dateString, format) {
  *            回调函数
  */
 function ajax(url, posData, callBk) {
+
     $.ajax({
         type: "POST",
         // timeout : 60000,
         url: url,
         dataType: 'JSON',
+
         data: posData,
         success: function (data) {
             callBk(data);
@@ -228,11 +231,12 @@ function ajax(url, posData, callBk) {
  *            回调函数
  */
 function ajax_post(url, postData, callBK) {
+
     $.ajax({
         type: "POST",
-        // timeout : 60000,
         url: url,
         dataType: 'JSON',
+
         data: postData,
         beforeSend: initLayerLoader, // 发送请求
         complete: closeLayreLoader, // 请求完成
@@ -241,6 +245,7 @@ function ajax_post(url, postData, callBK) {
         },
         error: function (err) {
             console.info(err);
+            closeLayreLoader
         }
     });
 }
@@ -254,11 +259,41 @@ function ajax_post(url, postData, callBK) {
  * @param callbk 回调函数
  */
 function ajax_post_msg(url, postData, opt, callbk) {
+
     $.ajax({
         type: "POST",
         // timeout : 60000,
         url: url,
         dataType: 'JSON',
+
+        data: postData,
+        beforeSend: initLayerLoaderMsg(opt), // 发送请求
+        complete: closeLayreLoader, // 请求完成
+        success: function (data) {
+            callbk(data);
+        },
+        error: function (err) {
+            console.info(err);
+        }
+    });
+}
+
+
+/**
+ *  post请求方式
+ * @param url
+ * @param postData
+ * @param opt
+ * @param contentType
+ * @param callbk
+ */
+function post_ajax(url, postData, opt, contentType, callbk) {
+    $.ajax({
+        type: "POST",
+        // timeout : 60000,
+        url: url,
+        dataType: 'JSON',
+        contentType: contentType,
         data: postData,
         beforeSend: initLayerLoaderMsg(opt), // 发送请求
         complete: closeLayreLoader, // 请求完成
@@ -280,11 +315,13 @@ function alphaWindow_10s(msg) { //10秒自动关闭
 }
 
 function ajax_post_info(url, postData, opt, callbk, err) {
+
     $.ajax({
         type: "POST",
         // timeout : 60000,
         url: url,
         dataType: 'JSON',
+
         data: postData,
         beforeSend: initLayerLoaderMsg(opt), // 发送请求
         complete: closeLayreLoader, // 请求完成
@@ -313,11 +350,28 @@ function ajax_get(url, postData, callBk) {
         // timeout : 60000,
         url: url,
         dataType: 'JSON',
+
         data: postData,
-        beforeSend: initLayerLoader, // 发送请求
-        complete: closeLayreLoader, // 请求完成
         success: function (data) {
             callBk(data);
+        },
+        error: function (err) {
+            console.info(err);
+        }
+    });
+}
+
+//可传递参数的ajax 数据请求
+function ajax_getReq(url, postData, callBk, paramArr) {
+    $.ajax({
+        type: "GET",
+        // timeout : 60000,
+        url: url,
+        dataType: 'JSON',
+
+        data: postData,
+        success: function (data) {
+            callBk(data, paramArr);
         },
         error: function (err) {
             console.info(err);
@@ -338,6 +392,7 @@ function ajax_get_msg(url, postData, opt, callBk) {
         // timeout : 60000,
         url: url,
         dataType: 'JSON',
+
         data: postData,
         beforeSend: initLayerLoaderMsg(opt), // 发送请求
         complete: closeLayreLoader, // 请求完成
@@ -349,7 +404,9 @@ function ajax_get_msg(url, postData, opt, callBk) {
         }
     });
 }
+
 var load = "undefined";
+
 /**
  * 添加加载效果
  */
@@ -407,6 +464,23 @@ function closeLayreLoader() {
         load = "undefined";
     }
 }
+
+
+function showTip(msg, id) {
+    var layerobg = layer.tips(msg, '#' + id, {
+        tips: 1,
+        time: 0
+    });
+}
+
+function showT(msg, that) {
+    layer.tips(msg, that, {tips: 1}); //在元素的事件回调体中，follow直接赋予this即可
+}
+
+function hideTip() {
+    layer.closeAll();
+}
+
 
 /**********************************对Ajax方式进行封装End**************************************************/
 /**
@@ -616,6 +690,7 @@ function getStrDateMonth(dataStr) {
     var date = new Date(Date.parse(dataStr.replace(/-/g, "/")));
     return date.getMonth();
 }
+
 /**
  * 获取时间中的年
  *
@@ -659,6 +734,43 @@ function GetDateDiff(startDate, endDate) {
     return dates + 1;
 }
 
+
+//查看某月有多少天
+function getCountDaysByMonth(date) {
+    var curDate = new Date(date);
+    /* 获取当前月份 */
+    var curMonth = curDate.getMonth();
+    /*  生成实际的月份: 由于curMonth会比实际月份小1, 故需加1 */
+    curDate.setMonth(curMonth + 1);
+    /* 将日期设置为0, 这里为什么要这样设置, 我不知道原因, 这是从网上学来的 */
+    curDate.setDate(0);
+    /* 返回当月的天数 */
+    return curDate.getDate();
+}
+
+/**
+ * 查看某一年是平年还是闰年
+ * @param year
+ * @returns {number}
+ */
+function isLeapYear(year) {
+    var cond1 = year % 4 == 0;  //条件1：年份必须要能被4整除
+    var cond2 = year % 100 != 0;  //条件2：年份不能是整百数
+    var cond3 = year % 400 == 0;  //条件3：年份是400的倍数
+    //当条件1和条件2同时成立时，就肯定是闰年，所以条件1和条件2之间为“与”的关系。
+    //如果条件1和条件2不能同时成立，但如果条件3能成立，则仍然是闰年。所以条件3与前2项为“或”的关系。
+    //所以得出判断闰年的表达式：
+    var cond = cond1 && cond2 || cond3;
+    if (cond) {
+//            alert(year + "是闰年");
+        return 366;
+    } else {
+//            alert(year + "不是闰年");
+        return 365;
+    }
+}
+
+
 /**
  * 计算两个日期相隔的小时数
  *
@@ -672,7 +784,7 @@ function GetHourDiff(startDate, endDate) {
     var date3 = startTime.getTime() - endTime.getTime();
     // 计算出小时数
     var hours = Math.floor(date3 / (3600 * 1000));
-    return hours;
+    return hours + 1;
 }
 
 function getMonthsDiff(date2, date1) {
@@ -706,7 +818,7 @@ function getYearDiff(startDate, endDate) {
 function getCurDateDay(myDate) {
     var y = myDate.getFullYear();
     var m = myDate.getMonth() + 1 < 10 ? '0' + (myDate.getMonth() + 1) : myDate
-            .getMonth() + 1;
+        .getMonth() + 1;
     var d = myDate.getDate() < 10 ? '0' + myDate.getDate() : myDate.getDate();
     var h = myDate.getHours();
     var cur_date = y + '-' + m + '-' + d + ' ' + h + ':00:00';
@@ -738,7 +850,7 @@ function getCurDateDayDecre(myDate, m) {
     var preDate = new Date(myDate.getTime() - 24 * 60 * 60 * 1000 * m);
     y = preDate.getFullYear();
     m = preDate.getMonth() + 1 < 10 ? '0' + (preDate.getMonth() + 1) : preDate
-            .getMonth() + 1;
+        .getMonth() + 1;
     d = preDate.getDate() < 10 ? '0' + preDate.getDate() : preDate.getDate();
     h = preDate.getHours();
     cur_date = y + '-' + m + '-' + d + ' ' + h + ':00:00';
@@ -758,7 +870,7 @@ function getCurDateDayDecreByReg(myDate, m, reg) {
     var preDate = new Date(myDate.getTime() - 24 * 60 * 60 * 1000 * m);
     y = preDate.getFullYear();
     m = preDate.getMonth() + 1 < 10 ? '0' + (preDate.getMonth() + 1) : preDate
-            .getMonth() + 1;
+        .getMonth() + 1;
     d = preDate.getDate() < 10 ? '0' + preDate.getDate() : preDate.getDate();
     h = preDate.getHours();
     cur_date = y + '-' + m + '-' + d + ' ' + h + ':00:00';
@@ -843,10 +955,16 @@ function dayDecreWithReg(s, m, reg) {
  * @param h
  * @returns {String}
  */
-function monthIncre(s, h) {
-    var date = new Date(s);
-    date = date.setMonth(date.getMonth() + h);
-    return new Date(date).Format("yyyy-MM");
+function monthIncre(s, m) {
+    var d = new Date(s).Format("yyyy-MM-dd");
+    var ds = d.split('-'), _d = ds[2] - 0;
+    var nextM = new Date(ds[0], ds[1] - 1 + m + 1, 0);
+    var max = nextM.getDate();
+    d = new Date(ds[0], ds[1] - 1 + m, _d > max ? max : _d);
+    return d.toLocaleDateString().match(/\d+/g).join('-')
+    // var date = new Date(s);
+    // date = date.setMonth(date.getMonth() + h);
+    // return new Date(date).Format("yyyy-MM");
 }
 
 /**
@@ -857,12 +975,17 @@ function monthIncre(s, h) {
  * @returns {String}
  */
 function monthDecre(s, m) {
+
     var d = new Date(s).Format("yyyy-MM-dd");
     var ds = d.split('-'), _d = ds[2] - 0;
     var nextM = new Date(ds[0], ds[1] - 1 - m + 1, 0);
     var max = nextM.getDate();
     d = new Date(ds[0], ds[1] - 1 - m, _d > max ? max : _d);
     return d.toLocaleDateString().match(/\d+/g).join('-')
+
+    // var date = new Date(s);
+    // date = date.setMonth(date.getMonth() - h);
+    // return new Date(date).Format("yyyy-MM");
 }
 
 /**
@@ -877,6 +1000,7 @@ function yearIncre(s, h) {
     date = date.setFullYear(date.getFullYear() + h);
     return new Date(date).Format("yyyy");
 }
+
 /**
  * 已知年份s 减 h年
  *
@@ -888,6 +1012,13 @@ function yearDecre(s, h) {
     var date = new Date(s);
     date = date.setFullYear(date.getFullYear() - h);
     return new Date(date).Format("yyyy");
+}
+
+
+function yearDecre2(s, h) {
+    var date = new Date(s);
+    return date.setFullYear(date.getFullYear() - h);
+
 }
 
 /**
@@ -977,7 +1108,7 @@ function initTypsByType(id, type, selVal, all) {
     if (all != -1) {
         opt.append("<option value=\"-1\">全部</option>");
     }
-    var url = $.ctx + "/dictionary/dictionaryType";
+    var url = coreApiPath + "/dictionary/dictionaryType";
     var param = {
         "type": type
     };
@@ -994,6 +1125,7 @@ function initTypsByType(id, type, selVal, all) {
             }
         });
 }
+
 /**
  * 初始化数据字典里的下拉值
  *
@@ -1015,7 +1147,7 @@ function initTypsByPid(id, type, selVal, all) {
     if (all != -1) {
         opt.append("<option value=\"-1\">全部</option>");
     }
-    var url = $.ctx + "/dictionary/dictionaryPid";
+    var url = coreApiPath + "/dictionary/dictionaryPid";
     var param = {
         "pid": type
     };
@@ -1045,6 +1177,7 @@ function initTypsByPid(id, type, selVal, all) {
 function selectValue(id, selVal) {
     $("#" + id).find("option[value='" + selVal + "']").attr("selected", true);
 }
+
 /**
  * 保存页面级存储信息
  *
@@ -1063,6 +1196,7 @@ function saveCitySessionStorage(cityName, cityId, provinceName, provinceId) {
     if (provinceId != null)
         sessionStorage.setItem("currentProvinceId", cityId);
 }
+
 /**
  * 清除页面级存储信息
  *
@@ -1077,6 +1211,7 @@ function clearCitySessionStorage() {
     sessionStorage.removeItem("currentProvinceName");
     sessionStorage.removeItem("currentProvinceId");
 }
+
 /**
  *
  */
@@ -1107,6 +1242,7 @@ function clearChar(domId) {
     var myChar = echarts.init(document.getElementById(domId));
     myChar.clear();
 }
+
 /**
  * 图表释放------------------- // doubleLineChar.dispose();
  *
@@ -1229,7 +1365,6 @@ function initStartEndTimeByHour(date, startDomId, endDomId, hour) {
 function initWateStyle(startDomId, endDomId) {
     $('#' + startDomId).unbind('focus', WdatePicker);
     $('#' + endDomId).unbind('focus', WdatePicker);
-
     $('#' + startDomId).bind('focus', function () {
         var endTime = $dp.$(endDomId);
         WdatePicker({
@@ -1273,7 +1408,6 @@ function initDoubleWateStyle(startDomId, endDomId, fmt) {
             autoPickDate: true
         });
     });
-
 }
 
 /**
@@ -1287,11 +1421,40 @@ function initMyZTree(treeId, treeSetting, data) {
 }
 
 function clearZTreeCheck(treeId) {
-
     var treeObj = $.fn.zTree.getZTreeObj(treeId);
     treeObj.checkAllNodes(false);
-    // treeObj.cancelSelectedNode();
 }
+
+/**
+ * 重新加载ztree
+ * @param treeId
+ */
+function refreshZTree(treeId) {
+    var treeObj = $.fn.zTree.getZTreeObj(treeId);
+    treeObj.refresh();
+
+}
+
+
+/**
+ * 获取所有选中的names 和ids
+ * @param treeId
+ * @param treeNode
+ * @returns {{names: string, ids: string}}
+ */
+function getYlTreeCheckItems(treeId, treeNode) {
+    var zTree = $.fn.zTree.getZTreeObj(treeId),
+        nodes = zTree.getCheckedNodes(true),
+        names = [], ids = [];
+    if (nodes.length > 0) {
+        for (var i = 0, l = nodes.length; i < l; i++) {
+            names.push(nodes[i].name);
+            ids.push(nodes[i].id);
+        }
+    }
+    return {names: names, ids: ids};
+}
+
 
 /**
  * 默认选中 ztree 指定节点》》》》去除级联勾选>>勾选完成后恢复
@@ -1332,8 +1495,12 @@ function chkYlZTreeByIdsAll(treeObj, ids) {
                 treeObj.checkNode(nodes[i], true, true);
             }
         });
+        if (item.attr != undefined && item.attr[0] == "N") {
+            treeObj.setChkDisabled(item, true);
+        }
     });
 }
+
 
 /**
  * 扩展 remove方法
@@ -1387,7 +1554,6 @@ function hideParentInput(treeId) {
 Array.prototype.hasVal = function (val) {
     var flag = false;
     for (var i = 0; i < this.length; i++) {
-        debugger
         if (this[i] == val) {
             flag = true;
             break;
@@ -1397,16 +1563,39 @@ Array.prototype.hasVal = function (val) {
 }
 
 
+function arrAryIndex(arr, val) {
+    var flag = -1;
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] == val) {
+            flag = i;
+            break;
+        }
+    }
+    return flag;
+}
+
+
 function getDiffArray(longArray, shortArray) {
     var arr = [];
-    $.each(longArray, function (i, val) {
-        if (!shortArray.hasVal(val)) {
-            arr.push(val)
+    $.each(longArray, function (i, item) {
+        if (!shortArray.hasVal(item)) {
+            arr.push(item)
         }
-    });
-
+    })
     return arr;
 }
+
+Array.prototype.myIndexOf = function (val) {
+    var flag = false;
+    for (var i = 0; i < this.length; i++) {
+        if (this[i] == val) {
+            flag = i;
+            break;
+        }
+    }
+    return -1;
+}
+
 
 /**
  * 通过id 获取下面所有 选中的checkbox
@@ -1462,6 +1651,7 @@ function getCheckNodeIds(nodes) {
 function closeModal(id) {
     $('#' + id).modal('hide');
 }
+
 function closeModalCallBack(id, callBack) {
     $('#' + id).modal('hide');
     if (callBack) {
@@ -1489,9 +1679,10 @@ function initWDatetime(id, fm, data) {
     });
 }
 
+//转换为时间戳
 function timeToConvert(stringTime) {
-    var timestamp = Date.parse(new Date(stringTime));
-    timestamp = timestamp / 1000;
+    var timestamp = new Date(stringTime).getTime();
+    //console.log("转换时间后            " + timestamp);
     return timestamp;
 }
 
@@ -1631,6 +1822,28 @@ function initWDateMonth(id) {
     });
 }
 
+function initWDate_for_dd(id) {
+    $('#' + id).unbind('focus');
+    $('#' + id).bind('focus', function () {
+        WdatePicker({
+            dateFmt: 'yyyy-MM-dd',
+            maxDate: '%y-%M-%d',
+            autoPickDate: true
+        });
+    });
+}
+
+function initWDate_for_hh(id) {
+    $('#' + id).unbind('focus');
+    $('#' + id).bind('focus', function () {
+        WdatePicker({
+            dateFmt: 'yyyy-MM-dd HH:00',
+            maxDate: '%y-%M-%d %H:%m',
+            autoPickDate: true
+        });
+    });
+}
+
 /**
  * 初始化季度 时间 格式
  * @param id
@@ -1728,6 +1941,171 @@ function dateToString(date) {
     return strdate;
 }
 
+//计算两个时间的差值,并判断不能超过一定的界限
+
+function calcDate_interval(start, end, type) {
+    var Nstart = start,
+        Nend = end;
+    var dateStart = new Date(Nstart),
+        dateEnd = new Date(Nend);
+    var start_year = dateStart.getFullYear(),
+        start_month = dateStart.getMonth() + 1,
+        start_day = dateStart.getDate(),
+        start_hour = dateStart.getHours(),
+        end_year = dateEnd.getFullYear(),
+        end_month = dateEnd.getMonth() + 1,
+        end_day = dateEnd.getDate(),
+        end_hour = dateEnd.getHours();
+    var d_value_year = end_year - start_year, //年的差值
+        d_value_month = end_month - start_month, //月的差值
+        d_value_day = end_day - start_day, //天的差值
+        d_value_hour = end_hour - start_hour; //小时的差值
+    //console.log("差的  年 " + d_value_year + "   月 " + d_value_month + "  日" + d_value_day + " 时 " + d_value_hour)
+    switch (type) {
+        case '1month_hh': {
+            if (d_value_year == 0) { //一年内的时间判断
+                if (d_value_month > 1) {
+                    layer.msg("查询时间不能超过一个月！");
+                    return false;
+                } else if (d_value_month == 1) {
+                    if (d_value_day >= 1) {
+                        layer.msg("查询时间不能超过一个月");
+                        return false;
+                    } else if (d_value_day == 0) {
+                        if (d_value_hour >= 1) {
+                            layer.msg("查询时间不能超过一个月");
+                            return false;
+                        }
+                    }
+                }
+            } else if (d_value_year == 1) { //跨年 12月 -1月
+                if (d_value_month == -11) {
+                    if (d_value_day >= 1) {
+                        layer.msg("查询时间不能超过一个月");
+                        return false;
+                    } else if (d_value_day == 0) {
+                        if (d_value_hour >= 1) {
+                            layer.msg("查询时间不能超过一个月");
+                            return false;
+                        }
+                    }
+                } else {
+                    layer.msg("查询时间不能超过一个月");
+                    return false;
+                }
+            } else {
+                layer.msg("查询时间不能超过一个月！");
+                return false;
+            }
+        }
+            break;
+        case '30day': {
+            var daynum = 30;
+            var get_s_time = new Date(end),
+                get_e_time = new Date(start);
+            if ((get_s_time - get_e_time) > 1000 * 60 * 60 * 24 * daynum) {
+                layer.msg('查询时间不得大于' + daynum + '天！');
+                return false;
+            }
+        }
+            break;
+        case '1day': {
+            var daynum = 1;
+            var get_s_time = new Date(end),
+                get_e_time = new Date(start);
+            if ((get_s_time - get_e_time) > 1000 * 60 * 60 * 24 * daynum) {
+                layer.msg('查询时间不得大于' + daynum + '天！');
+                return false;
+            }
+        }
+            break;
+        case '1month': {
+            if (d_value_year == 0) { //一年内的时间判断
+                if (d_value_month > 1) {
+                    layer.msg("查询时间不能超过一个月！");
+                    return false;
+                } else if (d_value_month == 1) {
+                    if (d_value_day >= 1) {
+                        layer.msg("查询时间不能超过一个月");
+                        return false;
+                    }
+                }
+            } else if (d_value_year == 1) { //跨年 12月 -1月
+                if (d_value_month == -11) {
+                    if (d_value_day >= 1) {
+                        layer.msg("查询时间不能超过一个月");
+                        return false;
+                    }
+                } else {
+                    layer.msg("查询时间不能超过一个月");
+                    return false;
+                }
+            } else {
+                layer.msg("查询时间不能超过一个月！");
+                return false;
+            }
+        }
+            break;
+        case '3month': {
+            if (d_value_year == 0) { //一年内的时间判断
+                if (d_value_month > 3) {
+                    layer.msg("查询时间不能超过三个月！");
+                    return false;
+                } else if (d_value_month == 3) {
+                    if (d_value_day >= 1) {
+                        layer.msg("查询时间不能超过三个月");
+                        return false;
+                    }
+                }
+            } else if (d_value_year == 1) { //跨年 12月 -1月
+                if (d_value_month == -10) {
+                    if (d_value_day >= 1) {
+                        layer.msg("查询时间不能超过三个月");
+                        return false;
+                    }
+                } else {
+                    layer.msg("查询时间不能超过三个月");
+                    return false;
+                }
+            } else {
+                layer.msg("查询时间不能超过三个月！");
+                return false;
+            }
+        }
+            break;
+        case 'year': {
+            if (d_value_year == 1) {
+                if (d_value_month >= 1) {
+                    layer.msg("查询时间不能超过一年！");
+                    return false;
+                } else if (d_value_month == 0) {
+                    if (d_value_day > 1) {
+                        layer.msg("查询时间不能超过一年");
+                        return false;
+                    }
+                }
+            } else if (d_value_year > 1) {
+                layer.msg("查询时间不能超过一年");
+                return false;
+            }
+        }
+            break;
+    }
+    return true;
+}
+
+/**
+ * 清除地图上markers
+ * @param map
+ * @param markers
+ * @private
+ */
+function _clear_markers_map(map, markers) {
+    $.each(markers, function (n, marker) {
+        map.removeOverlay(marker);
+    });
+    markers = [];
+}
 
 function getnumber(value) { //获取数字
     var num = value.replace(/[^0-9]/ig, "");
@@ -1737,4 +2115,46 @@ function getnumber(value) { //获取数字
 function getletter(value) { //获取字母
     var letter = value.replace(/[^a-z]+/ig, "");
     return letter;
+}
+
+function toChangePollution_Val(value) {
+    var num_pollution = getnumber(value),
+        str_pollution = getletter(value);
+    if (num_pollution == 25) {
+        num_pollution = 2.5;
+    }
+    var html = str_pollution.toUpperCase() + "<sub>" + num_pollution + "</sub>  ";
+    return html;
+}
+
+//去掉字串右边的空格
+function rTrim(str) {
+    var iLength = str.length;
+    if (str.charAt(iLength - 1) == " ") {
+        //如果字串右边第一个字符为空格
+        str = str.slice(0, iLength - 1); //将空格从字串中去掉
+        //这一句也可改成 str = str.substring(0, iLength - 1);
+        str = rTrim(str); //递归调用
+    }
+    return str;
+}
+
+function showUpper(type) {
+    var pollutionType = type.toUpperCase(),
+        num = pollutionType.replace(/[^0-9]/ig, ""),
+        vl = pollutionType.replace(/\d+/g, '');
+    if (num == "25") {
+        num = "2.5";
+    }
+    return vl + "<sub>" + num + "</sub>";
+}
+
+function titlePollution(value) {
+    var num_pollution = getnumber(value),
+        str_pollution = getletter(value).toUpperCase();
+    if (num_pollution == 25) {
+        num_pollution = 2.5;
+    }
+    var titleHtml = str_pollution + num_pollution;
+    return titleHtml;
 }

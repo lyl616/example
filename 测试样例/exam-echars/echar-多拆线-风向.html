@@ -138,6 +138,7 @@
             var weatherIconSize = 45;
 
             function renderArrow(param, api) {
+                // console.log(api)
                 var point = api.coord([
                     api.value(dims.time),
                     api.value(dims.windSpeed)
@@ -163,6 +164,8 @@
             //遍历数组信息
             $.each(series, function (key, values) {
                 var rowData = values;
+                // console.log(rowData)
+
                 var data = echarts.util.map(rowData, function (entry) {
                     var arr = new Array()
                     for (var i = 0; i < keys.length; i++) {
@@ -171,6 +174,7 @@
                     }
                     return arr;
                 });
+                // console.log(data)
 
                 option = {
                     legend: {
@@ -312,6 +316,9 @@
                             z: 10
                         };
                     }
+
+                    console.log(dims)
+                    console.log(val+"---"+dims.time+"------"+dims[val])
                 });
 
                 $("#char-" + key).show();

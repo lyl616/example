@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/echarts.min.js"></script>
+    <script src="echar-common.js"></script>
+    <script src="../js/JSUtils.js"></script>
+    <style>
+        .none {
+            display: none
+        }
+    </style>
+
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 100%;height: auto;border: 1px solid skyblue">
+    <div class='row none' id="char-aqi">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 320px' id="dataChart-aqi"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-pm25">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 320px' id="dataChart-pm25"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-pm10">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 320px' id="dataChart-pm10"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-so2">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 320px' id="dataChart-so2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-no2">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 320px' id="dataChart-no2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-co">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 320px' id="dataChart-co"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-o3">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 320px' id="dataChart-o3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='row none' id="char-no">
+        <div class='col-sm-12'>
+            <div class='ibox float-e-margins'>
+                <div class='ibox-content'>
+                    <div class='echarts' style='width: 100%;height: 320px' id="dataChart-no"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+    var dims = {};
+    var keys = {};
+    var lend_windy = [];
+    $.ajax({
+        type: "GET",
+        url: "../data/survery_win.json",
+        dataType: "json",
+        success: function (resp) {
+            var dataMap = resp.result;
+            keys = dataMap.keys;
+            var directionMap = {};
+
+            echarts.util.each(
+                ['W', 'WSW', 'SW', 'SSW', 'S', 'SSE', 'SE', 'ESE', 'E', 'ENE', 'NE', 'NNE', 'N', 'NNW', 'NW', 'WNW'],
+                function (name, index) {
+                    directionMap[name] = Math.PI / 8 * index;
+                }
+            );
+            dims = {};
+            for (var i = 0; i < keys.length; i++) {
+                var key = keys[i];
+                dims[key] = i;
+                if (i > 3) {
+                    lend_windy[i - 4] = key.split("$")[1];
+                }
+            }
+            var arrowSize = 18;
+            var weatherIconSize = 45;
+
+            function renderArrow(param, api) {
+                var point = api.coord([
+                    api.value(dims.time),
+                    api.value(dims.windSpeed)
+                ]);
+                return {
+                    type: 'path',
+                    shape: {
+                        pathData: 'M31 16l-15-15v9h-26v12h26v9z',
+                        x: -arrowSize / 2,
+                        y: -arrowSize / 2,
+                        width: arrowSize,
+                        height: arrowSize
+                    },
+                    rotation: directionMap[api.value(dims.R)],
+                    position: point,
+                    style: api.style({
+                        stroke: '#555',
+                        lineWidth: 1
+                    })
+                };
+            }
+
+            //遍历数组信息
+            $.each(dataMap.series, function (key, values) {
+                var rowData = values;
+                if (rowData.length > 0) {
+
+                    var data = echarts.util.map(rowData, function (entry) {
+                        var arr = new Array()
+                        for (var i in keys) {
+                            var key = keys[i];
+                            arr[i] = entry[key];
+                        }
+                        return arr;
+                    });
+
+                    var data1 = echarts.util.map(rowData, function (entry) {
+                        var arr = new Array()
+                        for (var i in keys) {
+                            if (i < 4) {
+                                var key = keys[i];
+                                arr[i] = entry[key];
+                            }
+                        }
+                        return arr;
+                    });
+                    option = {
+                        legend: {
+                            top: 30,
+                            data: lend_windy
+                        },
+                        tooltip: tooltip_item_windy(),
+                        toolbox: toolBox_dataZoom(),
+                        dataZoom: dataZoom_inside,
+                        grid: {
+                            top: 95,
+                            bottom: 66,
+                            left: 80,
+                            right: 50
+                        },
+                        xAxis: {
+                            type: 'time',
+                            maxInterval: 3600 * 1000 * 24,
+                            splitLine: {
+                                lineStyle: {
+                                    color: '#ddd'
+                                }
+                            }
+                        },
+                        visualMap: {
+                            type: 'piecewise',
+                            show: false,
+                            orient: 'horizontal',
+                            left: 'center',
+                            bottom: 10,
+                            pieces: [{
+                                lt: 999,
+                                color: '#3095FF',
+                                label: '微风（小于 999 m/s）'
+                            }],
+                            seriesIndex: 0,
+                            dimension: 1
+                        },
+                        yAxis: [{
+                            name: yaxisTitle(key),
+                            nameLocation: 'middle',
+                            nameGap: 50,
+                            boundaryGap: [0, 0.1],
+                            splitLine: {
+                                lineStyle: {
+                                    color: '#ddd'
+                                }
+                            }
+                        }, {
+                            name: '风速（m/s）',
+                            nameLocation: 'middle',
+                            nameGap: 28,
+                            boundaryGap: [0, 0.1],
+                            axisLine: {
+                                lineStyle: {
+                                    color: '#666'
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: {
+                                    color: '#ddd'
+                                }
+                            }
+                        }],
+                        series: [{
+                            yAxisIndex: 1,
+                            type: 'custom',
+                            renderItem: renderArrow,
+                            encode: {
+                                x: dims.time,
+                                y: dims.windSpeed
+                            },
+                            data: data1,
+                            z: 3
+                        },
+                            {
+                                yAxisIndex: 1,
+                                type: 'line',
+                                symbol: 'none',
+                                encode: {
+                                    x: dims.time,
+                                    y: dims.windSpeed
+                                },
+                                lineStyle: {
+                                    normal: {
+                                        color: '#aaa',
+                                        type: 'dotted'
+                                    }
+                                },
+                                data: data1,
+                                z: 1
+                            }
+                        ]
+                    };
+
+                    $.each(keys, function (i, val) {
+                        if (i >= 3) {
+                            option.series[i - 1] = {
+                                yAxisIndex: 0,
+                                type: 'line',
+                                name: val.split("$")[1],
+                                encode: {
+                                    x: dims.time,
+                                    y: dims[val]
+                                },
+                                symbolSize: 5,
+                                data: data,
+                                itemStyle: {
+                                    normal: {
+                                        color: myColors[i]
+                                    },
+                                    emphasis: {
+                                        color: myColors[i]
+                                    }
+                                },
+                                z: 10
+                            };
+                        }
+                    });
+                    $("#char-" + key).show();
+                    var chartId = "dataChart-" + key;
+                    var e1 = echarts.init(document.getElementById(chartId));
+
+                    e1.setOption(option);
+                }
+                // echarts.connect('group1');
+            });
+        }
+
+
+    });
+
+
+    function yaxisTitle(key) {
+        var chartsTitle = titlePollution(key);
+        switch (key) {
+            case 'co': {
+                chartsTitle += ' (mg/m³)';
+            }
+                break;
+            case 'no':
+            case 'no2':
+            case 'o3':
+            case 'pm10':
+            case 'pm25':
+            case 'so2': {
+                chartsTitle += ' (μg/m³)';
+            }
+                break;
+        }
+        return chartsTitle;
+    }
+
+
+    function titlePollution(value) {
+        var num_pollution = getnumber(value),
+            str_pollution = getletter(value).toUpperCase();
+        if (num_pollution == 25) {
+            num_pollution = 2.5;
+        }
+        var titleHtml = str_pollution + num_pollution;
+        return titleHtml;
+    }
+
+
+</script>
+</body>
+</html>

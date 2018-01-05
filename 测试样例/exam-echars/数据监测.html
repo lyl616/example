@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-<div class="magin10 surver_echarts" id="allCharts">
+<div class="magin10 surver_echarts" id="allCharts" style="width: 1024px;">
     <div class='none' id="char-aqi">
         <div class='ibox float-e-margins'>
             <div class='ibox-content'>
@@ -75,6 +75,9 @@
 </body>
 
 <script type="text/javascript">
+
+    // var ss = '70*';
+    // alert(typeof parseInt(ss.replace(/[*]/ig, "")))
     $.ajax({
         type: "GET",
         url: "../data/survery.json",
@@ -84,6 +87,7 @@
             var j = 0;
             $.each(dataMap, function (key, values) {
                 var result = values;
+
                 var option = {
                     tooltip: tooltip_axis(),
                     toolbox: toolBox_dataZoom(),
@@ -125,16 +129,42 @@
                     }],
                     series: []
                 };
+
+
+                var cat = result.category;
                 //////////////////////////////
                 option.legend.data = result.legend;
-                option.xAxis[0].data = result.category;
-                if (result.series) {
-                    for (var i = 0; i < result.series.length; i++) {
+                option.xAxis[0].data = cat;
+
+                var ses = result.series;
+                if (ses.length > 0) {
+                    $.each(ses, function (inx, val) {
+                        var sesssss = val;
+                        var sdata = sesssss.data;
+
+                        var dd = [];
+                        for (var i = 0; i < sdata.length; i++) {
+                            if ((sdata[i] + "").indexOf("*") != -1) {
+
+                                var d2 = parseInt(sdata[i].replace(/[*]/ig, ""));
+                                if (isNaN(d2)) {
+                                    d2 = "-";
+                                }
+                                dd[i] = [cat[i], d2, "*"];
+                            } else {
+                                dd[i] = [cat[i], sdata[i], 0];
+                            }
+                        }
+
+
                         var arr = {
-                            name: result.series[i].name,
+                            name: sesssss.name,
                             type: 'line',
-                            data: result.series[i].data,
-                            symbolSize: 5,
+                            data: dd,
+                            symbolSize: 5, encode: {
+                                x: 0,
+                                y: 1
+                            },
                             itemStyle: {
                                 normal: {
                                     color: myColors[i]
@@ -144,8 +174,10 @@
                                 }
                             }
                         };
-                        option.series.push(arr);
-                    }
+                        option.series.push(arr)
+                    })
+
+
                     $("#char-" + key).show();
                     var myChar = echarts.init(document.getElementById("dataChart-" + key));
                     myChar.hideLoading();

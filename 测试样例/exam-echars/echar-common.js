@@ -84,12 +84,20 @@ function tooltip_item() {
             type: 'cross'
         },
         formatter: function (params) {
+            console.log(params)
             var res = "";
-            var nowtime = params.name;//new Date(params.name).Format("dd日HH时");
+            var nowtime = params.data[0];//new Date(params.name).Format("dd日HH时");
             var itemName = params.seriesName;
             var marker = params.marker;
             res = nowtime + '<br/>';
-            res += marker + itemName + ":" + params.value + '<br/>';
+            var t = "";
+            if (isNaN(params.data[2])) {
+                t = "<sup>*</sup>";
+            } else {
+                t = "";
+            }
+
+            res += marker + itemName + ":" + params.data[1] + t + '<br/>';
             return res;
         },
         position: ['50%', '50%']
@@ -139,8 +147,9 @@ function tooltip_axis() {
         },
         formatter: function (params) {
             var obj = JSON.parse(JSON.stringify(params));
+
             obj = dataSort(params);
-            var itemName = obj[0].name;
+            var itemName = obj[0].axisValue;
             var str = "<div class=\"tooltip-tit\" style=\"font-size:12px\">" + itemName + "</div>";
             var fsize = 12,
                 changeWid = 150;
@@ -150,13 +159,19 @@ function tooltip_axis() {
                 changeWid = 150;
             }
             for (var i = 0; i < obj.length; i++) {
-                if (obj[i].value == undefined) {
-                    obj[i].value = '-';
+                if (obj[i].value[1] == NaN) {
+                    obj[i].value[1] = '-';
+                }
+                var t = "";
+                if (isNaN(obj[i].value[2])) {
+                    t = "<sup>*</sup>";
+                } else {
+                    t = "";
                 }
                 str = str + "<div class=\"tooltip-data\" style=\"width:" +
                     changeWid + "px;\"><b style=\"color: " +
                     obj[i].color + ";\"> &bull;</b><i style=\"width:" + (changeWid - 30) + "px;\">" +
-                    obj[i].seriesName + ":" + obj[i].value + "</i>";
+                    obj[i].seriesName + ":" + obj[i].value[1] + t + "</i>";
                 str += "</div>";
 
             }
@@ -264,9 +279,10 @@ var myColors = [
 
 //排序
 function dataSort(data) {
+    debugger
     var compare = function (obj1, obj2) {
-        var val1 = obj1.value == '--' ? 0 : obj1.value,
-            val2 = obj2.value == '--' ? 0 : obj2.value;
+        var val1 = obj1.value[1] == '--' ? 0 : obj1.value[1],
+            val2 = obj2.value[1] == '--' ? 0 : obj2.value[1];
         if (val1 < val2) { //val1 放于val2 之后
             return 1;
         } else if (val1 > val2) { //val1 放于val2 之前
