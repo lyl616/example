@@ -32,7 +32,13 @@
         </div>
     </div>
 
-
+    <div class='none' id="char-aqi2">
+        <div class='ibox float-e-margins'>
+            <div class='ibox-content'>
+                <div class='echarts' style='width: 100%;height: 320px' id="dataChart-aqi2"></div>
+            </div>
+        </div>
+    </div>
     <div class='row none' id="char-pm25">
         <div class='col-sm-12'>
             <div class='ibox float-e-margins'>
@@ -112,14 +118,19 @@
 
 </div>
 <script type="text/javascript">
+
+    var dims = {};
+    var keys = {};
+    var lend_windy = [];
+
     $.ajax({
         type: "GET",
         url: "../data/survery_win.json",
         dataType: "json",
         success: function (resp) {
             var result = resp.result;
-            var keys = result.keys;
-            var lend = new Array();
+            keys = result.keys;
+
             var series = result.series;
             var directionMap = {};
             echarts.util.each(
@@ -129,12 +140,12 @@
                 }
             );
 
-            var dims = {};
+            dims = {};
             for (var i = 0; i < keys.length; i++) {
                 var key = keys[i];
                 dims[key] = i;
                 if (i > 2) {
-                    lend[i - 3] = key.split("-")[1];
+                    lend_windy[i - 3] = key.split("-")[1];
                 }
             }
             var arrowSize = 18;
@@ -166,6 +177,8 @@
             //遍历数组信息
             $.each(series, function (key, values) {
                 var rowData = values;
+                console.log(values)
+
                 var tdata = echarts.util.map(rowData, function (entry) {
                     var arr = new Array()
                     for (var i = 0; i < keys.length; i++) {
@@ -179,8 +192,6 @@
                         } else {
                             arr[i] = entry[key];
                         }
-
-
                     }
                     return arr;
                 });
@@ -204,7 +215,7 @@
                         right: '50px',
                         left: '50px'
                     },
-                    tooltip:tooltip_axis(),
+                    tooltip: tooltip_axis_windy(),
                     dataZoom: dataZoom_inside,
                     grid: {
                         top: 60,
@@ -284,6 +295,8 @@
                         z: 1
                     }]
                 };
+
+
                 $.each(keys, function (i, val) {
                     if (i >= 2) {
                         option.series[i] = {
@@ -301,7 +314,6 @@
                     }
                 });
 
-                console.log(option)
                 $("#char-" + key).show();
                 var e1 = echarts.init(document.getElementById("dataChart-" + key));
                 e1.hideLoading();

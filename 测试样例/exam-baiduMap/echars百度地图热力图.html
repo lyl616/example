@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+<div id="container" style="height: 100%"></div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript" src="../../echarts-examples/public/vendors/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="../../echarts-examples/public/vendors/echarts-gl/echarts-gl.min.js"></script>
+<script type="text/javascript" src="../../echarts-examples/public/vendors/echarts-stat/ecStat.min.js"></script>
+<script type="text/javascript" src="../../echarts-examples/public/vendors/echarts/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="../../echarts-examples/public/vendors/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="../../echarts-examples/public/vendors/echarts/map/js/world.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+<script type="text/javascript" src="../../echarts-examples/public/vendors/echarts/extension/bmap.min.js"></script>
+<script type="text/javascript" src="../../echarts-examples/public/vendors/simplex.js"></script>
+
+<script type="text/javascript">
+
+    var i = 1;
+
+    var flag = false;
+    var myChart;
+
+    myChart = echarts.init(document.getElementById("container"));
+    myChart.setOption(option = {
+        animation: false,
+        bmap: {
+            // center: [120.13066322374, 30.240018034923],
+            center: [116.576365, 35.420412],
+            zoom: 11,
+            roam: true
+        },
+        visualMap: {
+            show: false,
+            top: 'top',
+            min: 0,
+            max: 80,
+            seriesIndex: 0,
+            calculable: true,
+            inRange: {
+                // color: ['blue', 'blue', 'green', 'yellow', 'red']
+                color: ['#00E500', '#FFFF00', '#FF7E00', '#FF0000', '#99004C', '#7E0023']
+            }
+        },
+        series: [{
+            type: 'heatmap',
+            coordinateSystem: 'bmap',
+            data: [],
+            pointSize: 25,
+            blurSize: 50
+        }]
+    });
+    var app = {};
+    app.title = '热力图与百度地图扩展';
+    if (!app.inNode) {
+        // 添加百度地图插件
+        var bmap = myChart.getModel().getComponent('bmap').getBMap();
+        bmap.addControl(new BMap.MapTypeControl());
+    }
+
+
+
+    window.setInterval(function () {
+        var url = 'heatmapData/day' + i + '.json';
+        $.get(url, function (r) {
+            var points = [];
+            $.each(r.data.data, function (i, item) {
+                points.push([item.lng, item.lat, item.count]);
+            })
+
+            option.series[0].data = points;
+            myChart.setOption(option);
+
+
+        });
+        i++;
+        if (i > 8) i = 1;
+    }, 1000);
+
+
+</script>
+</body>
+</html>

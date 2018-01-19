@@ -81,7 +81,7 @@ function tooltip_item() {
     return {
         trigger: 'item',
         axisPointer: {
-            type: 'cross'
+            // type: 'cross'
         },
         formatter: function (params) {
             console.log(params)
@@ -108,7 +108,7 @@ function tooltip_item_windy() {
     return {
         trigger: 'item',
         axisPointer: {
-            type: 'cross'
+            // type: 'cross'
         },
         formatter: function (params) {
             var str = '';
@@ -143,7 +143,7 @@ function tooltip_axis() {
     return {
         trigger: "axis",
         axisPointer: {
-            type: 'cross'
+            // type: 'cross'
         },
         formatter: function (params) {
             var obj = JSON.parse(JSON.stringify(params));
@@ -185,7 +185,7 @@ function tooltip_axis_windy() {
     return {
         trigger: 'axis',
         axisPointer: {
-            type: 'cross'
+            // type: 'cross'
         },
         formatter: function (params) {
 
@@ -195,27 +195,25 @@ function tooltip_axis_windy() {
                 dt = [];
             var str = '<div class=\"tooltip-tit\" style="font-size:12px">';
 
-            data[0] = echarts.format.formatTime('yyyy-MM-dd', params[0].value[dims.time]) +
-                ' ' + echarts.format.formatTime('hh:mm', params[0].value[dims.time]);
-            data[1] = '   风速：' + params[0].value[dims.windSpeed];
-            data[2] = '   风向：' + params[0].value[dims.R];
+            data[0] = new Date(params[0].data[0]).Format('yyyy-MM-dd hh:mm');
+            data[1] = '   风速：' + params[0].data[1];
+            data[2] = '   风向：' + params[0].data[2];
             str += "<div class=\"clear\">" + data[0] + "       " + data[1] + "      " + data[2] + "</div>";
 
 
-            for (var i = 4; i < keys.length; i++) {
-                for (var j = 0; j < params.length; j++) {
-                    var stName = keys[i].split("$")[1];
-                    var seriesName = params[j].seriesName;
-                    if (stName == seriesName) {
-                        dt = {
-                            'text': keys[i].split("$")[1],
-                            'value': params[2].value[dims[keys[i]]],
-                            'marker': params[j].marker
-                        };
-                        sortArr.push(dt);
-                    }
-                }
+            for (var j = 4; j < params.length; j++) {
+
+                var seriesName = params[j].seriesName;
+
+                dt = {
+                    'text': keys[i].split("$")[1],
+                    'value': params[j].value[dims[keys[i]]],
+                    'marker': params[j].marker
+                };
+                sortArr.push(dt);
+
             }
+
             sortArr = dataSort(sortArr);
 
             for (var j = 0; j < sortArr.length; j++) {
@@ -279,7 +277,6 @@ var myColors = [
 
 //排序
 function dataSort(data) {
-    debugger
     var compare = function (obj1, obj2) {
         var val1 = obj1.value[1] == '--' ? 0 : obj1.value[1],
             val2 = obj2.value[1] == '--' ? 0 : obj2.value[1];
