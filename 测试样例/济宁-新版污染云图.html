@@ -6,22 +6,30 @@
 
 
     <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="js/JSUtils.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1XjLLEhZhQNUzd93EjU5nOGQ"></script>
 
 </head>
 <body>
+<button onclick="play()" value="播放">播放</button>
+<hr/>
 <div id="bMap" style="width: 1280px;height: 600px;"></div>
 </body>
 
 <script type="application/javascript">
     var map = "";
+    var is_change = false;
+    var _TIMMER = [];
     $(function () {
         map = new BMap.Map("bMap");
         map.enableScrollWheelZoom(true);
-        map.centerAndZoom("济宁", 10);
+        map.centerAndZoom("济宁", 9);
         getCloud();
         getBoundary("济宁");
-        map.addEventListener("click", showInfo);
+        // map.addEventListener("click", showInfo);
+
+        // 启动定时器
+        window.setInterval(_TIMMER_TRIGER_, 300);
     });
 
 
@@ -35,27 +43,33 @@
     }
 
 
-    function showInfo(e) {
-        console.log("{ \"lng\":" + e.point.lng + ",\"lat\": " + e.point.lat, ",\"count\":" + parseInt(100 * Math.random()) + " },");
-    }
+    var startTime = "2017-12-24";
+    var end = "2018-01-11";
 
+    var index = 0;
 
     function getCloud() {
-//        济宁[115.030960,30.185069],[118.299947,36.238989]
-        var ch = new BMap.Point(115.060539, 30.40945), cm = new BMap.Point(118.337309,  36.238351);
-//        var ch = new BMap.Point(102.562308,  28.505303), cm = new BMap.Point(105.313884,  31.666892 );
-        // var ch=new BMap.Point(60.42,10.01),cm=new BMap.Point(152.48,57.35);
-//        addmarker(map, ch);
-//        addmarker(map, cm);
+        startTime = dayIncre(startTime, 1);
+
+        var ch = new BMap.Point(115.060539, 30.40945), cm = new BMap.Point(118.337309, 36.238351);
+
         var groundOverlayOptions = {
             opacity: 0.8
         };
         imageLayer2 = new BMap.GroundOverlay(new BMap.Bounds(ch, cm), groundOverlayOptions);
         map.addOverlay(imageLayer2);
-        var imgurl2 = "images/370800-20170827.png";
+        var show = new Date(startTime).Format('yyyyMMdd');
+        var imgurl2 = "images/pollutionClouds/370800-" + show + ".png";
+        var imgurl2 = "images/pollutionClouds/" + show + ".png";
         imageLayer2.setImageURL(imgurl2);
+        index++;
+        if (startTime == end) {
+            is_change = false;
+        }
+    }
 
-
+    function play() {
+        is_change = true;
     }
 
     function getBoundary(name) {
@@ -69,6 +83,21 @@
                 map.setViewport(ply.getPath());    //调整视野
             }
         });
+    }
+
+
+
+
+    function _TIMMER_TRIGER_() {
+        if (is_change) {
+            getCloud(index);
+        }
+    }
+
+
+    // 触发函数
+    _TIMMER.To_DO = function () {
+
     }
 
 
