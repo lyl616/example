@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.4.0/echarts.js"></script>
+
+    <script>
+
+
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "tsconfig.json",
+                dataType: "json",
+                success: function (resp) {
+
+                    var dom = document.getElementById("container");
+                    var myChart = echarts.init(dom);
+                    var charMap = resp.result.charMap;
+                    console.log(date)
+                    console.log(data)
+                    var option = {
+                        xAxis: {
+                            type: 'category',
+                            show: false,
+                            boundaryGap: false,
+                            data: date
+                        },
+                        yAxis: {
+                            type: 'value',
+                            show: false,
+                            boundaryGap: [0, '100%']
+                        },
+                        grid: {
+                            left: "0",
+                            top: 0,
+                            right: 0,
+                            bottom: 0
+                        },
+                        series: [{
+                            name: '模拟数据',
+                            type: 'line',
+                            smooth: true,
+                            symbol: 'none',
+                            sampling: 'average',
+                            itemStyle: {
+                                normal: {
+                                    color: '#eee' //绿
+                                }
+                            },
+                            areaStyle: {
+                                normal: {
+                                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                        offset: 0,
+                                        color: '#f8ebc3' //橙色
+                                    }, {
+                                        offset: 1,
+                                        color: '#f9999d' //粉色
+                                    }])
+                                }
+                            },
+                            data:  data
+                        }]
+                    };
+
+
+                    myChart.setOption(option);
+                }
+            });
+
+
+        });
+    </script>
+
+</head>
+<body style="height: 100%; margin: 0">
+<div id="container" style="height: 400px"></div>
+</body>
+</html>
