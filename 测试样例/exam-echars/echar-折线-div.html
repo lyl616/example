@@ -7,7 +7,8 @@
 
     <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.7.0/echarts.js"></script>-->
-    <script src="https://cdn.bootcss.com/echarts/3.7.2/echarts.min.js"></script>
+    <!--<script src="https://cdn.bootcss.com/echarts/3.7.2/echarts.min.js"></script>-->
+    <script src="https://cdn.bootcss.com/echarts/4.0.2/echarts.min.js"></script>
 
     <style>
 
@@ -67,6 +68,9 @@
                                 right: "0px",
                                 show: true,
                                 feature: {
+                                    dataZoom: {
+                                        yAxisIndex: 'none'
+                                    },
                                     saveAsImage: {
                                         show: true
                                     }
@@ -132,6 +136,7 @@
                         //////////////////////////////
                         option.legend.data = result.legend;
                         option.xAxis[0].data = result.category;
+                        var arrTmep=[];
                         if (result.series) {
 
                             for (var i = 0; i < result.series.length; i++) {
@@ -146,18 +151,17 @@
                                 option.series.push(arr);
                             }
 
-
                             $("#char-" + key).show();
                             var e1 = echarts.init(document.getElementById("dataChart-" + key));
+                            arrTmep.push(e1)
                             e1.hideLoading();
                             e1.group = 'group1';
                             e1.setOption(option);
                             arrayChars.push(e1);
 
                         }
-                        echarts.connect('group1');
-
-
+                        // echarts.connect('group1');
+                        echarts.connect(arrTmep);
                     });
                 }
 

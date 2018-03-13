@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>echars-堆叠图</title>
+
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.7.0/echarts.js"></script>-->
+    <!--<script src="https://cdn.bootcss.com/echarts/3.7.2/echarts.min.js"></script>-->
+    <script src="https://cdn.bootcss.com/echarts/4.0.2/echarts.min.js"></script>
+
+</head>
+<body>
+<div id="main" style=" width: 800px;height: 500px"></div>
+</body>
+
+<script>
+
+
+    //产生随机数函数
+    function RndNum(n) {
+        var rnd = "";
+        for (var i = 0; i < n; i++)
+            rnd += Math.floor(Math.random() * 10);
+        return rnd;
+    }
+
+
+    var myChart = echarts.init(document.getElementById('main'));
+    var lend = ['优', '良', '轻度污染', '中度污染', '重度污染', '严重污染'];
+    var axis = ["市辖区", "高新区", "太白湖区", "任城区", "兖州区",
+        "微山县", "鱼台县", "金乡县", "嘉祥县", "汶上县", "泗水县", "梁山县", "曲阜市", "邹城市"];
+    var res = [];
+    $.each(lend, function (i, val) {
+        var data = [];
+        for (var j = 0; j < axis.length; j++) {
+            data[j] = RndNum(2);
+        }
+        res[i] = {
+            name: val,
+            stack: '堆叠',
+            type: 'bar',
+            barMaxWidth: 25,//最大宽度
+            data: data
+        }
+    });
+    var option = {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        toolbox: {
+            show: true,
+            right: 10,
+            feature: {
+                saveAsImage: {
+                    show: true
+                }
+            }
+        },
+        dataZoom: [{
+            textStyle: {
+                color: '#8392A5'
+            },
+            zoomLock: true,
+            start: 0,
+            end: (11 / axis.length) * 100,
+            handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+            handleSize: '80%',
+            bottom: 10,
+            width: '90%',
+            dataBackground: {
+                areaStyle: {
+                    color: '#8392A5'
+                },
+                lineStyle: {
+                    opacity: 0.8,
+                    color: '#8392A5'
+                }
+            },
+            handleStyle: {
+                color: '#fff',
+                shadowBlur: 3,
+                shadowColor: 'rgba(0, 0, 0, 0.6)',
+                shadowOffsetX: 2,
+                shadowOffsetY: 2
+            }
+        },
+            {
+                type: 'inside',
+
+                disabled: true
+            }],
+
+        legend: {
+            data: lend
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '10%',
+            containLabel: true
+        },
+        xAxis: [
+            {
+                data: axis,
+                axisLabel: {
+                    interval: 0
+                }
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value'
+            }
+        ],
+        series: res
+    };
+    myChart.setOption(option);
+</script>
+</html>

@@ -91,7 +91,7 @@ var  vm = new Vue({
         searchFor: '',
         moreParams: {},
         fields: tableColumns,
-        tableHeight: '400px',
+        tableHeight: '380px',
         vuetableFields: false,
         sortOrder: [{
             field: 'id',
