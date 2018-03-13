@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>echars-堆叠图</title>
+
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.0.2/echarts.min.js"></script>
+    <script src="echars-common.js"></script>
+
+</head>
+<body>
+<div id="main" style=" width: 800px;height: 500px"></div>
+</body>
+
+<script>
+
+
+    var myChart = echarts.init(document.getElementById('main'));
+
+    var axis = ["市辖区", "高新区", "太白湖区", "任城区", "兖州区", "微山县", "鱼台县", "金乡县", "嘉祥县", "汶上县", "泗水县", "梁山县", "曲阜市", "邹城市"];
+    var data = [];
+    for (var j = 0; j < axis.length; j++) {
+        if (j <= 7)
+            data[j] = RndNum(2);
+        else
+            data[j] = -1 * RndNum(2);
+    }
+
+    var title = '省份改善TOP5排名';
+
+    var option = {
+        title: {
+            text: title,
+            textStyle: {
+                fontSize: '12'
+            },
+            left: 'center'
+        },
+        legend: {
+            data: [{
+                name: ' ',
+                icon: 'image://../img/gaisan.png',
+                onclick: function () {
+
+                }
+            }],
+            right: '4%',
+            itemWidth: 120,
+            selectedMode: false
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+            },
+            formatter: function (params) {
+                var obj = JSON.parse(JSON.stringify(params));
+                var data = obj[0].data;
+                var ld = "改善率";
+                if (data >= 0) {
+                    ld = "改善率";
+                } else {
+                    ld = "恶化率";
+                }
+                return obj[0].name + "<br/> <b style=\"color: " + obj[0].color + ";\"> &bull;</b>  " + ld + "  : " + data + "%";
+            }
+        }, toolbox: {
+            show: true,
+            right: 10,
+            feature: {
+                saveAsImage: {
+                    show: true
+                }
+            }
+        },
+        dataZoom: dataZoom_start_end,
+        grid: {
+            left: '4%',
+            right: '4%',
+            bottom: '10%',
+            containLabel: true
+        },
+        xAxis: [{
+            type: 'category',
+            axisLabel: {
+                interval: 0,
+                rotate: '30',
+                margin: 8
+            },
+            textStyle: {
+                color: '#fff',
+                fontSize: '10'
+            },
+            data: axis
+        }],
+        yAxis: {
+            type: 'value',
+            boundaryGap: ['0%', '5%'],
+            axisLabel: {
+                formatter: '{value}%'
+            }
+        },
+        series: [{
+            name: ' ',
+            type: 'bar',
+            barWidth: '22',
+            data: data,
+            itemStyle: {
+                normal: {
+                    color: function (params) {
+                        if (params.data >= 0) {
+                            //最差
+                            return '#71E0B9';
+                        } else {
+                            //最好
+                            return '#EF6E83';
+                        }
+                    }
+                }
+            }
+        }]
+    };
+
+    myChart.setOption(option);
+
+</script>
+
+</html>
