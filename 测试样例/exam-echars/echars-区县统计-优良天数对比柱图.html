@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>echars-堆叠图</title>
+
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.0.2/echarts.min.js"></script>
+    <script src="echars-common.js"></script>
+
+</head>
+<body>
+<div id="main" style=" width: 800px;height: 500px"></div>
+</body>
+
+<script>
+
+    var myChart = echarts.init(document.getElementById('main'));
+    var xAxis = ["市辖区", "高新区", "太白湖区", "任城区", "兖州区", "微山县", "鱼台县", "金乡县", "嘉祥县", "汶上县", "泗水县", "梁山县", "曲阜市", "邹城市"];
+    var data1 = [];
+    var data2 = [];
+    for (var i = 0; i < xAxis.length; i++) {
+        data1[i] = RndNum(2);
+        data2[i] = RndNum(2);
+    }
+    var titleTemp = "省份TOPXX排名";
+
+    var option = {
+        title: {
+            text: titleTemp,
+            textStyle: {
+                fontSize: '12'
+            },
+            left: '35%'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        dataZoom: dataZoom_start_end,
+        color: ['#3AA5F5', '#FDBF2D'],
+        legend: {
+            data: ['实际', '目标'],
+            right: '10px',
+            selectedMode: false
+        },
+        grid: {
+            left: '4%',
+            right: '4%',
+            bottom: '10%',
+            containLabel: true
+        },
+        xAxis: [{
+            type: 'category',
+            data: xAxis,
+            // axisLabel: {
+            //     interval: 0,
+            //     rotate: '30',
+            //     margin: 8
+            // },
+            textStyle: {
+                color: '#fff',
+                fontSize: '10'
+            }
+        }],
+        yAxis: [{
+            type: 'value',
+            boundaryGap: ['0%', '5%'],
+        }],
+        series: [{
+            name: '实际',
+            type: 'bar',
+            itemStyle: {
+                normal: {
+                    color: "#3AA5F5"
+                }
+            },
+            data: data1
+        },
+            {
+                name: '目标',
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        color: "#FDBF2D"
+                    }
+                },
+                data: data2
+            }
+        ]
+    };
+
+    myChart.setOption(option);
+
+</script>
+
+</html>
