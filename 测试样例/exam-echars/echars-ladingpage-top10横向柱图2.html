@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>echars-横向柱形图</title>
+
+    <script src="../js/jquery.1.9.1.js"></script>
+    <script src="../js/echarts.min.4.0.2.js"></script>
+    <script src="echars-common.js"></script>
+
+</head>
+<body>
+<div id="main" style=" width: 320px;height: 250px"></div>
+</body>
+
+<script>
+
+    var myChart = echarts.init(document.getElementById('main'));
+    var saleDate = [
+        {district: '市辖区', value: 132},
+        {district: '高新区', value: 321},
+        {district: '太白湖区', value: 452},
+        {district: '任城区', value: 190},
+        {district: '兖州区', value: 176},
+        {district: '微山县', value: 376},
+        {district: '鱼台县', value: 387},
+        {district: '金乡县', value: 337},
+        {district: '汶上县', value: 327},
+        {district: '嘉祥县', value: 367},
+    ];
+    //desc 倒序 asc 正序 固定写法 对 saleDate.value进行排序
+    saleDate.sort(getSortFun('asc', 'value'));
+
+    function getSortFun(order, sortBy) {
+        var ordAlpah = (order == 'asc') ? '>' : '<';
+        var sortFun = new Function('a', 'b', 'return a.' + sortBy + ordAlpah + 'b.' + sortBy + '?1:-1');
+        return sortFun;
+    }
+    var colors =   ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae',
+        '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570'];
+
+    var datale = [], datale2 = [];
+    for (var i = 0; i < saleDate.length; i++) {
+        datale.push(saleDate[i].district)
+        datale2.push(saleDate[i].value)
+    }
+
+    option = {
+        // color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae',
+        //     '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570'],
+        tooltip: {
+            trigger: 'item',
+        },
+        grid: {
+            left: '13%',
+            right: '4%',
+            bottom: '3%',
+            top: '5%',
+            containLabel: true
+        },
+        yAxis: [
+            {
+                type: 'category',
+                data: datale,
+                splitLine: {
+                    show: false
+                },
+                textStyle: {
+                    verticalAlign: 'bottom',
+                    lineHeight: 56,
+                },
+                show: true,
+                textStyle: {
+                    //      color: '#fff'
+                },
+                axisTick: {
+                    show: false,
+                    alignWithLabel: true
+                },
+                axisLine: {
+                    show: false,
+                }
+            }
+        ],
+        xAxis: [
+            {
+                type: 'value',
+                show: false
+            }
+        ],
+        series: [
+            {
+                type: 'bar',
+                barWidth: '15%',
+                itemStyle: {
+                    normal: {
+                        barBorderRadius: [5],
+                        color: function (params) {
+                            console.log(params.data)
+                            var colorList = ['rgb(164,205,238)', 'rgb(42,170,227)', 'rgb(25,46,94)', 'rgb(195,229,235)'];
+                            return colors[params.dataIndex];
+                        }
+                    }
+                },
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'right',
+                        color:"#ef3"
+                    }
+                },
+                data: datale2
+            }
+        ]
+    };
+
+    console.log(datale2)
+    myChart.setOption(option);
+
+</script>
+
+</html>

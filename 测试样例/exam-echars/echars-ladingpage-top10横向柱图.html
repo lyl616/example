@@ -10,86 +10,74 @@
 
 </head>
 <body>
-<div id="main" style=" width: 800px;height: 500px"></div>
+<div id="main" style=" width: 320px;height: 250px"></div>
 </body>
 
 <script>
 
     var myChart = echarts.init(document.getElementById('main'));
-    var xAxis = ["市辖区", "高新区", "太白湖区", "任城区", "兖州区", "微山县", "鱼台县", "金乡县", "嘉祥县", "汶上县", "泗水县", "梁山县", "曲阜市", "邹城市"];
-    var data1 = [];
-    var data2 = [];
-    for (var i = 0; i < xAxis.length; i++) {
-        data1[i] = RndNum(2);
-        data2[i] = RndNum(2);
-    }
-    var titleTemp = "省份TOPXX排名";
-
-    var option = {
-        title: {
-            text: titleTemp,
-            textStyle: {
-                fontSize: '12'
-            },
-            left: '35%'
-        },
+    var ydata = ["市辖区", "高新区", "太白湖区", "任城区", "兖州区", "微山县", "鱼台县", "金乡县", "嘉祥县", "汶上县"];
+    // var xAxis = ["市辖区", "高新区", "太白湖区", "任城区", "兖州区", "微山县", "鱼台县", "金乡县", "嘉祥县", "汶上县", "泗水县", "梁山县", "曲阜市", "邹城市"];
+    // var ydata = ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)'];
+    var data = [200, 200, 200, 200, 200, 200, 200, 200, 200, 200];
+    option = {
         tooltip: {
             trigger: 'axis',
             axisPointer: {
                 type: 'shadow'
+            },
+            textStyle: {
+                // color: '#fff',
+                fontSize: 12
             }
         },
-        dataZoom: dataZoom_start_end,
-        color: ['#3AA5F5', '#FDBF2D'],
         legend: {
-            data: ['实际', '目标'],
-            right: '10px',
-            selectedMode: false
+            show: false
         },
         grid: {
-            left: '4%',
-            right: '4%',
-            bottom: '10%',
+            top: '10px',
+            left: '10px',
+            right: '10px',
+            bottom: '10px',
             containLabel: true
         },
-        xAxis: [{
-            type: 'category',
-            data: xAxis,
-            // axisLabel: {
-            //     interval: 0,
-            //     rotate: '30',
-            //     margin: 8
-            // },
-            textStyle: {
-                color: '#fff',
-                fontSize: '10'
-            }
-        }],
-        yAxis: [{
+        xAxis: {
+            show: false,
             type: 'value',
-            boundaryGap: ['0%', '5%'],
-        }],
-        series: [{
-            name: '实际',
-            type: 'bar',
-            itemStyle: {
-                normal: {
-                    color: "#3AA5F5"
+            boundaryGap: [0, 0.01]
+        },
+        yAxis: {
+            type: 'category',
+            data: ydata,
+            boundaryGap: false,
+            // y轴的字体样式
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    //      color: '#fff'
                 }
             },
-            data: data1
-        },
-            {
-                name: '目标',
-                type: 'bar',
-                itemStyle: {
-                    normal: {
-                        color: "#FDBF2D"
-                    }
-                },
-                data: data2
+            // y轴的颜色和宽度
+            axisLine: {
+                show: false,
+                lineStyle: {
+                    //     color: '#fff',
+                    width: 1,
+                }
+            }, axisTick: {
+                show: false
             }
-        ]
+        },
+        series: [{
+            barWidth: 5, //柱图宽度
+            itemStyle: {
+                normal: {
+                    color: '#f47827'
+                }
+            },
+            type: 'bar',
+            data: data
+        }]
     };
 
     myChart.setOption(option);
