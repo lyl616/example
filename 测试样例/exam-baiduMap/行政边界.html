@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery.1.9.1.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1XjLLEhZhQNUzd93EjU5nOGQ"></script>
+
+</head>
+<body>
+<div id="l-map"style="width: 800px;height: 400px;"></div>
+<div class="layout">
+    <input id="value" value="青山湖区长春村" type="text">
+    　　　　 <input type="submit" onclick="pd()" value="定位"/>
+    　　　　 <input type="submit" onclick="getBoundary()" value="边界"/>
+</div>
+<script type="application/javascript">
+
+    //初始化地图
+    var value='';
+    var map = new BMap.Map("l-map");
+    map.centerAndZoom('济宁市',10);
+    map.enableScrollWheelZoom();
+
+
+    //定位区域，小地名，使用本地检索方法
+    var dw=function(){
+        //value=document.getElementById('value').value;
+        var local = new BMap.LocalSearch(map, {
+            renderOptions:{map: map}
+        });
+
+        local.setMarkersSetCallback(function(pois){
+            map.clearOverlays();//清除所有覆盖物后，在叠加第一个点
+            var marker = new BMap.Marker(pois[0].point);
+            map.addOverlay(marker);
+        })
+
+        local.search(value);
+        map.clearOverlays();
+
+    }
+
+
+
+
+    //获取边界
+    function getBoundary(){//获取边界
+        var bdary = new BMap.Boundary();
+        bdary.get(value, function(rs){       //获取行政区域
+            map.clearOverlays();        //清除地图覆盖物
+            var count = rs.boundaries.length; //行政区域的点有多少个
+            for(var i = 0; i < count; i++){
+                var ply = new BMap.Polygon(rs.boundaries[i], {
+                    strokeWeight: 1,
+                    strokeColor: "#ff0000"
+                }); //建立多边形覆盖物
+                map.addOverlay(ply);  //添加覆盖物
+                map.setViewport(ply.getPath());    //调整视野
+            }
+        });
+    }
+
+
+    //正则表达式，满足条件后调用
+    var patter=/['省'|'市'|'区'|'县']$/;
+    var pd=function(){
+        value=document.getElementById('value').value;
+        if(patter.test(value)==true){//关键字结尾是省市县区就调用下面方法
+            getBoundary();
+            if(/社区|小区$/.test(value)==true){//因为区后面结尾，会有小区和社区，即做了一个字方法
+                dw();
+            }
+        }else{//关键字结尾没有省市县区结尾就调用此方法
+            dw();
+        }
+    }
+
+</script>
+</body>
+</html>

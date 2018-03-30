@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="vue.js"></script>
+    <script src="../My97DatePicker/WdatePicker.js"></script>
+
+    <style>
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px dashed grey;
+        }
+    </style>
+</head>
+<body>
+<div id="mountNode">
+    <todos :todos="items"></todos>
+
+    <my-date-component :fmt="fmt" :maxdate="maxdate" :starttime="starttime"></my-date-component>
+</div>
+
+<script type="text/x-template" id="todos-template">
+    <ul>
+        <todo v-for="todo in todos" :text="todo.text" :editing="todo.editing"></todo>
+    </ul>
+</script>
+
+<script type="text/x-template" id="todo-template">
+    <li>
+        <span v-if="!editing" @click="edit">{{text}}</span>
+        <input type="text"
+               v-el:input
+               v-if="editing"
+               v-model="text"
+               v-on:keyup.enter="blur">
+    </li>
+</script>
+
+
+<script>
+
+    Vue.component('todo', {
+        template: '#todo-template',
+        props: {
+            text: String,
+            editing: Boolean
+        },
+        methods: {
+            blur: function () {
+                this.editing = false;
+            },
+            edit: function () {
+                this.editing = true;
+                this.$nextTick(function () {
+                    this.$els.input.focus();
+                });
+            }
+        }
+    });
+
+    Vue.component('todos', {
+        template: '#todos-template',
+        props: {
+            todos: Array
+        }
+    });
+
+    new Vue({
+        el: '#mountNode',
+        data: function () {
+            return {
+                items: [
+                    {text: 'item 1', editing: false},
+                    {text: 'item 2', editing: false}
+                ],
+                starttime: "",
+                fmt: "yyyy年MM月",
+                maxdate: '%y-%M'
+            }
+        }
+    })
+
+
+    Vue.component('my-date-component', {
+        props: ["fmt", "maxdate", "starttime"],
+        template:
+        '<input id="startTime" v-model="starttime" class="form-control Wdate" ' +
+        'onfocus="WdatePicker({dateFmt:\'{{fmt}}\', autoPickDate: true,onpicked:function() { $(this).blur(); },maxDate:\'{{maxdate}}\'})" type="text">'
+
+    });
+</script>
+</body>
+</html>
