@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>echars-横向柱形图</title>
+
+    <script src="../js/jquery.1.9.1.js"></script>
+    <script src="../js/echarts.min.4.0.2.js"></script>
+    <script src="echars-common.js"></script>
+    <script src="lev-color.js"></script>
+
+</head>
+<body style="background-color: #1E3269">
+<div id="main" style=" width: 190px;height: 190px"></div>
+</body>
+
+<script>
+
+    var myChart = echarts.init(document.getElementById('main'));
+    var scaleData = [
+        {name: "优", value: 33},
+        {name: "良", value: 12},
+        {name: "轻度污染", value: 44},
+        {name: "中度污染", value: 2},
+        {name: "重度污染", value: 4},
+        {name: "严重污染", value: 4}
+    ];
+
+    var placeHolderStyle = {
+        normal: {
+            label: {
+                show: false
+            },
+            labelLine: {
+                show: false
+            },
+            color: 'rgba(0, 0, 0, 0)',
+            borderColor: 'rgba(0, 0, 0, 0)',
+            borderWidth: 3
+        }
+    };
+    var data = [];
+    var legend = [];
+
+
+    var levelColor = ["#00E500", "#FFFF00", "#FF7E00", "#FF0000", "#99004C", "#7E0023"];
+    for (var i = 0; i < scaleData.length; i++) {
+        var clr = getColorByValAndType(scaleData[i].value, 'aqi');
+        legend.push(scaleData[i].name);
+        data.push({
+            value: scaleData[i].value,
+            name: scaleData[i].name,
+            itemStyle: {
+                normal: {
+                    borderWidth: 1,
+                    shadowBlur: 50,
+                    color: levelColor[i],
+                    shadowColor: 'rgba(142, 152, 241, 0.6)'
+                }
+            }
+        }, {
+            value: 1.1,
+            name: '',
+            itemStyle: placeHolderStyle
+        });
+    }
+    option = {
+        tooltip: {
+            // show: false
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'right',
+            data: legend,
+            itemWidth: 8,
+            itemHeight: 5,
+            textStyle: {
+                fontSize: 10,
+                fontWeight: 'bolder',
+                color: '#fff'
+            }
+        },
+        toolbox: {
+            show: false
+        },
+        series: [{
+            name: '',
+            type: 'pie',
+            clockWise: false,
+            radius: [48, 54],
+            center: ['35%', '35%'],
+            hoverAnimation: false,
+            itemStyle: {
+                normal: {
+                    label: {
+                        show: false
+                    },
+                    labelLine: {
+                        show: false
+                    }
+                }
+            },
+            data: data
+        }]
+    }
+    myChart.setOption(option);
+
+</script>
+
+</html>
