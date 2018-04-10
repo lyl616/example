@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>echars-横向柱形图</title>
+
+    <script src="../js/jquery.1.9.1.js"></script>
+    <script src="../js/echarts.min.4.0.2.js"></script>
+    <script src="echars-common.js"></script>
+    <script src="lev-color.js"></script>
+
+</head>
+<!--<body style="background-color: #fff">-->
+<body style="background-color: #1E3269">
+<div id="main" style=" width: 300px;height: 295px"></div>
+</body>
+
+<script>
+    var myChart = echarts.init(document.getElementById('main'));
+
+    var top10Data = [
+        {
+            "districtId": 370881,
+            "districtName": "曲阜市",
+            "aqi": 280,
+            "aqiLevel": 2
+        }, {
+            "districtId": 370811,
+            "districtName": "任城区",
+            "aqi": 79,
+            "aqiLevel": 2
+        }, {
+            "districtId": 370801,
+            "districtName": "市辖区",
+            "aqi": 178,
+            "aqiLevel": 2
+        }, {
+            "districtId": 370829,
+            "districtName": "嘉祥县",
+            "aqi": 78,
+            "aqiLevel": 2
+        }, {
+            "districtId": 370883,
+            "districtName": "邹城市",
+            "aqi": 78,
+            "aqiLevel": 2
+        }, {
+            "districtId": 370812,
+            "districtName": "兖州区",
+            "aqi": 75,
+            "aqiLevel": 2
+        }, {
+            "districtId": 370826,
+            "districtName": "微山县",
+            "aqi": 66,
+            "aqiLevel": 2
+        }];
+
+    //desc 倒序 asc 正序 固定写法 对 top10Data.value进行排序
+    top10Data.sort(getSortFun('desc', 'aqi'));
+
+    function getSortFun(order, sortBy) {
+        var ordAlpah = (order == 'asc') ? '>' : '<';
+        var sortFun = new Function('a', 'b', 'return a.' + sortBy + ordAlpah + 'b.' + sortBy + '?1:-1');
+        return sortFun;
+    }
+
+    var data = [];//算百分比
+    var titlename = [];//保存类目
+    var valdata = []; //右侧展示数据
+    var fullData = [];
+
+    for (var i = 0; i < top10Data.length; i++) {
+        data.push((top10Data[i].aqi / 500).toFixed(2) * 100);
+        fullData.push(100);
+        titlename.push(top10Data[i].districtName);
+        valdata.push(top10Data[i].aqi);
+    }
+
+    var option = {
+        xAxis: {
+            show: false
+        },
+        grid: {
+            left: '13%',
+            right: '4%',
+            bottom: '3%',
+            top: '5%',
+            containLabel: true
+        },
+        yAxis: [{
+            show: true,
+            data: titlename,
+            inverse: true,
+            axisLine: {
+                show: false
+            },
+            splitLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            axisLabel: {
+                color: '#fff'
+            }
+
+        }, {
+            show: true,
+            inverse: true,
+            data: valdata,
+            axisLabel: {
+                color: '#fff',
+                textStyle: {
+                    fontSize: 11,
+                    color: '#fff',
+                },
+            },
+            axisLine: {
+                show: false
+            },
+            splitLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+
+        }],
+        series: [{
+            name: '条',
+            type: 'bar',
+            yAxisIndex: 0,
+            data: data,
+            barWidth: 5,
+            itemStyle: {
+                normal: {
+                    // color: '#00c1de',
+                    barBorderRadius: 10,
+                    color: function (params) {
+                        var color = getColorByValAndType(params.data * 5, 'aqi');
+                        console.log(color)
+                        return color;
+                    }
+                }
+            },
+            label: {
+                normal: {
+                    show: false
+                }
+            },
+        }, {
+            name: '框',
+            type: 'bar',
+            yAxisIndex: 1,
+            barGap: '-100%',
+            data: fullData,
+            barWidth: 8,
+            itemStyle: {
+                normal: {
+                    color: 'gray',
+                    opacity: 0.1,
+                    barBorderRadius: 5,
+                }
+            }
+        },]
+    };
+    myChart.setOption(option);
+
+</script>
+
+</html>

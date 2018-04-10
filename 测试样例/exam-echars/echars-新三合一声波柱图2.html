@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>echars-堆叠图</title>
+
+    <script src="../js/jquery.1.9.1.js"></script>
+    <script src="../js/JSUtils.js"></script>
+    <script src="../js/echarts.min.4.0.2.js"></script>
+    <script src="echars-common.js"></script>
+
+</head>
+<body style="background-color: #1E3269">
+<div id="main" style=" width: 300px;height: 200px">
+    <div id="aqi" style=" width: 37px;height: 200px;float: left">
+    </div>
+    <div id="aqi2" style=" width: 37px;height: 200px;float: left">
+    </div>
+    <div id="pm25" style=" width: 37px;height: 200px;float: left">
+    </div>
+    <div id="pm10" style=" width: 37px;height: 200px;float: left">
+    </div>
+    <div id="co" style=" width: 37px;height: 200px;float: left">
+    </div>
+    <div id="so2" style=" width: 37px;height: 200px;float: left">
+    </div>
+    <div id="no2" style=" width: 37px;height: 200px;float: left">
+    </div>
+    <div id="o3" style=" width: 37px;height: 200px;float: left">
+    </div>
+</div>
+</body>
+
+<script>
+
+    var colors = ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae',
+        '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570'];
+
+
+    var result = [
+        {
+            name: 'AQI',
+            value: 400
+        }, {
+            name: '标A',
+            value: 234
+        }, {
+            name: 'PM25',
+            value: 128
+        }, {
+            name: 'PM10',
+            value: 289
+        }, {
+            name: 'CO',
+            value: 150
+        }, {
+            name: 'SO2',
+            value: 16
+        }, {
+            name: 'NO2',
+            value: 8
+        }, {
+            name: 'O3',
+            value: 103
+        }];
+
+    var xAxisData = ['AQI', '标A', 'PM25', 'PM10', 'CO', 'SO2', 'NO2', 'O3'];
+
+
+    var tt = [result[0]];
+    initChar('aqi', tt, xAxisData[0])
+
+    // initChar('aqi2', result[0],maxData)
+
+    function initChar(id, data, xAxis) {
+        console.log(data)
+        // var myChart = echarts.init(document.getElementById('main'));
+        var myChart = echarts.init(document.getElementById(id));
+
+
+        var maxData = [];
+        var maxNumArray = [];
+        data.forEach(function (value, index) {
+            maxNumArray.push(600);
+            maxData.push({
+                name: value.name,
+                value: Math.max.apply(null, maxNumArray)
+            });
+        });
+
+
+        var scale = 1.2;
+        //富文本配置
+        var rich = {
+            white: {
+                color: "#fff",
+                align: 'left',
+                fontSize: 12 * scale,
+                padding: [0, 0]
+            },
+        };
+        var option = {
+            grid: {
+                left: '3%',
+                right: '6%',
+                bottom: '3%',
+                containLabel: true
+            },
+            yAxis: [{
+                type: 'value',
+                splitLine: {
+                    show: false
+                },
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    show: false
+                },
+            }],
+            xAxis: [{
+                type: 'category',
+                data: ['AQI'],
+                // data: xAxis,
+                boundaryGap: ['10%', '10%'],
+                splitLine: {
+                    show: false
+                },
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    interval: 0,
+                    show: false
+                },
+                axisLabel: {
+                    color: '#fff',
+                    padding: [3, 0, 0, 0],
+                    interval: 0
+                },
+                interval: 0
+            }],
+            series: [
+                {
+                    name: '100',
+                    type: 'pictorialBar',
+                    stack: '总量',
+                    z: 3,
+                    data: data,
+                    symbol: 'image://' + "img/l4.jpg",
+                    symbolClip: true,
+                    symbolSize: [10, '100%']
+                },
+                // {
+                //     name: '占位',
+                //     type: 'pictorialBar',
+                //     barGap: '-100%',
+                //     silent: true,
+                //     label: {
+                //         normal: {
+                //             show: true,
+                //             position: "top",
+                //             distance: 10 * scale,
+                //             // formatter: function (params) {
+                //             //         var stuNum = 0;
+                //             //         data.forEach(function (value, index, array) {
+                //             //             if (params.name == value.name) {
+                //             //                 stuNum = value.value;
+                //             //             }
+                //             //         })
+                //             //         return '{white| ' + stuNum + '}';
+                //             // },
+                //             rich: rich
+                //         }
+                //     },
+                //     symbol: 'image://' + 'img/bg.jpg',
+                //     symbolClip: true,
+                //     symbolSize: [10, '100%'],
+                //     data: maxData
+                // }
+            ]
+        };
+
+        myChart.setOption(option);
+    }
+
+</script>
+
+</html>

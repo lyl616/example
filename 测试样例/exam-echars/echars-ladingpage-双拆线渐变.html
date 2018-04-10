@@ -11,13 +11,14 @@
 
 </head>
 <body style="background-color: #1E3269">
-<div id="main" style=" width: 320px;height: 190px"></div>
+<div id="main" style=" width: 320px;height: 195px"></div>
 </body>
 
 <script>
 
     var myChart = echarts.init(document.getElementById('main'));
-    var xdata =['1', '2','3','4','5','6','7','8','9','10','11','12'];
+    var xdata = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+    // var xdata =['1', '2','3','4','5','6','7','8','9','10','11','12'];
     option = {
         // backgroundColor: '#394056',
         title: {
@@ -38,7 +39,7 @@
         },
         legend: {
             icon: 'rect',
-            itemWidth: 14,
+            itemWidth: 5,
             itemHeight: 5,
             itemGap: 13,
             data: ['今年', '去年'],
@@ -49,18 +50,28 @@
             }
         },
         grid: {
-            left: '3%',
+            left: '30px',
             right: '4%',
-            bottom: '3%',
-            top:'-5%',
-            // containLabel: true
+            bottom: '30px',
+            top: '10px',
+            containLabel: true
         },
         xAxis: [{
             type: 'category',
             boundaryGap: false,
             axisLine: {
+                show:false,
                 lineStyle: {
                     color: '#57617B'
+                }
+            }, axisTick: {
+                interval: 0
+            },
+            axisLabel: {
+                interval: 0,
+                formatter: function (value) {
+
+                    return value.replace("月", "");
                 }
             },
             data: xdata
@@ -72,12 +83,12 @@
                 show: false
             },
             axisLine: {
-                show:false,
+                show: false,
                 lineStyle: {
-                    show:false,
-                    normal:{
-                        label:{
-                            show:true
+                    show: false,
+                    normal: {
+                        label: {
+                            show: true
                         }
                     },
                     color: '#fff'
@@ -90,9 +101,9 @@
                 }
             },
             splitLine: {
-                show:false,
+                show: false,
                 lineStyle: {
-                    show:false
+                    show: false
                 }
             }
         }],

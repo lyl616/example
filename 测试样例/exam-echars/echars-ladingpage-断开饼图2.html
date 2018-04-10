@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>echars-横向柱形图</title>
+
+    <script src="../js/jquery.1.9.1.js"></script>
+    <script src="../js/echarts.min.4.0.2.js"></script>
+    <script src="echars-common.js"></script>
+    <script src="lev-color.js"></script>
+
+</head>
+<body style="background-color: #1E3269">
+<div id="main" style=" width: 278px;height: 190px"></div>
+</body>
+
+<script>
+
+    var myChart = echarts.init(document.getElementById('main'));
+    var data = [
+        {name: "优", value: 33},
+        {name: "良", value: 12},
+        {name: "轻度", value: 44},
+        {name: "中度", value: 2},
+        {name: "重度", value: 4},
+        {name: "严重", value: 4}
+    ];
+
+    var total = 33 + 12 + 44 + 2 + 4 + 4;
+    var data_name = [];
+    var data2 = [];
+
+    var levelColor = ["#00E500", "#FFFF00", "#FF7E00", "#FF0000", "#99004C", "#7E0023"];
+
+    for (var n  in data) {
+        var val = data[n]['value'];
+
+        var percent = (val / total).toFixed(2) * 100;
+
+        data[n]['name'] = data[n]['name'] + data[n]['value'] + '天（' + percent + "%)";
+        data_name.push(data[n]['name'])
+
+        data2.push({
+            value: data[n]['value'],
+            name: data[n]['name'],
+            itemStyle: {
+                normal: {
+                    borderWidth: 1,
+                    shadowBlur: 50,
+                    color: levelColor[n],
+                    shadowColor: 'rgba(142, 152, 241, 0.6)'
+                }
+            }
+        }, {
+            value: 1.1,
+            name: 'sp',
+            itemStyle: {
+                normal: {
+                    label: {
+                        show: false
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    color: 'rgba(0, 0, 0, 0)',
+                    borderColor: 'rgba(0, 0, 0, 0)',
+                    borderWidth: 3
+                }
+            }
+        })
+    }
+
+
+    option = {
+        tooltip: {
+            trigger: 'item',
+            formatter: function (params) {
+                if (params.name != "sp") {
+                    return "<b style='color: " + params.color + ";'> &bull;</b> " + params.name;
+                }
+            }
+        },
+        legend: {
+            orient: 'vertical',
+            right: '2%',
+            data: data_name,
+            textStyle: {
+                color: "#fff",
+                fontWeight: 'normal',
+                fontFamily: '宋体',
+                fontSize: 10,
+                color: '#fff'
+            },
+            itemWidth: 8,
+            itemHeight: 5,
+
+        },
+        toolbox: {
+            show: false
+        },
+        color: levelColor,
+        series: [{
+            name: '',
+            type: 'pie',
+            clockWise: true,
+            radius: [48, 54],
+            center: ['35%', '35%'],
+            hoverAnimation: false,
+            itemStyle: {
+                normal: {
+                    label: {
+                        show: false
+                    },
+                    labelLine: {
+                        show: false
+                    }
+                }
+            },
+            data: data2
+        }]
+    }
+    myChart.setOption(option);
+
+</script>
+
+</html>
