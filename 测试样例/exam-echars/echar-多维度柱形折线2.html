@@ -8,8 +8,10 @@
     <!--<script src="https://cdn.bootcss.com/echarts/3.3.1/echarts.min.js"></script>-->
     <!--<script src="echarts-all.js"></script>-->
 
-    <script src="https://cdn.bootcss.com/echarts/2.2.7/echarts-all.js"></script>
+    <!--<script src="https://cdn.bootcss.com/echarts/2.2.7/echarts-all.js"></script>-->
     <script src="../js/JSUtils.js"></script>
+    <script src="../js/echarts.min.4.0.2.js"></script>
+
 
 
     <style>
@@ -170,7 +172,7 @@
                         if (!value) {
                             return "";
                         }
-                        return new Date(value).Format("dd日HH时");
+                        return new Date(value).Format("HH");
                     }
                 }
             },

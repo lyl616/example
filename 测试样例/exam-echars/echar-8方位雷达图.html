@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery.1.9.1.js"></script>
+    <script src="../js/echarts.min.4.0.2.js"></script>
+</head>
+<body style="background-color: #29396A;">
+<div id="bar" style="width: 300px;height: 200px;"></div>
+</body>
+
+
+<script>
+
+
+    $(function () {
+        var myChart = echarts.init(document.getElementById('bar'));
+        var result = {
+            "total": 35,
+            "max": 20,
+            "neValue": 2,
+            "seValue": 10,
+            "swValue": 3,
+            "nwValue": 4,
+            "evalue": 3,
+            "svalue": 5,
+            "wvalue": 1,
+            "nvalue": 7
+        };
+        var rose = ['北', '西北', '西', '西南', '南', '东南', '东', '东北'];
+        var values = [result.nvalue, result.nwValue, result.wvalue, result.swValue, result.svalue, result.seValue, result.evalue, result.neValue];
+        var max = result.max;
+        var total = result.total;
+
+        var option = {
+            tooltip: {
+                trigger: 'item',
+                position: ['25%', '75%'],
+                formatter: function (params) {
+                    if (!(params.value.length > 0)) return "";
+                    var html = "<div>";
+                    $.each(params.value, function (i, val) {
+                        html += "<div style='margin: 2px 0px'>" + rose[i] + " 风向频率 ：" + (((val / total).toFixed(3)) * 100).toFixed(0) + "% 平均风速：" + val + "</div>";
+                    });
+                    html += "</div>";
+                    return html;
+                }, textStyle: {
+                    fontSize: 8
+                }
+            },
+            legend: {
+                data: ['新增建设项目'],
+                textStyle: {
+                    color: "#fff"
+                },
+                show: false
+            },
+            radar: {
+                splitArea: {
+                    areaStyle: {
+                        color: ['#1B2B5D', '#29396A']
+                    }
+                },
+                indicator: [
+                    {name: 'N', max: max},
+                    {name: 'NW', max: max},
+                    {name: 'W', max: max},
+                    {name: 'SW', max: max},
+                    {name: 'S', max: max},
+                    {name: 'SE', max: max},
+                    {name: 'E', max: max},
+                    {name: 'NE', max: max}
+                ]
+            },
+            series: [{
+                type: 'radar',
+                // areaStyle: {normal: {}},
+                itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                data: [
+                    {
+                        value: values,
+                        // name: '新增建设项目'
+                    }
+                ], areaStyle: {
+                    normal: {
+                        color: '#1258A0',
+                        opacity: 0.77
+                    }
+                },
+                lineStyle: {
+                    normal: {
+                        type: 'solid',
+                        color: "#1783E2",
+                        width: 2,
+                        opacity: 0.6
+                    }
+                }, color: '#1258A0'
+                , symbolSize: 1,
+            }]
+        };
+
+        myChart.setOption(option);
+
+
+    });
+</script>
+</html>

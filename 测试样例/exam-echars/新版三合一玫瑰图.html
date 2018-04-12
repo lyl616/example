@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery.1.9.1.js"></script>
+    <script src="../js/echarts.min.4.0.2.js"></script>
+</head>
+<body style="background-color: #29396A">
+<div id="bar" style="width: 600px;height: 400px; "></div>
+</body>
+
+
+<script>
+
+
+    $(function () {
+
+        var cls = ['#1B2B5D',
+            '#29396A'];
+
+        var result = {
+            "total": 20,
+            "neValue": 2,
+            "seValue": 10,
+            "swValue": 3,
+            "nwValue": 4,
+            "evalue": 0,
+            "svalue": 0,
+            "wvalue": 1,
+            "nvalue": 0
+        };
+        var myChart = echarts.init(document.getElementById('bar'));
+        var option = {
+
+            grid: {
+                top: '20px',
+                left: '20px',
+                right: '20px',
+                bottom: '20px',
+                containLabel: true
+            },
+            tooltip: {
+                trigger: 'axis',
+                show:true
+            },
+            radar: {
+                shape: 'polygon',
+                name: {
+                    textStyle: {
+                        // color: ['#fff'],
+                        // backgroundColor: '#29396A',
+                        borderRadius: 100,
+                        padding: [10, 10]
+                    }, axisLine: {
+                        show: false
+                    }
+                },
+                indicator: [
+                    {
+                        name: 'N',
+                        max: result.total
+                    },
+                    {
+                        name: 'NW',
+                        max: result.total
+                    },
+                    {
+                        name: 'W',
+                        max: result.total
+                    },
+                    {
+                        name: 'SW',
+                        max: result.total
+                    },
+                    {
+                        name: 'S',
+                        max: result.total
+                    },
+                    {
+                        name: 'SE',
+                        max: result.total
+                    },
+                    {
+                        name: 'E',
+                        max: result.total
+                    },
+                    {
+                        name: 'NE',
+                        max: result.total
+                    }
+                ],
+                splitArea: {
+                    areaStyle: {
+
+                        color: ['#1B2B5D', '#29396A']
+                    }
+                },
+            },
+            series: [{
+                type: 'radar',
+                // itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                data: [
+                    {
+                        value: [result.nValue, result.nwValue, result.wValue, result.swValue, result.sValue, result.seValue, result.eValue, result.neValue]
+                    }
+                ],
+                // symbolSize: 0,
+                color: '#1258A0',
+                areaStyle: {
+                    normal: {
+                        color: '#1258A0',
+                        opacity: 0.77
+                    }
+                },
+                lineStyle: {
+                    normal: {
+                        type: 'solid',
+                        color: "#1783E2",
+                        width: 2,
+                        opacity: 0.6
+                    }
+                },
+            }]
+        };
+
+        myChart.setOption(option);
+
+
+    });
+</script>
+</html>

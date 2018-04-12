@@ -40,6 +40,53 @@ function getRangeByType(type) {
 }
 
 /**
+ * 通过污染物类型获取上限值
+ * @param type
+ */
+function getMaxDataByType(type) {
+
+    var max = 500;
+    switch (type) {
+
+        case 'aqi': {
+            max = 500;
+        }
+            break;
+        case 'aqi2': {
+            max = 500;
+        }
+            break;
+        case 'pm25': {
+            max = 500;
+        }
+            break;
+        case 'pm10': {
+            max = 600;
+        }
+            break;
+        case 'co': {
+            max = 150;
+        }
+            break;
+        case 'so2': {
+            max = 3000;
+        }
+            break;
+        case 'no2': {
+            max = 3000;
+        }
+            break;
+        case 'o3': {
+            max = 1000;
+        }
+            break;
+
+    }
+    return max;
+
+}
+
+/**
  * 计算 浓度区间的值
  *
  * @param value
