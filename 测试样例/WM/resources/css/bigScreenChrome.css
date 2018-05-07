@@ -1,0 +1,176 @@
+/*大屏版*/
+.post-top-nav .btn { font-size: 34px; padding: 7px 20px; }
+.post-top-nav .btn span { font-size: 34px; }
+.muiltcheck-box { min-width: 690px; }
+.map-tool { min-width: 229px; }
+.re-dropmenu .checkbox label { font-size: 30px; }
+.re-dropmenu .checkbox { width: 317px; padding-left: 10px; }
+.dropdown-menu { font-size: 30px; }
+.tab01-info .cityname { font-size: 30px; }
+label { font-size: 30px; }
+.tab01-info .form-control { height: auto; font-size: 30px; }
+.real-t-selectR div { width: 108px; }
+.w00-table { font-size: 54px; margin-top: 15px; }
+.container-01-num .f-s-12 { font-size: 30px; }
+.container-01-num .f-s-20 { font-size: 32px; }
+.pic-svg-num { width: 162px; height: 97px; line-height: 97px; }
+.re-dropmenu li a { height: 90px; line-height: 90px; }
+.tab-content p.tab-content-2 a { width: 316px; line-height: 50px; margin-top: 27px; }
+.tab-content p.tab-content-2 span { width: 857px; }
+.tab-map { height: 1160px; }
+.circle-info, .circle-info-half { font-size: 30px; }
+.tab01-info { padding: 15px 25px; }
+.table-01 tr td { height: 70px; font-size: 30px; line-height: 70px; }
+.table-01 tbody th { font-size: 30px; }
+.table-01 tr td span { font-size: 25px; height: 34px; line-height: 34px; }
+.pd10 { padding: 20px; }
+.tab-map { overflow: inherit; }
+.f-s-8 { font-size: 18px; }
+.f-s-9 { font-size: 20px; }
+.tab01-info .f-s-12 { font-size: 32px; color: #333; }
+.real-t-selectTable { height: 765px; }
+.w00-table .thead td { height: 65px; line-height: 65px; }
+
+/*弹窗样式重新设置*/
+.modal-header .close { font-size: 50px; }
+.box-mutil-01 { height: 1180px; }
+.post-top-nav .s-5 .btn { padding: 6px 30px; }
+.checkbox, .radio { margin-bottom: 30px; }
+.modal-header h4 { font-size: 30px; }
+.realtime-modalbox .modalbox-black-01 ul .txt { font-size: 30px; line-height: 200%; margin: 0px 10px; }
+.realtime-modalbox .modalbox-black-02 .tit, .realtime-modalbox .modalbox-black-03 .tit { font-size: 30px; margin: 30px 0; }
+.modal-dialog { width: 1500px; top: 6%; }
+.modalbox-black-01 { margin: 10px 0; overflow: hidden; }
+.modalbox-black-02 .f-s-10 { font-size: 20px; }
+.realtime-modalbox .modalbox-black-03 .tit select { font-size: 30px; height: auto; }
+.sb-search { height: 100px; min-width: 67px; }
+.sb-search-input { height: 61px; font-size: 30px; padding: 5px 70px 5px 5px; }
+.sb-icon-search { background: url(../../img/search_bg.png) 0 10px no-repeat; }
+.sb-icon-search, .sb-search-submit { height: 50px; width: 50px; }
+.table>thead>tr>th { font-size: 30px; }
+.big-modal-content { width: 1500px; }
+.table.dataTable tbody th, table.dataTable tbody td { font-size: 30px; }
+.tab-content { font-size: 30px; }
+.modal.in .modal-dialog { font-size: 30px; width: 1500px; overflow: hidden; }
+.modal.in .modal-dialog th { word-wrap: break-word; white-space: nowrap; line-height: inherit; }
+.modal.in .modal-dialog td, .modal.in .modal-dialog th { font-size: 30px; }
+.dataTables_wrapper .dataTables_filter input { font-size: 30px; }
+.b-s-m-c { width: 1697px; }
+.realtime-modalbox .modalbox-black-01 ul .num { font-size: 30px; }
+.st-sort-tit .select-b select { width: 145px; height: 43px; font-size: 25px; }
+.st-sort-content .table-01 th { font-size: 25px; }
+.table-01 { margin-top: 10px; }
+.table-02 { font-size: 30px; }
+.table-02 th { height: 50px; line-height: 50px; }
+.table-02 tr td { height: 50px; line-height: 50px; }
+.fixedTimebar { width: 1415px; padding: 18px 0; bottom: 67px; }
+.fixedTimebar .prog-bar .prog-tit { font-size: 25px; bottom: -83px; }
+.fixedTimebar .Wdate { width: 362px; font-size: 30px; height: 70px; }
+.fixedTimebar .prog-bar { width: 1415px; bottom: 106px; }
+.fixedTimebar span { font-size: 30px; }
+.fixedTimebar select.form-control { font-size: 30px; width: 180px; height: 70px; vertical-align: top; padding: 0; }
+.fixedTimebar .prog-bar .progress-label { font-size: 30px; width: 150px; height: 50px; line-height: 50px; }
+.s-i-w { width: 500px; }
+.top-search-container { font-size: 30px; }
+.form-control { font-size: 30px; height: 80px; padding: 0; }
+.select2-search__field { font-size: 30px; }
+.select2-container--bootstrap .select2-selection { font-size: 30px; }
+.select2-container--bootstrap .select2-selection--multiple .select2-search--inline .select2-search__field { height: 80px; padding: 0; }
+.select2-container--bootstrap .select2-results__option { font-size: 30px; }
+.btn.btn-info { font-size: 30px; }
+.caret { border-top: 10px dashed; border-top: 10px solid\9; border-right: 10px solid transparent; border-left: 10px solid transparent; }
+.bottom-copyright { width: 564px; height: 40px; position: absolute; bottom: 5px; right: 25px; }
+.bottom-copyright img { width: 564px; height: 40px; }
+#rectangle_tab .dataTables_empty { height: 465px; }
+
+/*top10样式*/
+.top-copyleft { width: 763px; font-size: 30px; height: auto; position: absolute; top: 160px; left: 15px; background-color: #fff; filter: alpha(opacity=90); -moz-opacity: .9; -khtml-opacity: .9; opacity: .9; }
+.top-copyleft .m-t-10 { font-size: 30px; }
+.top-copyleft .m-t-10 .btn { font-size: 30px; }
+.top-copyleft talbe td .tc1 { font-size: 30px !important; }
+#AQITab .li-5 { width: 50%; text-align: center; font-size: 34px; }
+.table-tst th, .table-tst td { font-size: 30px; text-align: center; line-height: 60px; color: #000; background: none; color: #000; border: solid 2px #ddd; }
+.table-tst thead td { text-align: center; font-size: 32px; }
+
+/*top10样式*/
+.dataTables_paginate { font-size: 35px; }
+.nav-tabs>li>a { font-weight: normal; }
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover { background: #00acac; }
+.nav-tabs>li.active>a:hover { background: #008a8a; }
+
+/*百度地图版权隐掉*/
+.BMap_cpyCtrl { display: none; }
+.anchorBL { display: none; }
+.level-hour-nbd { font-size: 30px; }
+#level_table_title { font-size: 35px; }
+
+
+.tooltip-tit{ font-size: 30px; line-height: 40px; text-indent: 24px;}
+.tooltip-data{ width: 185px;}
+.tooltip-data b{ font-size: 30px;}
+.tooltip-data i { font-style: normal; line-height: 60px; }
+.level-hour,.level-hour-nbd{ height: 48px;}
+
+.container-01-num .num{}
+.tab01-info h4{ margin: 20px 0;}
+.table-01 tr td span{ padding: 2px 20px;}
+.fixpic { height: 110px; width: 110px; bottom: 67px; }
+
+.Legend { position: absolute; bottom: 67px; right: 153px; background: url(../../img/Legend.png); border-radius: 3px; box-shadow: 0 0 0 2px #eee; padding: 19px 12px;width: 434px; height: 110px; }
+.Legend img { width: 409px; height: 72px; }
+.re-dropmenu .icon { width: 54px; height: 54px; }
+
+/*实时检测下拉列表*/
+.icheckbox_square-green, .iradio_square-green{width: 22px; height: 22px; }
+.icheckbox_square-green.hover { background-position: -74px 0; }
+.icheckbox_square-green.checked { background-position: -194px 0; }
+.icheckbox_square-green.disabled { background-position: -222px 0; cursor: default; }
+
+
+/*重写外部框架*/
+#page-wrapper{ margin: 215px 0 0 850px;}
+.navbar-brand{ height: 214px;}
+body.canvas-menu .navbar-static-side, body.fixed-sidebar .navbar-static-side{width: 850px; top:215px; }
+.navbar-static-side{ }
+.navbar-static-side .nav{ background: #2b2a3f;}
+.theme-black .navbar-static-side{ background: #242c3f; }
+.navbar-static-side .nav > li{ border-style: solid; border-width:1px 0; border-color: #525866;}
+ .nav li .nav-label{ margin-left: 80px;}
+ .nav > li > a{ height: 120px; line-height: 120px; padding: 0;}
+
+ .nav > li > a i{ display: none;}
+.nav li .nav-label{font-size: 60px; font-weight: normal; }
+.theme-black  .nav li.active .nav-label{ font-size: 60px; font-weight: normal; color: #fff;}
+.theme-black .subnav-Active{ background: #b8394b;}
+.add-active-bor .J_menuItem{ margin-left: 0; padding-left: 202px;}
+.theme-black .navbar-toggle-btn{ display: none;}
+.navbar-left-side{ margin-top: 0;}
+.top-nav{ height: 214px;}
+.theme-black .top-nav{ background: #0087ce;}
+.navbar-header{ font-size: 100px;}
+.nav-second-level li a{ height: 120px; line-height: 120px; font-size: 52px;}
+.navbar-header .nav{ display: none;}
+.navbar{ height: 214px;}
+.navbar-brand,.cur-menu-txt{ font-size: 100px;}
+.cur-menu-txt{ width: 500px;line-height: 180px; }
+.navbar-brand{ line-height: 165px;}
+.navbar-right{ font-size: 80px; margin-top: 	45px; }
+.navbar-right .dropdown-menu{ font-size: 60px;}
+.drop-menu-textCenter{ width: 400px; min-width: 400px;}
+.drop-menu-textCenter li a{  line-height: 90px;}
+.navbar-user img{ width: 81px; height: 81px; margin: 20px;}
+.arrow{ width: 34px; height: 34px; margin-right: 215px; margin-top: 58px;}
+.nav .active .arrow{     background: url(../img/nav_b_s.png) no-repeat 0 0;}
+.nav .arrow{background: url(../img/nav_b_p.png) no-repeat 0 0px; margin-top: 58px;  }
+.theme-black .navbar-default .nav > li > a:focus{ background: #242c3f; }/*活动颜色*/
+.theme-black .navbar-default .nav > li > a:hover{ background: #242c3f;}/*鼠标划过菜单时颜色*/
+/*鼠标划过菜单时颜色*/
+.navbar-static-side .nav .active ul { background: #444359; }
+
+/*大小屏下logo 的切换*/
+.logo-size-control{ width: 81px; height: 81px;}
+.logo-big-size-control{ width: 162px; height: 162px; display:inline-block;}
+.fream-logo-black,.fream-logo-gray{ display: none;}
+
+/*搜索图标*/
+.container-01-num .num{margin-left: 188px;}

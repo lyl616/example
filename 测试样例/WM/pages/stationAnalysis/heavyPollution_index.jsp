@@ -1,0 +1,135 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@include file="../includeJsCss.jsp" %>
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>蛙鸣科技 | 重污染监测</title>
+		<link rel="shortcut icon" href="${ctx}/resources/img/favicon.ico">
+		<link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css" />
+		<link rel="stylesheet" href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
+		<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js "></script>
+		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
+		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table.js"></script>
+		<script type="text/javascript" src="${ctx}/resources/js/report/Init_Reporttime.js"></script>
+	</head>
+
+	<body>
+		<%@ include file="../V1/topMenu.jsp" %>
+		<div id="content">
+			<div class="pd10 ovh">
+				<!--重污染检测-->
+				<div class="pull-right">{{currshowTime}}
+					<div class="m-l-10 refresh_btn" @click="refreshCharts"><i class="refresh_icon"></i>刷新</div>
+				</div>
+			</div>
+			<div id="scrollObj" class="xhideyauto">
+				<div class="col-xs-6 p-l-10">
+					<!--面板开始-->
+					<div class="ibox">
+						<div class="ibox-title">
+							<h5><b v-html="districtName" class="fb"></b>最近24-96小时污染物趋势图 </h5>
+							<div class="ibox-tools">
+								<a class="close-link">
+									<i class="icon icon-tobig" @click="toOpenWin(1)"></i>
+								</a>
+							</div>
+						</div>
+						<div class="ibox-content">
+							<div class="btnConvent01">
+								<button class="btn btn-white btn-xs pull-right" onclick='qkconvert(1,"qt","btnConvent01")' name="qt">气态物
+                        </button>
+								<button class="btn btn-info btn-xs pull-right" onclick='qkconvert(2,"kl","btnConvent01")' name="kl">颗粒物
+                        </button>
+							</div>
+							<!--污染曲线1 begin-->
+							<div id="cityPollutionKl_trend" class="clear" style="width: 100%; height: 318px; "></div>
+							<div id="cityPollutionQt_trend" class="clear" style="width: 100%; height: 318px; display: none;"></div>
+							<!--污染曲线1 end-->
+						</div>
+					</div>
+					<!--面板结束-->
+				</div>
+				<div class="col-xs-6 p-r-10">
+					<!--面板开始-->
+					<div class="ibox">
+						<div class="ibox-title">
+							<h5><b v-html="districtName" class="fb"></b>最近24-96小时AQI趋势图</h5>
+							<div class="ibox-tools">
+								<a class="close-link">
+									<i class="icon icon-tobig" @click="toOpenWin(2)"></i>
+								</a>
+							</div>
+						</div>
+						<div class="ibox-content">
+							<!--污染曲线1 begin-->
+							<div id="stationChart" class="clear" style="width: 100%; height: 340px;"></div>
+							<!--污染曲线1 end-->
+						</div>
+					</div>
+					<!--面板结束-->
+				</div>
+				<div class="clear"></div>
+				<div class="col-xs-6 p-l-10">
+					<!--面板开始-->
+					<div class="ibox">
+						<div class="ibox-title">
+							<h5><b v-html="districtName" class="fb"></b>县市区小时AQI排名 </h5>
+							<div class="ibox-tools">
+								<a class="close-link">
+									<!--<i class="icon icon-tobig" @click="toOpenWin(3)"></i>-->
+								</a>
+							</div>
+						</div>
+						<div class="ibox-content">
+							<div class="btnConvent02">
+								<button class="btn btn-white btn-xs pull-right" onclick='sortconvert(4,"btnConvent02","sortChart")' name="96hour">96小时
+                        </button>
+								<button class="btn btn-white btn-xs pull-right" onclick='sortconvert(3,"btnConvent02","sortChart")' name="72hour">72小时
+                        </button>
+								<button class="btn btn-white btn-xs pull-right" onclick='sortconvert(2,"btnConvent02","sortChart")' name="48hour">48小时
+                        </button>
+								<button class="btn btn-info btn-xs pull-right" onclick='sortconvert(1,"btnConvent02","sortChart")' name="24hour">24小时
+                        </button>
+							</div>
+							<!--污染曲线1 begin-->
+							<div id="sortChart" class="clear" style="width: 100%; height:318px;"></div>
+							<!--污染曲线1 end-->
+						</div>
+					</div>
+					<!--面板结束-->
+				</div>
+				<div class="col-xs-6 p-r-10">
+					<!--面板开始-->
+					<div class="ibox">
+						<div class="ibox-title">
+							<h5><b v-html="districtName" class="fb"></b>县市区24-96小时AQI趋势图 </h5>
+							<div class="ibox-tools">
+								<a class="close-link">
+									<i class="icon icon-tobig" @click="toOpenWin(4)"></i>
+								</a>
+							</div>
+						</div>
+						<div class="ibox-content">
+							<!--污染曲线1 begin-->
+							<div id="districtAqi" class="clear" style="width: 100%; height: 340px;"></div>
+							<!--污染曲线1 end-->
+						</div>
+					</div>
+					<!--面板结束-->
+				</div>
+			</div>
+		</div>
+		<script src="${ctx}/resources/js/stationAnalysis/heavyPollution_index.js"></script>
+		<script type="text/javascript">
+			//计算左右树与右侧的表格对齐
+			calcOverflowH(0, 'scrollObj', 80);
+			window.onresize = function() {
+				calcOverflowH(0, 'scrollObj', 80);
+			}
+		</script>
+	</body>
+
+</html>

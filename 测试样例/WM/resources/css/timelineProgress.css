@@ -1,0 +1,39 @@
+/*控制按钮*/
+.progTime_btnpaly{float:left;width:68px;height:36px;background-color:#fff;border:none;outline:none;position:relative;box-sizing:border-box;background-size:10px;}
+/*.progTime_btnpaly:before { content: ''; width: 68px; height: 6px; background-color: #32a3f8; position: absolute; left: 0; top: -6px; }
+.progTime_btnpaly:hover:after { border-left-color: #ccc; }*/
+.paly-btn,.changeChars-btn{cursor:pointer;left:5px;width:26px;height:26px;display:inline-block;box-shadow:0 1px 2px #a9a9a9;border-radius:26px;position:relative;top:-13px;}
+.paly-btn{background:#fff url(../img/t-play.png) no-repeat center;}
+.changeChars-btn{background:#fff url(../img/t-chart.png) no-repeat center;}
+.progTime{color:#333;width:calc(100% - 68px);padding-top:0px;padding-bottom:0px;display:none;position:relative;float:left;}
+.progTime_concent{width:100%;height:36px;margin:0 auto;cursor:pointer;position:relative;}
+.scrollBarBox{width:100%;height:8px;padding:5px 0;position:absolute;top:-11px;background-color:transparent;z-index:2;}
+.scrollBar{width:100%;height:8px;background:#e7e6e6;cursor:pointer;position:absolute;top:7px;border-radius:20px;}
+.timecode{width:56px;height:24px;background-color:#777672;position:absolute;left:0;top:-27px;color:#fff;text-align:center;cursor:pointer;display:none;line-height:24px; opacity: 0.9;}
+.timecode:after{content:'';width:0;height:0;border:5px solid transparent;border-top:5px solid #777672;position:absolute;left:50%;bottom:-10px;margin-left:-5px;}
+.scroll_Track{width:0px;height:8px;border-radius:20px;background-color:#32a3f8;transition:all ease-in-out .25s;}
+.scroll_Thumb{height:24px;width:70px;text-align:center;line-height:24px;background:#ffbe00;position:absolute;left:15px;margin-top:-35px;cursor:pointer;color:#fff;font-size:12px;transition:all ease-in-out .25s;}
+.scroll_Thumb:after{content:'';width:0;height:0;border:5px solid transparent;border-top:5px solid #ffbe00;position:absolute;left:47px;bottom:-10px;}
+.time_slot .time-dayVal{float:left;line-height:36px;width:calc(20% - 1px);margin:3px 0 0 0;text-align:center;cursor:pointer;font-size:12px;}
+.time-dayVal .time-scale{height:20px;line-height:20px;}
+.time-dayVal .time-scale span{display:inline-block;text-align:left;}
+.week-day{line-height:16px;border-right:1px solid #d8d8d8;border-bottom:1px solid #d8d8d8;}
+.timeline-progres,.timepanel-progres{width:100%;position:absolute;bottom:0;left:0;}
+.timeline-progres{height:36px;z-index:1;}
+.timepanel-progres{height:265px;z-index:9;}
+.timepanel-progres .progTime_btnpaly{margin-top:36px;background:#fafbfd;height:236px;}
+.timepanel-progres .week-day{line-height:16px;border-right:1px solid #d8d8d8;border-bottom:1px solid #d8d8d8;}
+.timepanel-progres .tptext-list{margin-top:16px;}
+.timepanel-progres .tptext-list span{width:58px;height:31px;line-height:31px;display:block;padding-left:10px;}
+.timepanel-progres .pollutiond-list{display:inline-block;width:calc(12.5% - 0px);float:left;}
+.timepanel-progres .pollutiond-list span{display:inline-block;height:31px;line-height:31px;text-align:center;color:#333;width:100%;text-align:left;}
+.timepanel-progres .progTime{overflow-x:auto;overflow-y:hidden;padding-top:40px; background: url(../img/ptlinebg.jpg) repeat-x 0 44px;}
+.timepanel-progres .scrollBarBox{top:18px;width:2074px;}
+.timepanel-progres .scrollBar{width:2074px;top:-22px;}
+.timepanel-progres .timecode{top:-28px;}
+.timepanel-progres .scroll_Thumb{ margin-top: -39px;left: -11px; width: 90px;}
+.timepanel-progres .scroll_Thumb:after { content: ''; width: 0; height: 0; border: 5px solid transparent; border-top: 5px solid #ffbe00; position: absolute; left: 8px; bottom: -10px;}
+.time-dataShowc{position:absolute;top:0;left:0;z-index:1;height:193px;}
+.time-datachart{position:absolute;top:0;left:0;z-index:0;height:193px;width:100%;}
+.scrollData{height:183px;}
+.currTime_line{position:absolute;top:-4px;border-left:solid 4px #f60;width:4px;height:8px;z-index:999999;}

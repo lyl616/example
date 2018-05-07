@@ -1,0 +1,25 @@
+{
+  "erroCode" : 2000,
+  "erroMsg" : null,
+  "result" : {
+    "aqi" : 96,
+    "aqiLevel" : 2,
+    "aqi2" : 91,
+    "aqi2Level" : 2,
+    "pm25" : 25,
+    "pm25Level" : 1,
+    "pm10" : 132,
+    "pm10Level" : 2,
+    "co" : 0.8,
+    "coLevel" : 1,
+    "so2" : 19,
+    "so2Level" : 1,
+    "no2" : 33,
+    "no2Level" : 1,
+    "o3" : 147,
+    "o3Level" : 1,
+    "tvoc" : null,
+    "aqiFirst" : "PM10",
+    "aqiFirst2" : "PM10"
+  }
+}

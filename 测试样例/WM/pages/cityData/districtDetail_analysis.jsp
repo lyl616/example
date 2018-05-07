@@ -1,0 +1,78 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@include file="../VueMulitTable.jsp" %>
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>蛙鸣科技 | 单区县统计</title>
+		<!--引入下拉多选框样式-->
+		<link href="${ctx}/resources/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet" />
+		<link href="${ctx}/resources/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
+		<script type="text/javascript" src="${ctx}/resources/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+	</head>
+
+	<body>
+		<%@include file="../V1/topMenu.jsp" %>
+		<div class="pd10" id="content">
+			<div class="clear m-b-10">
+				<div class="btn-group pull-left">
+					<button type="button" class="btn btn-info timeType" @click="clkTimeType('month',0)">月</button>
+					<button type="button" class="btn btn-white timeType" @click="clkTimeType('quarter',1)">季</button>
+					<button type="button" class="btn btn-white timeType" @click="clkTimeType('halfYear',2)">半年</button>
+					<button type="button" class="btn btn-white timeType" @click="clkTimeType('year',3)">年</button>
+				</div>
+			</div>
+			<!--表格+图表排名 2-->
+			<div class="ovh">
+				<div class="pull-left bgf chunk-set" style="width: 400px;">
+					<div class="chunk-title">{{districtName}} PM<sub>2.5</sub>考核</div>
+					<div class="chunk-body" style="height: 365px;width: 100%">
+						<vuetable ref="vuetable" api-url="${coreApiPath}//target/analysis/pm25Detail" http-method="post" :fields="fields" :table-height="tableHeight" pagination-path="pagination" :sort-order="sortOrder" :multi-sort="multiSort" :per-page="perPage" :append-params="moreParams" @vuetable:pagination-data="onPaginationData" @vuetable:load-success="onLoadSuccess">
+						</vuetable>
+					</div>
+				</div>
+				<div class="bgf pull-right chunk-set" style="width: calc(100% - 410px);">
+					<div class="chunk-title">{{districtName}} PM<sub>2.5</sub>考核</div>
+					<div class="chunk-body" style="height: 365px;width: 100%" id="khChar">
+					</div>
+				</div>
+			</div>
+			<!--表格+图表排名 2-->
+			<div class="ovh  m-t-10">
+				<div class="col-xs-6 p-l-0">
+					<div class="chunk-set bgf">
+						<div class="chunk-title">{{districtName}} 优良天数考核</div>
+						<div class="chunk-body" style="height: 365px;width: 100%" id="goodDaysChars">
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 p-r-0">
+					<div class="chunk-set bgf">
+						<div class="chunk-title">{{districtName}} 重污染天数考核</div>
+						<div class="chunk-body" style="height: 365px;width: 100%" id="badyDaysChars">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--表格+图表排名 3-->
+
+			<div class=" m-t-10 col-xs-12 p-l-0 p-r-0">
+				<div class="chunk-set bgf">
+					<div class="chunk-title">{{districtName}} 空气质量天数考核</div>
+					<div class="chunk-body" style="height: 365px;width: 100%">
+						<div class="m-t-10 m-b-10">
+							<v-table is-horizontal-resize style="width:100%" :height="500" even-bg-color="#f2f2f2" :title-rows="tabbyDistrict.titleRows" :columns="tabbyDistrict.columns" :table-data="tabbyDistrict.tableData" row-hover-color="#eee"></v-table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<script type="text/javascript" src="${ctx }/resources/js/cityData/districtDetail_analysis.js"></script>
+		<script type="text/javascript" src="${ctx }/resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.js"></script>
+		<script type="text/javascript" src="${ctx }/resources/js/common/echarts-common.js"></script>
+	</body>
+
+</html>

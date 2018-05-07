@@ -1,0 +1,64 @@
+{
+  "erroCode" : 2000,
+  "erroMsg" : "",
+  "result" : {
+    "data" : [ {
+      "windDirection" : "北",
+      "windDirectionShort" : "N",
+      "windDirectionValue" : "0",
+      "windDays" : 29,
+      "windSpeed" : 0.8,
+      "windRate" : 8
+    }, {
+      "windDirection" : "西北",
+      "windDirectionShort" : "NW",
+      "windDirectionValue" : "315",
+      "windDays" : 43,
+      "windSpeed" : 0.9,
+      "windRate" : 12
+    }, {
+      "windDirection" : "西",
+      "windDirectionShort" : "W",
+      "windDirectionValue" : "270",
+      "windDays" : 32,
+      "windSpeed" : 0.3,
+      "windRate" : 9
+    }, {
+      "windDirection" : "西南",
+      "windDirectionShort" : "SW",
+      "windDirectionValue" : "225",
+      "windDays" : 62,
+      "windSpeed" : 1.2,
+      "windRate" : 17
+    }, {
+      "windDirection" : "南",
+      "windDirectionShort" : "S",
+      "windDirectionValue" : "180",
+      "windDays" : 40,
+      "windSpeed" : 0.4,
+      "windRate" : 11
+    }, {
+      "windDirection" : "东南",
+      "windDirectionShort" : "SE",
+      "windDirectionValue" : "135",
+      "windDays" : 65,
+      "windSpeed" : 1.5,
+      "windRate" : 18
+    }, {
+      "windDirection" : "东",
+      "windDirectionShort" : "E",
+      "windDirectionValue" : "90",
+      "windDays" : 43,
+      "windSpeed" : 0.7,
+      "windRate" : 12
+    }, {
+      "windDirection" : "东北",
+      "windDirectionShort" : "NE",
+      "windDirectionValue" : "45",
+      "windDays" : 47,
+      "windSpeed" : 1.3,
+      "windRate" : 13
+    } ],
+    "maxValue" : 73
+  }
+}

@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>蛙鸣科技 | 监测地图</title>
+
+
+
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link rel="shortcut icon" href="../../resources/img/favicon.ico">
+    <link rel="stylesheet" href="../../resources/css/zlight.menu.css" media="screen">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../resources/css/style.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../resources/plugins/layer/skin/default/layer.css" rel="stylesheet" />
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
+    <!-- ================== END BASE CSS STYLE ================== -->
+
+    <link rel="stylesheet" href="../../resources/plugins/leaflet/css/initmap.css"/>
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <link href="../../resources/css/timeProgress.css" rel="stylesheet"/>
+
+    <!-- ================== END PAGE LEVEL JS ================== -->
+    <script type="text/javascript" src="../../resources/plugins/jquery/jquery-1.9.1.min.js"></script>
+
+    <script type="text/javascript" src="../../resources/plugins/layer/layer.js"></script>
+    <script src="../../resources/plugins/vue/semantic.min.2.2.2.js" charset="utf-8"></script>
+    <script src="../../resources/plugins/vue/vue-2.5.9.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/common/JSUtils.js"></script>
+    <script type="text/javascript" src="../../resources/js/common/commonUtils.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    
+    
+
+    <!--引用百度地图插件开始-->
+    <link rel="stylesheet" href="../../resources/plugins/bmap/DrawingManager_min.css"/>
+    <link href="../../resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css"/>
+    <link href="../../resources/plugins/jquery-datetimepicker/jquery.datetimepicker.blue.css" rel="stylesheet"
+          type="text/css"/>
+    <!--环形进度条效果-->
+    <link rel="stylesheet" type="text/css" href="../../resources/css/circleProgress.css">
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
+    <script type="text/javascript" src="../../resources/js/common/com-map.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/DistanceTool_min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/DrawingManager_min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/TrafficControl_min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/InfoBox_min.js"></script>
+    <!--引用百度地图插件结束-->
+    <!--时间控件-->
+    <script type="text/javascript"
+            src="../../resources/plugins/jquery-datetimepicker/jquery.datetimepicker.js"></script>
+    <!--地图操作-->
+    <script type="text/javascript" src="../../resources/js/management/pollution/conf-pollutions.js"></script>
+
+    <script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
+
+    <script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.3.8.5.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/common/lev-color.js"></script>
+    <script type="text/javascript" src="../../resources/js/common/dateHelper.js"></script>
+
+    <style>
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            /*初始状态 透明度为0*/
+            30% {
+                opacity: 0.3;
+            }
+            /*过渡状态 透明度为0.3*/
+            60% {
+                opacity: 0.6;
+            }
+            /*过渡状态 透明度为0.6*/
+            80% {
+                opacity: 0.8;
+            }
+            /*过渡状态 透明度为0.8*/
+            100% {
+                opacity: 1;
+            }
+            /*结束状态 透明度为1*/
+        }
+
+        @-webkit-keyframes fade-in { /*针对webkit内核*/
+            0% {
+                opacity: 0;
+            }
+            /*初始状态 透明度为0*/
+            30% {
+                opacity: 0.3;
+            }
+            /*过渡状态 透明度为0.3*/
+            60% {
+                opacity: 0.6;
+            }
+            /*过渡状态 透明度为0.6*/
+            80% {
+                opacity: 0.8;
+            }
+            /*过渡状态 透明度为0.8*/
+            100% {
+                opacity: 1;
+            }
+            /*结束状态 透明度为1*/
+        }
+
+        #infoBox {
+            animation: fade-in; /*动画名称*/
+            animation-duration: 1s; /*动画持续时间*/
+            -webkit-animation: fade-in 1s; /*针对webkit内核*/
+        }
+    </style>
+
+
+</head>
+
+<body class="ovh bg1C2D64">
+<div id="content">
+    <!--顶部开始-->
+    <div class="frame-menu">
+        <div id="zlight-nav" class="pull-left">
+            <ul id="zlightmenu">
+                <li id="menuParentLi"><span href="2015-10-28/juqery-nav677020150824/index.html"><img
+                        src="../../resources/img/system/logo.png" class="logo-img"> <b class="text"></b></span>
+                </li>
+            </ul>
+        </div>
+        <ul class="venus-menu">
+            <li class="showhide" style="display: none;"><span class="title">Menu</span><span
+                    class="icon"><em></em><em></em><em></em><em></em></span></li>
+            <li><a href="../../airMonitoring/landingPage" class="menu-level-1">首页</a></li>
+            <li><a href="../../airMonitoring/realtimeHistoryIndex" class="menu-level-1 active">监测地图</a></li>
+            <li><a href="../../airMonitoring/country_index" class="menu-level-1">全国视图</a></li>
+            <li><a href="javascript:void(0)" class="menu-level-1">污染溯源</a>
+                <ul class="border-radius-2" style="display: none;">
+                    <li><a href="../../surveyjob" class="menu-level-2">勘查管理</a></li>
+                </ul>
+            </li>
+            <li><a href="javascript:void(0)" class="menu-level-1">统计分析</a>
+                <ul class="border-radius-2" style="display: none;">
+                    <li><a href="../../stationAnalysis/surveyData" class="menu-level-2">监测数据分析</a></li>
+                    <li><a href="../../airCalendar/city_day_statics" class="menu-level-2">城市日历</a></li>
+                    <li><a href="../../airCalendar/city_month_statics" class="menu-level-2">城市月历</a></li>
+                    <li><a href="../../airCalendar/city_scatter" class="menu-level-2">城市散点</a></li>
+                    <li><a href="../../statistics/dataOutput" class="menu-level-2">监测数据查询</a></li>
+                    <li><a href="../../multistation/index" class="menu-level-2">城市数据分析</a></li>
+                    <li><a href="../../analysis/overproof" class="menu-level-2">超标统计</a></li>
+                </ul>
+            </li>
+            <li><a href="javascript:void(0)" class="menu-level-1">考核排名</a>
+                <ul class="border-radius-2" style="display: none;">
+                    <li><a href="../../cityData/cityRank" class="menu-level-2">城市排名</a></li>
+                    <li><a href="../../cityData/districtS_Manager" class="menu-level-2">区县目标管理</a></li>
+                    <li><a href="../../cityData/districtS_analysis" class="menu-level-2">区县考核统计</a></li>
+                </ul>
+            </li>
+            <li><a href="../../statistics/sysReportUpload" class="menu-level-1">报告</a></li>
+            <li><a href="javascript:void(0)" class="menu-level-1">设置</a>
+                <ul class="border-radius-2" style="display: none;">
+                    <li><a href="javascript:void(0)" class="menu-level-2">数据质控</a>
+                        <ul class="menuClass3 border-radius-3">
+                            <li><a href="../../statistics/dataAudit" class="menu-level-3">数据审核</a></li>
+                            <li><a href="../../warn/data/index" class="menu-level-3">数据告警</a></li>
+                            <li><a href="../../warn/data/dataMonitor" class="menu-level-3">异常数据监控</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" class="menu-level-2">设备管理</a>
+                        <ul class="menuClass3 border-radius-3">
+                            <li><a href="../../system/equipment/monitoring/index" class="menu-level-3">监测点管理</a>
+                            </li>
+                            <li><a href="../../station/index" class="menu-level-3">设备整机管理</a></li>
+                            <li><a href="../../sensor/index" class="menu-level-3">传感器管理</a></li>
+                            <li><a href="../../rest/station/equIndex" class="menu-level-3">设备状态</a></li>
+                            <li><a href="../../rest/station/equFaultIndex" class="menu-level-3">设备故障</a></li>
+                            <li><a href="../../data/environmental" class="menu-level-3">原始数据</a></li>
+                            <li><a href="../../weather/deviceAdjustIndex" class="menu-level-3">设备驯化</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" class="menu-level-2">自动化校准</a>
+                        <ul class="menuClass3 border-radius-3">
+                            <li><a href="../../benchmark/index" class="menu-level-3">设备寻标</a></li>
+                            <li><a href="../../system/sensor/autocalibration" class="menu-level-3">参数计算</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" class="menu-level-2">系统管理</a>
+                        <ul class="menuClass3 border-radius-3">
+                            <li><a href="../../sys/organize" class="menu-level-3">组织管理</a></li>
+                            <li><a href="../../user/manager" class="menu-level-3">用户管理</a></li>
+                            <li><a href="../../sys/project" class="menu-level-3">项目管理</a></li>
+                            <li><a href="../../role/manager" class="menu-level-3">角色管理</a></li>
+                            <li><a href="../../function/sysFun" class="menu-level-3">模块管理</a></li>
+                            <li><a href="../../sys/operatingLog" class="menu-level-3">操作日志</a></li>
+                            <li><a href="../../weather/stationLatLngIndex" class="menu-level-3">经纬度转换</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" class="menu-level-2">数据管理</a>
+                        <ul class="menuClass3 border-radius-3">
+                            <li><a href="../../pollution/index" class="menu-level-3">污染源管理</a></li>
+                            <li><a href="../../data/forecast" class="menu-level-3">天气预报</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="javascript:void(0)" class="menu-level-1">历史功能</a>
+                <ul class="border-radius-2" style="display: none;">
+                    <li><a href="javascript:void(0)" class="menu-level-2">大气监测</a>
+                        <ul class="menuClass3 border-radius-3" style="display: none;">
+                            <li><a href="../../airMonitoring/history_index" class="menu-level-3">历史回顾</a></li>
+                            <li><a href="../../airMonitoring/pollutionCloudPC" class="menu-level-3">污染云图</a></li>
+                            <li><a href="../../airMonitoring/grid_index" class="menu-level-3">虚拟网格</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" class="menu-level-2">大气日历</a>
+                        <ul class="menuClass3 border-radius-3" style="display: none;">
+                            <li><a href="../../airCalendar/station_day_statics" class="menu-level-3">站点日历</a>
+                            </li>
+                            <li><a href="../../airCalendar/station_month_statics" class="menu-level-3">站点月历</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" class="menu-level-2">大气分析</a>
+                        <ul class="menuClass3 border-radius-3" style="display: none;">
+                            <li><a href="../../stationAnalysis/weatherChart" class="menu-level-3">全站分析</a></li>
+                            <li><a href="../../stationAnalysis/heavyPollution" class="menu-level-3">重污染监测</a>
+                            </li>
+                            <li><a href="../../statistics/historyDataAnalysis" class="menu-level-3">历史同期数据分析</a>
+                            </li>
+                            <li><a href="../../pollution/heavy/index" class="menu-level-3">污染过程分析</a></li>
+                            <li><a href="../../stationAnalysis/multiplCurves" class="menu-level-3">多曲线分析</a></li>
+                            <li><a href="../../stationAnalysis/stationStatistics" class="menu-level-3">站点统计</a>
+                            </li>
+                            <li><a href="../../stationAnalysis/customChart" class="menu-level-3">自定义分析</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" class="menu-level-2">城市数据</a>
+                        <ul class="menuClass3 border-radius-3" style="display: none;">
+                            <li><a href="../../cityData/dataAnalysisPC" class="menu-level-3">城市数据分析</a></li>
+                            <li><a href="../../cityData/comparativeAnalysis" class="menu-level-3">城市对比分析</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" class="menu-level-2">监测监管</a>
+                        <ul class="menuClass3 border-radius-3">
+                            <li><a href="../../pollutionSource/index" class="menu-level-3">来源识别</a></li>
+                            <li><a href="../../pollutionSpace/index" class="menu-level-3">相关性分析</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" class="menu-level-2">设备管理</a>
+                        <ul class="menuClass3 border-radius-3">
+                            <li><a href="../../alarm/equWarnIndex" class="menu-level-3">设备告警</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)" class="menu-level-2">大屏管理</a>
+                        <ul class="menuClass3 border-radius-3">
+                            <li><a href="../../airMonitoring/realtime" class="menu-level-3">实时监测</a></li>
+                            <li><a href="../../cityData/dataAnalysis" class="menu-level-3">城市数据分析</a></li>
+                            <li><a href="../../airMonitoring/pollutionCloud" class="menu-level-3">污染云图</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="../../airMonitoring/realtimePC" class="menu-level-1">实时监测</a></li>
+        </ul>
+        <div class="down-menu pull-right" style="width: 73px;"><span id="currUser"
+                                                                     onclick="toogleMenu('userSelect','currUser')"
+                                                                     title="admin" class="curr-menu m-l-10"><div
+                class="icon-usertool"></div></span>
+            <ul id="userSelect" style="z-index: 99999999;">
+                <li><a href="#" onclick="changePwd()">密码修改</a></li>
+                <li><a onclick="logout()" href="javascript:void(0)">退出</a></li>
+            </ul>
+        </div>
+        <div class="down-menu pull-right"><span id="currCity" onclick="toogleMenu('citySelect','currCity')"
+                                                class="curr-menu"><span id="cityNameSpan">济宁市</span> <i
+                class="icon-down m-l-5"></i></span>
+            <ul id="citySelect">
+                <li><a href="javascript:void(0)" id="510100" onclick="changeCity('510100', '510000', '成都市')">成都市</a>
+                </li>
+                <li><a href="javascript:void(0)" id="510122" onclick="changeCity('510122', '510100', '双流县')">双流县</a>
+                </li>
+                <li><a href="javascript:void(0)" id="370800" onclick="changeCity('370800', '370000', '济宁市')">济宁市</a>
+                </li>
+                <li><a href="javascript:void(0)" id="110100" onclick="changeCity('110100', '110000', '北京市')">北京市</a>
+                </li>
+                <li><a href="javascript:void(0)" id="460100" onclick="changeCity('460100', '460000', '海口市')">海口市</a>
+                </li>
+                <li><a href="javascript:void(0)" id="510600" onclick="changeCity('510600', '510000', '德阳市')">德阳市</a>
+                </li>
+                <li><a href="javascript:void(0)" id="110119" onclick="changeCity('110119', '110100', '延庆区')">延庆区</a>
+                </li>
+                <li><a href="javascript:void(0)" id="510129" onclick="changeCity('510129', '510100', '大邑县')">大邑县</a>
+                </li>
+            </ul>
+        </div>
+        <div class="pull-right telecom-logo"><img src="../../resources/img/whiteLogo-Chengdu.png"></div>
+        <div id="pageName" class="top-pname hidden">监测地图</div>
+    </div>
+    <!--顶部结束-->
+    <!--左侧的面板开始-->
+    <div class="ui-rh-leftpane rh-leftpane-hide post-fixed m-l-10 pull-left ovh"
+         :class="{'rh-leftpane-hide':leftpane.noActive,'rh-leftpane-show':leftpane.isActive}">
+        <div class="muiltCircle-contianer ovh">
+            <!--多圈开始-->
+            <!--aqi污染值开始-->
+            <div class="ui-rh-circle ui-rh-boxshadow m-b-5" id="aqi2">
+                <div class="rh-circle-title">
+                    <template v-if="aqiFirst2.indexOf('AQI') == -1">
+                        <b>AQI</b>
+                    </template>
+                    <template v-else>
+                        <b title="首要污染物">● AQI</b>
+                    </template>
+                </div>
+                <div class="rh-circle-container">
+                    <div :data-to-value='circleValueArr[0]' :data-to-level='circleLevelArr[0]' data-items-count='32'
+                         id="p1_barPie" class="barPie barPie01 barPie--radio">
+                        <span class="barPie__value">0</span>
+                        <div class="barPie__ring">
+                            <template v-for="(n,index) in numbers">
+                                <input type="radio" name="barPieRadioGroup1"
+                                       :id="filterCircleId(n,index,'p1_barPieItem')" :value="filterCircleValue(index)"
+                                       hidden="hidden"/>
+                                <label :class="filterCircleClass(n,index,'p1_barPieClass')"></label>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--aqi污染值结束-->
+
+            <!--pm25污染值开始-->
+            <div class="ui-rh-circle ui-rh-boxshadow m-b-5 border-shadow" id="pm25">
+                <div class="rh-circle-title">
+                    <template v-if="aqiFirst2.indexOf('PM25') == -1">
+                        <b>PM<sub>2.5</sub></b>
+                    </template>
+                    <template v-else>
+                        <b title="首要污染物">● PM<sub>2.5</sub></b>
+                    </template>
+                </div>
+                <div class="rh-circle-container">
+                    <div :data-to-value='circleValueArr[2]' :data-to-level='circleLevelArr[2]' data-items-count='32'
+                         id="p3_barPie" class="barPie barPie03 barPie--radio">
+                        <span class="barPie__value">0</span>
+                        <div class="barPie__ring">
+                            <template v-for="(n,index) in numbers">
+                                <input type="radio" name="barPieRadioGroup3"
+                                       :id="filterCircleId(n,index,'p3_barPieItem')" :value="filterCircleValue(index)"
+                                       hidden="hidden"/>
+                                <label :class="filterCircleClass(n,index,'p3_barPieClass')"></label>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--pm25污染值结束-->
+            <!--pm10污染值开始-->
+            <div class="ui-rh-circle ui-rh-boxshadow m-b-5" id="pm10">
+                <div class="rh-circle-title">
+                    <template v-if="aqiFirst2.indexOf('PM10') == -1">
+                        <b>PM<sub>10</sub></b>
+                    </template>
+                    <template v-else>
+                        <b title="首要污染物">● PM<sub>10</sub></b>
+                    </template>
+                </div>
+                <div class="rh-circle-container">
+                    <div :data-to-value='circleValueArr[3]' :data-to-level='circleLevelArr[3]' data-items-count='32'
+                         id="p4_barPie" class="barPie barPie04 barPie--radio">
+                        <span class="barPie__value">0</span>
+                        <div class="barPie__ring">
+                            <template v-for="(n,index) in numbers">
+                                <input type="radio" name="barPieRadioGroup4"
+                                       :id="filterCircleId(n,index,'p4_barPieItem')" :value="filterCircleValue(index)"
+                                       hidden="hidden"/>
+                                <label :class="filterCircleClass(n,index,'p4_barPieClass')"></label>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--pm10污染值结束-->
+
+            <!--o3污染值开始-->
+            <div class="ui-rh-circle ui-rh-boxshadow m-b-5" id="o3">
+                <div class="rh-circle-title">
+                    <template v-if="aqiFirst2.indexOf('O3') == -1">
+                        <b>O<sub>3</sub></b>
+                    </template>
+                    <template v-else>
+                        <b title="首要污染物">● O<sub>3</sub></b>
+                    </template>
+                </div>
+                <div class="rh-circle-container">
+                    <div :data-to-value='circleValueArr[7]' :data-to-level='circleLevelArr[7]' data-items-count='32'
+                         id="p8_barPie" class="barPie barPie08 barPie--radio">
+                        <span class="barPie__value">0</span>
+                        <div class="barPie__ring">
+                            <template v-for="(n,index) in numbers">
+                                <input type="radio" name="barPieRadioGroup8"
+                                       :id="filterCircleId(n,index,'p8_barPieItem')" :value="filterCircleValue(index)"
+                                       hidden="hidden"/>
+                                <label :class="filterCircleClass(n,index,'p8_barPieClass')"></label>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--o3污染值结束-->
+
+            <!--Co污染值开始-->
+            <div class="ui-rh-circle ui-rh-boxshadow m-b-5" id="co">
+                <div class="rh-circle-title">
+                    <template v-if="aqiFirst2.indexOf('CO') == -1">
+                        <b>CO</b>
+                    </template>
+                    <template v-else>
+                        <b title="首要污染物">● CO</b>
+                    </template>
+                </div>
+                <div class="rh-circle-container">
+                    <div :data-to-value='circleValueArr[6]' :data-to-level='circleLevelArr[6]' data-items-count='32'
+                         id="p7_barPie" class="barPie barPie07 barPie--radio">
+                        <span class="barPie__value">0</span>
+                        <div class="barPie__ring">
+                            <template v-for="(n,index) in numbers">
+                                <input type="radio" name="barPieRadioGroup7"
+                                       :id="filterCircleId(n,index,'p7_barPieItem')" :value="filterCircleValue(index)"
+                                       hidden="hidden"/>
+                                <label :class="filterCircleClass(n,index,'p7_barPieClass')"></label>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Co污染值结束-->
+
+            <!--so2污染值开始-->
+            <div class="ui-rh-circle ui-rh-boxshadow m-b-5" id="so2">
+                <div class="rh-circle-title">
+                    <template v-if="aqiFirst2.indexOf('SO2') == -1">
+                        <b>SO<sub>2</sub></b>
+                    </template>
+                    <template v-else>
+                        <b title="首要污染物">● SO<sub>2</sub></b>
+                    </template>
+                </div>
+                <div class="rh-circle-container">
+                    <div :data-to-value='circleValueArr[4]' :data-to-level='circleLevelArr[4]' data-items-count='32'
+                         id="p5_barPie" class="barPie barPie05 barPie--radio">
+                        <span class="barPie__value">0</span>
+                        <div class="barPie__ring">
+                            <template v-for="(n,index) in numbers">
+                                <input type="radio" name="barPieRadioGroup5"
+                                       :id="filterCircleId(n,index,'p5_barPieItem')" :value="filterCircleValue(index)"
+                                       hidden="hidden"/>
+                                <label :class="filterCircleClass(n,index,'p5_barPieClass')"></label>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--so2污染值结束-->
+            <!--no2污染值开始-->
+            <div class="ui-rh-circle ui-rh-boxshadow m-b-5" id="no2">
+                <div class="rh-circle-title">
+                    <template v-if="aqiFirst2.indexOf('NO2') == -1">
+                        <b>NO<sub>2</sub></b>
+                    </template>
+                    <template v-else>
+                        <b title="首要污染物">● NO<sub>2</sub></b>
+                    </template>
+                </div>
+                <div class="rh-circle-container">
+                    <div :data-to-value='circleValueArr[5]' :data-to-level='circleLevelArr[5]' data-items-count='32'
+                         id="p6_barPie" class="barPie barPie06 barPie--radio">
+                        <span class="barPie__value">0</span>
+                        <div class="barPie__ring">
+                            <template v-for="(n,index) in numbers">
+                                <input type="radio" name="barPieRadioGroup6"
+                                       :id="filterCircleId(n,index,'p6_barPieItem')" :value="filterCircleValue(index)"
+                                       hidden="hidden"/>
+                                <label :class="filterCircleClass(n,index,'p6_barPieClass')"></label>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--no污染值结束-->
+
+
+            <!--标准aqi污染值开始-->
+            <div class="ui-rh-circle ui-rh-boxshadow m-b-5" id="aqi">
+                <div class="rh-circle-title">
+                    <b>标准AQI</b>
+                </div>
+                <div class="rh-circle-container">
+                    <div :data-to-value='circleValueArr[1]' :data-to-level='circleLevelArr[1]' data-items-count='32'
+                         id="p2_barPie" class="barPie barPie02 barPie--radio">
+                        <span class="barPie__value">0</span>
+                        <div class="barPie__ring">
+                            <template v-for="(n,index) in numbers">
+                                <input type="radio" name="barPieRadioGroup2"
+                                       :id="filterCircleId(n,index,'p2_barPieItem')" :value="filterCircleValue(index)"
+                                       hidden="hidden"/>
+                                <label :class="filterCircleClass(n,index,'p2_barPieClass')"></label>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--标准aqi污染值结束-->
+            <div class="morePollution" @click="resiteleftWidth" v-if="isShowshowBtn">
+                <template v-if='leftpane.noActive'>展开</template>
+                <template v-else>收起</template>
+            </div>
+            <!--多圈结束-->
+        </div>
+    </div>
+    <!--左侧的面板结束-->
+    <!--中间的面板开始 -->
+    <div class="ui-rh-centerpane post-fixed rh-mappane-hide"
+         :class="{'rh-mappane-hide':mappane.noActive,'rh-mappane-show':mappane.isActive,'rh-fullmappane-show':openFullmappane.isActive,'rh-fullmappane-fullshow':openFullmappane.fullIsActive}">
+        <div style="width: 100%; height: 100%;" class="post-rel map-container ui-rh-boxshadow b-radius4">
+            <div class="centerpane-top-bor"></div>
+            <div class="centerpane-left-bor"></div>
+            <div class="centerpane-right-bor"></div>
+            <div class="centerpane-bottom-bor"></div>
+            <!--地图图标开始-->
+            <div class="map-icon-rightTop post-abs">
+                <button class="btn btn-white maptype-control" :title="mapType==1?'卫星':'地图'" @click="mapTypeChange"
+                        :class="{'btn-info':mapControl['difMap'].isActive,'btn-white':mapControl['difMap'].noActive } "></button>
+
+                <button class="btn btn-white map-toolbox" title="地图工具" @click="popToolbox" id="mapTool"
+                        :class="{'btn-info':mapControl['mapTool'].isActive,'btn-white':mapControl['mapTool'].noActive } "></button>
+
+                <button class="btn btn-white map-time " id="mapTime" title="时间维度" @click="timePaneChange"
+                        :class="{'btn-info':mapControl['timeChange'].isActive,'btn-white':mapControl['timeChange'].noActive } "></button>
+
+                <button class="btn btn-white map-stationtype" title="站点筛选" @click="popStationtypebox"
+                        id="mapStationtype"
+                        :class="{'btn-info':mapControl['mapStaiontype'].isActive,'btn-white':mapControl['mapStaiontype'].noActive } "></button>
+
+                <button class="btn btn-white map-fullscreen" :title="openFullmappane.isActive ? '收回地图':'展开地图'"
+                        @click="openfullScrren"
+                        :class="{'btn-info':mappane.isActive,'btn-white':mappane.noActive}"></button>
+                <button class="btn btn-white map-controlb m-t-10" @click="zoomUp"></button>
+                <button class="btn btn-white map-controls m-t-10" @click="zoomDown"></button>
+                <!--时间切换下拉开始-->
+                <div class="drop-down-maptime post-abs" id="drop-down-maptime"
+                     :class="{'dn':mapControl['timeChange'].noActive}">
+                    <span></span>
+                    <div class="btn-white map-daytag m-t-10" :class="{'curr':mapControl['timeForhour'].isActive} "
+                         @click="timeTypeChange('hour')">小时
+                    </div>
+                    <div class="btn-white map-hourtag m-t-10" :class="{'curr':mapControl['timeForday'].isActive} "
+                         @click="timeTypeChange('day')">天
+                    </div>
+                </div>
+                <!--时间切换下拉结束-->
+                <!--地图工具下拉菜单开始-->
+                <div class="drop-down-maptool post-abs" id="drop-down-maptool" :class="{'dn':showToolBox}">
+                    <span></span>
+                    <div class="btn-white map-ruler m-t-10" @click="distanceTool"
+                         :class="{'btn-info':mapControl['mapRuler'].isActive,'btn-white':mapControl['mapRuler'].noActive } ">
+                        测距
+                    </div>
+                    <div class="btn-white map-light m-t-10" @click="traffic"
+                         :class="{'btn-info':mapControl['mapLight'].isActive,'btn-white':mapControl['mapLight'].noActive } ">
+                        路况
+                    </div>
+                </div>
+                <!--地图工具下拉菜单结束-->
+                <!--站点类型下拉列表开始-->
+                <div class="drop-down-stationtype post-abs b-radius4" id="drop-down-stationtype"
+                     v-show="mapControl['mapStaiontype'].isActive">
+                    <span class="allselected" @click="selallItem">全选</span>
+                    <div class="list-station ovh">
+                        <div class="dl wz" :class="wz_all ? ' active' : '' " id="type_wz">
+                            <div class="dt" @click="selt_cage('wz')">
+                                微站
+                            </div>
+                            <div class="dd">
+                                <template v-for="(item,index) in wzstationList">
+                                    <span :id="gernerateId('wz',item.id)" @click="selsingleItem(item,'wz',$event)">{{item.name}}</span>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="dl kh" :class="kh_all ? ' active' : '' " id="type_kh">
+                            <div class="dt">
+                                <span @click="selt_cage('kh')">考核</span>
+                            </div>
+                            <div class="dd">
+                                <template v-for="(item,index) in khstationList">
+                                    <span :id="gernerateId('kh',item.id)" @click="selsingleItem(item,'kh',$event)">{{item.name}}</span>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="dl pc" :class="pc_all ? ' active' : '' " id="type_pc">
+                            <div class="dt" v-model="pc_all">
+                                <span @click="selt_cage('pc',$event)">爬虫</span>
+                            </div>
+                            <div class="dd">
+                                <template v-for="(item,index) in pcstationList">
+                                    <span :id="gernerateId('pc',item.id)" @click="selsingleItem(item,'pc',$event)">{{item.name}}</span>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="dl yc" :class="yc_all ? ' active' : '' " id="type_yc">
+                            <div class="dt" v-model="yc_all">
+                                <span @click="queryStationParams.pollutionType == 'pm10' && selt_cage('yc',$event)">扬尘</span>
+                            </div>
+                            <div class="dd">
+                                <template v-for="(item,index) in ycstationList">
+                                    <span :id="gernerateId('yc',item.id)"
+                                          @click="queryStationParams.pollutionType == 'pm10' && selsingleItem(item,'yc',$event)">{{item.name}}</span>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="selectOption m-t-5">
+                        <label> 区县</label>
+                        <select class="form-control" :value="selectStationTpye.district"
+                                v-model="selectStationTpye.district">
+                            <option value="-1">请选择</option>
+                            <template v-for="item in districtList">
+                                <option :value="item.id">{{item.name}}</option>
+                            </template>
+                        </select>
+                        <button class="btn btn-white btn-outline" @click="cancelStationListView">取消</button>
+                        <button class="btn btn-info" @click="StationListView">确定</button>
+                    </div>
+                </div>
+                <!--站点类型下拉列表结束-->
+                <div>
+                </div>
+            </div>
+            <!--地图图标结束-->
+            <!--地图搜索框开始-->
+            <div class="map-icon-leftTop post-abs">
+                <div class="search-formaparea">
+                    <input class="icon-search" style="width: 200px;" v-model="stationIdOrName" type="text"
+                           placeholder="请输入站点编号或名称"
+                           @keyup.enter="searchStation(stationIdOrName)" @keyup="checkStationInfo($event)"/>
+                    <ul class="search-down-list" v-show="isShowDownList">
+                        <li v-for="item in search_down_list" @click="clkSearchStation(item.id,item.text)"
+                            :title="item.text" v-html="item.text"></li>
+                    </ul>
+                </div>
+            </div>
+            <!--地图搜索框结束-->
+            <!--地图左下图标开始-->
+            <div class="map-icon-leftBottom post-abs">
+                <button class="btn btn-white map-station" title="站点"
+                        :class="{'btn-info':showStation,'btn-white':!showStation }" @click="stationIsCover"></button>
+                <button class="btn btn-white map-cloudpic" :disabled="isDesablePClound" title="污染云图"
+                        v-show="'ROLE_FUN_02_01' in allFunctions"
+                        :class="{'btn-info':pCloundBtnStatus.status.isActive,'btn-white':pCloundBtnStatus.status.noActive }"
+                        @click="showpCloundPicture"></button>
+                <button class="btn btn-white map-clouddownload" :disabled="isDesablePClound"
+                        v-show="mapControl['cloundDownload'].isActive && 'ROLE_FUN_02_02' in allFunctions"
+                        :class="{'btn-info':mapControl['cloundDownload'].isActive,'btn-white':mapControl['cloundDownload'].noActive }"
+                        title="云图下载"
+                        @click="viewPics"></button>
+                <div style="position: absolute" id="pollutionSelectPanel">
+                    <button class="btn btn-white map-pollutionS" id="mapPpollutionS"
+                            v-show="'ROLE_FUN_02_03' in allFunctions" title="污染源"
+                            :class="{'btn-white':psdropListShowBtn.status.noActive,'btn-info':psdropListShowBtn.status.isActive}"
+                            @click="showPollutionselect"></button>
+                    <!--污染源弹窗开始-->
+                    <div class="drop-panel-nav" id="drop-panel-nav" v-show="psdropListShowBtn.pSelectHtmlIsShow">
+                        <template v-for='item in psdropListHtml'>
+                            <label class="m-t-5 m-b-5 clear">{{item.name}}
+                                <template v-if='item.code'><input :id="item.code" :name='item.name'
+                                                                  @click="pSourceCheckboxSelect(item.code,item.name,$event)"
+                                                                  class="form-control" type="checkbox"/></template>
+                            </label>
+                            <ul v-for="item1 in item.child">
+                                <li><input :id="item1.code" :name='item1.name'
+                                           @click="pSourceCheckboxSelect(item1.code,item1.name,$event)"
+                                           class="form-control" type="checkbox"><label>{{item1.name}}</label></li>
+                            </ul>
+                        </template>
+                    </div>
+                    <div class="btn-select glyphicon-chevron-up" v-show="psdropListShowBtn.pSelectIsShow"
+                         @click="showPolltionPanel">请选择...
+                    </div>
+                    <!--污染源弹窗结束-->
+                </div>
+            </div>
+            <!--地图左下图标结束-->
+            <!--地图左下图标开始-->
+            <div class="map-icon-rightBottom rbottom-map-tool post-abs">
+                <button title="严重" class="btn" :disabled="!showStation"
+                        :class="{'btn-color7':pollutionBtnStatus['yz'].isActive,'btn-disable':pollutionBtnStatus['yz'].noActive}"
+                        @click="changeShowLevel('6','yz')">严重
+                </button>
+                <button title="重度" class="btn" :disabled="!showStation"
+                        :class="{'btn-color6':pollutionBtnStatus['zd'].isActive,'btn-disable':pollutionBtnStatus['zd'].noActive}"
+                        @click="changeShowLevel('5','zd')">重度
+                </button>
+                <button title="中度" class="btn" :disabled="!showStation"
+                        :class="{'btn-color5':pollutionBtnStatus['z'].isActive,'btn-disable':pollutionBtnStatus['z'].noActive}"
+                        @click="changeShowLevel('4','z')">中度
+                </button>
+                <button title="轻度" class="btn" :disabled="!showStation"
+                        :class="{'btn-color4':pollutionBtnStatus['q'].isActive,'btn-disable':pollutionBtnStatus['q'].noActive}"
+                        @click="changeShowLevel('3','q')">轻度
+                </button>
+                <button title="良" class="btn" :disabled="!showStation"
+                        :class="{'btn-color3':pollutionBtnStatus['l'].isActive,'btn-disable':pollutionBtnStatus['l'].noActive}"
+                        @click="changeShowLevel('2','l')">良
+                </button>
+                <button title="优" class="btn" :disabled="!showStation"
+                        :class="{'btn-color2':pollutionBtnStatus['y'].isActive,'btn-disable':pollutionBtnStatus['y'].noActive}"
+                        @click="changeShowLevel('1','y')">优
+                </button>
+                <button title="离" class="btn" :disabled="!showStation"
+                        :class="{'btn-color1':pollutionBtnStatus['lx'].noActive,'btn-disable':pollutionBtnStatus['lx'].isActive}"
+                        @click="changeShowLevel('-1','lx')">离线
+                </button>
+            </div>
+            <!--地图左下图标结束-->
+            <!--地图进度条开始-->
+            <div class="map-prog-bottom post-abs">
+                <!--小时单进度条开始-->
+                <div class="timeline-progres" :class="{'dn':timeType.hour.noActive}" id="progres01">
+                    <div class="progTime_btnpaly">
+                        <span class="paly-btn progressTime_control"
+                              onclick="progressTimeControl(this,'progres01',progres01,'hour')" title="开始"></span>
+                    </div>
+                    <div class="progTime progressTime zindex9">
+                        <div>
+                            <p class="startTime" style=" float:left;margin-left:68px;opacity: 0;display: none;"></p>
+                            <p class="endTime" style=" float:right;margin-right:68px;opacity: 0;display: none;"></p>
+                        </div>
+                        <div class="time_slot">
+                        </div>
+                        <div class="progTime_concent">
+                            <div class="scrollBarBox" onclick="scrollClick(progres01,'progres01','hour')"
+                                 onmousemove="scrollMove(progres01,'progres01','hour')">
+                                <div class="scrollBar">
+                                    <div class="scroll_Track"></div>
+                                    <div class="timecode"></div>
+                                </div>
+                            </div>
+                            <div class="currTime_line" onclick="scrollClick(progres01,'progres01','hour')"></div>
+                        </div>
+                    </div>
+                    <div class="scroll_Thumb"></div>
+                </div>
+                <!--小时单进度条结束-->
+                <!--天单进度条开始-->
+                <div class="timeline-progres" :class="{'dn':timeType.day.noActive}" id="progres03">
+                    <div class="progTime_btnpaly">
+                        <span class="paly-btn progressTime_control"
+                              onclick="progressTimeControl(this,'progres03',progres03,'day')" title="开始"></span>
+                    </div>
+                    <div class="progTime progressTime zindex9">
+                        <div>
+                            <p class="startTime" style=" float:left;margin-left:68px;opacity: 0;display: none;"></p>
+                            <p class="endTime" style=" float:right;margin-right:68px;opacity: 0;display: none;"></p>
+                        </div>
+                        <div class="time_slot">
+                        </div>
+                        <div class="progTime_concent">
+                            <div class="scrollBarBox" onclick="scrollClick(progres03,'progres03','day')"
+                                 onmousemove="scrollMove(progres03,'progres03','day')">
+                                <div class="scrollBar">
+                                    <div class="scroll_Track"></div>
+                                    <div class="timecode"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scroll_Thumb"></div>
+                </div>
+                <!--天单进度条结束-->
+                <!--时间控件开始-->
+                <input :value="timeControlVal" type="text" v-model="timeControlVal" id="datetimepicker"
+                       class="dateinput post-abs" @click="closeDatetimePicker"/>
+                <div class="timeControl post-abs" @click="showDatetimepicker" title="日期选择"></div>
+
+                <div class="timeControl post-abs" @click="showDatetimepicker"
+                     :title="queryStationParams.dateType == 2 ? '小时' : '天'"></div>
+
+                <!--时间控件结束-->
+            </div>
+            <!--地图进度条结束-->
+            <div class="map-content">
+                <div id="allmap" style="width: 100%; height: 100%;"></div>
+            </div>
+        </div>
+    </div>
+    <!--中间的面板结束-->
+    <!--右侧的面板开始-->
+    <div class="ui-rh-rightpane pull-right post-fixed b-radius4" :class="{'dn':openFullmappane.noActive}">
+        <div class="ui-rh-rblock-show b-radius4">
+            <ul class="ui-rh-tabs ui-rh-tabs-show">
+                <li :class="{'current':openActiveTab.isActive,' ':openActiveTab.noActive}">
+                    <a href="javascript:void(0)" targetName="tab1" name="tab1">微站排名</a>
+                </li>
+                <li class="">
+                    <a href="javascript:void(0)" targetName="tab2" title="站点列表">站点列表</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" targetName="tab3" title="站点详情">站点详情<span class="closeTab close_gray"
+                                                                                          @click="closeTabtag($event)"></span></a>
+                </li>
+            </ul>
+            <div class="ui-rh-tabs-content ui-rh-tabs-content-show">
+                <!--站点和站点列表tab 切换开始-->
+                <div id="tab1" class="ui-tabcontent" :class="{'db':openActiveTab.isActive,'dn':openActiveTab.noActive}"
+                     style="display: block;">
+                    <!--站点Top10-->
+                    <div id="topten" class="p-l-5 p-b-5 ui-rh-boxshadow ui-rh-blockbg" style="height: 195px !important;">
+                    </div>
+                    <!--风力玫瑰图开始-->
+                    <div class=" m-t-10">
+                        <ul class="ui-rh-tabs">
+                            <li class="current">
+                                <a href="javascript:void(0)">风力玫瑰图</a>
+                            </li>
+                        </ul>
+                        <div class="ui-rh-tabs-content ui-rh-boxshadow b-radius4">
+                            <div style="display: block;" class="ui-rh-blockbg">
+                                <div id="windyroseEchart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--风力玫瑰图结束-->
+                    <!--风力玫瑰图开始-->
+                    <div class="ui-rh-rblock  m-t-10" id="forecastChar">
+                        <ul class="ui-rh-tabs">
+                            <li class="current">
+                                <a href="javascript:void(0)">气象预报</a>
+                            </li>
+                        </ul>
+                        <div class="ui-rh-tabs-content ui-rh-boxshadow b-radius4">
+                            <div style="display: block;" class="ui-rh-blockbg">
+                                <div id="cityMonthEchart" style="height:200px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--风力玫瑰图结束-->
+                </div>
+                <!--站点和站点列表tab切换结束-->
+                <div id="tab2" class="ui-tabcontent" style="display: none;">
+                    <div class="ui-rh-blockbg">
+                        <!--站点列表开始-->
+                        <div class="station-type p-t-5 ovh" style="height: 24px;">
+                            <span v-if="queryStationParams.valueType != 'all'">{{selectStationTpye.pname}}{{selectStationTpye.name}}<i
+                                    @click="clearStationType(1)"><img
+                                    src="../../resources/img/close_white.png"></i></span>
+                            <span v-if="selectStationTpye.districtName!= ''">{{selectStationTpye.districtName}}<i
+                                    @click="clearStationType(2)"><img
+                                    src="../../resources/img/close_white.png"></i></span>
+                            <b class="sort-sp" :class="{desc:sort.desc,asc:sort.asc}" @click="sortStationInfo"></b>
+                        </div>
+                        <div id="stationList" class="xhideyauto m-t-5">
+                            <div class="ui-list m-l-10 m-r-10 clear" v-for="item in staionRankList">
+                                <!--筛选的站点内容-->
+                                <div class="station-list stationLbg-1" :class="item.leftClass"
+                                     @click="showSearchStation(item.stationId)">
+                                    <dl>
+                                        <dd>{{item.stationName}}【{{item.stationId}}】</dd>
+                                        <dd>{{item.districtName}} {{item.stationTypeName}} <span class="pull-right"
+                                                                                                 v-html="item.dd2"></span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                        <!--站点列表结束-->
+                    </div>
+                </div>
+                <div id="tab3" class="ui-tabcontent ui-rh-blockbg ui-rh-boxshadow b-radius4">
+                    <!--站点详情内容-->
+                    <div class="ui-tab3-info pd5">
+                        <div class="row"><span class="icon icon01"></span>{{
+                            stationDetail.stationName}}[{{stationDetail.stationId}}]<span v-if="hasSurveyRole"
+                                                                                          title="详细分析"
+                                                                                          class="icon icon04 pull-right"
+                                                                                          @click="toSurveyData"></span>
+                        </div>
+                        <div class="row"><span class="icon icon02"></span>{{stationDetail.stationTypeName}}</div>
+                        <div class="row"><span class="icon icon03"></span>{{stationDetail.addr}}</div>
+                    </div>
+                    <!--各个污染类型柱状图-->
+                    <div class="ui-top2pxline"></div>
+                    <div class="ui-tab3info" style="height: 230px;">
+                        <div class="tab3-chartBar">
+                            <div id="pollutionChar-aqi2"></div>
+                            <div id="pollutionChar-pm25"></div>
+                            <div id="pollutionChar-pm10"></div>
+                            <div id="pollutionChar-co"></div>
+                            <div id="pollutionChar-so2"></div>
+                            <div id="pollutionChar-no2"></div>
+                            <div id="pollutionChar-o3"></div>
+                        </div>
+                        <div class="ui-tab3-descinfo ovh clear">
+                            <ul class="p-l-10 p-r-10">
+                                <li>标A : {{stationDetail.aqi}}</li>
+                                <li>TVOC : {{stationDetail.tvoc}}</li>
+                                <li>CO<sub>2</sub> : {{stationDetail.co2}}</li>
+                                <li>温度 : {{stationDetail.temperature}}</li>
+                                <li>湿度 : {{stationDetail.humidity}}</li>
+                                <li>风力 : {{stationDetail.windPower}}</li>
+                                <li>风向 : {{stationDetail.windDirection}}</li>
+                                <li>气压 : {{stationDetail.pressure}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="ui-top2pxline "></div>
+                    <div class="post-rel">
+                        <div id="hourFor48char" class="m-l-10 m-r-10" style="width: 300px;margin-left: -10px; "></div>
+                        <select class="pull-right post-abs selectRight zindex9" v-model="ptype"
+                                @change="showhourFor48char">
+                            <template v-for="item in ptypeList">
+                                <option :value="item.code">{{item.name}}</option>
+                            </template>
+                        </select>
+                    </div>
+                    <div class="ui-top2pxline"></div>
+                    <div id="particulateschar" class="m-l-10 m-r-10" style="width: 300px;margin-left: -5px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--右侧的面板结束-->
+
+    <!--右侧站点详情面板开始-->
+    <div class="ui-rh-rightpane-detail post-fixed  pull-right dn"></div>
+    <!--右侧站点详情面板结束-->
+
+
+    <!-- 污染云图下载 模态框（Modal）开始 -->
+    <div class="modal fade" id="dvalueModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width: 700px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" @click="closePicsModal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="picsTitle"></h4>
+                </div>
+                <div class="pic_scrollcontianer" id="pic_scroll">
+                </div>
+                <div class="modal-footer text-center">
+                    <form id="picDownForm" method='post' action="${backendApiPath}/file/download/cloudImg/zip"
+                          target="_blank">
+                        <input type="hidden" id="select_ids" value="" name="files">
+                        <input type="hidden" id="zipName" value="" name="zipName">
+                        <span id="selCnt" class="left"></span>
+                        <input type="button" class="btn btn-info" @click="selAll_pic()" id="selAll" value="全部选中"/>
+                        <button type="button" class="btn btn-info" @click="downLoadPics()">下载</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 污染云图下载 模态框（Modal）结束 -->
+</div>
+<script type="text/javascript" src="../../resources/js/airMonitoring/real-history/realtmeHistoryCommon.js"></script>
+<script type="text/javascript" src="../../resources/js/airMonitoring/realtimePC/timeProgress.js"></script>
+<script type="text/javascript" src='../../resources/js/airMonitoring/stopExecutionOnTimeout.js?t=1'></script>
+<script type="text/javascript" src='../../resources/js/airMonitoring/do-in.js'></script>
+
+<script type="text/javascript" src="../../resources/js/airMonitoring/real-history/realHisMap.js"></script>
+<script type="text/javascript" src="../../resources/js/airMonitoring/real-history/realHisCloud.js"></script>
+<script type="text/javascript" src="../../resources/js/airMonitoring/real-history/realHisStation.js"></script>
+<script type="text/javascript" src="../../resources/js/airMonitoring/airMonitoring-echars.js"></script>
+<script type="text/javascript" src="../../resources/js/airMonitoring/real-history/realHisotry_pollutions.js"></script>
+<script>
+    $(function ($) {
+        $('.muiltCircle-contianer').css('height', (document.documentElement.clientHeight - 50) + 'px');
+
+    });
+</script>
+</body>
+
+</html>

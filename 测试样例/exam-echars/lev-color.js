@@ -39,6 +39,68 @@ function getRangeByType(type) {
     }
 }
 
+
+function getClors(level) {
+    var colrsArr = [
+        {offset: 1, color: '#cecece'},
+        {offset: 0, color: '#676767'},
+
+    ];
+    switch (level) {
+        case 1:
+            colrsArr = [
+                {offset: 1, color: '#9dfc7c'},
+                {offset: 0, color: '#4e7e3e'},
+
+            ];
+            break;
+        case 2:
+            colrsArr = [
+                {offset: 1, color: '#fbfe29'},
+                {offset: 0, color: '#7d7f14'},
+
+            ];
+            break;
+        case 3:
+            var colrsArr = [
+                {offset: 1, color: '#ff8f43'},
+                {offset: 0, color: '#7f4721'},
+
+            ];
+            break;
+        case 4:
+            colrsArr = [
+                {offset: 1, color: '#fe5769'},
+                {offset: 0, color: '#7f2b34'},
+
+            ];
+            break;
+        case 5:
+            colrsArr = [
+                {offset: 0, color: '#520136'},
+                {offset: 1, color: '#a4036d'},
+
+            ];
+            break;
+        case 6:
+            colrsArr = [
+                {offset: 1, color: '#930012'},
+                {offset: 0, color: '#490009'},
+
+            ];
+            break;
+        default:
+            colrsArr = [
+                {offset: 1, color: '#cecece'},
+                {offset: 0, color: '#676767'},
+
+            ];
+            break;
+    }
+    return colrsArr;
+}
+
+
 /**
  * 通过污染物类型获取上限值
  * @param type

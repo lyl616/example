@@ -1,0 +1,18 @@
+{
+  "erroCode" : 2000,
+  "erroMsg" : null,
+  "result" : {
+    "hour" : {
+      "khCalcEndTime" : "2018-05-07 14:00:00",
+      "pcCalcEndTime" : "2018-05-07 13:00:00",
+      "wzCalcEndTime" : "2018-05-07 15:00:00",
+      "ycCalcEndTime" : "2018-05-07 12:00:00"
+    },
+    "day" : {
+      "khCalcEndTime" : "2018-05-06",
+      "pcCalcEndTime" : "2018-05-06",
+      "wzCalcEndTime" : "2018-05-06",
+      "ycCalcEndTime" : "2018-05-06"
+    }
+  }
+}

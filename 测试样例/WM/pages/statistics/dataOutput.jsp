@@ -1,0 +1,220 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>蛙鸣科技 | 监测数据查询</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="stylesheet" href="${ctx}/resources/css/rewcssChrome.css"/>
+    <script type="text/javascript" src="${ctx}/resources/js/report/Init_Reporttime.js"></script>
+    <script type="text/javascript" src="${ctx}/resources/js/report/report-common.js"></script>
+    <!--引用插件使用-->
+    <link rel="stylesheet" href="${ctx}/resources/plugins/bmap/DrawingManager_min.css"/>
+    <link href="${ctx}/resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
+    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/DistanceTool_min.js"></script>
+    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/DrawingManager_min.js"></script>
+    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/TrafficControl_min.js"></script>
+    <script type="text/javascript" src="${ctx}/resources/js/common/com-map.js"></script>
+    <script type="text/javascript" src="${ctx}/resources/plugins/My97DatePicker/WdatePicker.js"></script>
+</head>
+<body class="ovh">
+<%@ include file="../V1/topMenu.jsp" %>
+<div id="content">
+    <div class="panel-left pd10 table-scroll">
+        <div class="top-search-container ovh">
+            <form role="form">
+                <div class="row col-md-12 form-inline m-t-5">
+                    <div class="form-group">
+                        <label class="m-l-10 m-r-5 ">起止时间</label>
+                        <div class="input-daterange input-group">
+                            <input id="startTime" @focus="showDatePicker('startTime')" readonly v-model="startTime" class="form-control Wdate w150" type="text" placeholder="请选择开始时间"/>
+                            <span class="input-group-addon" style="width:13px; padding: 0 5px;">-</span>
+                            <input id="endTime" @focus="showDatePicker('endTime')" readonly v-model="endTime" class="form-control Wdate w150" type="text" placeholder="请选择结束时间"/>
+                        </div>
+                    </div>
+                    <div class="form-group m-l-20">
+                        <div class="dib time_m"><input type="radio" id="queryType_minute" name="type" value="minute" v-model="queryType"/><label for="queryType_minute">分钟</label>
+                        </div>
+                        <input type="radio" id="queryType_hour" name="type" value="hour" v-model="queryType"/><label for="queryType_hour">小时</label>
+                        <input type="radio" id="queryType_day" name="type" value="day" v-model="queryType"/><label for="queryType_day">天</label>
+                    </div>
+                </div>
+                <div class="row col-md-12 form-inline m-t-5">
+                    <div class="form-group">
+                        <label class="m-l-10 m-r-5 ">污染物类型</label>
+                        <!--行标题-->
+                        <span v-if="queryType=='hour'"><input type="checkbox" class="m-l-10" id="querypollutionType_aqi2" value="aqi2" v-model="querypollutionType"><label for="querypollutionType_aqi2" class="m-t-5">AQI</label></span>
+                        <span v-if="queryType!='minute'"><input type="checkbox" class="m-l-10" id="querypollutionType_aqi" value="aqi" v-model="querypollutionType"><label for="querypollutionType_aqi" class="m-t-5"
+                                                                                                                                                                           v-html="queryType=='day'?'AQI':'标准AQI'">标准AQI</label></span>
+                        <input type="checkbox" class="m-l-10" id="querypollutionType_pm25" value="pm25" v-model="querypollutionType"><label for="querypollutionType_pm25" class="m-t-5">PM<sub>2.5</sub></label>
+                        <input type="checkbox" class="m-l-10" id="querypollutionType_pm10" value="pm10" v-model="querypollutionType"><label for="querypollutionType_pm10" class="m-t-5">PM<sub>10</sub> </label>
+                        <input type="checkbox" class="m-l-10" id="querypollutionType_so2" value="so2" v-model="querypollutionType"><label for="querypollutionType_so2" class="m-t-5">SO<sub>2 </sub> </label>
+                        <input type="checkbox" class="m-l-10" id="querypollutionType_no2" value="no2" v-model="querypollutionType"><label for="querypollutionType_no2" class="m-t-5">NO<sub>2 </sub> </label>
+                        <input type="checkbox" class="m-l-10" id="querypollutionType_co" value="co" v-model="querypollutionType"><label for="querypollutionType_co" class="m-t-5">CO </label>
+                        <span v-if="queryType!='day'"><input type="checkbox" class="m-l-10" id="querypollutionType_o3" value="o3" v-model="querypollutionType"><label for="querypollutionType_o3" class="m-t-5">O<sub>3 </sub> </label></span>
+                        <span v-if="queryType=='hour'"><input type="checkbox" class="m-l-10" id="querypollutionType_o3H8" value="o3H8" v-model="querypollutionType"><label for="querypollutionType_o3H8" class="m-t-5">O<sub>3</sub>_8H</label></span>
+                        <span v-if="queryType=='day'"><input type="checkbox" class="m-l-10" id="querypollutionType_o3H1Max" value="o3H1Max" v-model="querypollutionType"><label for="querypollutionType_o3H1Max"
+                                                                                                                                                                                class="m-t-5">O<sub>3</sub>_1H(Max)</label></span>
+                        <span v-if="queryType=='day'"><input type="checkbox" class="m-l-10" id="querypollutionType_o3H8Max" value="o3H8Max" v-model="querypollutionType"><label for="querypollutionType_o3H8Max"
+                                                                                                                                                                                class="m-t-5">O<sub>3</sub>_8H(Max)</label></span>
+                        <input type="checkbox" class="m-l-10" id="querypollutionType_temperatureOut" value="temperatureOut" v-model="querypollutionType"><label for="querypollutionType_temperatureOut" class="m-t-5">温度 </label>
+                        <input type="checkbox" class="m-l-10" id="querypollutionType_humidityOut" value="humidityOut" v-model="querypollutionType"><label for="querypollutionType_humidityOut" class="m-t-5">湿度 </label>
+                        <input type="checkbox" class="m-l-10" id="querypollutionType_windPower" value="windPower" v-model="querypollutionType"><label for="querypollutionType_windPower" class="m-t-5">风速 </label>
+                        <input type="checkbox" class="m-l-10" id="querypollutionType_windDirection" value="windDirection" v-model="querypollutionType"><label for="querypollutionType_windDirection" class="m-t-5">风向 </label>
+                        <input type="checkbox" class="m-l-10" id="querypollutionType_pressure" value="pressure" v-model="querypollutionType"><label for="querypollutionType_pressure" class="m-t-5">气压 </label>
+                        <input type="checkbox" class="m-l-10" id="querypollutionType_vocs" value="vocs" v-model="querypollutionType"><label for="querypollutionType_vocs" class="m-t-5">TVOC </label>
+                        <input type="checkbox" class="m-l-10" id="querypollutionType_equipmentId" value="equipmentId" v-model="querypollutionType"><label for="querypollutionType_equipmentId" class="m-t-5">设备编号 </label>
+                    </div>
+                    <div class="form-group pull-right">
+                        <div class="export_searchBtn pull-right m-l-5">
+                            <button v-if="'ROLE_FUN_005_03_01' in allFunctions" type="button" class="btn btn-md btn-info pull-right" id="exportExcel" disabled="disabled" @click="exportExcel('excel')">导出Excel</button>
+                            <button v-if="'ROLE_FUN_005_03_02' in allFunctions" type="button" class="btn btn-md btn-info m-r-5" id="exportCvs" disabled="disabled" @click="exportExcel('csv')">导出CSV</button>
+                        </div>
+                        <button type="button" class="btn btn-md btn-info pull-right" @click="search">查询</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="clear m-t-10 bgf">
+            <div class="table-responsive">
+                <!-- 列表开始 -->
+                <div class="vuetable-wrapper">
+                    <vuetable ref="vuetable" api-url="${requestScope.coreApiContextPath}/statistics/queryData" http-method="post" pagination-path="pagination" fill-form="transform" track-by="stationId" :load-on-start="false" :fields="fields"
+                              :append-params="params" :per-page="perPage" @vuetable:pagination-data="onPaginationData" @vuetable:load-success="onLoadSuccess" @vuetable:cell-mouseenter="onCellMouseEnter" @vuetable:cell-mouseleave="onCellMouseLeave"
+                              @vuetable:loading="showLoader" @vuetable:loaded="hideLoader"></vuetable>
+                </div>
+                <div class="vuetable-pagination">
+                    <vuetable-pagination-info ref="paginationInfo"></vuetable-pagination-info>
+                    <component :is="paginationComponent" ref="pagination" @vuetable-pagination:change-page="onChangePage"></component>
+                </div>
+                <!-- 列表结束 -->
+            </div>
+        </div>
+    </div>
+    <div class="panel-right rel-list-zcontent-show"  style="z-index: 99999998">
+        <div class="rel-btn-toogle" @click="toogleContianer">
+            <span class="btn-jt-right"></span>
+        </div>
+        <div class="text-center post-rel">
+            <input class="form-control icon-search" v-model="stationId" type="text" @keyup.13="searchStation" placeholder="请输入站点编号或名称"/>
+        </div>
+        <!--类型下拉开始-->
+        <div class="category-surverD text-center m-t-10" id="category-station">
+            <a class="drop-down-a" @click="popWindwoShow('categ_popwindow')"> 类型</a>
+            <div class="categ_popwindow" id="categ_popwindow" style="display: none;">
+                <span class="popw_icon_triangle_bootom"></span>
+                <!--站点详情开始-->
+                <div class="categ_li">
+                    <div class="list-type-surver">
+                        <input type="checkbox" v-model="kh_all" @click="clk_kh_all"/>
+                        <!-- v-bind:true-value="1" v-bind:false-value="0" -->
+                        <label class="m-r-10">考核站</label>
+                    </div>
+                    <ul class="list-s-name-surver">
+                        <li v-for="item in khstationList"><input type="checkbox" :value="item.id" v-model="khli"></input>
+                            <label class="m-r-10">{{item.name}}</label></li>
+                    </ul>
+                    <div class="list-type-surver">
+                        <input type="checkbox" v-model="wz_all" @click="clk_wz_all"/>
+                        <!--  v-bind:true-value="1" v-bind:false-value="0" -->
+                        <label class="m-r-10">微站</label>
+                    </div>
+                    <ul class="list-s-name-surver">
+                        <li v-for="item in wzstationList"><input type="checkbox" :value="item.id" v-model="wzli"/>
+                            <label class="m-r-10">{{item.name}}</label></li>
+                    </ul>
+                    <div class="list-type-surver">
+                        <%--扬尘站--%>
+                        <li v-for="item in ycstationList"><input type="checkbox" :value="item.id" v-model="ycli"/>
+                            <label class="m-r-10">{{item.name}}</label></li>
+                    </div>
+                    <div class="list-type-surver">
+                        <input type="checkbox" v-model="pc_all" @click="clk_pc_all"/>
+                        <!-- v-bind:true-value="1" v-bind:false-value="0"  -->
+                        <label class="m-r-10">爬虫站</label>
+                    </div>
+                    <ul class="list-s-name-surver">
+                        <li v-for="item in pcstationList"><input type="checkbox" :value="item.id" v-model="pcli"/>
+                            <label class="m-r-10">{{item.name}}</label></li>
+                    </ul>
+                    <hr class="list-inline"/>
+                    <div class="list-type-surver">
+                        <input type="checkbox" v-model="district_all" @click="clk_district_all"/>
+                        <!-- v-bind:true-value="1" v-bind:false-value="0" -->
+                        <label class="m-r-10">行政区</label>
+                    </div>
+                    <ul class="list-s-name-surver">
+                        <li v-for="item in districtList"><input type="checkbox" :value="item.id" v-model="districtli"/>
+                            <label class="m-r-10">{{item.name}}</label></li>
+                    </ul>
+                </div>
+                <!--站点详情结束-->
+                <div class="categ_2btn">
+                    <button class="btn btn-info btn-xs text-center col-sm-5 pull-left m-t-10" @click="queryStations()">确定</button>
+                    <button class="btn btn-white btn-xs text-center col-sm-5 pull-right m-t-10" @click="popWindwoShow('categ_popwindow')">重置</button>
+                </div>
+            </div>
+        </div>
+        <button class="btn pull-right m-t-10 width-85" :class="{'btn-info':mapOpenStatus.isActive,'btn-white':mapOpenStatus.noActive}" @click="openMap">地图圈选</button>
+        <!--类型下拉结束-->
+        <div class="m-t-10">
+            当前已选站点：<b class="gf60" v-html="selectedToRight.length"></b>
+        </div>
+        <div class="m-t-10 m-b-10">
+            扩大半径：<input type="checkbox" class="va-m" @click="threeKM" v-model="threeKilometre" :disabled="selectedToRight.length != 1"/><label :class="{'g3':threeKisActive.isActive,'gc':threeKisActive.noActive}"> 三公里</label>
+        </div>
+        <div class="vuetabletable-loadanimation clear" id="station_info_list" style="overflow-y: auto;">
+            <vuetable ref="vuetableRight"
+                      api-url="${requestScope.coreApiContextPath}/monitor/stationtype"
+                      http-method="post"
+                      pagination-path="pagination"
+                      fill-form="transformRight"
+                      track-by="stationId"
+                      :load-on-start="false"
+                      :fields="fieldRight"
+                      :multi-sort="true"
+                      :table-class='setTableClass'
+                      :append-params="paramsRight"
+                      :per-page="perPage"
+                      @vuetable:load-success="onRightLoadSuccess"
+                      @vuetable:checkbox-toggled="onRightCheckToggled"
+                      @vuetable:checkbox-toggled-all="onRightCheckToggled"
+                      @vuetable:loading="onRightLoading"
+                      @vuetable:loaded="onRightLoaded">
+            </vuetable>
+        </div>
+    </div>
+    <div id="mapHtml" style="display: none;">
+        <div class="tooltip-control mapbtn-danxActive post-abs map-Btnsurver-abs mapbtn-danxActive" title="点选站点"></div>
+        <div class="tooltip-control post-abs map-Btnsurver-abs" :class="{'mapbtn-circlexActive':btnStatus['mapbtnCirclex'].isActive,'mapbtn-circlex':btnStatus['mapbtnCirclex'].noActive}" @click="openDrawingManager()" title="圈选地图站点"></div>
+        <div class="tooltip-control post-abs map-Btnsurver-abs" :class="{'mapbtn-clearActive':btnStatus['mapbtnclear'].isActive,'mapbtn-clear':btnStatus['mapbtnclear'].noActive}" @click="clearSelectMarker()" title="清除选中站点"></div>
+        <div id="allmap" style="height:100%;"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    var windowheight = $(window).height(),
+        echartsAll_height = windowheight - 120,
+        vtable_height = windowheight - 190;
+    $("#station_info_list").css("height", vtable_height + 'px');
+    $("#allCharts").css("height", echartsAll_height + 'px');
+    $(window).resize(function () {
+        windowheight = $(window).height();
+        echartsAll_height = windowheight - 110;
+        vtable_height = windowheight - 190;
+        $("#station_info_list").css("height", vtable_height + 'px');
+        $("#allCharts").css("height", echartsAll_height + 'px');
+    });
+    $(document).ready(function() {
+        $(window).resize(function() {
+            calcOverflowH(1, "table-scroll", 40);
+        });
+    });
+    calcOverflowH(1, "table-scroll", 40);
+</script>
+<script type="text/javascript" src="${ctx}/resources/js/statistics/dataOutput.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@include file="../VueMulitTable.jsp" %>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>蛙鸣科技 | 区县目标设定</title>
+		<%----%>
+		<link href="${ctx}/resources/css/rewcssChrome.css?v1" rel="stylesheet" />
+		<!--引入下拉多选框样式-->
+		<link href="${ctx}/resources/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet" />
+		<script type="text/javascript" src="${ctx}/resources/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+	</head>
+	<body class="ovh">
+		<%@include file="../V1/topMenu.jsp" %>
+		<div class="pd10 table-scroll" id="content">
+			<div class="top-search-container">
+				<div class="form-inline">
+					<div class="form-group">
+						<label class="m-l-20 m-r-5">选择年份</label>
+						<select id="whole-year" class="form-control">
+							<option value="2017">2017年</option>
+							<option value="2018">2018年</option>
+							<option value="2019">2019年</option>
+							<option selected>2020年</option>
+							<option value="2021">2021年</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label class="m-l-20 m-r-5">时间类型</label>
+						<select id="year-quarter-month" class="form-control">
+							<option>请选择</option>
+							<option>年</option>
+							<option>季度</option>
+							<option>月份</option>
+						</select>
+						<select id="time-interval" class="form-control m-l-10">
+							<option value="-1">请选择</option>
+						</select>
+					</div>
+					<div class="form-group pull-right">
+						<input type="button" class="btn btn-info pull-right" value="查询" @click="Search" />
+					</div>
+				</div>
+			</div>
+			<div class="bgf ovh m-t-10 ">
+				<v-table ref="tableScorn" is-horizontal-resize style="width:100%" :height="500" even-bg-color="#f2f2f2" :column-cell-class-name="cellClassCB" :title-rows="tableScorn.tableScornRows" :columns="tableScorn.tableScornColumns" :table-data="tableScorn.tableScornData" row-hover-color="#eee" row-click-color="#eee" :row-click="onRowClick" :paging-index="(pageIndex-1)*pageSize"></v-table>
+				<%--<vuetable ref="vuetable" :load-on-start="false" api-url="${coreApiPath}/assessment/pageSetting" http-method="post" :fields="fields" :table-height="tableHeight" pagination-path="pagination" :sort-order="sortOrder"--%>
+				<%--:multi-sort="multiSort" :selected-to="selectedTo" :per-page="perPage" :append-params="moreParams" detail-row-component="my-detail-row" detail-row-transition="expand" :row-class="rowClassCB"--%>
+				<%--@vuetable:pagination-data="onPaginationData" @vuetable:load-success="onLoadSuccess" @vuetable:loading="showLoader" @vuetable:loaded="hideLoader" @vuetable:cell-clicked="onCellClicked"--%>
+				<%--@vuetable:initialized="onInitialized" @vuetable:data-reset="onDataReset">--%>
+				<%--</vuetable>--%>
+				<div class="bgf b-radius-footer">
+					<div class="text-center p-t-10 p-b-10">
+						<button class="btn btn-info m-r-10" @click="save">保存</button>
+						<button class="btn btn-white" @click="backToManageer">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="${ctx }/resources/js/cityData/districtScorn_setting.js"></script>
+		<script type="text/javascript">
+			$("#pageName").text("区县目标设置");
+		     $(document).ready(function() {
+		         $(window).resize(function() {
+		             calcOverflowH(1, "table-scroll", 40);
+		         });
+		     });
+		     calcOverflowH(1, "table-scroll", 40);
+		</script>
+	</body>
+</html>

@@ -7,7 +7,7 @@
     <script src="../js/echarts.min.4.0.2.js"></script>
 </head>
 <body style="background-color: #29396A;">
-<div id="bar" style="width: 300px;height: 200px;"></div>
+<div id="bar" style="width: 300px;height: 150px;"></div>
 </body>
 
 
@@ -57,11 +57,6 @@
                 show: false
             },
             radar: {
-                splitArea: {
-                    areaStyle: {
-                        color: ['#1B2B5D', '#29396A']
-                    }
-                },
                 indicator: [
                     {name: 'N', max: max},
                     {name: 'NW', max: max},
@@ -71,7 +66,19 @@
                     {name: 'SE', max: max},
                     {name: 'E', max: max},
                     {name: 'NE', max: max}
-                ]
+                ],
+                radius: 40,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top',
+                        color: '#fff',
+                        fontSize: 12,
+                        formatter: function (param) {
+                            return param.data + '℃';
+                        }
+                    }
+                },
             },
             series: [{
                 type: 'radar',
@@ -87,7 +94,10 @@
                         color: '#1258A0',
                         opacity: 0.77
                     }
+                },label:{
+                    show:false
                 },
+
                 lineStyle: {
                     normal: {
                         type: 'solid',

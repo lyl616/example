@@ -1,0 +1,33 @@
+{
+  "erroCode" : 2000,
+  "erroMsg" : null,
+  "result" : {
+    "stationId" : "97933",
+    "stationName" : "万张镇",
+    "addr" : null,
+    "stationTypeName" : "市控点",
+    "pm25" : 5,
+    "pm25Level" : 1,
+    "pm10" : 41,
+    "pm10Level" : 1,
+    "co" : 0.38,
+    "coLevel" : 1,
+    "o3" : 138,
+    "o3Level" : -1,
+    "so2" : 9,
+    "so2Level" : 1,
+    "no2" : 8,
+    "no2Level" : 1,
+    "aqi" : 59,
+    "aqiLevel" : 2,
+    "aqi2" : 44,
+    "aqi2Level" : 1,
+    "tvoc" : null,
+    "co2" : null,
+    "temperature" : 23.8,
+    "humidity" : 23.0,
+    "windPower" : 1.7,
+    "windDirection" : 159.4,
+    "pressure" : 1010
+  }
+}

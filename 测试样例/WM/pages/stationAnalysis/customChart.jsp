@@ -1,0 +1,240 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<%-- <%@include file="../system/include_tools.jsp"%> --%>
+<%@include file="../includeJsCss.jsp" %>
+<!DOCTYPE html>
+<html>
+	<!--  /graph_echarts.html -->
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>蛙鸣科技 | 自定义分析</title>
+		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
+		<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
+	</head>
+
+	<body>
+		<%@ include file="../V1/topMenu.jsp" %>
+		<div class="pd10">
+			<div class="top-search-container">
+				<form role="form">
+					<div class="form-inline post-rel">
+						<div class="form-group">
+							<label class="m-r-5 m-l-10">站点选择</label>
+							<button type="button" class="btn btn-white" onclick="toggleStation('stationDown')">
+		                 	   <span class="p-l-10 p-r-15">站点 </span> <span class="caret"></span>
+		                	</button>
+							<!---站点下拉选中开始  tabs-container dropdown-menu-->
+							<div id="shadowdiv" class="shadowContainer" style="display: none;"></div>
+							<div id="stationDown" class="tabs-container dropdown-menu" style="left: 67px; max-height: 500px; min-width: 550px;" role="menu">
+								<div class="col-md-12 m-t-20">
+									<label class="m-r-10 m-l-10">当前已选站点：<label id="stationNum"
+                                                                   class="gf60 f-s-14">0</label>个</label>
+									<label class="g9">（最多可选20个站点）</label>
+									<div class="pull-right">
+										<input type="button" class="btn btn-xs btn-info pull-right " value="确定" onclick="hidemodel();" />
+										<input type="button" value="清空已选" class="btn btn-xs btn-danger pull-right m-r-10" onclick="clearSelstation()">
+									</div>
+								</div>
+								<%--<sec:authorize access="hasRole('ROLE_FUN_003_02_002')">--%>
+								<input id="hid_kh" type="hidden" value="1">
+								<%--</sec:authorize>--%>
+								<%--<sec:authorize access="hasRole('ROLE_FUN_003_02_001')">--%>
+								<input id="hid_wz" type="hidden" value="2">
+								<%--</sec:authorize>--%>
+								<%--<sec:authorize access="hasRole('ROLE_FUN_003_02_003')">--%>
+								<input id="hid_yc" type="hidden" value="3">
+								<%--</sec:authorize>--%>
+								<%--<sec:authorize access="hasRole('ROLE_FUN_003_02_004')">--%>
+								<input id="hid_pc" type="hidden" value="4">
+								<%--</sec:authorize>--%>
+								<div class="clear m-t-10">
+									<ul class="nav nav-tabs">
+										<li class="" style="display: none;" id="li_kh">
+											<a data-toggle="tab" href="#tab-kh" aria-expanded="false">考核站</a>
+										</li>
+										<li class="" style="display: none;" id="li_wz">
+											<a data-toggle="tab" href="#tab-wz" aria-expanded="true">微站</a>
+										</li>
+										<li class="" style="display: none;" id="li_yc">
+											<a data-toggle="tab" href="#tab-yc" aria-expanded="true">扬尘站</a>
+										</li>
+										<li class="" style="display: none;" id="li_pc">
+											<a data-toggle="tab" href="#tab-pc" aria-expanded="true">爬虫站</a>
+										</li>
+									</ul>
+									<div class="tab-content i-check-dropmenu ovh" id="tab-selStation" style="width: 550px;">
+										<div id="tab-kh" class="tab-pane active">
+											<div class="pd10">
+												<div class="dib" id="KhAll">
+													<input id="kaoheAll" name="全部" type="checkbox" onclick="checkAll('tab-kh',this);" />全部
+												</div>
+												<input type="button" class="btn btn-xs btn-info pull-right" value="搜索" />
+												<input type="text" id="khzdmc" class="pull-right" value="" placeholder="考核站点名称或考核站点编号" />
+												<div class="ovh clear">
+													<div class="line-long clear m-t-10"></div>
+													<div id="tab-kh-station-type" class="m-t-10">
+													</div>
+													<div class="line-long clear"></div>
+												</div>
+												<!--站点列表开始-->
+												<div style="height: 250px;" class="xhideyauto">
+													<table class="table table-bordered table-striped table-hover" id="tab-kh-stationList">
+														<thead>
+															<tr>
+																<th style="width: 221px;">站点名称</th>
+																<th style="width: 230px;">站点编号</th>
+																<th class="text-center wsn">全选<input type="checkbox" id="khAll-CheckBox" class="form-control m-l-5" onclick="SelctedAll('tab-kh-stationList',1)" /></th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td class="dataTables_empty" colspan="3">暂无数据！</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<!--站点列表结束-->
+											</div>
+										</div>
+										<div id="tab-wz" class="tab-pane">
+											<div class="pd10">
+												<div class="dib">
+													<input id="wzAll" name="全部" type="checkbox" onclick="checkAll('tab-wz',this);" />全部
+												</div>
+												<input type="button" class="btn btn-xs btn-info pull-right" value="搜索" />
+												<input type="text" id="wzzdmc" class="pull-right" value="" placeholder="微站站点名称或微站站点编号" />
+												<div class="ovh clear">
+													<div class="line-long clear m-t-10"></div>
+													<div id="tab-wz-station-type" class="m-t-10">
+													</div>
+													<div class="line-long clear"></div>
+												</div>
+												<!--站点列表开始-->
+												<div style="height: 225px;" class="xhideyauto">
+													<table class="table table-bordered table-striped table-hover" id="tab-wz-stationList">
+														<thead>
+															<tr>
+																<th style="width: 221px;">站点名称</th>
+																<th style="width: 230px;">站点编号</th>
+																<th class="wsn text-center">全选<input type="checkbox" onclick="SelctedAll('tab-wz-stationList',2)" id="wzAll-CheckBox" class="form-control m-l-5" /></th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td class="dataTables_empty" colspan="3">暂无数据！</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<!--站点列表结束-->
+											</div>
+										</div>
+										<div id="tab-yc" class="tab-pane">
+											<div class="pd10">
+												<div class="dib">
+													<input id="ycAll" name="全部" type="checkbox" onclick="checkAll('tab-yc',this);" />全部
+												</div>
+												<input type="button" class="btn btn-xs btn-info pull-right" value="搜索" />
+												<input type="text" id="yczdmc" class="pull-right" value="" placeholder="扬尘站点名称或扬尘站点编号" />
+												<div class="ovh clear">
+													<div class="line-long clear m-t-10"></div>
+													<div id="tab-yc-station-type" class="m-t-10">
+													</div>
+													<div class="line-long clear"></div>
+												</div>
+												<!--站点列开始-->
+												<div style="height: 225px;" class="xhideyauto">
+													<table class="table table-bordered table-striped table-hover" id="tab-yc-stationList">
+														<thead>
+															<tr>
+																<th style="width: 221px;">站点名称</th>
+																<th style="width: 230px;">站点编号</th>
+																<th class="wsn text-center">全选<input type="checkbox" onclick="SelctedAll('tab-yc-stationList',3)" id="ycAll-CheckBox" class="form-control m-l-5" /></th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td class="dataTables_empty" colspan="3">暂无数据！</td>
+															</tr>
+														</tbody>
+													</table>
+													<!--站点列表结束-->
+												</div>
+											</div>
+										</div>
+										<div id="tab-pc" class="tab-pane">
+											<div class="pd10">
+												<div class="dib">
+													<input id="pcAll" name="全部" type="checkbox" onclick="checkAll('tab-pc',this);" />全部
+												</div>
+												<input type="button" class="btn btn-xs btn-info pull-right" value="搜索" />
+												<input type="text" id="pczdmc" class="pull-right" value="" placeholder="爬虫站点名称或爬虫站点编号" />
+												<div class="ovh clear">
+													<div class="line-long clear m-t-10"></div>
+													<div id="tab-pc-station-type" class="m-t-10">
+													</div>
+													<div class="line-long clear"></div>
+												</div>
+												<!--站点列开始-->
+												<div style="height: 225px;" class="xhideyauto">
+													<table class="table table-bordered table-striped table-hover" id="tab-pc-stationList">
+														<thead>
+															<tr>
+																<th style="width: 221px;">站点名称</th>
+																<th style="width: 230px;">站点编号</th>
+																<th class="wsn text-center">全选<input type="checkbox" id="pcAll-CheckBox" class="form-control m-l-5" onclick="SelctedAll('tab-pc-stationList',4)" /></th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td class="dataTables_empty" colspan="3">暂无数据！</td>
+															</tr>
+														</tbody>
+													</table>
+													<!--站点列表结束-->
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!---站点下拉选择结束------->
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="m-r-5 m-l-20">类别</label>
+							<select class="form-control" name="account" id="dateType">
+								<option value="HOUR">按小时</option>
+								<option value="MINUTE">1分钟</option>
+								<option value="5MINUTE">5分钟</option>
+								<option value="10MINUTE">10分钟</option>
+								<!-- <option value="HISTORY">按小时(2天前数据)</option>-->
+							</select>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-daterange">
+								<input type="text" class="form-control m-r-5 Wdate m-l-20" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:00:00',isShowClear:false})" id="startTime" name="start" />
+								<span class="input-group-addon" style="width:13px; padding: 0 5px;">-</span>
+								<input type="text" class="form-control Wdate" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:00:00',minDate:'#F{$dp.$D(\'startTime\')}',isShowClear:false})" id="endTime" name="end" />
+							</div>
+						</div>
+						<div class="form-group pull-right">
+							<input type="button" class="btn btn-md btn-info pull-right" id="getChart" value="查询" />
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="xhideyauto m-t-10" id="allCharts"></div>
+		</div>
+		<script src="${ctx}/resources/js/tools/customChart.js"></script>
+		<script type="text/javascript">
+			//计算左右树与右侧的表格对齐
+			calcOverflowH(0, 'allCharts', 150);
+			window.onresize = function() {
+				calcOverflowH(0, 'allCharts', 150);
+			}
+		</script>
+	</body>
+
+</html>

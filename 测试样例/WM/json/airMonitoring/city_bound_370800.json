@@ -1,0 +1,11 @@
+{
+  "erroCode" : 2000,
+  "erroMsg" : null,
+  "result" : {
+    "city" : 370800,
+    "lowLat" : 30.409450,
+    "lowLng" : 115.060539,
+    "highLat" : 36.238351,
+    "highLng" : 118.337309
+  }
+}

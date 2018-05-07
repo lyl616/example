@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery.1.9.1.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1XjLLEhZhQNUzd93EjU5nOGQ"></script>
+
+</head>
+<body>
+<div id="l-map" style="width: 900px;height: 500px;"></div>
+<div class="layout">
+    <input id="value" value="青山湖区长春村" type="text">
+    　　　　 <input type="submit" onclick="pd()" value="定位"/>
+    　　　　 <input type="submit" onclick="getBoundary()" value="边界"/>
+</div>
+<script type="application/javascript">
+
+    function initMyBMapWithMaxMin(domId, mapCenter, initSize, min, max) {
+        map = new BMap.Map(domId, {
+            maxZoom: max,
+            minZoom: min,
+            enableMapClick: false
+            // 去除百度地图默认的点击事件
+        });
+
+
+
+
+        // 创建点坐标
+        map.centerAndZoom(mapCenter, initSize);
+        map.enableScrollWheelZoom(true); // 开启鼠标滚轮缩放
+        map.clearOverlays();
+        return map;
+    }
+    //初始化地图
+    var value = '';
+    // var map = new BMap.Map("l-map");
+    var point = new BMap.Point(116.596487,35.412176);
+
+    map=initMyBMapWithMaxMin('l-map', point, 10, 8, 16);
+    map.centerAndZoom('济宁市', 12);
+    map.enableScrollWheelZoom();
+
+
+
+
+    var point1 = new BMap.Point(116.599361,35.407469);
+    var point2 = new BMap.Point(116.599361,35.407469);
+    var point3 = new BMap.Point(116.611434,35.400408);
+
+
+
+
+    var marker = new BMap.Marker(point1);
+    map.addOverlay(marker);
+
+    var marker = new BMap.Marker(point2);
+    map.addOverlay(marker);
+
+    var marker = new BMap.Marker(point3);
+    map.addOverlay(marker);
+
+
+
+    marker.addEventListener("click", function () {
+
+    });
+
+
+
+
+    var point = new BMap.Point(116.596487,35.412176);
+    var circle = new BMap.Circle(point, 3000, {
+        fillColor: "#9dfc7c",
+        strokeColor: "#9dfc7c",
+        strokeWeight: 1,
+        fillOpacity: 0.25,
+        strokeOpacity: 1
+    });//设置覆盖物的参数，中心坐标，半径，颜色
+    map.addOverlay(circle);//在地图上显示圆形覆盖物
+
+
+
+
+
+
+    var myStyleJson = [{
+        "featureType": "background",
+        "elementType": "all",
+        "stylers": {
+            "color": "#0c1a4cff"
+        }
+    },
+        {
+            "featureType": "water",
+            "elementType": "all",
+            "stylers": {
+                "color": "#04070cff"
+            }
+        },
+        {
+            "featureType": "road",
+            "elementType": "geometry.stroke",
+            "stylers": {
+                "color": "#006cc3ff",
+                "weight": "0.1",
+                "lightness": -4
+            }
+        },
+        {
+            "featureType": "road",
+            "elementType": "geometry.fill",
+            "stylers": {
+                "color": "#0058b242",
+                "weight": "0.1"
+            }
+        },
+        {
+            "featureType": "continent",
+            "elementType": "labels",
+            "stylers": {
+                "visibility": "off"
+            }
+        },
+        {
+            "featureType": "road",
+            "elementType": "labels.text.stroke",
+            "stylers": {
+                "color": "#000000ff",
+                "weight": "0.1"
+            }
+        },
+        {
+            "featureType": "road",
+            "elementType": "labels.text.fill",
+            "stylers": {
+                "color": "#ffffffff",
+                "weight": "0.1"
+            }
+        },
+        {
+            "featureType": "boundary",
+            "elementType": "geometry.fill",
+            "stylers": {
+                "color": "#9d9d9dff"
+            }
+        },
+        {
+            "featureType": "boundary",
+            "elementType": "geometry.stroke",
+            "stylers": {
+                "color": "#000000ff"
+            }
+        },
+        {
+            "featureType": "districtlabel",
+            "elementType": "labels.text.fill",
+            "stylers": {
+                "color": "#ffffffff"
+            }
+        },
+        {
+            "featureType": "districtlabel",
+            "elementType": "labels.text.stroke",
+            "stylers": {
+                "color": "#000000ff"
+            }
+        },
+        {
+            "featureType": "district",
+            "elementType": "labels.text.stroke",
+            "stylers": {
+                "color": "#ffffff00"
+            }
+        },
+        {
+            "featureType": "all",
+            "elementType": "labels.icon",
+            "stylers": {
+                "visibility": "off"
+            }
+        },
+        {
+            "featureType": "poilabel",
+            "elementType": "labels.text.fill",
+            "stylers": {
+                "color": "#f3f3f3ff",
+                "visibility": "off"
+            }
+        },
+        {
+            "featureType": "town",
+            "elementType": "labels.text.fill",
+            "stylers": {
+                "color": "#ffffffff",
+                "visibility": "off"
+            }
+        },
+        {
+            "featureType": "all",
+            "elementType": "labels.text.fill",
+            "stylers": {
+                "color": "#d8d8d8ff"
+            }
+        },
+        {
+            "featureType": "manmade",
+            "elementType": "labels",
+            "stylers": {
+                "visibility": "off"
+            }
+        }
+    ];
+
+
+    map.setMapStyle({
+        styleJson: myStyleJson
+    });
+</script>
+</body>
+</html>

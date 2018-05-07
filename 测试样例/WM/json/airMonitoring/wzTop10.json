@@ -1,0 +1,55 @@
+{
+  "erroCode" : 2000,
+  "erroMsg" : null,
+  "result" : [ {
+    "stationId" : "80109",
+    "stationName" : "80109鲍电B",
+    "pvalue" : "999",
+    "baseLevel" : 6
+  }, {
+    "stationId" : "80118",
+    "stationName" : "80118东滩D",
+    "pvalue" : "701",
+    "baseLevel" : 6
+  }, {
+    "stationId" : "80070",
+    "stationName" : "80070体教局5",
+    "pvalue" : "251",
+    "baseLevel" : 4
+  }, {
+    "stationId" : "80016",
+    "stationName" : "80016山水A",
+    "pvalue" : "226",
+    "baseLevel" : 3
+  }, {
+    "stationId" : "80037",
+    "stationName" : "80037圣地5",
+    "pvalue" : "213",
+    "baseLevel" : 3
+  }, {
+    "stationId" : "80129",
+    "stationName" : "80129南矿B",
+    "pvalue" : "201",
+    "baseLevel" : 3
+  }, {
+    "stationId" : "80116",
+    "stationName" : "80116济三B",
+    "pvalue" : "187",
+    "baseLevel" : 3
+  }, {
+    "stationId" : "80105",
+    "stationName" : "80105中联A",
+    "pvalue" : "186",
+    "baseLevel" : 3
+  }, {
+    "stationId" : "80021",
+    "stationName" : "80021嘉电B",
+    "pvalue" : "171",
+    "baseLevel" : 3
+  }, {
+    "stationId" : "80047",
+    "stationName" : "80047火炬城4",
+    "pvalue" : "169",
+    "baseLevel" : 3
+  } ]
+}

@@ -1,0 +1,96 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+<c:set var="auth" value="${auth}"/>
+<!--[if lt IE 9]>
+<meta http-equiv="refresh" content="0;ie.html" />
+<![endif]-->
+<!-- ================== BEGIN BASE CSS STYLE ================== -->
+<link rel="shortcut icon" href="${ctx}/resources/img/favicon.ico">
+<link rel="stylesheet" href="${ctx}/resources/css/zlight.menu.css"/>
+<link href="${ctx}/resources/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="${ctx}/resources/css/style.min.css" rel="stylesheet"/>
+
+<link href="${ctx}/resources/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+<link href="${ctx}/resources/plugins/DataTables/extensions/Select/css/select.bootstrap.min.css" rel="stylesheet">
+<link href="${ctx}/resources/plugins/ztree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+<link rel="stylesheet" href="${ctx}/resources/plugins/layer/skin/default/layer.css" rel="stylesheet"/>
+<link href="${ctx}/resources/css/datagrid_table.css" rel="stylesheet"/>
+<link href="${ctx}/resources/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"/>
+
+<style>
+    .pagination > .active > a,
+    .pagination > .active > a:focus,
+    .pagination > .active > a:hover {
+        z-index: 3;
+        color: #fff;
+        cursor: default;
+        background-color: #32a3f8;
+        border-color: #32a3f8;
+    }
+
+    .pagination > li > a, .pagination > li > a:focus {
+        display: inline-block;
+        font-size: 12px;
+        width: auto;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        height: 24px;
+        line-height: 20px;
+        padding: 0 10px;
+        color: #333;
+        background-color: #fff;
+        margin: 0 -1px 5px 0;
+    }
+
+    .pagination > li > a:hover {
+        color: #333;
+        background-color: #e6e6e6;
+        border-color: #ccc;
+    }
+
+    table.dataTable tbody > tr.selected, table.dataTable tbody > tr > .selected {
+        background-color: white;
+        color: black;
+    }
+
+    table.dataTable tbody > tr.selected:nth-of-type(odd), table.dataTable tbody > tr > .selected:nth-of-type(odd) {
+        background-color: #f9f9f9;
+        color: black;
+    }
+</style>
+
+<script type="text/javascript" src="${ctx}/resources/plugins/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${ctx}/resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+
+<script type="text/javascript" src="${ctx}/resources/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script type="text/javascript"
+        src="${ctx}/resources/plugins/jquery-validation/jquery-validate.bootstrap-tooltip.min.js"></script>
+<script type="text/javascript" src="${ctx}/resources/plugins/jquery-validation/jquery.validate.handler.js"></script>
+
+
+<script type="text/javascript" src="${ctx}/resources/plugins/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="${ctx}/resources/plugins/layer/layer.js"></script>
+<script type="text/javascript" src="${ctx}/resources/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${ctx}/resources/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="${ctx}/resources/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript"
+        src="${ctx}/resources/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript"
+        src="${ctx}/resources/plugins/DataTables/extensions/Select/js/dataTables.select.min.js"></script>
+<script type="text/javascript" src="${ctx}/resources/plugins/DataTables/config/datatable_common.js"></script>
+<script type="text/javascript" src="${ctx}/resources/plugins/ztree/js/jquery.ztree.all.min.js"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+
+<script type="text/javascript" src="${ctx}/resources/js/common/commonUtils.js"></script>
+<script type="text/javascript" src="${ctx}/resources/js/common/JSUtils.js"></script>
+<script type="text/javascript" src="${ctx}/resources/js/common/common.js"></script>
+<script type="text/javascript" src="${ctx}/resources/js/common/dictionary.js"></script>
+<script type="text/javascript">
+    var ctx = "${ctx }", coreApiPath = "${requestScope.coreApiContextPath}";
+    $.ctx = ctx, $.coreApiPath = coreApiPath;
+    CommonUtil.path = "${ctx}";
+</script>

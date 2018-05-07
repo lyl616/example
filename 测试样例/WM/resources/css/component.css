@@ -1,0 +1,16 @@
+/*可伸缩搜索条*/
+.sb-search { position: relative; margin-top: 1px; width: 0%; margin-right: 10px; min-width: 30px; height: 24px; float: right; overflow: hidden; -webkit-transition: width 0.3s; -moz-transition: width 0.3s; transition: width 0.3s; -webkit-backface-visibility: hidden; }
+.sb-search-input { position: absolute; top: 0; right: 0; border: none; outline: none; width: 100%; height: 22px; margin: 0; z-index: 10; padding: 5px 30px 5px 5px;  font-size: 12px; color: #333;  }
+.sb-search-input::-webkit-input-placeholder { color: #c1c1c1; }
+.sb-search-input:-moz-placeholder { color: #c1c1c1; }
+.sb-search-input::-moz-placeholder { color: #c1c1c1; }
+.sb-search-input:-ms-input-placeholder { color: #c1c1c1; }
+.sb-icon-search, .sb-search-submit { width: 30px; height: 30px; display: block; position: absolute; right: 0; top: 0; padding: 0; margin: 0; line-height: 30px; text-align: center; cursor: pointer; }
+.sb-search-submit { background: #fff; /* IE needs this */ -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */ filter: alpha(opacity=0); /* IE 5-7 */ opacity: 0; color: transparent; border: none; outline: none; z-index: -1; }
+.sb-icon-search { color: #fff; background: url(../img/search_s_bg.png) 7px 6px no-repeat; z-index: 90; font-weight: normal; width: 30px; height: 24px; }
+
+
+/* Open state */
+.sb-search.sb-search-open, .no-js .sb-search { width: 100%; }
+.sb-search.sb-search-open .sb-icon-search, .no-js .sb-search .sb-icon-search { color: #fff; z-index: 11; }
+.sb-search.sb-search-open .sb-search-submit, .no-js .sb-search .sb-search-submit { z-index: 90; }

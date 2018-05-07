@@ -41,10 +41,10 @@
     var result = [
         {
             name: 'aqi',
-            value: 35
+            value: null
         }, {
             name: 'aqi2',
-            value: 234
+            value: null
         }, {
             name: 'pm25',
             value: 128
@@ -77,10 +77,8 @@
     });
 
 
-    // initChar('aqi', [150], ['aqi'], 500, 1);
 
     function initChar(id, data, xAxis, max, level) {
-        // console.log("id:" + id + "\tx:" + xAxis + "\tmax:" + max + "\tlevel:" + level)
         var myChart = echarts.init(document.getElementById(id));
 
         var maxData = [];
@@ -157,9 +155,6 @@
                     z: 3,
                     data: data,
                     symbol: 'image://' + "img/l" + level + ".png",
-                    // symbol: 'image://' + "img/l" + level + ".jpg",
-                    // symbol: 'image://' + "img/aqi1.png",
-                    symbolClip: true,
                     symbolSize: [8, 100]
                 },
                 {

@@ -1,0 +1,383 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@include file="../../includeJsCss.jsp" %>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <title>蛙鸣科技 | 传感器管理</title>
+    <link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css"/>
+    <script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
+    <script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table.js"></script>
+    <script type="text/javascript" src="${ctx}/resources/plugins/jquery-file-upload/js/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="${ctx}/resources/plugins/jquery-file-upload/js/jquery.form.js"></script>
+    <link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <script type="text/javascript">
+        sessionStorage.setItem("tag", "1,2");
+        sessionStorage.setItem("path", "sensor");
+    </script>
+</head>
+
+<body class="ovh">
+<%@ include file="../../V1/topMenu.jsp" %>
+<div id="content" class="pd10 table-scroll">
+    <!--tab head-->
+    <div class="tabs-container chunk-set">
+        <ul class="nav nav-tabs" id="tab-head">
+            <li v-if="tabRealTime" class="active">
+                <a data-toggle="tab" href="#tab-sensor" aria-expanded="true">传感器</a>
+            </li>
+            <li v-if="tabHis" :class="{active:tabHis && !tabRealTime}">
+                <a data-toggle="tab" aria-expanded="false" href="#tab-sensorHistory">传感器历史</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div id="tab-sensor" class="tab-pane active">
+                <!-- begin breadcrumb -->
+                <div class="top-search-container">
+                    <form role="form">
+                        <div class="form-inline">
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <label class="m-l-10 m-r-5">设备编号</label>
+                                    <input type="text" class="form-control" v-model="searchFor.equipmentId"
+                                           placeholder="请输入设备编号">
+                                </div>
+                                <div class="form-group">
+                                    <label class="m-l-10 m-r-5">监测点编号</label>
+                                    <input type="text" class="form-control" v-model="searchFor.stationId"
+                                           placeholder="请输入监测点编号">
+                                </div>
+                                <div class="form-group">
+                                    <label class="m-l-20 m-r-5">项目</label>
+                                    <select class="form-control" v-model="searchFor.projectId">
+                                        <option value="">请选择</option>
+                                        <option v-for="option in projectList" value="{{option.id}}">{{option.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="m-l-20 m-r-5">传感器状态</label>
+                                    <select class="form-control" id="maintStatus" name="maint_status"
+                                            v-model="searchFor.maintStatus">
+                                        <option value="">全部</option>
+                                        <option v-for="option in maintStatusList" value="{{option.code}}">
+                                            {{option.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-inline m-t-5">
+                                <div class="form-group">
+                                    <label class="m-l-20 m-r-5">类型</label>
+                                    <select class="form-control" v-model="searchFor.deviceType">
+                                        <option v-for="option in devtypelist" value="{{option.code}}">{{option.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="m-l-20 m-r-5">下发状态</label>
+                                    <select class="form-control" name="type" v-model="searchFor.status">
+                                        <option v-for="option in statustypelist" value="{{option.code}}">
+                                            {{option.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="m-l-20 m-r-5">下发时间</label>
+                                    <input type="text" class="form-control m-r-5 Wdate w150"
+                                           v-model="searchFor.sendTime"
+                                           onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:00:00'})" id="sendTime"
+                                           name="sendTime"/>
+                                </div>
+                                <div class="form-group">
+                                    <label class="m-l-20 m-r-5">数据</label>
+                                    <input class="m-l-10" type="radio" name="dataType" id="dataType1"
+                                           v-model="searchFor.dataType" value="1" checked>应用值 <input
+                                        class="m-l-10 m-r-5" type="radio" name="dataType" v-model="searchFor.dataType"
+                                        id="dataType2" value="2">实验值
+                                </div>
+                                <div class="form-group pull-right">
+                                    <button type="button" class="btn  btn-info pull-right" @click="search">搜索</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="m-t-10 bgf">
+                    <div class="table-head">
+                        <div class="m-t-5 p-b-5 m-l-5">
+                            <button v-if="allFunctions.hasOwnProperty('ROLE_FUN_102_02_02_03')"
+                                    class="btn btn-info m-r-5" id="btnImport" @click="showImportFile">导入
+                            </button>
+                            <button v-if="allFunctions.hasOwnProperty('ROLE_FUN_102_02_02_04')"
+                                    class="btn btn-info m-r-5" id="btnReGetOrdersResult" @click="reGetOrdersResult">
+                                获取导入结果
+                            </button>
+                            <button v-if="allFunctions.hasOwnProperty('ROLE_FUN_102_02_02_05')"
+                                    class="btn btn-info m-r-5" id="btnReSend" @click="reSend">一键补发
+                            </button>
+                            <button v-if="allFunctions.hasOwnProperty('ROLE_FUN_102_02_02_06')"
+                                    class="btn btn-info m-r-5" id="btnImportQuery" @click="showImportFileQuery">批量查询KB
+                            </button>
+                            <button v-if="allFunctions.hasOwnProperty('ROLE_FUN_102_02_02_01')"
+                                    class="btn btn-danger m-r-5" @click="delsSensor">批量删除
+                            </button>
+                            <button v-if="allFunctions.hasOwnProperty('ROLE_FUN_102_02_02_02')"
+                                    class="btn btn-info m-r-5" id="btnMaint" @click="setMaint">运维中
+                            </button>
+                            <button v-if="allFunctions.hasOwnProperty('ROLE_FUN_102_02_02_07')"
+                                    class="btn btn-info m-r-5" id="btnMaintOver" @click="setMaintOver">运维结束
+                            </button>
+                            <input type="hidden" id="updateBtn" value="1"/>
+                            <input type="hidden" id="delBtn" value="1"/>
+                        </div>
+                    </div>
+                    <!-- 列表开始 -->
+                    <div class="table-responsive clear">
+                        <vuetable v-ref:vuetable api-url="${requestScope.coreApiContextPath}/rest/device/page"
+                                  pagination-path="" :fields="fields" :multi-sort="multiSort"
+                                  table-class="table table-bordered table-striped table-hover"
+                                  ascending-icon="glyphicon glyphicon-chevron-up"
+                                  descending-icon="glyphicon glyphicon-chevron-down" pagination-class=""
+                                  pagination-info-class="" pagination-component-class=""
+                                  :pagination-component="paginationComponent" :item-actions="itemActions"
+                                  :append-params="moreParams" :per-page="perPage" wrapper-class="vuetable-wrapper"
+                                  table-wrapper=".vuetable-wrapper" loading-class="loading"
+                                  row-class-callback="rowClassCB" :selected-to="selectedTo"></vuetable>
+                    </div>
+                    <!-- 列表结束 -->
+
+                </div>
+
+                <!-- 	新增 -->
+                <div class="modal fade addSensor" id="settingsModal" role="dialog" aria-labelledby="userAddModalLabel"
+                     aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                    <div style="clear: both;" class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span>&times;</span>
+                                </button>
+                                <div class="modal-title">{{sensor.id?"编辑传感器":"新增传感器"}}</div>
+                            </div>
+                            <form role="form" id="addSensorForm" class="form-horizontal">
+                                <div class="modal-body ovh">
+                                    <input type="hidden" v-model="sensor.id">
+                                    <div class="form-group col-sm-6">
+                                        <label class="col-sm-3 control-label">编号:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control required" maxlength=20
+                                                   v-model="sensor.deviceId">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label class="col-sm-3 control-label">名称:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control required" maxlength=20
+                                                   v-model="sensor.deviceName">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label class="col-sm-3 control-label">类型:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control required" name="type"
+                                                    v-model="sensor.deviceType">
+                                                <option v-for="option in devtypelistAdd" value="{{option.code}}">
+                                                    {{option.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label class="col-sm-3 control-label">状态:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control required" name="type" v-model="sensor.status">
+                                                <option v-for="option in statustypelistAdd" value="{{option.code}}">
+                                                    {{option.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label class="col-sm-3 control-label">labK:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control required" v-model="sensor.labK">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label class="col-sm-3 control-label">labK2:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control required" v-model="sensor.labK2">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label class="col-sm-3 control-label">labOfset:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control required" v-model="sensor.labOfset">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label class="col-sm-3 control-label">realK:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control required" v-model="sensor.realK">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label class="col-sm-3 control-label">realK2:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control required" v-model="sensor.realK2">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label class="col-sm-3 control-label">realOfset:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control required" v-model="sensor.realOfset">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" @click="addSensor">确定</button>
+                                    <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- 下发KB模态框上传excel（Modal） -->
+                <div class="modal fade" id="myModalExcel" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalExcelLabel" aria-hidden="true" enctype="multipart/form-data" method="post"
+                     data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+                                </button>
+                                <div class="modal-title" id="myModalLabel">批量导入</div>
+                            </div>
+                            <div class="modal-body">
+                                <form id="fileUpload" enctype="multipart/form-data" method="post"
+                                      action="${requestScope.coreApiContextPath}/rest/device/importData">
+                                    <input id="excelFile" name="excelFile" type="file" class="m-t-10 m-b-10"/>
+                                    <a href="${ctx }/resources/template/Sensor_Import_Template.xlsx">导入文件模板下载</a>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-primary addSubBtn" @click="importFile">确认</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 通用查询模态框上传ExcelQuery（Modal） -->
+                <div class="modal fade" id="myModalExcelQuery" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalExcelQueryLabel" aria-hidden="true" enctype="multipart/form-data"
+                     method="post" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+                                </button>
+                                <div class="modal-title" id="myModalQueryLabel">请参照通用查询模板</div>
+                                <a href="${ctx }/resources/template/Query_Import_Template.xlsx">模板下载 </a>
+                            </div>
+                            <div class="modal-body">
+                                <form id="fileUploadQuery" enctype="multipart/form-data" method="post">
+                                    <input id="excelFileQuery" name="excelFileQuery" type="file"
+                                           v-model="excelFileQuery" class="magin10"/>
+                                    <label class="m-l-10 m-r-5">查询类型:</label>
+                                    <input type="radio" name="queryCommand" id="queryCommand1" value="160" checked>应用值
+                                    <input type="radio" name="queryCommand" id="queryCommand2" value="176">实验值
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-primary addSubBtn" @click="importFileQuery">确认
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="tab-sensorHistory" class="tab-pane">
+                <!-- begin breadcrumb -->
+                <div class="top-search-container">
+                    <form role="form">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label class="m-r-5">监测点编号</label>
+                                <input type="text" class="form-control" v-model="searchFor.stationId"
+                                       placeholder="请输入监测点编号">
+                            </div>
+                            <div class="form-group">
+                                <label class="m-r-5 m-l-20">设备编号</label>
+                                <input type="text" class="form-control" v-model="searchFor.equipmentId"
+                                       placeholder="请输入设备编号">
+                            </div>
+                            <div class="form-group">
+                                <label class="m-l-20 m-r-5">项目</label>
+                                <select class="form-control" v-model="searchFor.projectId">
+                                    <option value="">请选择</option>
+                                    <option v-for="option in projectList" value="{{option.id}}">{{option.name}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="m-l-20 m-r-5">类型</label>
+                                <select class="form-control" v-model="searchFor.deviceType">
+                                    <option v-for="option in devtypelist" value="{{option.code}}">{{option.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="m-l-20 m-r-5">下发状态</label>
+                                <select class="form-control" name="type" v-model="searchFor.status">
+                                    <option v-for="option in statustypelist" value="{{option.code}}">{{option.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group pull-right">
+                                <button type="button" class="btn btn-md btn-info pull-right" @click="search">搜索</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="table-head m-t-10 ovh bgf">
+                    <button v-if="allFunctions.hasOwnProperty('ROLE_FUN_102_02_02_08')"
+                            class="btn btn-info m-l-5 m-t-5 m-b-5" id="btnReSend" @click="reSend">一键补发
+                    </button>
+                </div>
+                <!-- 列表开始 -->
+                <div class="table-responsive clear bgf">
+                    <vuetable v-ref:vuetable api-url="${requestScope.coreApiContextPath}/rest/deviceHistory/page"
+                              pagination-path="" :fields="fields" :multi-sort="multiSort"
+                              table-class="table table-bordered table-striped table-hover"
+                              ascending-icon="glyphicon glyphicon-chevron-up"
+                              descending-icon="glyphicon glyphicon-chevron-down" pagination-class=""
+                              pagination-info-class="" pagination-component-class=""
+                              :pagination-component="paginationComponent" :item-actions="itemActions"
+                              :append-params="moreParams" :per-page="perPage" wrapper-class="vuetable-wrapper"
+                              table-wrapper=".vuetable-wrapper" loading-class="loading"
+                              :selected-to="selectedTo"></vuetable>
+                </div>
+                <!-- 列表结束 -->
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="${ctx}/resources/js/system/equipment/sensor_index.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $(window).resize(function() {
+        calcOverflowH(1, "table-scroll", 40);
+    });
+});
+calcOverflowH(1, "table-scroll", 40);
+</script>
+</body>
+
+</html>

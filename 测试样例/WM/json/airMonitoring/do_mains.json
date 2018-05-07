@@ -1,0 +1,45 @@
+{
+  "erroCode" : 2000,
+  "erroMsg" : "获取SysDomain成功",
+  "result" : [ {
+    "id" : "510100",
+    "parentId" : "510000",
+    "domainName" : "成都市",
+    "cityType" : null
+  }, {
+    "id" : "510122",
+    "parentId" : "510100",
+    "domainName" : "双流县",
+    "cityType" : null
+  }, {
+    "id" : "370800",
+    "parentId" : "370000",
+    "domainName" : "济宁市",
+    "cityType" : null
+  }, {
+    "id" : "110100",
+    "parentId" : "110000",
+    "domainName" : "北京市",
+    "cityType" : null
+  }, {
+    "id" : "460100",
+    "parentId" : "460000",
+    "domainName" : "海口市",
+    "cityType" : null
+  }, {
+    "id" : "510600",
+    "parentId" : "510000",
+    "domainName" : "德阳市",
+    "cityType" : null
+  }, {
+    "id" : "110119",
+    "parentId" : "110100",
+    "domainName" : "延庆区",
+    "cityType" : null
+  }, {
+    "id" : "510129",
+    "parentId" : "510100",
+    "domainName" : "大邑县",
+    "cityType" : null
+  } ]
+}

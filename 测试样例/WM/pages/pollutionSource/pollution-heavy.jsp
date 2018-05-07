@@ -1,0 +1,126 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="../includeJsCss.jsp" %>
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>蛙鸣科技 | 污染过程分析</title>
+		<!--引用插件使用-->
+		<link rel="stylesheet" href="${ctx}/resources/plugins/bmap/DrawingManager_min.css" />
+		<link href="${ctx}/resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
+		<script type="text/javascript" src="${ctx}/resources/plugins/bmap/Heatmap_min.js"></script>
+		<script type="text/javascript" src="${ctx}/resources/plugins/bmap/DistanceTool_min.js"></script>
+		<script type="text/javascript" src="${ctx}/resources/plugins/bmap/DrawingManager_min.js"></script>
+		<script type="text/javascript" src="${ctx}/resources/plugins/bmap/TrafficControl_min.js"></script>
+		<script type="text/javascript" src="${ctx}/resources/js/common/com-map.js"></script>
+		<script type="text/javascript" src="${ctx}/resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<!--引用插件使用结束-->
+		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<%@ include file="../V1/topMenu.jsp" %>
+		<div id="cons"></div>
+		<div id="interpolationModal" class="modal fade bs-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+						<h4 class="modal-title" id="interpolation_title"></h4>
+					</div>
+					<div id="intetpolation_imgs" class="modal-body" data-scrollbar="true" style="height: 400px; overflow-y: scroll;"></div>
+				</div>
+			</div>
+		</div>
+		<div id="myTabContent" class="pd10 ovh">
+			<div class="tab-pane fade in active" id="home">
+				<div class="form-inline">
+					<div class="top-search-container">
+						<div class="form-group ">
+							<div class="input-group input-daterange">
+								<input type="text" class="form-control Wdate" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:00:00'})" id="startTime" name="start" />
+								<span class="input-group-addon" style="width:13px; padding: 0 5px;">-</span>
+								<input type="text" class="form-control Wdate" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:00:00',minDate:'#F{$dp.$D(\'startTime\')}'})" id="endTime" name="end" />
+							</div>
+						</div>
+						<div class="form-group pull-right">
+							<button type="button" id="btn_search" class="btn btn-info pull-right">查询</button>
+						</div>
+						<div class="form-group text-right m-t-5 m-l-20">
+							<span id="total_count"></span>
+						</div>
+					</div>
+					<div id="srcollobj" class="xhideyauto">
+						<div class="col-md-4 m-t-10">
+							<div class="bgf">
+								<div id="rectangle_charts" style="width: 100%; height: 253px; overflow: hidden;"></div>
+							</div>
+							<div class="bgf m-t-10">
+								<iframe id="windFrame" scrolling="no" style="width: 100%; height: 253px; overflow: hidden; border: hidden;"></iframe>
+							</div>
+							<div class="bgf m-t-10">
+								<div id="cloudImgs" style="height: 253px;">
+									<div class="col-md-12 pd10">
+										<div class="pic_tit">
+											<select>
+												<option value="Neareast">最近邻+基函数插值</option>
+												<option value="">反距离函数的插值</option>
+												<option value="Neareast">最近邻</option>
+												<option value="Linear">线性插值</option>
+											</select>
+										</div>
+										<img id="Neareast_RBF" src="" class="m-t-10" style="cursor: pointer; width:100%; height: 247px;" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-8 m-t-10">
+							<div class="ovh">
+								<div class="bgf">
+									<div id="area_charts" class="bgf" style="width: 100%;height: 253px;"></div>
+								</div>
+								<div class="bgf m-t-10">
+									<span class="glyphicon glyphicon-play m-t-10 m-l-10 dib" id="btn-play" onclick="timerPlay()"></span>
+									<div class="m-l-10 dn dib">
+										间隔
+										<select id="interval" class="form-control">
+											<option value='1' selected="selected">时</option>
+											<option value='2'>天</option>
+										</select>
+									</div>
+									<div class="form-group m-l-10 text-center resizeprog">
+										<div id="nowDate"></div>
+										<div id="progressbar" style="width: 140px;" class="progress-bar ui-progressbar ui-widget ui-widget-content ui-corner-all">
+											<div class="progress-label">0%</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="WMMAP" style="height: 510px;" class="m-t-10"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="${ctx}/resources/js/pollutionSource/polution-heavy-air.js"></script>
+		<script src="${ctx}/resources/js/pollutionSource/polution-heavy-cloud.js"></script>
+		<script src="${ctx}/resources/js/pollutionSource/heavy-history.js?v=0.1"></script>
+		<script type="text/javascript" src="${ctx}/resources/js/airMonitoring/GeoUtils.js"></script>
+		<script type="text/javascript" src="${ctx}/resources/js/airMonitoring/spatialmap.js"></script>
+		<script type="text/javascript" src="${ctx}/resources/js/common/timer.js"></script>
+		<!--<script type="text/javascript" src="${ctx }/resources/js/common/weather-air.js"></script>-->
+		<script src="${ctx}/resources/js/pollutionSource/pollution-heavy.js"></script>
+		<script type="text/javascript">
+			//计算左右树与右侧的表格对齐
+			calcOverflowH(0, 'srcollobj', 150);
+			window.onresize = function() {
+				calcOverflowH(0, 'srcollobj', 150);
+			}
+		</script>
+	</body>
+
+</html>

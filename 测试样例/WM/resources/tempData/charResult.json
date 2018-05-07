@@ -1,0 +1,36 @@
+{
+  "data": {
+    "bestBadDay":{
+      "data":{
+        "total" : 31,
+        "g01Num" : 5,
+        "g02Num" : 17,
+        "g03Num" : 11,
+        "g04Num" : 3,
+        "g05Num" : 4,
+        "g06Num" : 5
+      },
+      "total":100
+    },
+    "cityMonth":{
+      "xAxis":["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+      "legend":["今年", "去年"],
+      "thisYear":[220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 122],
+      "preYear":[120, 110, 125, 145, 122, 165, 122, 220, 182, 191, 134, 150]
+
+    },"top10":{
+        "data": [
+          {"district": "市辖区", "value": 132},
+          {"district": "高新区", "value": 321},
+          {"district": "太白湖区", "value": 452},
+          {"district": "任城区", "value": 190},
+          {"district": "兖州区", "value": 176},
+          {"district": "微山县", "value": 376},
+          {"district": "鱼台县", "value": 387},
+          {"district": "金乡县", "value": 337},
+          {"district": "汶上县", "value": 327},
+          {"district": "嘉祥县", "value": 367}
+        ]
+    }
+  }
+}

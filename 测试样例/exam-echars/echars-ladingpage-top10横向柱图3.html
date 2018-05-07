@@ -22,37 +22,37 @@
         {
             "districtId": 370881,
             "districtName": "曲阜市",
-            "aqi": 280,
+            "aqi": 90,
             "aqiLevel": 2
         }, {
             "districtId": 370811,
             "districtName": "任城区",
-            "aqi": 79,
+            "aqi": 30,
             "aqiLevel": 2
         }, {
             "districtId": 370801,
             "districtName": "市辖区",
-            "aqi": 178,
+            "aqi": 130,
             "aqiLevel": 2
         }, {
             "districtId": 370829,
             "districtName": "嘉祥县",
-            "aqi": 78,
+            "aqi": 190,
             "aqiLevel": 2
         }, {
             "districtId": 370883,
             "districtName": "邹城市",
-            "aqi": 78,
+            "aqi": 250,
             "aqiLevel": 2
         }, {
             "districtId": 370812,
             "districtName": "兖州区",
-            "aqi": 75,
+            "aqi": 400,
             "aqiLevel": 2
         }, {
             "districtId": 370826,
             "districtName": "微山县",
-            "aqi": 66,
+            "aqi": 500,
             "aqiLevel": 2
         }];
 
@@ -135,12 +135,21 @@
             barWidth: 5,
             itemStyle: {
                 normal: {
-                    // color: '#00c1de',
-                    barBorderRadius: 10,
+                    barBorderRadius: 7,
                     color: function (params) {
-                        var color = getColorByValAndType(params.data * 5, 'aqi');
-                        console.log(color)
-                        return color;
+
+                        var level = computeLevel(params.data*5, RANGE_AQI, 'aqi');
+                        console.log(level +"   "+params.data)
+
+                        return new echarts.graphic.LinearGradient(
+                            0, 0, 1, 0,
+                            //
+                            // [
+                            //     {offset: 0, color: '#2FDE80'},
+                            //     {offset: 1, color: '#2FDECA'}
+                            // ]
+                            getClors(level)
+                        )
                     }
                 }
             },

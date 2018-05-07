@@ -1,0 +1,49 @@
+[ {
+  "id" : 338,
+  "name" : "AQI",
+  "code" : "aqi2"
+}, {
+  "id" : 336,
+  "name" : "AQI(标准)",
+  "code" : "aqi"
+}, {
+  "id" : 56,
+  "name" : "PM2.5",
+  "code" : "pm25"
+}, {
+  "id" : 57,
+  "name" : "PM10",
+  "code" : "pm10"
+}, {
+  "id" : 58,
+  "name" : "CO",
+  "code" : "co"
+}, {
+  "id" : 59,
+  "name" : "SO2",
+  "code" : "so2"
+}, {
+  "id" : 60,
+  "name" : "O3",
+  "code" : "o3"
+}, {
+  "id" : 61,
+  "name" : "NO2",
+  "code" : "no2"
+}, {
+  "id" : 332,
+  "name" : "TVOC",
+  "code" : "tvoc"
+}, {
+  "id" : 334,
+  "name" : "NO",
+  "code" : "no"
+}, {
+  "id" : 335,
+  "name" : "CO2",
+  "code" : "co2"
+}, {
+  "id" : 333,
+  "name" : "噪声",
+  "code" : "noise"
+} ]
