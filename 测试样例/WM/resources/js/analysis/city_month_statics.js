@@ -8,6 +8,9 @@ var city_id_g = ""; //全局cityid
 var pro_id_g = ""; //全局proid
 var city_name_g = ""; //全局cityName
 var show_type = "1"; //1 默认  污染浓度   2  贡献率
+parent.cityName = "济宁";
+parent.cityId = 370800;
+
 
 $(function () {
     Geo.init();
@@ -86,7 +89,7 @@ function queryCalendar() {
     };
     if (show_type == "1") {
         $("#tab-title").html(city + "监测点" + st + tl + " " + (type.toUpperCase()) + " 按天分布图");
-        var url = $.backendApiPath + "/analysis/history/queryMonthCalendar";
+        var url = "../../json/citydata/citydata_queryMonthCalendar.json";
         ajax_post(url, postData, function (r) {
             if (r.result) {
                 _init_table_concentration(r.data);
@@ -94,7 +97,7 @@ function queryCalendar() {
         });
     } else if (show_type == "2") {
         $("#tab-title").html(city + "监测点" + st + tl + " " + (type.toUpperCase()) + " 按天贡献率 (单位:%)");
-        var url = $.backendApiPath + "/analysis/history/queryConRateMonthCalendar";
+        var url = "../../json/citydata/citydata_queryConRateMonthCalendar.json";
         ajax_post(url, postData, function (r) {
             if (r.result) {
                 _init_table_contribution(r.data);
@@ -208,7 +211,7 @@ function shouTableLine(month, day) {
         stationType: stationType
     };
     clearChar("cell_charts");
-    var url = $.backendApiPath + "/analysis/history/table/allStationsDaydata";
+    var url =  "../../json/citydata/citydata_allStationsDaydata.json";
     ajax_post(url, stationParams, function (data) {
         showCellLine(data, stationParams, time);
     });

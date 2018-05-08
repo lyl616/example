@@ -184,7 +184,8 @@ function init_s_stech_type_option(opts) {
     var isAll = opts.isAll;
     var callBack = opts.callBack;
 
-    var url = $.coreApiPath + "/dictionary/diviceType";
+    var url = "../../json/airMonitoring/diviceType.json";
+    // var url = $.coreApiPath + "/dictionary/diviceType";
     var param = {
         type: type,
         city: city,
@@ -234,7 +235,7 @@ function init_station_type_option(opts) {
     var isAll = opts.isAll;
     var callBack = opts.callBack;
 
-    var url = $.coreApiPath + "/dictionary/stationType";
+    var url ="../../json/monitor/stationtype.json";
     var param = {
         parent: parent
         //			type   : type,

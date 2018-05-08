@@ -1,8 +1,8 @@
-var cityId = parent.cityId;
-var provinceId = parent.provinceId;
-var cityName = parent.cityName;
+var cityId = 370800;
+var provinceId = 370000;
+var cityName = "济宁市";
 var drawingManager = "";
-var stationId="";
+var stationId = "";
 var map = "";
 var myDate = new DateHelp({
         date: new Date(), //从此日期开始计算
@@ -451,14 +451,13 @@ var surverytable = new Vue({
             },
             initMap: function () {
                 var _self = this;
-                if (map == "") {
-                    map = new BMap.Map("allmap", {
-                        minZoom: 8,
-                        maxZoom: 14,
-                        enableMapClick: false
-                    }); // 创建Map实例
-                    // areaMapPC(370800);
-                }
+                map = new BMap.Map("allmap", {
+                    minZoom: 8,
+                    maxZoom: 14,
+                    enableMapClick: false
+                }); // 创建Map实例
+                // areaMapPC(370800);
+
                 var navigationControl = new BMap.NavigationControl({
                     // 靠左上角位置
                     anchor: BMAP_ANCHOR_TOP_LEFT,
@@ -467,8 +466,8 @@ var surverytable = new Vue({
                     // 启用显示定位
                     // enableGeolocation: true
                 });
-                map.addControl(navigationControl);
-                map.centerAndZoom(_self.cityName, 11); // 初始化地图,设置中心点坐标和地图级别
+                // map.addControl(navigationControl);
+                map.centerAndZoom("济宁", 11); // 初始化地图,设置中心点坐标和地图级别
                 map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
 
                 if (_self.stationList.length > 0) { //如果加载有数据 则显示所有站点信息
@@ -508,7 +507,7 @@ var surverytable = new Vue({
                         }
                         var icon = _self.calcStationIcon(this.id, true);
                         var iconUrl = icon.imageUrl;
-                          var content = '<div><div>' +
+                        var content = '<div><div>' +
                             '<image style="width:20px;height:20px" src="' + iconUrl + '"></image>' +
                             '<span>' + station.stationName + ' [' + station.stationId + ']</span>' +
                             '<span style="float:right">' + station.stationTypeName + '</span>' +
@@ -729,9 +728,13 @@ var surverytable = new Vue({
                 _self.closeMapRmenu();
                 _self.clearAllChars();
                 initLayerLoaderMsg("加载");
+                var url = "../../json/station/surveyData_char_hour.json";
+                if (_self.displayWind != 0) {
+                    url = "../../json/station/surveyData_char_hour_windy.json";
+                }
                 CommonUtil.ajax({
                     type: "post",
-                    url: "../../json/station/surveyData_char_hour.json",
+                    url: url,
                     dataType: "json",
                     data: params,
                     contentType: 'application/json; charset=UTF-8',
@@ -1331,7 +1334,6 @@ function initCharsWithWindy(dataMap, singleMulti) {
             };
 
             $.each(keys, function (i, val) {
-                console.log(i, val)
                 if (i >= 4) {
                     option.series[i - 2] = {
                         yAxisIndex: 0,
