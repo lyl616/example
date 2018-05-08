@@ -2,6 +2,7 @@ var cityId = parent.cityId;
 var provinceId = parent.provinceId;
 var cityName = parent.cityName;
 var drawingManager = "";
+var stationId="";
 var map = "";
 var myDate = new DateHelp({
         date: new Date(), //从此日期开始计算
@@ -25,17 +26,17 @@ function initradioDate() {
     };
 }
 
-var no_select_icon = new BMap.Icon($.ctx + '/resources/img/stationAnalysis/no_select.png', new BMap.Size(24, 24));
-var is_select_icon = new BMap.Icon($.ctx + '/resources/img/stationAnalysis/is_select.png', new BMap.Size(24, 24));
+var no_select_icon = new BMap.Icon('../../resources/img/stationAnalysis/no_select.png', new BMap.Size(24, 24));
+var is_select_icon = new BMap.Icon('../../resources/img/stationAnalysis/is_select.png', new BMap.Size(24, 24));
 
-var wz_no_select_icon = new BMap.Icon($.ctx + '/resources/img/stationAnalysis/wz_no_select.png', new BMap.Size(24, 24));
-var wz_is_select_icon = new BMap.Icon($.ctx + '/resources/img/stationAnalysis/wz_is_select.png', new BMap.Size(24, 24));
-var kh_no_select_icon = new BMap.Icon($.ctx + '/resources/img/stationAnalysis/kh_no_select.png', new BMap.Size(24, 24));
-var kh_is_select_icon = new BMap.Icon($.ctx + '/resources/img/stationAnalysis/kh_is_select.png', new BMap.Size(24, 24));
-var pc_no_select_icon = new BMap.Icon($.ctx + '/resources/img/stationAnalysis/pc_no_select.png', new BMap.Size(24, 24));
-var pc_is_select_icon = new BMap.Icon($.ctx + '/resources/img/stationAnalysis/pc_is_select.png', new BMap.Size(24, 24));
-var yc_no_select_icon = new BMap.Icon($.ctx + '/resources/img/stationAnalysis/yc_no_select.png', new BMap.Size(24, 24));
-var yc_is_select_icon = new BMap.Icon($.ctx + '/resources/img/stationAnalysis/yc_is_select.png', new BMap.Size(24, 24));
+var wz_no_select_icon = new BMap.Icon('../../resources/img/stationAnalysis/wz_no_select.png', new BMap.Size(24, 24));
+var wz_is_select_icon = new BMap.Icon('../../resources/img/stationAnalysis/wz_is_select.png', new BMap.Size(24, 24));
+var kh_no_select_icon = new BMap.Icon('../../resources/img/stationAnalysis/kh_no_select.png', new BMap.Size(24, 24));
+var kh_is_select_icon = new BMap.Icon('../../resources/img/stationAnalysis/kh_is_select.png', new BMap.Size(24, 24));
+var pc_no_select_icon = new BMap.Icon('../../resources/img/stationAnalysis/pc_no_select.png', new BMap.Size(24, 24));
+var pc_is_select_icon = new BMap.Icon('../../resources/img/stationAnalysis/pc_is_select.png', new BMap.Size(24, 24));
+var yc_no_select_icon = new BMap.Icon('../../resources/img/stationAnalysis/yc_no_select.png', new BMap.Size(24, 24));
+var yc_is_select_icon = new BMap.Icon('../../resources/img/stationAnalysis/yc_is_select.png', new BMap.Size(24, 24));
 var stationIcons = {
     '_1010': [wz_no_select_icon, wz_is_select_icon],
     '_6010': [wz_no_select_icon, wz_is_select_icon],
@@ -151,7 +152,7 @@ var surverytable = new Vue({
         },
         created: function () {
             var that = this;
-            ajax($.coreApiPath + "/monitor/station/" + cityId, {
+            ajax("../../json/monitor/station_370800.json", {
                 parents: ""
             }, function (data) {
                 if (data != null) {
@@ -456,7 +457,7 @@ var surverytable = new Vue({
                         maxZoom: 14,
                         enableMapClick: false
                     }); // 创建Map实例
-                    areaMapPC(cityId);
+                    // areaMapPC(370800);
                 }
                 var navigationControl = new BMap.NavigationControl({
                     // 靠左上角位置
@@ -507,8 +508,7 @@ var surverytable = new Vue({
                         }
                         var icon = _self.calcStationIcon(this.id, true);
                         var iconUrl = icon.imageUrl;
-                        //var content = station.stationTypeName + ' ' + station.stationName + ' [' + station.stationId + '] ' + station.district + '<br>' + station.addr;
-                        var content = '<div><div>' +
+                          var content = '<div><div>' +
                             '<image style="width:20px;height:20px" src="' + iconUrl + '"></image>' +
                             '<span>' + station.stationName + ' [' + station.stationId + ']</span>' +
                             '<span style="float:right">' + station.stationTypeName + '</span>' +
@@ -632,10 +632,10 @@ var surverytable = new Vue({
                         this.search_down_list.splice(0, this.search_down_list.length);
                         for (var i = 0; i < this.searchDb.length; ++i) {
                             var item = this.searchDb[i];
-                            if (item.id.indexOf(this.stationIdOrName) != -1){
+                            if (item.id.indexOf(this.stationIdOrName) != -1) {
                                 item.text = item.id;
                                 this.search_down_list.push(item);
-                            } else if(item.text.indexOf(this.stationIdOrName) != -1) {
+                            } else if (item.text.indexOf(this.stationIdOrName) != -1) {
                                 this.search_down_list.push(item);
                             }
                         }
@@ -652,8 +652,8 @@ var surverytable = new Vue({
             searchStation: function (stationIdOrName) {
                 this.isShowDownList = false; //重置是否展示下拉搜索框的状态	（关闭）
                 var index = stationIdOrName.indexOf('&');
-                stationId = stationIdOrName.slice(0,index);
-                this.stationIdOrName = stationIdOrName.slice(index+1);
+                stationId = stationIdOrName.slice(0, index);
+                this.stationIdOrName = stationIdOrName.slice(index + 1);
                 var cells = $('#station_info_list tbody td');
                 cells.css('color', '');
                 var found = false;
@@ -685,53 +685,53 @@ var surverytable = new Vue({
             ,
             search: function () { //查询拆线信息
                 var _self = this;
-                if (_self.querypollutionType.length <= 0) {
-                    layer.msg("请选择污染物类型！");
-                    return;
-                }
-                if (_self.day_startTime > _self.day_endTime) {
-                    layer.msg("开始日期不能大于结束日期！");
-                    return;
-                }
-                if (_self.timeType == 'hour' && !calcDate_interval(_self.day_startTime, _self.day_endTime, '30day')) {
-                    return;
-                } else if ((_self.timeType == '5minute' || _self.timeType == '10minute') && !calcDate_interval(_self.day_startTime, _self.day_endTime, '1day')) {
-                    return;
-                } else if (_self.timeType == '1minute' && !calcDate_interval(_self.day_startTime, _self.day_endTime, '1day')) {
-                    return;
-                }
-                if (_self.selectedTo.length <= 0) {
-                    layer.msg("请选择要查询的站点，上限为20个！");
-                    //_self.clearAllChars();
-                    return false;
-                }
-                var drsStationIds = [];
-                var priStationIds = [];
-                $.each(_self.selectedTo, function (i, val) {
-                    var arr = val.split(",");
-                    if (arr[1] == "6010" || arr[1] == '1010') {
-                        drsStationIds.push(arr[0]);
-                    } else {
-                        priStationIds.push(arr[0]);
-                    }
-                });
-                var url = $.coreApiPath + "/detection/list";
+                // if (_self.querypollutionType.length <= 0) {
+                //     layer.msg("请选择污染物类型！");
+                //     return;
+                // }
+                // if (_self.day_startTime > _self.day_endTime) {
+                //     layer.msg("开始日期不能大于结束日期！");
+                //     return;
+                // }
+                // if (_self.timeType == 'hour' && !calcDate_interval(_self.day_startTime, _self.day_endTime, '30day')) {
+                //     return;
+                // } else if ((_self.timeType == '5minute' || _self.timeType == '10minute') && !calcDate_interval(_self.day_startTime, _self.day_endTime, '1day')) {
+                //     return;
+                // } else if (_self.timeType == '1minute' && !calcDate_interval(_self.day_startTime, _self.day_endTime, '1day')) {
+                //     return;
+                // }
+                // if (_self.selectedTo.length <= 0) {
+                //     layer.msg("请选择要查询的站点，上限为20个！");
+                //     //_self.clearAllChars();
+                //     return false;
+                // }
+                // var drsStationIds = [];
+                // var priStationIds = [];
+                // $.each(_self.selectedTo, function (i, val) {
+                //     var arr = val.split(",");
+                //     if (arr[1] == "6010" || arr[1] == '1010') {
+                //         drsStationIds.push(arr[0]);
+                //     } else {
+                //         priStationIds.push(arr[0]);
+                //     }
+                // });
+                // var url = $.coreApiPath + "/detection/list";
                 var params = {
-                    "city": cityId,
-                    "displayWind": _self.displayWind,
-                    "drsStationIds": drsStationIds.length > 0 ? drsStationIds.join(",") : "-1",
-                    "priStationIds": priStationIds.length > 0 ? priStationIds.join(",") : "-1",
-                    "pollutionTypes": _self.querypollutionType.length > 0 ? _self.querypollutionType.join(",") : "",
-                    "endTime": _self.day_endTime,
-                    "startTime": _self.day_startTime,
-                    "timeType": _self.timeType
+                    // "city": cityId,
+                    // "displayWind": _self.displayWind,
+                    // "drsStationIds": drsStationIds.length > 0 ? drsStationIds.join(",") : "-1",
+                    // "priStationIds": priStationIds.length > 0 ? priStationIds.join(",") : "-1",
+                    // "pollutionTypes": _self.querypollutionType.length > 0 ? _self.querypollutionType.join(",") : "",
+                    // "endTime": _self.day_endTime,
+                    // "startTime": _self.day_startTime,
+                    // "timeType": _self.timeType
                 };
                 _self.closeMapRmenu();
                 _self.clearAllChars();
                 initLayerLoaderMsg("加载");
                 CommonUtil.ajax({
                     type: "post",
-                    url: $.coreApiPath + "/detection/list",
+                    url: "../../json/station/surveyData_char_hour.json",
                     dataType: "json",
                     data: params,
                     contentType: 'application/json; charset=UTF-8',

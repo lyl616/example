@@ -1,0 +1,57 @@
+[ {
+  "cityId" : 370800,
+  "district" : "市辖区",
+  "id" : 370801
+}, {
+  "cityId" : 370800,
+  "district" : "高新区",
+  "id" : 370803
+}, {
+  "cityId" : 370800,
+  "district" : "太白湖区",
+  "id" : 370805
+}, {
+  "cityId" : 370800,
+  "district" : "任城区",
+  "id" : 370811
+}, {
+  "cityId" : 370800,
+  "district" : "兖州区",
+  "id" : 370812
+}, {
+  "cityId" : 370800,
+  "district" : "微山县",
+  "id" : 370826
+}, {
+  "cityId" : 370800,
+  "district" : "鱼台县",
+  "id" : 370827
+}, {
+  "cityId" : 370800,
+  "district" : "金乡县",
+  "id" : 370828
+}, {
+  "cityId" : 370800,
+  "district" : "嘉祥县",
+  "id" : 370829
+}, {
+  "cityId" : 370800,
+  "district" : "汶上县",
+  "id" : 370830
+}, {
+  "cityId" : 370800,
+  "district" : "泗水县",
+  "id" : 370831
+}, {
+  "cityId" : 370800,
+  "district" : "梁山县",
+  "id" : 370832
+}, {
+  "cityId" : 370800,
+  "district" : "曲阜市",
+  "id" : 370881
+}, {
+  "cityId" : 370800,
+  "district" : "邹城市",
+  "id" : 370883
+} ]

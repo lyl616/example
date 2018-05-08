@@ -115,7 +115,7 @@ $(function () {
  */
 function addStationMarkers() {
     clearMarkers();
-    var pop_url = $.coreApiPath + "/overlay/cityStation";
+    var pop_url = "../../json/citydata/cityStation.json";
     var param = {
         overlayFlag: overlayFlag,
         dateHour: dateHour,
@@ -153,13 +153,13 @@ function iconByName(station, map_grade, level, mapZoom) {
         level = 0;
     }
     var iconSize = map_grade == "country" ? 'iconSize20' : 'iconSize30',
-        iconUrl = '../resources/img/country/' + map_grade + level + '.png',
+        iconUrl = '../../resources/img/country/' + map_grade + level + '.png',
         html = '';
     if (mapZoom <= 5) {
         html = '<b class="iconSize ' + iconSize + '" style="background-image: url(' + iconUrl + ');"><div class="tooltip_country_name">' + station.name + '<span></span></div></b></div>'
     } else {
         iconSize = 'iconSize30',
-            iconUrl = '../resources/img/country/city' + level + '.png';
+            iconUrl = '../../resources/img/country/city' + level + '.png';
         var defaultWidth = 16,
             marginLeft = 0;
         if (station.value == null) {
@@ -230,21 +230,6 @@ function judge_windyShowHide() { //判断风场是否开启，风场在卫星图
     }
 }
 
-var mapDataIp = null;
-
-function getMapDataIp(callback) {
-    ajax_get($.backendApiPath + "/config/windy", {}, function (r) {
-        if (r.erroCode == 2000) {
-            mapDataIp = r.result;
-            if (callback)
-                callback(mapDataIp);
-        } else {
-            layer.msg("网络错误", function () {
-            });
-        }
-    });
-}
-
 function createWindMap(map, windycolor) {
 
     var yearV, monthV, dayV, hourV;
@@ -270,10 +255,7 @@ function createWindMap(map, windycolor) {
 
 
     function windyD3(mapDataIp) {
-        timeval = yearV + '' + monthV + "" + dayV + '' + hourV;
-        // var mapDataUrl = 'http://58.83.189.155/' + yearV + '/' + monthV + '/' + dayV + '/wind/' + timeval + '-w-0p25-10m.json';
-        var mapDataUrl = mapDataIp + yearV + '/' + monthV + '/' + dayV + '/wind/' + timeval + '-w-0p25-10m.json';
-        console.log("mapDataUrl:" + mapDataUrl);
+        var mapDataUrl = "../../json/mapData/windable_data.json";
         d3.json(mapDataUrl, function (err, windData) {
             windydataVal = windData;
             windMap.update({
@@ -287,11 +269,9 @@ function createWindMap(map, windycolor) {
         });
     }
 
-    if (mapDataIp == null) {
-        getMapDataIp(windyD3);
-    } else {
-        windyD3(mapDataIp);
-    }
+
+    windyD3("");
+
 
 }
 
@@ -332,7 +312,7 @@ function selectdown_click(obj) {
         $('#pollution_val').html("AQI实时");
     }
     var lendType = selVle == "aqi2" ? "aqi" : selVle;
-    var imgurl = '../resources/img/legend/wm-legend-' + lendType + '.png';
+    var imgurl = '../../resources/img/legend/wm-legend-' + lendType + '.png';
     $('#img_polltype').prop('src', imgurl);
     $('.select_down').hide();
     clearMarkers();
@@ -351,7 +331,7 @@ var initWebPage = {
         });
         legend.onAdd = function (map) {
             var div = L.DomUtil.create('div', 'legend-country');
-            div.innerHTML = '<img id="img_polltype" src="../resources/img/legend/wm-legend-aqi.png" />';
+            div.innerHTML = '<img id="img_polltype" src="../../resources/img/legend/wm-legend-aqi.png" />';
             return div;
         };
         legend.addTo(map);
@@ -571,7 +551,6 @@ var initWebPage = {
         map.addControl(control);
     },
     initAll: function () {
-        // getMapDataIp();
         this.initLegend(); //初始化图例
         this.InitRightMenu(); //添加左下角菜单
         this.initRightTopNav(); //添加右上角菜单
