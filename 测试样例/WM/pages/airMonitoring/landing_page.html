@@ -1,6 +1,3 @@
-
-
-
 <html lang="en">
 
 <head>
@@ -15,6 +12,7 @@
     <script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js"></script>
     <script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/extension/bmap.min.js"></script>
     <script type="text/javascript" src="../../resources/js/common/com-map.js"></script>
+    <script type="text/javascript" src="../../resources/topMenu.js"></script>
     <!--中间地图生成部分-->
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
     <script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/extension/echarts.min.js"></script>
@@ -39,6 +37,180 @@
 
 <body class="ui-land-page-bodybg">
 <!--<%@include file="../V1/topMenu.html" %>-->
+<div class="frame-menu">
+    <div class="pull-left" id="zlight-nav">
+        <ul id="zlightmenu">
+            <li id="menuParentLi">
+				<span href="2015-10-28/juqery-nav677020150824/index.html">
+						<img src="/weather-web/resources/img/system/logo.png" class="logo-img">
+						<b class="text"></b>
+				</span>
+            </li>
+        </ul>
+    </div>
+    <!--菜单开始-->
+    <ul class="venus-menu">
+        <li class="showhide" style="display: none;"><span class="title">Menu</span><span class="icon"><em></em><em></em><em></em><em></em></span>
+        </li>
+        <li><a class="menu-level-1 active" href="/weather-web/airMonitoring/landingPage"
+               style="background-size: 50% 2px; background-position-x: 50%;">首页</a></li>
+        <li><a class="menu-level-1" href="/weather-web/airMonitoring/realtimeHistoryIndex">监测地图</a></li>
+        <li><a class="menu-level-1" href="/weather-web/airMonitoring/country_index">全国视图</a></li>
+        <li><a class="menu-level-1" href="javascript:void(0)">污染溯源</a>
+            <ul class="border-radius-2">
+                <li><a class="menu-level-2" href="/weather-web/surveyjob">勘查管理</a></li>
+            </ul>
+        </li>
+        <li><a class="menu-level-1" href="javascript:void(0)">统计分析</a>
+            <ul class="border-radius-2">
+                <li><a class="menu-level-2" href="/weather-web/stationAnalysis/surveyData">监测数据分析</a></li>
+                <li><a class="menu-level-2" href="/weather-web/airCalendar/city_day_statics">城市日历</a></li>
+                <li><a class="menu-level-2" href="/weather-web/airCalendar/city_month_statics">城市月历</a></li>
+                <li><a class="menu-level-2" href="/weather-web/airCalendar/city_scatter">城市散点</a></li>
+                <li><a class="menu-level-2" href="/weather-web/statistics/dataOutput">监测数据查询</a></li>
+                <li><a class="menu-level-2" href="/weather-web/multistation/index">城市数据分析</a></li>
+                <li><a class="menu-level-2" href="/weather-web/analysis/overproof">超标统计</a></li>
+            </ul>
+        </li>
+        <li><a class="menu-level-1" href="javascript:void(0)">考核排名</a>
+            <ul class="border-radius-2">
+                <li><a class="menu-level-2" href="/weather-web/cityData/cityRank">城市排名</a></li>
+                <li><a class="menu-level-2" href="/weather-web/cityData/districtS_Manager">区县目标管理</a></li>
+                <li><a class="menu-level-2" href="/weather-web/cityData/districtS_analysis">区县考核统计</a></li>
+            </ul>
+        </li>
+        <li><a class="menu-level-1" href="/weather-web/statistics/sysReportUpload">报告</a></li>
+        <li><a class="menu-level-1" href="javascript:void(0)">设置</a>
+            <ul class="border-radius-2">
+                <li><a class="menu-level-2" href="javascript:void(0)">数据质控</a>
+                    <ul class="menuClass3 border-radius-3">
+                        <li><a class="menu-level-3" href="/weather-web/statistics/dataAudit">数据审核</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/warn/data/index">数据告警</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/warn/data/dataMonitor">异常数据监控</a></li>
+                    </ul>
+                </li>
+                <li><a class="menu-level-2" href="javascript:void(0)">设备管理</a>
+                    <ul class="menuClass3 border-radius-3">
+                        <li><a class="menu-level-3" href="/weather-web/system/equipment/monitoring/index">监测点管理</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/station/index">设备整机管理</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/sensor/index">传感器管理</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/rest/station/equIndex">设备状态</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/rest/station/equFaultIndex">设备故障</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/data/environmental">原始数据</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/weather/deviceAdjustIndex">设备驯化</a></li>
+                    </ul>
+                </li>
+                <li><a class="menu-level-2" href="javascript:void(0)">自动化校准</a>
+                    <ul class="menuClass3 border-radius-3">
+                        <li><a class="menu-level-3" href="/weather-web/benchmark/index">设备寻标</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/system/sensor/autocalibration">参数计算</a></li>
+                    </ul>
+                </li>
+                <li><a class="menu-level-2" href="javascript:void(0)">系统管理</a>
+                    <ul class="menuClass3 border-radius-3">
+                        <li><a class="menu-level-3" href="/weather-web/sys/organize">组织管理</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/user/manager">用户管理</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/sys/project">项目管理</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/role/manager">角色管理</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/function/sysFun">模块管理</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/sys/operatingLog">操作日志</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/weather/stationLatLngIndex">经纬度转换</a></li>
+                    </ul>
+                </li>
+                <li><a class="menu-level-2" href="javascript:void(0)">数据管理</a>
+                    <ul class="menuClass3 border-radius-3">
+                        <li><a class="menu-level-3" href="/weather-web/pollution/index">污染源管理</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/data/forecast">天气预报</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a class="menu-level-1" href="javascript:void(0)">历史功能</a>
+            <ul class="border-radius-2">
+                <li><a class="menu-level-2" href="javascript:void(0)">大气监测</a>
+                    <ul class="menuClass3 border-radius-3">
+                        <li><a class="menu-level-3" href="/weather-web/airMonitoring/history_index">历史回顾</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/airMonitoring/pollutionCloudPC">污染云图</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/airMonitoring/grid_index">虚拟网格</a></li>
+                    </ul>
+                </li>
+                <li><a class="menu-level-2" href="javascript:void(0)">大气日历</a>
+                    <ul class="menuClass3 border-radius-3">
+                        <li><a class="menu-level-3" href="/weather-web/airCalendar/station_day_statics">站点日历</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/airCalendar/station_month_statics">站点月历</a></li>
+                    </ul>
+                </li>
+                <li><a class="menu-level-2" href="javascript:void(0)">大气分析</a>
+                    <ul class="menuClass3 border-radius-3">
+                        <li><a class="menu-level-3" href="/weather-web/stationAnalysis/weatherChart">全站分析</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/stationAnalysis/heavyPollution">重污染监测</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/statistics/historyDataAnalysis">历史同期数据分析</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/pollution/heavy/index">污染过程分析</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/stationAnalysis/multiplCurves">多曲线分析</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/stationAnalysis/stationStatistics">站点统计</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/stationAnalysis/customChart">自定义分析</a></li>
+                    </ul>
+                </li>
+                <li><a class="menu-level-2" href="javascript:void(0)">城市数据</a>
+                    <ul class="menuClass3 border-radius-3">
+                        <li><a class="menu-level-3" href="/weather-web/cityData/dataAnalysisPC">城市数据分析</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/cityData/comparativeAnalysis">城市对比分析</a></li>
+                    </ul>
+                </li>
+                <li><a class="menu-level-2" href="javascript:void(0)">监测监管</a>
+                    <ul class="menuClass3 border-radius-3">
+                        <li><a class="menu-level-3" href="/weather-web/pollutionSource/index">来源识别</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/pollutionSpace/index">相关性分析</a></li>
+                    </ul>
+                </li>
+                <li><a class="menu-level-2" href="javascript:void(0)">设备管理</a>
+                    <ul class="menuClass3 border-radius-3">
+                        <li><a class="menu-level-3" href="/weather-web/alarm/equWarnIndex">设备告警</a></li>
+                    </ul>
+                </li>
+                <li><a class="menu-level-2" href="javascript:void(0)">大屏管理</a>
+                    <ul class="menuClass3 border-radius-3">
+                        <li><a class="menu-level-3" href="/weather-web/airMonitoring/realtime">实时监测</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/cityData/dataAnalysis">城市数据分析</a></li>
+                        <li><a class="menu-level-3" href="/weather-web/airMonitoring/pollutionCloud">污染云图</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a class="menu-level-1" href="/weather-web/airMonitoring/realtimePC">实时监测</a></li>
+    </ul>
+    <!--菜单结束-->
+    <div class="down-menu pull-right" style="width: 73px;">
+		<span class="curr-menu m-l-10" id="currUser" onclick="toogleMenu('userSelect','currUser')" title="admin">
+			<div class="icon-usertool"></div>
+		</span>
+        <ul id="userSelect" style="z-index: 99999999">
+            <li>
+                <a href="#" onclick="changePwd()">密码修改</a>
+            </li>
+            <li>
+                <a onclick="logout()" href="javascript:void(0)">退出</a>
+            </li>
+        </ul>
+    </div>
+    <div class="down-menu pull-right">
+		<span class="curr-menu" id="currCity" onclick="toogleMenu('citySelect','currCity')">
+            <span id="cityNameSpan">济宁市</span>
+		<i class="icon-down m-l-5"></i>
+		</span>
+        <ul id="citySelect">
+            <li><a href="javascript:void(0)" id="460100" onclick="changeCity('460100', '460000', '海口市')">海口市</a></li>
+            <li><a href="javascript:void(0)" id="510600" onclick="changeCity('510600', '510000', '德阳市')">德阳市</a></li>
+            <li><a href="javascript:void(0)" id="110100" onclick="changeCity('110100', '110000', '北京市')">北京市</a></li>
+            <li><a href="javascript:void(0)" id="110119" onclick="changeCity('110119', '110100', '延庆区')">延庆区</a></li>
+            <li><a href="javascript:void(0)" id="510100" onclick="changeCity('510100', '510000', '成都市')">成都市</a></li>
+            <li><a href="javascript:void(0)" id="370800" onclick="changeCity('370800', '370000', '济宁市')">济宁市</a></li>
+            <li><a href="javascript:void(0)" id="510122" onclick="changeCity('510122', '510100', '双流县')">双流县</a></li>
+        </ul>
+    </div>
+    <div class="pull-right telecom-logo"><img src="/weather-web/resources/img/whiteLogo-Chengdu.png"></div>
+    <div class="top-pname hidden" id="pageName">首页</div>
+</div>
 <!--左侧的面板开始-->
 <div id="content">
     <div class="post-fixed ui-land-page ui-land-page-left">
