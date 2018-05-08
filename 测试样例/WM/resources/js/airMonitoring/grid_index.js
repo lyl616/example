@@ -5,6 +5,9 @@ var gridType = 1,//网格类型（1:1X1网格；2:3X3网格；3：5X5网格；4:
     gridStationType = 13,//网格站点聚合类型（0：所有站点；1：微站；2：国控站；3：考核站；12：微站国控；13：微站考核站；23：国控考核站）
     rtcTime = null;
 
+parent.cityName = "济宁";
+parent.cityId = 370800;
+parent.provinceId = 370000;
 var province, cityId, cityName;
 
 /**
@@ -34,7 +37,7 @@ var Litchi = {
             pollution_type = this.id;
             console.log(pollution_type)
 
-            $("#virtlegend").attr('src', $.ctx + '/resources/img/legend/wm-legend-' + pollution_type + '.png');
+            $("#virtlegend").attr('src', '../../resources/img/legend/wm-legend-' + pollution_type + '.png');
             listLastGridData();
         });
     }
@@ -44,7 +47,7 @@ var Litchi = {
  *   加载网格数据
  */
 function listLastGridData() {
-    var url = $.backendApiPath + "/griddata/last";
+    var url = "../../json/analysis/griddata_last.json";
     var postData = {
         city: cityId,
         pollutionType: pollution_type,
@@ -53,7 +56,6 @@ function listLastGridData() {
     };
     ajax(url, postData, function (data) {
         if (data.erroCode == 2000) {
-
             rtcTime = new Date(data.result.rtcTime).Format("yyyy-MM-dd HH:mm:ss");
             $("#rtcTime").html(rtcTime.substring(0, 16));
             if (map == null && mapChar == null) {
@@ -83,11 +85,11 @@ function listLastGridData() {
 function changeMaptype(obj) {
     var str = obj.id;
     if (str.indexOf('0') != -1) {
-        $("#" + str + " img").attr("src", $.ctx + '/resources/img/wx.png');
+        $("#" + str + " img").attr("src", '../../resources/img/wx.png');
         map.setMapType(BMAP_SATELLITE_MAP);
         obj.id = str.replace('0', '1');
     } else {
-        $("#" + str + " img").attr("src", $.ctx + '/resources/img/map.png');
+        $("#" + str + " img").attr("src", '../../resources/img/map.png');
         map.setMapType(BMAP_NORMAL_MAP);
         obj.id = str.replace('1', '0');
     }

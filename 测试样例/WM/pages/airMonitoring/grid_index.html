@@ -1,19 +1,40 @@
-
-<%@include file="../includeJsCss.html" %>
-
-
 <html lang="en">
 
 <head>
     <meta charset="utf-8"/>
     <title>蛙鸣科技 | 虚拟网格</title>
+
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link rel="shortcut icon" href="../../resources/img/favicon.ico">
+    <link rel="stylesheet" href="../../resources/css/zlight.menu.css" media="screen">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../resources/css/style.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../resources/plugins/layer/skin/default/layer.css" rel="stylesheet"/>
+    <!-- ================== END BASE CSS STYLE ================== -->
+
+
+    <link rel="stylesheet" href="../../resources/plugins/layer/skin/default/layer.css"/>
+    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../resources/plugins/leaflet/css/leaflet.css"/>
+    <link rel="stylesheet" href="../../resources/plugins/leaflet/css/initmap.css"/>
+    <link rel="stylesheet" href="../../resources/css/rewcssChrome.css"/>
+
+
+    <script type="text/javascript" src="../../resources/plugins/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/layer/layer.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+
     <link rel="stylesheet" href="../../resources/css/bootstrap.min.css"/>
     <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
     <script type="text/javascript" src="../../resources/plugins/jquery/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="../../resources/plugins/layer/layer.js"></script>
 
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
-
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
+    <script type="text/javascript" src="../../resources/js/common/JSUtils.js"></script>
     <script type="text/javascript" src="../../resources/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js"></script>
     <script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/extension/bmap.min.js"></script>
@@ -21,8 +42,6 @@
 
 </head>
 <body>
-<%@include file="../V1/topMenu.html" %>
-
 <div class="post-abs virt-lefttop-btn">
     <button class="btn btn-md btn-white dib" id="aqi">AQI</button>
     <button class="btn btn-md btn-info dib m-l--5" id="pm25">PM<sub>2.5</sub></button>
