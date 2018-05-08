@@ -1,0 +1,13 @@
+{
+  "erroCode" : 2000,
+  "erroMsg" : null,
+  "result" : {
+    "total" : 30,
+    "g01Num" : 5,
+    "g02Num" : 5,
+    "g03Num" : 5,
+    "g04Num" : 11,
+    "g05Num" : 1,
+    "g06Num" : 3
+  }
+}

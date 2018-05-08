@@ -1,0 +1,54 @@
+{
+  "erroCode" : 2000,
+  "erroMsg" : null,
+  "result" : [ {
+    "districtId" : 370801,
+    "districtName" : "市辖区",
+    "aqi" : null,
+    "aqiLevel" : null,
+    "aqi2" : 105,
+    "aqiLevel2" : 3
+  }, {
+    "districtId" : 370881,
+    "districtName" : "曲阜市",
+    "aqi" : null,
+    "aqiLevel" : null,
+    "aqi2" : 101,
+    "aqiLevel2" : 3
+  }, {
+    "districtId" : 370812,
+    "districtName" : "兖州区",
+    "aqi" : null,
+    "aqiLevel" : null,
+    "aqi2" : 101,
+    "aqiLevel2" : 3
+  }, {
+    "districtId" : 370829,
+    "districtName" : "嘉祥县",
+    "aqi" : null,
+    "aqiLevel" : null,
+    "aqi2" : 94,
+    "aqiLevel2" : 2
+  }, {
+    "districtId" : 370883,
+    "districtName" : "邹城市",
+    "aqi" : null,
+    "aqiLevel" : null,
+    "aqi2" : 89,
+    "aqiLevel2" : 2
+  }, {
+    "districtId" : 370811,
+    "districtName" : "任城区",
+    "aqi" : null,
+    "aqiLevel" : null,
+    "aqi2" : 85,
+    "aqiLevel2" : 2
+  }, {
+    "districtId" : 370826,
+    "districtName" : "微山县",
+    "aqi" : null,
+    "aqiLevel" : null,
+    "aqi2" : 72,
+    "aqiLevel2" : 2
+  } ]
+}
