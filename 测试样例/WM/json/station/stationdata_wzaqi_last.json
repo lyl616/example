@@ -1,0 +1,1400 @@
+{
+  "erroCode" : 2000,
+  "erroMsg" : null,
+  "result" : [ {
+    "stationId" : "80004",
+    "stationName" : "80004山水B",
+    "aqi" : 87,
+    "aqiLevel" : 2,
+    "aqi2" : 120,
+    "aqiLevel2" : 3,
+    "lng" : 116.391739,
+    "lat" : 35.358662
+  }, {
+    "stationId" : "80006",
+    "stationName" : "80006市监1",
+    "aqi" : 87,
+    "aqiLevel" : 2,
+    "aqi2" : 86,
+    "aqiLevel2" : 2,
+    "lng" : 116.604881,
+    "lat" : 35.427166
+  }, {
+    "stationId" : "80009",
+    "stationName" : "80009市监8",
+    "aqi" : 138,
+    "aqiLevel" : 3,
+    "aqi2" : 138,
+    "aqiLevel2" : 3,
+    "lng" : 116.604858,
+    "lat" : 35.415054
+  }, {
+    "stationId" : "80016",
+    "stationName" : "80016山水A",
+    "aqi" : 135,
+    "aqiLevel" : 3,
+    "aqi2" : 143,
+    "aqiLevel2" : 3,
+    "lng" : 116.384468,
+    "lat" : 35.366241
+  }, {
+    "stationId" : "80021",
+    "stationName" : "80021嘉电B",
+    "aqi" : 104,
+    "aqiLevel" : 3,
+    "aqi2" : 59,
+    "aqiLevel2" : 2,
+    "lng" : 116.463936,
+    "lat" : 35.361786
+  }, {
+    "stationId" : "80022",
+    "stationName" : "80022银河B",
+    "aqi" : 89,
+    "aqiLevel" : 2,
+    "aqi2" : 90,
+    "aqiLevel2" : 2,
+    "lng" : 116.797264,
+    "lat" : 35.485870
+  }, {
+    "stationId" : "80023",
+    "stationName" : "80023中联C",
+    "aqi" : 90,
+    "aqiLevel" : 2,
+    "aqi2" : 85,
+    "aqiLevel2" : 2,
+    "lng" : 117.077545,
+    "lat" : 35.602440
+  }, {
+    "stationId" : "80025",
+    "stationName" : "80025聚源B",
+    "aqi" : 82,
+    "aqiLevel" : 2,
+    "aqi2" : 70,
+    "aqiLevel2" : 2,
+    "lng" : 116.809502,
+    "lat" : 35.581928
+  }, {
+    "stationId" : "80027",
+    "stationName" : "80027济三A",
+    "aqi" : 74,
+    "aqiLevel" : 2,
+    "aqi2" : 72,
+    "aqiLevel2" : 2,
+    "lng" : 116.654068,
+    "lat" : 35.288563
+  }, {
+    "stationId" : "80029",
+    "stationName" : "80029东滩C",
+    "aqi" : 81,
+    "aqiLevel" : 2,
+    "aqi2" : 73,
+    "aqiLevel2" : 2,
+    "lng" : 116.885696,
+    "lat" : 35.429512
+  }, {
+    "stationId" : "80030",
+    "stationName" : "80030嘉电A",
+    "aqi" : 86,
+    "aqiLevel" : 2,
+    "aqi2" : 101,
+    "aqiLevel2" : 3,
+    "lng" : 116.427467,
+    "lat" : 35.377098
+  }, {
+    "stationId" : "80031",
+    "stationName" : "80031宏矿D",
+    "aqi" : 80,
+    "aqiLevel" : 2,
+    "aqi2" : 82,
+    "aqiLevel2" : 2,
+    "lng" : 116.956429,
+    "lat" : 35.377808
+  }, {
+    "stationId" : "80032",
+    "stationName" : "80032体教局4",
+    "aqi" : 125,
+    "aqiLevel" : 3,
+    "aqi2" : 125,
+    "aqiLevel2" : 3,
+    "lng" : 116.793831,
+    "lat" : 35.568024
+  }, {
+    "stationId" : "80033",
+    "stationName" : "80033圣地7",
+    "aqi" : 112,
+    "aqiLevel" : 3,
+    "aqi2" : 112,
+    "aqiLevel2" : 3,
+    "lng" : 116.666016,
+    "lat" : 35.457783
+  }, {
+    "stationId" : "80034",
+    "stationName" : "80034任开6",
+    "aqi" : 84,
+    "aqiLevel" : 2,
+    "aqi2" : 68,
+    "aqiLevel2" : 2,
+    "lng" : 116.718094,
+    "lat" : 35.393990
+  }, {
+    "stationId" : "80035",
+    "stationName" : "80035圣地6",
+    "aqi" : 82,
+    "aqiLevel" : 2,
+    "aqi2" : 100,
+    "aqiLevel2" : 2,
+    "lng" : 116.658409,
+    "lat" : 35.438324
+  }, {
+    "stationId" : "80036",
+    "stationName" : "80036邹电C",
+    "aqi" : 93,
+    "aqiLevel" : 2,
+    "aqi2" : 106,
+    "aqiLevel2" : 3,
+    "lng" : 116.942825,
+    "lat" : 35.294849
+  }, {
+    "stationId" : "80037",
+    "stationName" : "80037圣地5",
+    "aqi" : 127,
+    "aqiLevel" : 3,
+    "aqi2" : 150,
+    "aqiLevel2" : 3,
+    "lng" : 116.684174,
+    "lat" : 35.458332
+  }, {
+    "stationId" : "80038",
+    "stationName" : "80038中联B",
+    "aqi" : 107,
+    "aqiLevel" : 3,
+    "aqi2" : 102,
+    "aqiLevel2" : 3,
+    "lng" : 117.102486,
+    "lat" : 35.617470
+  }, {
+    "stationId" : "80039",
+    "stationName" : "80039里彦C",
+    "aqi" : 95,
+    "aqiLevel" : 2,
+    "aqi2" : 108,
+    "aqiLevel2" : 3,
+    "lng" : 116.792633,
+    "lat" : 35.316986
+  }, {
+    "stationId" : "80041",
+    "stationName" : "80041电化厂3",
+    "aqi" : 108,
+    "aqiLevel" : 3,
+    "aqi2" : 118,
+    "aqiLevel2" : 3,
+    "lng" : 116.556915,
+    "lat" : 35.382267
+  }, {
+    "stationId" : "80044",
+    "stationName" : "80044国宏C",
+    "aqi" : 84,
+    "aqiLevel" : 2,
+    "aqi2" : 94,
+    "aqiLevel2" : 2,
+    "lng" : 116.965675,
+    "lat" : 35.450729
+  }, {
+    "stationId" : "80045",
+    "stationName" : "80045电化厂4",
+    "aqi" : 73,
+    "aqiLevel" : 2,
+    "aqi2" : 72,
+    "aqiLevel2" : 2,
+    "lng" : 116.550499,
+    "lat" : 35.401493
+  }, {
+    "stationId" : "80047",
+    "stationName" : "80047火炬城4",
+    "aqi" : 102,
+    "aqiLevel" : 3,
+    "aqi2" : 120,
+    "aqiLevel2" : 3,
+    "lng" : 116.683205,
+    "lat" : 35.448811
+  }, {
+    "stationId" : "80049",
+    "stationName" : "80049农校5",
+    "aqi" : 79,
+    "aqiLevel" : 2,
+    "aqi2" : 74,
+    "aqiLevel2" : 2,
+    "lng" : 116.602379,
+    "lat" : 35.466175
+  }, {
+    "stationId" : "80050",
+    "stationName" : "80050火炬城6",
+    "aqi" : 65,
+    "aqiLevel" : 2,
+    "aqi2" : 66,
+    "aqiLevel2" : 2,
+    "lng" : 116.641418,
+    "lat" : 35.441185
+  }, {
+    "stationId" : "80052",
+    "stationName" : "80052宏矿A",
+    "aqi" : 77,
+    "aqiLevel" : 2,
+    "aqi2" : 83,
+    "aqiLevel2" : 2,
+    "lng" : 116.955383,
+    "lat" : 35.384495
+  }, {
+    "stationId" : "80053",
+    "stationName" : "80053南矿A",
+    "aqi" : 105,
+    "aqiLevel" : 3,
+    "aqi2" : 64,
+    "aqiLevel2" : 2,
+    "lng" : 116.593925,
+    "lat" : 35.452778
+  }, {
+    "stationId" : "80055",
+    "stationName" : "80055鲍电A",
+    "aqi" : 82,
+    "aqiLevel" : 2,
+    "aqi2" : 100,
+    "aqiLevel2" : 2,
+    "lng" : 116.820839,
+    "lat" : 35.449551
+  }, {
+    "stationId" : "80056",
+    "stationName" : "80056邹电D",
+    "aqi" : 85,
+    "aqiLevel" : 2,
+    "aqi2" : 97,
+    "aqiLevel2" : 2,
+    "lng" : 116.911621,
+    "lat" : 35.274090
+  }, {
+    "stationId" : "80057",
+    "stationName" : "80057宏矿B",
+    "aqi" : 77,
+    "aqiLevel" : 2,
+    "aqi2" : 88,
+    "aqiLevel2" : 2,
+    "lng" : 116.968353,
+    "lat" : 35.379093
+  }, {
+    "stationId" : "80058",
+    "stationName" : "80058市监4",
+    "aqi" : 100,
+    "aqiLevel" : 2,
+    "aqi2" : 100,
+    "aqiLevel2" : 2,
+    "lng" : 116.591080,
+    "lat" : 35.415245
+  }, {
+    "stationId" : "80059",
+    "stationName" : "80059开发区3",
+    "aqi" : 92,
+    "aqiLevel" : 2,
+    "aqi2" : 76,
+    "aqiLevel2" : 2,
+    "lng" : 116.709572,
+    "lat" : 35.382942
+  }, {
+    "stationId" : "80060",
+    "stationName" : "80060南电B",
+    "aqi" : 176,
+    "aqiLevel" : 4,
+    "aqi2" : 176,
+    "aqiLevel2" : 4,
+    "lng" : 116.903519,
+    "lat" : 35.387653
+  }, {
+    "stationId" : "80061",
+    "stationName" : "80061电化厂6",
+    "aqi" : 100,
+    "aqiLevel" : 2,
+    "aqi2" : 108,
+    "aqiLevel2" : 3,
+    "lng" : 116.581352,
+    "lat" : 35.409054
+  }, {
+    "stationId" : "80062",
+    "stationName" : "80062东滩B",
+    "aqi" : 112,
+    "aqiLevel" : 3,
+    "aqi2" : 146,
+    "aqiLevel2" : 3,
+    "lng" : 116.916557,
+    "lat" : 35.437237
+  }, {
+    "stationId" : "80063",
+    "stationName" : "80063圣地1",
+    "aqi" : 86,
+    "aqiLevel" : 2,
+    "aqi2" : 113,
+    "aqiLevel2" : 3,
+    "lng" : 116.725273,
+    "lat" : 35.445358
+  }, {
+    "stationId" : "80064",
+    "stationName" : "80064农校4",
+    "aqi" : 78,
+    "aqiLevel" : 2,
+    "aqi2" : 74,
+    "aqiLevel2" : 2,
+    "lng" : 116.606300,
+    "lat" : 35.440197
+  }, {
+    "stationId" : "80065",
+    "stationName" : "80065开发区2",
+    "aqi" : 70,
+    "aqiLevel" : 2,
+    "aqi2" : 73,
+    "aqiLevel2" : 2,
+    "lng" : 116.685059,
+    "lat" : 35.391132
+  }, {
+    "stationId" : "80066",
+    "stationName" : "80066南电A",
+    "aqi" : 85,
+    "aqiLevel" : 2,
+    "aqi2" : 80,
+    "aqiLevel2" : 2,
+    "lng" : 116.851593,
+    "lat" : 35.359737
+  }, {
+    "stationId" : "80068",
+    "stationName" : "80068曲电A",
+    "aqi" : 95,
+    "aqiLevel" : 2,
+    "aqi2" : 106,
+    "aqiLevel2" : 3,
+    "lng" : 116.932259,
+    "lat" : 35.609703
+  }, {
+    "stationId" : "80069",
+    "stationName" : "80069大务A",
+    "aqi" : 93,
+    "aqiLevel" : 2,
+    "aqi2" : 92,
+    "aqiLevel2" : 2,
+    "lng" : 116.589447,
+    "lat" : 35.472313
+  }, {
+    "stationId" : "80070",
+    "stationName" : "80070体教局5",
+    "aqi" : 142,
+    "aqiLevel" : 3,
+    "aqi2" : 150,
+    "aqiLevel2" : 3,
+    "lng" : 116.804733,
+    "lat" : 35.574123
+  }, {
+    "stationId" : "80072",
+    "stationName" : "80072市监6",
+    "aqi" : 110,
+    "aqiLevel" : 3,
+    "aqi2" : 110,
+    "aqiLevel2" : 3,
+    "lng" : 116.618042,
+    "lat" : 35.421898
+  }, {
+    "stationId" : "80073",
+    "stationName" : "80073曲电C",
+    "aqi" : 80,
+    "aqiLevel" : 2,
+    "aqi2" : 85,
+    "aqiLevel2" : 2,
+    "lng" : 116.954422,
+    "lat" : 35.608345
+  }, {
+    "stationId" : "80074",
+    "stationName" : "80074电化厂1",
+    "aqi" : 99,
+    "aqiLevel" : 2,
+    "aqi2" : 102,
+    "aqiLevel2" : 3,
+    "lng" : 116.570740,
+    "lat" : 35.434467
+  }, {
+    "stationId" : "80075",
+    "stationName" : "80075邹电A",
+    "aqi" : 75,
+    "aqiLevel" : 2,
+    "aqi2" : 79,
+    "aqiLevel2" : 2,
+    "lng" : 116.898026,
+    "lat" : 35.315735
+  }, {
+    "stationId" : "80077",
+    "stationName" : "80077国宏B",
+    "aqi" : 88,
+    "aqiLevel" : 2,
+    "aqi2" : 99,
+    "aqiLevel2" : 2,
+    "lng" : 116.967041,
+    "lat" : 35.451218
+  }, {
+    "stationId" : "80079",
+    "stationName" : "80079体教局3",
+    "aqi" : 95,
+    "aqiLevel" : 2,
+    "aqi2" : 112,
+    "aqiLevel2" : 3,
+    "lng" : 116.803978,
+    "lat" : 35.531624
+  }, {
+    "stationId" : "80080",
+    "stationName" : "80080大务B",
+    "aqi" : 102,
+    "aqiLevel" : 3,
+    "aqi2" : 75,
+    "aqiLevel2" : 2,
+    "lng" : 116.602455,
+    "lat" : 35.468773
+  }, {
+    "stationId" : "80082",
+    "stationName" : "80082山水D",
+    "aqi" : 85,
+    "aqiLevel" : 2,
+    "aqi2" : 57,
+    "aqiLevel2" : 2,
+    "lng" : 116.384369,
+    "lat" : 35.363098
+  }, {
+    "stationId" : "80084",
+    "stationName" : "80084圣地2",
+    "aqi" : 144,
+    "aqiLevel" : 3,
+    "aqi2" : 144,
+    "aqiLevel2" : 3,
+    "lng" : 116.664658,
+    "lat" : 35.432034
+  }, {
+    "stationId" : "80085",
+    "stationName" : "80085污水厂7",
+    "aqi" : 92,
+    "aqiLevel" : 2,
+    "aqi2" : 116,
+    "aqiLevel2" : 3,
+    "lng" : 116.604713,
+    "lat" : 35.390823
+  }, {
+    "stationId" : "80086",
+    "stationName" : "80086山水C",
+    "aqi" : 97,
+    "aqiLevel" : 2,
+    "aqi2" : 105,
+    "aqiLevel2" : 3,
+    "lng" : 116.393875,
+    "lat" : 35.359089
+  }, {
+    "stationId" : "80087",
+    "stationName" : "80087火炬城5",
+    "aqi" : 70,
+    "aqiLevel" : 2,
+    "aqi2" : 73,
+    "aqiLevel2" : 2,
+    "lng" : 116.635147,
+    "lat" : 35.455158
+  }, {
+    "stationId" : "80090",
+    "stationName" : "80090里彦D",
+    "aqi" : 92,
+    "aqiLevel" : 2,
+    "aqi2" : 107,
+    "aqiLevel2" : 3,
+    "lng" : 116.765488,
+    "lat" : 35.319927
+  }, {
+    "stationId" : "80091",
+    "stationName" : "80091聚源A",
+    "aqi" : 104,
+    "aqiLevel" : 3,
+    "aqi2" : 104,
+    "aqiLevel2" : 3,
+    "lng" : 116.780502,
+    "lat" : 35.590771
+  }, {
+    "stationId" : "80092",
+    "stationName" : "80092电化厂5",
+    "aqi" : 88,
+    "aqiLevel" : 2,
+    "aqi2" : 82,
+    "aqiLevel2" : 2,
+    "lng" : 116.611305,
+    "lat" : 35.422298
+  }, {
+    "stationId" : "80093",
+    "stationName" : "80093污水厂8",
+    "aqi" : 92,
+    "aqiLevel" : 2,
+    "aqi2" : 87,
+    "aqiLevel2" : 2,
+    "lng" : 116.583961,
+    "lat" : 35.378727
+  }, {
+    "stationId" : "80095",
+    "stationName" : "80095体教局6",
+    "aqi" : 71,
+    "aqiLevel" : 2,
+    "aqi2" : 79,
+    "aqiLevel2" : 2,
+    "lng" : 116.815247,
+    "lat" : 35.553352
+  }, {
+    "stationId" : "80097",
+    "stationName" : "80097里彦B",
+    "aqi" : 132,
+    "aqiLevel" : 3,
+    "aqi2" : 132,
+    "aqiLevel2" : 3,
+    "lng" : 116.804131,
+    "lat" : 35.317055
+  }, {
+    "stationId" : "80098",
+    "stationName" : "80098南矿C",
+    "aqi" : 79,
+    "aqiLevel" : 2,
+    "aqi2" : 87,
+    "aqiLevel2" : 2,
+    "lng" : 116.885986,
+    "lat" : 35.350754
+  }, {
+    "stationId" : "80099",
+    "stationName" : "80099市监5",
+    "aqi" : 81,
+    "aqiLevel" : 2,
+    "aqi2" : 85,
+    "aqiLevel2" : 2,
+    "lng" : 116.598991,
+    "lat" : 35.432037
+  }, {
+    "stationId" : "80100",
+    "stationName" : "80100嘉星C",
+    "aqi" : 92,
+    "aqiLevel" : 2,
+    "aqi2" : 102,
+    "aqiLevel2" : 3,
+    "lng" : 116.330574,
+    "lat" : 35.371769
+  }, {
+    "stationId" : "80102",
+    "stationName" : "80102火炬城8",
+    "aqi" : 98,
+    "aqiLevel" : 2,
+    "aqi2" : 102,
+    "aqiLevel2" : 3,
+    "lng" : 116.617348,
+    "lat" : 35.435566
+  }, {
+    "stationId" : "80103",
+    "stationName" : "80103市监2",
+    "aqi" : 121,
+    "aqiLevel" : 3,
+    "aqi2" : 121,
+    "aqiLevel2" : 3,
+    "lng" : 116.574852,
+    "lat" : 35.419975
+  }, {
+    "stationId" : "80105",
+    "stationName" : "80105中联A",
+    "aqi" : 117,
+    "aqiLevel" : 3,
+    "aqi2" : 126,
+    "aqiLevel2" : 3,
+    "lng" : 117.081833,
+    "lat" : 35.621716
+  }, {
+    "stationId" : "80109",
+    "stationName" : "80109鲍电B",
+    "aqi" : 58,
+    "aqiLevel" : 2,
+    "aqi2" : 42,
+    "aqiLevel2" : 1,
+    "lng" : 116.864929,
+    "lat" : 35.413963
+  }, {
+    "stationId" : "80111",
+    "stationName" : "80111污水厂5",
+    "aqi" : 97,
+    "aqiLevel" : 2,
+    "aqi2" : 72,
+    "aqiLevel2" : 2,
+    "lng" : 116.597198,
+    "lat" : 35.384949
+  }, {
+    "stationId" : "80112",
+    "stationName" : "80112新交通1",
+    "aqi" : 107,
+    "aqiLevel" : 3,
+    "aqi2" : 79,
+    "aqiLevel2" : 2,
+    "lng" : 116.546753,
+    "lat" : 35.491798
+  }, {
+    "stationId" : "80114",
+    "stationName" : "80114开发区5",
+    "aqi" : 112,
+    "aqiLevel" : 3,
+    "aqi2" : 112,
+    "aqiLevel2" : 3,
+    "lng" : 116.695641,
+    "lat" : 35.413181
+  }, {
+    "stationId" : "80115",
+    "stationName" : "80115电化厂2",
+    "aqi" : 113,
+    "aqiLevel" : 3,
+    "aqi2" : 113,
+    "aqiLevel2" : 3,
+    "lng" : 116.572884,
+    "lat" : 35.404606
+  }, {
+    "stationId" : "80116",
+    "stationName" : "80116济三B",
+    "aqi" : 149,
+    "aqiLevel" : 3,
+    "aqi2" : 149,
+    "aqiLevel2" : 3,
+    "lng" : 116.679955,
+    "lat" : 35.269661
+  }, {
+    "stationId" : "80117",
+    "stationName" : "80117国宏A",
+    "aqi" : 103,
+    "aqiLevel" : 3,
+    "aqi2" : 58,
+    "aqiLevel2" : 2,
+    "lng" : 116.943550,
+    "lat" : 35.449425
+  }, {
+    "stationId" : "80118",
+    "stationName" : "80118东滩D",
+    "aqi" : 52,
+    "aqiLevel" : 2,
+    "aqi2" : 42,
+    "aqiLevel2" : 1,
+    "lng" : 116.925583,
+    "lat" : 35.443424
+  }, {
+    "stationId" : "80119",
+    "stationName" : "80119里彦A",
+    "aqi" : 79,
+    "aqiLevel" : 2,
+    "aqi2" : 85,
+    "aqiLevel2" : 2,
+    "lng" : 116.768188,
+    "lat" : 35.341419
+  }, {
+    "stationId" : "80120",
+    "stationName" : "80120电化厂7",
+    "aqi" : 112,
+    "aqiLevel" : 3,
+    "aqi2" : 112,
+    "aqiLevel2" : 3,
+    "lng" : 116.564468,
+    "lat" : 35.418602
+  }, {
+    "stationId" : "80122",
+    "stationName" : "80122嘉星A",
+    "aqi" : 95,
+    "aqiLevel" : 2,
+    "aqi2" : 83,
+    "aqiLevel2" : 2,
+    "lng" : 116.318573,
+    "lat" : 35.385593
+  }, {
+    "stationId" : "80123",
+    "stationName" : "80123宏矿C",
+    "aqi" : 90,
+    "aqiLevel" : 2,
+    "aqi2" : 81,
+    "aqiLevel2" : 2,
+    "lng" : 116.967247,
+    "lat" : 35.377380
+  }, {
+    "stationId" : "80126",
+    "stationName" : "80126邹电B",
+    "aqi" : 128,
+    "aqiLevel" : 3,
+    "aqi2" : 116,
+    "aqiLevel2" : 3,
+    "lng" : 116.969711,
+    "lat" : 35.304470
+  }, {
+    "stationId" : "80127",
+    "stationName" : "80127嘉星D",
+    "aqi" : 32,
+    "aqiLevel" : 1,
+    "aqi2" : 77,
+    "aqiLevel2" : 2,
+    "lng" : 116.348793,
+    "lat" : 35.377766
+  }, {
+    "stationId" : "80128",
+    "stationName" : "80128嘉电D",
+    "aqi" : 145,
+    "aqiLevel" : 3,
+    "aqi2" : 145,
+    "aqiLevel2" : 3,
+    "lng" : 116.477669,
+    "lat" : 35.376801
+  }, {
+    "stationId" : "80129",
+    "stationName" : "80129南矿B",
+    "aqi" : 90,
+    "aqiLevel" : 2,
+    "aqi2" : 208,
+    "aqiLevel2" : 5,
+    "lng" : 116.844032,
+    "lat" : 35.394234
+  }, {
+    "stationId" : "80130",
+    "stationName" : "80130嘉电C",
+    "aqi" : 122,
+    "aqiLevel" : 3,
+    "aqi2" : 122,
+    "aqiLevel2" : 3,
+    "lng" : 116.441124,
+    "lat" : 35.401844
+  }, {
+    "stationId" : "80143",
+    "stationName" : "80143市监7",
+    "aqi" : 116,
+    "aqiLevel" : 3,
+    "aqi2" : 116,
+    "aqiLevel2" : 3,
+    "lng" : 116.598587,
+    "lat" : 35.401272
+  }, {
+    "stationId" : "80145",
+    "stationName" : "80145农校2",
+    "aqi" : 87,
+    "aqiLevel" : 2,
+    "aqi2" : 82,
+    "aqiLevel2" : 2,
+    "lng" : 116.610939,
+    "lat" : 35.458015
+  }, {
+    "stationId" : "80146",
+    "stationName" : "80146运河A",
+    "aqi" : 110,
+    "aqiLevel" : 3,
+    "aqi2" : 89,
+    "aqiLevel2" : 2,
+    "lng" : 116.451279,
+    "lat" : 35.485542
+  }, {
+    "stationId" : "80148",
+    "stationName" : "80148火炬城7",
+    "aqi" : 119,
+    "aqiLevel" : 3,
+    "aqi2" : 111,
+    "aqiLevel2" : 3,
+    "lng" : 116.625999,
+    "lat" : 35.414093
+  }, {
+    "stationId" : "80152",
+    "stationName" : "80152电化厂8",
+    "aqi" : 85,
+    "aqiLevel" : 2,
+    "aqi2" : 73,
+    "aqiLevel2" : 2,
+    "lng" : 116.547264,
+    "lat" : 35.411400
+  }, {
+    "stationId" : "80160",
+    "stationName" : "80160新交通3",
+    "aqi" : 121,
+    "aqiLevel" : 3,
+    "aqi2" : 110,
+    "aqiLevel2" : 3,
+    "lng" : 116.663322,
+    "lat" : 35.395615
+  }, {
+    "stationId" : "80163",
+    "stationName" : "80163曲电D",
+    "aqi" : 105,
+    "aqiLevel" : 3,
+    "aqi2" : 102,
+    "aqiLevel2" : 3,
+    "lng" : 116.936134,
+    "lat" : 35.623060
+  }, {
+    "stationId" : "80164",
+    "stationName" : "80164农校3",
+    "aqi" : 70,
+    "aqiLevel" : 2,
+    "aqi2" : 56,
+    "aqiLevel2" : 2,
+    "lng" : 116.592964,
+    "lat" : 35.438194
+  }, {
+    "stationId" : "80166",
+    "stationName" : "80166嘉星B",
+    "aqi" : 120,
+    "aqiLevel" : 3,
+    "aqi2" : 124,
+    "aqiLevel2" : 3,
+    "lng" : 116.349144,
+    "lat" : 35.380215
+  }, {
+    "stationId" : "90022",
+    "stationName" : "90022城区45",
+    "aqi" : 57,
+    "aqiLevel" : 2,
+    "aqi2" : 32,
+    "aqiLevel2" : 1,
+    "lng" : 116.663826,
+    "lat" : 35.426838
+  }, {
+    "stationId" : "90023",
+    "stationName" : "90023交通11",
+    "aqi" : 43,
+    "aqiLevel" : 1,
+    "aqi2" : 25,
+    "aqiLevel2" : 1,
+    "lng" : 116.571968,
+    "lat" : 35.424610
+  }, {
+    "stationId" : "90025",
+    "stationName" : "90025城郊5",
+    "aqi" : 57,
+    "aqiLevel" : 2,
+    "aqi2" : 38,
+    "aqiLevel2" : 1,
+    "lng" : 116.477234,
+    "lat" : 35.432358
+  }, {
+    "stationId" : "90026",
+    "stationName" : "90026城区50",
+    "aqi" : 69,
+    "aqiLevel" : 2,
+    "aqi2" : 43,
+    "aqiLevel2" : 1,
+    "lng" : 116.533806,
+    "lat" : 35.370045
+  }, {
+    "stationId" : "90027",
+    "stationName" : "90027城区40",
+    "aqi" : 77,
+    "aqiLevel" : 2,
+    "aqi2" : 55,
+    "aqiLevel2" : 2,
+    "lng" : 116.577194,
+    "lat" : 35.362782
+  }, {
+    "stationId" : "90028",
+    "stationName" : "90028城郊7",
+    "aqi" : 75,
+    "aqiLevel" : 2,
+    "aqi2" : 49,
+    "aqiLevel2" : 1,
+    "lng" : 116.780304,
+    "lat" : 35.411797
+  }, {
+    "stationId" : "90029",
+    "stationName" : "90029城区2",
+    "aqi" : 84,
+    "aqiLevel" : 2,
+    "aqi2" : 60,
+    "aqiLevel2" : 2,
+    "lng" : 116.592911,
+    "lat" : 35.430347
+  }, {
+    "stationId" : "90030",
+    "stationName" : "90030交通13",
+    "aqi" : 58,
+    "aqiLevel" : 2,
+    "aqi2" : 36,
+    "aqiLevel2" : 1,
+    "lng" : 116.595200,
+    "lat" : 35.419331
+  }, {
+    "stationId" : "90032",
+    "stationName" : "90032城区48",
+    "aqi" : 50,
+    "aqiLevel" : 1,
+    "aqi2" : 52,
+    "aqiLevel2" : 2,
+    "lng" : 116.501022,
+    "lat" : 35.416054
+  }, {
+    "stationId" : "90033",
+    "stationName" : "90033城区37",
+    "aqi" : 45,
+    "aqiLevel" : 1,
+    "aqi2" : 30,
+    "aqiLevel2" : 1,
+    "lng" : 116.589890,
+    "lat" : 35.353554
+  }, {
+    "stationId" : "90037",
+    "stationName" : "90037城区8",
+    "aqi" : 0,
+    "aqiLevel" : 1,
+    "aqi2" : 54,
+    "aqiLevel2" : 2,
+    "lng" : 116.536812,
+    "lat" : 35.352299
+  }, {
+    "stationId" : "90038",
+    "stationName" : "90038城区21",
+    "aqi" : 39,
+    "aqiLevel" : 1,
+    "aqi2" : 25,
+    "aqiLevel2" : 1,
+    "lng" : 116.627731,
+    "lat" : 35.388725
+  }, {
+    "stationId" : "90044",
+    "stationName" : "90044交通3",
+    "aqi" : 82,
+    "aqiLevel" : 2,
+    "aqi2" : 45,
+    "aqiLevel2" : 1,
+    "lng" : 116.593903,
+    "lat" : 35.409225
+  }, {
+    "stationId" : "90046",
+    "stationName" : "90046城区46",
+    "aqi" : 65,
+    "aqiLevel" : 2,
+    "aqi2" : 53,
+    "aqiLevel2" : 2,
+    "lng" : 116.660789,
+    "lat" : 35.409756
+  }, {
+    "stationId" : "90047",
+    "stationName" : "90047城区44",
+    "aqi" : 62,
+    "aqiLevel" : 2,
+    "aqi2" : 42,
+    "aqiLevel2" : 1,
+    "lng" : 116.519897,
+    "lat" : 35.444565
+  }, {
+    "stationId" : "90053",
+    "stationName" : "90053交通5",
+    "aqi" : 67,
+    "aqiLevel" : 2,
+    "aqi2" : 40,
+    "aqiLevel2" : 1,
+    "lng" : 116.602226,
+    "lat" : 35.434971
+  }, {
+    "stationId" : "90056",
+    "stationName" : "90056城区13",
+    "aqi" : 0,
+    "aqiLevel" : 1,
+    "aqi2" : 0,
+    "aqiLevel2" : 1,
+    "lng" : 116.570915,
+    "lat" : 35.430561
+  }, {
+    "stationId" : "90057",
+    "stationName" : "90057城区25",
+    "aqi" : 38,
+    "aqiLevel" : 1,
+    "aqi2" : 26,
+    "aqiLevel2" : 1,
+    "lng" : 116.584908,
+    "lat" : 35.395794
+  }, {
+    "stationId" : "90058",
+    "stationName" : "90058城区33",
+    "aqi" : 0,
+    "aqiLevel" : 1,
+    "aqi2" : 43,
+    "aqiLevel2" : 1,
+    "lng" : 116.586891,
+    "lat" : 35.385181
+  }, {
+    "stationId" : "90059",
+    "stationName" : "90059城区19",
+    "aqi" : 50,
+    "aqiLevel" : 1,
+    "aqi2" : 33,
+    "aqiLevel2" : 1,
+    "lng" : 116.579910,
+    "lat" : 35.401325
+  }, {
+    "stationId" : "90060",
+    "stationName" : "90060交通2",
+    "aqi" : 82,
+    "aqiLevel" : 2,
+    "aqi2" : 60,
+    "aqiLevel2" : 2,
+    "lng" : 116.598869,
+    "lat" : 35.402962
+  }, {
+    "stationId" : "90061",
+    "stationName" : "90061城区41",
+    "aqi" : 42,
+    "aqiLevel" : 1,
+    "aqi2" : 26,
+    "aqiLevel2" : 1,
+    "lng" : 116.653336,
+    "lat" : 35.393784
+  }, {
+    "stationId" : "90063",
+    "stationName" : "90063城区11",
+    "aqi" : 60,
+    "aqiLevel" : 2,
+    "aqi2" : 43,
+    "aqiLevel2" : 1,
+    "lng" : 116.582932,
+    "lat" : 35.441349
+  }, {
+    "stationId" : "90064",
+    "stationName" : "90064交通4",
+    "aqi" : 75,
+    "aqiLevel" : 2,
+    "aqi2" : 45,
+    "aqiLevel2" : 1,
+    "lng" : 116.616295,
+    "lat" : 35.426208
+  }, {
+    "stationId" : "90065",
+    "stationName" : "90065城区35",
+    "aqi" : 53,
+    "aqiLevel" : 2,
+    "aqi2" : 42,
+    "aqiLevel2" : 1,
+    "lng" : 116.594872,
+    "lat" : 35.372498
+  }, {
+    "stationId" : "90066",
+    "stationName" : "90066城区38",
+    "aqi" : 67,
+    "aqiLevel" : 2,
+    "aqi2" : 48,
+    "aqiLevel2" : 1,
+    "lng" : 116.605835,
+    "lat" : 35.371422
+  }, {
+    "stationId" : "90068",
+    "stationName" : "90068城郊4",
+    "aqi" : 55,
+    "aqiLevel" : 2,
+    "aqi2" : 40,
+    "aqiLevel2" : 1,
+    "lng" : 116.683434,
+    "lat" : 35.526779
+  }, {
+    "stationId" : "90069",
+    "stationName" : "90069城区5",
+    "aqi" : 50,
+    "aqiLevel" : 1,
+    "aqi2" : 32,
+    "aqiLevel2" : 1,
+    "lng" : 116.620804,
+    "lat" : 35.427650
+  }, {
+    "stationId" : "90074",
+    "stationName" : "90074城郊3",
+    "aqi" : 68,
+    "aqiLevel" : 2,
+    "aqi2" : 48,
+    "aqiLevel2" : 1,
+    "lng" : 116.668854,
+    "lat" : 35.326973
+  }, {
+    "stationId" : "90077",
+    "stationName" : "90077城区36",
+    "aqi" : 67,
+    "aqiLevel" : 2,
+    "aqi2" : 43,
+    "aqiLevel2" : 1,
+    "lng" : 116.578888,
+    "lat" : 35.369503
+  }, {
+    "stationId" : "90078",
+    "stationName" : "90078城区28",
+    "aqi" : 46,
+    "aqiLevel" : 1,
+    "aqi2" : 30,
+    "aqiLevel2" : 1,
+    "lng" : 116.531845,
+    "lat" : 35.466846
+  }, {
+    "stationId" : "90081",
+    "stationName" : "90081城郊1",
+    "aqi" : 72,
+    "aqiLevel" : 2,
+    "aqi2" : 0,
+    "aqiLevel2" : 1,
+    "lng" : 116.598877,
+    "lat" : 35.509842
+  }, {
+    "stationId" : "90082",
+    "stationName" : "90082城郊8",
+    "aqi" : 50,
+    "aqiLevel" : 1,
+    "aqi2" : 23,
+    "aqiLevel2" : 1,
+    "lng" : 116.548827,
+    "lat" : 35.498525
+  }, {
+    "stationId" : "90083",
+    "stationName" : "90083交通6",
+    "aqi" : 60,
+    "aqiLevel" : 2,
+    "aqi2" : 38,
+    "aqiLevel2" : 1,
+    "lng" : 116.663795,
+    "lat" : 35.394398
+  }, {
+    "stationId" : "90085",
+    "stationName" : "90085交通1",
+    "aqi" : 82,
+    "aqiLevel" : 2,
+    "aqi2" : 55,
+    "aqiLevel2" : 2,
+    "lng" : 116.604851,
+    "lat" : 35.401039
+  }, {
+    "stationId" : "90086",
+    "stationName" : "90086城区3",
+    "aqi" : 73,
+    "aqiLevel" : 2,
+    "aqi2" : 38,
+    "aqiLevel2" : 1,
+    "lng" : 116.608849,
+    "lat" : 35.434029
+  }, {
+    "stationId" : "90087",
+    "stationName" : "90087城区34",
+    "aqi" : 58,
+    "aqiLevel" : 2,
+    "aqi2" : 33,
+    "aqiLevel2" : 1,
+    "lng" : 116.549858,
+    "lat" : 35.443573
+  }, {
+    "stationId" : "90088",
+    "stationName" : "90088城区9",
+    "aqi" : 87,
+    "aqiLevel" : 2,
+    "aqi2" : 53,
+    "aqiLevel2" : 2,
+    "lng" : 116.586929,
+    "lat" : 35.421623
+  }, {
+    "stationId" : "90090",
+    "stationName" : "90090城区18",
+    "aqi" : 48,
+    "aqiLevel" : 1,
+    "aqi2" : 28,
+    "aqiLevel2" : 1,
+    "lng" : 116.574905,
+    "lat" : 35.409889
+  }, {
+    "stationId" : "90093",
+    "stationName" : "90093城区49",
+    "aqi" : 54,
+    "aqiLevel" : 2,
+    "aqi2" : 30,
+    "aqiLevel2" : 1,
+    "lng" : 116.499016,
+    "lat" : 35.393494
+  }, {
+    "stationId" : "90095",
+    "stationName" : "90095城郊2",
+    "aqi" : 88,
+    "aqiLevel" : 2,
+    "aqi2" : 65,
+    "aqiLevel2" : 2,
+    "lng" : 116.570053,
+    "lat" : 35.296200
+  }, {
+    "stationId" : "90096",
+    "stationName" : "90096交通8",
+    "aqi" : 83,
+    "aqiLevel" : 2,
+    "aqi2" : 52,
+    "aqiLevel2" : 2,
+    "lng" : 116.616806,
+    "lat" : 35.419960
+  }, {
+    "stationId" : "90097",
+    "stationName" : "90097城区17",
+    "aqi" : 60,
+    "aqiLevel" : 2,
+    "aqi2" : 43,
+    "aqiLevel2" : 1,
+    "lng" : 116.590645,
+    "lat" : 35.405991
+  }, {
+    "stationId" : "90099",
+    "stationName" : "90099城区31",
+    "aqi" : 62,
+    "aqiLevel" : 2,
+    "aqi2" : 39,
+    "aqiLevel2" : 1,
+    "lng" : 116.571976,
+    "lat" : 35.382744
+  }, {
+    "stationId" : "90107",
+    "stationName" : "90107城区22",
+    "aqi" : 88,
+    "aqiLevel" : 2,
+    "aqi2" : 63,
+    "aqiLevel2" : 2,
+    "lng" : 116.603859,
+    "lat" : 35.405830
+  }, {
+    "stationId" : "90108",
+    "stationName" : "90108交通12",
+    "aqi" : 69,
+    "aqiLevel" : 2,
+    "aqi2" : 42,
+    "aqiLevel2" : 1,
+    "lng" : 116.571579,
+    "lat" : 35.410561
+  }, {
+    "stationId" : "90110",
+    "stationName" : "90110交通7",
+    "aqi" : 40,
+    "aqiLevel" : 1,
+    "aqi2" : 26,
+    "aqiLevel2" : 1,
+    "lng" : 116.579918,
+    "lat" : 35.410740
+  }, {
+    "stationId" : "90111",
+    "stationName" : "90111城区32",
+    "aqi" : 59,
+    "aqiLevel" : 2,
+    "aqi2" : 40,
+    "aqiLevel2" : 1,
+    "lng" : 116.583885,
+    "lat" : 35.374977
+  }, {
+    "stationId" : "90114",
+    "stationName" : "90114城区15",
+    "aqi" : 45,
+    "aqiLevel" : 1,
+    "aqi2" : 33,
+    "aqiLevel2" : 1,
+    "lng" : 116.628761,
+    "lat" : 35.419178
+  }, {
+    "stationId" : "90116",
+    "stationName" : "90116城区16",
+    "aqi" : 84,
+    "aqiLevel" : 2,
+    "aqi2" : 48,
+    "aqiLevel2" : 1,
+    "lng" : 116.595894,
+    "lat" : 35.414745
+  }, {
+    "stationId" : "90117",
+    "stationName" : "90117交通10",
+    "aqi" : 97,
+    "aqiLevel" : 2,
+    "aqi2" : 54,
+    "aqiLevel2" : 2,
+    "lng" : 116.587418,
+    "lat" : 35.431744
+  }, {
+    "stationId" : "90118",
+    "stationName" : "90118城区7",
+    "aqi" : 87,
+    "aqiLevel" : 2,
+    "aqi2" : 53,
+    "aqiLevel2" : 2,
+    "lng" : 116.608849,
+    "lat" : 35.419621
+  }, {
+    "stationId" : "90119",
+    "stationName" : "90119城区14",
+    "aqi" : 73,
+    "aqiLevel" : 2,
+    "aqi2" : 46,
+    "aqiLevel2" : 1,
+    "lng" : 116.617790,
+    "lat" : 35.409573
+  }, {
+    "stationId" : "90236",
+    "stationName" : "90236城区39",
+    "aqi" : 64,
+    "aqiLevel" : 2,
+    "aqi2" : 0,
+    "aqiLevel2" : 1,
+    "lng" : 116.525574,
+    "lat" : 35.385227
+  }, {
+    "stationId" : "90244",
+    "stationName" : "90244城区51",
+    "aqi" : 68,
+    "aqiLevel" : 2,
+    "aqi2" : 43,
+    "aqiLevel2" : 1,
+    "lng" : 116.559820,
+    "lat" : 35.348220
+  }, {
+    "stationId" : "90247",
+    "stationName" : "90247城区20",
+    "aqi" : 73,
+    "aqiLevel" : 2,
+    "aqi2" : 40,
+    "aqiLevel2" : 1,
+    "lng" : 116.560547,
+    "lat" : 35.488239
+  }, {
+    "stationId" : "90248",
+    "stationName" : "90248城区30",
+    "aqi" : 60,
+    "aqiLevel" : 2,
+    "aqi2" : 39,
+    "aqiLevel2" : 1,
+    "lng" : 116.622665,
+    "lat" : 35.405754
+  }, {
+    "stationId" : "90256",
+    "stationName" : "90256城区30",
+    "aqi" : 45,
+    "aqiLevel" : 1,
+    "aqi2" : 33,
+    "aqiLevel2" : 1,
+    "lng" : 116.519814,
+    "lat" : 35.466091
+  }, {
+    "stationId" : "90260",
+    "stationName" : "90260城区6",
+    "aqi" : 87,
+    "aqiLevel" : 2,
+    "aqi2" : 52,
+    "aqiLevel2" : 2,
+    "lng" : 116.643402,
+    "lat" : 35.396389
+  }, {
+    "stationId" : "90290",
+    "stationName" : "90290城区23",
+    "aqi" : 80,
+    "aqiLevel" : 2,
+    "aqi2" : 53,
+    "aqiLevel2" : 2,
+    "lng" : 116.632728,
+    "lat" : 35.403518
+  }, {
+    "stationId" : "90296",
+    "stationName" : "90296城区47",
+    "aqi" : 32,
+    "aqiLevel" : 1,
+    "aqi2" : 19,
+    "aqiLevel2" : 1,
+    "lng" : 116.496033,
+    "lat" : 35.452827
+  }, {
+    "stationId" : "90297",
+    "stationName" : "90297城区29",
+    "aqi" : 49,
+    "aqiLevel" : 1,
+    "aqi2" : 28,
+    "aqiLevel2" : 1,
+    "lng" : 116.602631,
+    "lat" : 35.373013
+  } ]
+}

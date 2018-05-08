@@ -1,9 +1,9 @@
 //未登录跳转到登录页
 if (!CommonUtil.getCookie("access_token")) {
-    window.location.href = $.ctx + "/login"
+    // window.location.href = $.ctx + "/login"
 }
 CommonUtil.path = $.ctx;
-var menuUrl = $.backendApiPath + "/function/getFunctionByUserId";
+var menuUrl = '../../json/fun/getFunctionByUserId.json';
 var currentUrl = window.location.href.split("?")[0];
 $("#cityNameSpan").text(parent['cityName']);
 $("#currUser").attr('title', CommonUtil.getCookie("userName"));
@@ -198,9 +198,9 @@ function initMenu(data) {
     if (_topA.text().length == 3) {
         _topA.css('background-size', '75% 2px');
     }
-    $(function ($) {
-        $('.venus-menu').maps();
-    });
+    // $(function ($) {
+    //     $('.venus-menu').maps();
+    // });
 }
 
 //加载菜单数据
@@ -208,7 +208,7 @@ $.ajax({
     type: "GET",
     url: menuUrl,
     data: {
-        "userId": userId
+        "userId": "4028f481585db7d701585dc9f8a00018"
     },
     dataType: "json",
     success: function (data) {
@@ -218,7 +218,7 @@ $.ajax({
     },
     error: function (XMLHttpRequest, textStatus, errorThrown) {
         if (XMLHttpRequest.responseText.indexOf("invalid_token") > -1) {
-            window.location.href = $.ctx + "/logout"
+            // window.location.href = $.ctx + "/logout"
         }
     }
 });
@@ -234,7 +234,7 @@ var changeCity = function (cityId, provinceId, cityName) {
 //城市数据获取
 $.ajax({
     type: "GET",
-    url: $.coreApiPath + "/domain/getDomains",
+    url: '../../json/domain/getDomains.json',
     dataType: "json",
     success: function (data) {
         if (data.erroCode == 2000) {
@@ -253,7 +253,7 @@ $.ajax({
     },
     error: function (XMLHttpRequest, textStatus, errorThrown) {
         if (XMLHttpRequest.responseText.indexOf("invalid_token") > -1) {
-            window.location.href = $.ctx + "/logout"
+            // window.location.href = $.ctx + "/logout"
         }
     }
 });
@@ -284,16 +284,16 @@ var logout = function () {
         icon: 16,
         shade: 0.01
     });
-    var logoutUrl = $.coreApiPath + '/rest/logout';
+    // var logoutUrl = $.coreApiPath + '/rest/logout';
     $.ajax({
         type: "POST",
         url: logoutUrl,
         dataType: "json",
         success: function (data) {
-            window.location.href = $.ctx + "/logout";
+            // window.location.href = $.ctx + "/logout";
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            window.location.href = $.ctx + "/logout";
+            // window.location.href = $.ctx + "/logout";
         }
     });
 };

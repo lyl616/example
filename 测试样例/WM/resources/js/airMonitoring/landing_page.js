@@ -37,7 +37,7 @@ $(function () {
         },
         beforeMount: function () {
             var _self = this;
-            var url = $.coreApiPath + "/role/functionRole";
+            var url =   "../../json/role/functionRole.json";
             ajax_get(url, {}, function (data) {
                 if (data.erroCode == 2000) {
                     _self.allFunctions = data.result;
@@ -82,7 +82,7 @@ $(function () {
             // this.initAllCity();
             //初始顶端配置
             // this.initSystemInfo();
-            this.currentCity = parent.cityId;
+            this.currentCity = 370800;
             //定时刷新任务
             this.intervalJob();
 
@@ -106,9 +106,9 @@ $(function () {
                     this.getMapAqi();
                     //勘查工单数据
                     this.getSurveyjobNum();
-                    if (!this.currentCity.endsWith('00')) {
-                        this.cityType = '站点';
-                    }
+                    // if (!this.currentCity.endsWith('00')) {
+                    //     this.cityType = '站点';
+                    // }
                 }
             }
         },
@@ -134,7 +134,7 @@ $(function () {
                 var _self = this;
                 this.bMapChar = echarts.init(document.getElementById("container"));
                 // 初始化echarts示例mapChart
-                $.get(ctx + '/resources/js/airMonitoring/domainbounds/' + _self.currentCity + '.json', function (chinaJson) {
+                $.get('../../json/domain/domainbounds_370800.json', function (chinaJson) {
                     echarts.registerMap('shandong', chinaJson); // 注册地图
 
                     var option = {
@@ -371,7 +371,7 @@ $(function () {
             //城市微站当天超标次数
             getOverproof: function () {
                 var _self = this;
-                $.getJSON($.backendApiPath + '/stationdata/overproof/wztoday', {cityId: _self.currentCity}, function (json) {
+                $.getJSON('../../json/station/stationdata_overproof_wztoday.json', {cityId: _self.currentCity}, function (json) {
                     if (json.erroCode == 2000) {
                         $('#retroclockbox1').flipcountdown({
                             size: "xs",
@@ -396,7 +396,7 @@ $(function () {
             //区县AQI TOP 10
             getTopten: function () {
                 var _self = this;
-                $.getJSON($.backendApiPath + '/citydata/district/top', {cityId: _self.currentCity}, function (json) {
+                $.getJSON('../../json/citydata/district_top.json', {cityId: _self.currentCity}, function (json) {
                     if (json.erroCode == 2000) {
                         initTop10Char('topten', json.result, 'district');
                     } else {
@@ -408,7 +408,7 @@ $(function () {
             //天数占比
             initBestBadDay: function () {
                 var _self = this;
-                $.getJSON($.backendApiPath + '/citydata/daynum/premonth', {cityId: _self.currentCity}, function (json) {
+                $.getJSON('../../json/citydata/daynum_premonth.json', {cityId: _self.currentCity}, function (json) {
                     if (json.erroCode == 2000) {
                         initBestBaddayChar('bestBadday', json.result)
                     } else {
@@ -420,7 +420,7 @@ $(function () {
             //月份同比
             cityMonthCompareFunc: function () {
                 var _self = this;
-                $.getJSON($.backendApiPath + '/citydata/avgmonth/chart', {cityId: _self.currentCity}, function (json) {
+                $.getJSON('../../json/citydata/avgmonth_chart.json', {cityId: _self.currentCity}, function (json) {
                     if (json.erroCode == 2000) {
                         initCityMonthCompareChar('cityMonthCompare', json.result)
                     } else {
@@ -433,7 +433,7 @@ $(function () {
             getMapAqi: function () {
                 //配置地图上的点
                 var _self = this;
-                $.getJSON($.backendApiPath + '/stationdata/wzaqi/last', {cityId: _self.currentCity}, function (json) {
+                $.getJSON('../../json/station/stationdata_wzaqi_last.json', {cityId: _self.currentCity}, function (json) {
                     if (json.erroCode == 2000) {
                         var myData = [];
                         var data = json.result;
@@ -476,7 +476,7 @@ $(function () {
             //勘查工单数量
             getSurveyjobNum: function () {
                 var _self = this;
-                $.getJSON($.backendApiPath + '/surveyjob/count/' + _self.currentCity, {}, function (json) {
+                $.getJSON('../../json/citydata/surveyjob_count_370800.json', {}, function (json) {
                     if (json.erroCode == 2000) {
                         if (json.result) {
                             _self.doingNum = json.result.doingNum;
@@ -491,7 +491,7 @@ $(function () {
             //微站城市数据API加六参
             getCityWzLast: function () {
                 var _self = this;
-                $.getJSON($.backendApiPath + '/citydata/wzlast', {cityId: _self.currentCity}, function (json) {
+                $.getJSON('../../json/citydata/wzlast.json', {cityId: _self.currentCity}, function (json) {
                     if (json.erroCode == 2000) {
                         if (json.result) {
                             _self.circleValueArr[0] = json.result.aqi2;
