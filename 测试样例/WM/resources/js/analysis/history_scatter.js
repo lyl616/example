@@ -96,7 +96,7 @@ function queryWeatherScatter() {
             stationType: stationType,
             type: type
         };
-        var url = $.coreApiPath + "/analysis/history/queryScatter";
+        var url = "../../json/analysis/city_scatter.json";
         ajax_post_msg(url, postData, "加载", function (r) {
             if (r.result) {
                 intiAqiScatter(r.data.charMap, type + "_scatter");
