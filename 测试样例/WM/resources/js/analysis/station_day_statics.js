@@ -9,6 +9,10 @@ var pro_id_g = ""; //全局proid
 var city_name_g = ""; //全局cityName
 var show_type = "1"; //1 默认  污染浓度   2  贡献率
 
+
+parent.cityName = "济宁";
+parent.cityId = 370800;
+
 $(function () {
     Geo.init();
     Geo.btn();
@@ -75,14 +79,14 @@ function requestStationTable() {
     if (show_type == "1") {
         $("#level_table_title").html(cityName + "监测点" + tl + " " + tmp + " 24小时分布图");
         $("#level_table").html("");
-        var url = $.coreApiPath + "/analysis/realtime/queryCityCharts";
+        var url = "../../json/station/station_day_queryCityCharts.json";
         ajax_post(url, params, function (data) {
             initTableCharts(data);
         });
     } else if (show_type == "2") {
         $("#level_table_title").html(cityName + "监测点" + tl + " " + tmp + " 24小时贡献率 (单位:%)");
         $("#level_table").html("");
-        var url = $.coreApiPath + "/analysis/realtime/queryConRateCharts";
+        var url = "../../json/station/station_day_queryConRateCharts.json";
         ajax_post(url, params, function (data) {
             _init_contribution_table(data);
         });
@@ -158,14 +162,19 @@ function insertTableColor(data) {
                 stechType = $("#s_stech_type").val().split("_")[0];
             }
 
-            if (stechType == "6010" || stechType == "1010") {
+            if (true) {
+                // if (stechType == "6010" || stechType == "1010") {
 
-                if ('aqi2' != type && 'aqi' != type && "97" != stationType && "98" != stationType && "99" != stationType && "100" != stationType) {
-                    tdId.css('cursor', 'pointer');
-                    addEventVal(tdId, h, key.split("$")[0], key.split("$")[1]);
-                }else{
-                    tdId.css('cursor', 'default');
-                }
+                // if ('aqi2' != type && 'aqi' != type && "97" != stationType && "98" != stationType && "99" != stationType && "100" != stationType) {
+                //     tdId.css('cursor', 'pointer');
+                //     addEventVal(tdId, h, key.split("$")[0], key.split("$")[1]);
+                // }else{
+                //     tdId.css('cursor', 'default');
+                // }
+
+
+                tdId.css('cursor', 'pointer');
+                addEventVal(tdId, h, key.split("$")[0], key.split("$")[1]);
 
                 if (type == "aqi" || type == "aqi2") {
                     if (validComment != null && validComment != "") {
@@ -218,7 +227,7 @@ function shouTableLine(hour, stationId, stationName) {
     stationParams.stations = stationId;
     stationParams.cellTooltipTitle = "分钟";
     $("#cell_charts").empty();
-    ajax_get($.coreApiPath + '/analysis/realtime/table/hourdata', stationParams, function (data) {
+    ajax_get('../../json/station/station_day_hourdata.json', stationParams, function (data) {
         showCellLine(data, stationParams, stationName, hour);
     });
 }
