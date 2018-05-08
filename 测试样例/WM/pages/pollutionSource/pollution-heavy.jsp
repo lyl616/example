@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="../includeJsCss.jsp" %>
+<%@include file="../includeJsCss.html" %>
 <!DOCTYPE HTML>
 <html>
 
@@ -7,21 +7,21 @@
 		<meta charset="utf-8" />
 		<title>蛙鸣科技 | 污染过程分析</title>
 		<!--引用插件使用-->
-		<link rel="stylesheet" href="${ctx}/resources/plugins/bmap/DrawingManager_min.css" />
-		<link href="${ctx}/resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../../resources/plugins/bmap/DrawingManager_min.css" />
+		<link href="../../resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/bmap/Heatmap_min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/bmap/DistanceTool_min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/bmap/DrawingManager_min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/bmap/TrafficControl_min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/common/com-map.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/bmap/Heatmap_min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/bmap/DistanceTool_min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/bmap/DrawingManager_min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/bmap/TrafficControl_min.js"></script>
+		<script type="text/javascript" src="../../resources/js/common/com-map.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/jquery-ui/jquery-ui.min.js"></script>
 		<!--引用插件使用结束-->
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
 	</head>
 
 	<body>
-		<%@ include file="../V1/topMenu.jsp" %>
+		<%@ include file="../V1/topMenu.html" %>
 		<div id="cons"></div>
 		<div id="interpolationModal" class="modal fade bs-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
@@ -106,14 +106,14 @@
 				</div>
 			</div>
 		</div>
-		<script src="${ctx}/resources/js/pollutionSource/polution-heavy-air.js"></script>
-		<script src="${ctx}/resources/js/pollutionSource/polution-heavy-cloud.js"></script>
-		<script src="${ctx}/resources/js/pollutionSource/heavy-history.js?v=0.1"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/airMonitoring/GeoUtils.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/airMonitoring/spatialmap.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/common/timer.js"></script>
+		<script src="../../resources/js/pollutionSource/polution-heavy-air.js"></script>
+		<script src="../../resources/js/pollutionSource/polution-heavy-cloud.js"></script>
+		<script src="../../resources/js/pollutionSource/heavy-history.js?v=0.1"></script>
+		<script type="text/javascript" src="../../resources/js/airMonitoring/GeoUtils.js"></script>
+		<script type="text/javascript" src="../../resources/js/airMonitoring/spatialmap.js"></script>
+		<script type="text/javascript" src="../../resources/js/common/timer.js"></script>
 		<!--<script type="text/javascript" src="${ctx }/resources/js/common/weather-air.js"></script>-->
-		<script src="${ctx}/resources/js/pollutionSource/pollution-heavy.js"></script>
+		<script src="../../resources/js/pollutionSource/pollution-heavy.js"></script>
 		<script type="text/javascript">
 			//计算左右树与右侧的表格对齐
 			calcOverflowH(0, 'srcollobj', 150);

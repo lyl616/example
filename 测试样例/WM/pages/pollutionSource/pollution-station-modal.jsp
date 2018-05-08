@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<script type="text/javascript" src="${ctx}/resources/plugins/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.min.js"></script>
+<script type="text/javascript" src="../../resources/plugins/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		initChar();
@@ -14,7 +14,7 @@
 </script>
 </head>
 <body>
-<%@ include file="../V1/topMenu.jsp" %>
+<%@ include file="../V1/topMenu.html" %>
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">

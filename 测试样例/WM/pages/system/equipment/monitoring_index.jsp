@@ -1,5 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../../includeVue.jsp" %>
+﻿
+<%@include file="../../includeVue.html" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,11 +7,11 @@
     <title>蛙鸣科技 | 监测点管理</title>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
-    <link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet"/>
-    <script type="text/javascript" src="${ctx}/resources/plugins/My97DatePicker/WdatePicker.js"></script>
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../../resources/plugins/My97DatePicker/WdatePicker.js"></script>
 </head>
 <body class="ovh">
-<%@ include file="../../V1/topMenu.jsp" %>
+<%@ include file="../../V1/topMenu.html" %>
 <div class="pd10 table-scroll" id="app">
     <!--搜索条开始-->
     <div class="tabs-container chunk-set">
@@ -252,7 +252,7 @@
                             <option v-for="item in projectList" :value="item.id">{{ item.name }}</option>
                         </select>
                         <input id="excelFile" name="excelFile" type="file" class="m-t-10 m-b-10"/>
-                        <a href="${ctx}/resources/template/Station_Import_Template.xlsx">导入文件模板下载</a>
+                        <a href="../../resources/template/Station_Import_Template.xlsx">导入文件模板下载</a>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -264,8 +264,8 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="${ctx}/resources/plugins/jquery-file-upload/js/jquery.form.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/system/equipment/monitoring_index.js"></script>
+<script type="text/javascript" src="../../resources/plugins/jquery-file-upload/js/jquery.form.js"></script>
+<script type="text/javascript" src="../../resources/js/system/equipment/monitoring_index.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     $(window).resize(function() {

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -8,21 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link rel="stylesheet" href="${ctx}/resources/css/rewcssChrome.css"/>
-    <script type="text/javascript" src="${ctx}/resources/js/report/Init_Reporttime.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/report/report-common.js"></script>
+    <link rel="stylesheet" href="../../resources/css/rewcssChrome.css"/>
+    <script type="text/javascript" src="../../resources/js/report/Init_Reporttime.js"></script>
+    <script type="text/javascript" src="../../resources/js/report/report-common.js"></script>
     <!--引用插件使用-->
-    <link rel="stylesheet" href="${ctx}/resources/plugins/bmap/DrawingManager_min.css"/>
-    <link href="${ctx}/resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../../resources/plugins/bmap/DrawingManager_min.css"/>
+    <link href="../../resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/DistanceTool_min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/DrawingManager_min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/TrafficControl_min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/common/com-map.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/DistanceTool_min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/DrawingManager_min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/TrafficControl_min.js"></script>
+    <script type="text/javascript" src="../../resources/js/common/com-map.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/My97DatePicker/WdatePicker.js"></script>
 </head>
 <body class="ovh">
-<%@ include file="../V1/topMenu.jsp" %>
+<%@ include file="../V1/topMenu.html" %>
 <div id="content">
     <div class="panel-left pd10 table-scroll">
         <div class="top-search-container ovh">
@@ -215,6 +215,6 @@
     });
     calcOverflowH(1, "table-scroll", 40);
 </script>
-<script type="text/javascript" src="${ctx}/resources/js/statistics/dataOutput.js"></script>
+<script type="text/javascript" src="../../resources/js/statistics/dataOutput.js"></script>
 </body>
 </html>

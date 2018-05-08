@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -9,13 +9,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
-		<%@include file="../../includeVue.jsp" %>
-		<link rel="stylesheet" href="${ctx}/resources/plugins/ztree/css/zTreeStyle/zTreeStyle.css">
-		<script type="text/javascript" src="${ctx}/resources/plugins/ztree/js/jquery.ztree.all.min.js"></script>
+		<%@include file="../../includeVue.html" %>
+		<link rel="stylesheet" href="../../resources/plugins/ztree/css/zTreeStyle/zTreeStyle.css">
+		<script type="text/javascript" src="../../resources/plugins/ztree/js/jquery.ztree.all.min.js"></script>
 	</head>
 
 	<body class="ovh">
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<div class="f-s-12 ovh p-t-10  table-scroll" id="app">
 			<div class="col-sm-12 p-r-10 p-l-10">
 				<!--检索条件开始-->
@@ -108,7 +108,7 @@
 		<div id="menuContent" class="dragTreeContent dn post-abs">
 			<ul id="downDragtree" class="ztree" style="width:180px; height: 300px;"></ul>
 		</div>
-		<script type="text/javascript" src="${ctx}/resources/js/system/sys/organize_manager_add.js"></script>
+		<script type="text/javascript" src="../../resources/js/system/sys/organize_manager_add.js"></script>
 		<script type="text/javascript">
             var heightSet = function () {
                 var scrrenW = document.documentElement.clientHeight;

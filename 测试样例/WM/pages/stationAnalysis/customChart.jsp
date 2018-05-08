@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%-- <%@include file="../system/include_tools.jsp"%> --%>
-<%@include file="../includeJsCss.jsp" %>
+<%-- <%@include file="../system/include_tools.html"%> --%>
+<%@include file="../includeJsCss.html" %>
 <!DOCTYPE html>
 <html>
 	<!--  /graph_echarts.html -->
@@ -10,12 +10,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>蛙鸣科技 | 自定义分析</title>
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
+		<script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
 	</head>
 
 	<body>
-		<%@ include file="../V1/topMenu.jsp" %>
+		<%@ include file="../V1/topMenu.html" %>
 		<div class="pd10">
 			<div class="top-search-container">
 				<form role="form">
@@ -227,7 +227,7 @@
 			</div>
 			<div class="xhideyauto m-t-10" id="allCharts"></div>
 		</div>
-		<script src="${ctx}/resources/js/tools/customChart.js"></script>
+		<script src="../../resources/js/tools/customChart.js"></script>
 		<script type="text/javascript">
 			//计算左右树与右侧的表格对齐
 			calcOverflowH(0, 'allCharts', 150);

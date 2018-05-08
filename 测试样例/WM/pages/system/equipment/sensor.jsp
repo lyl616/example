@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../include.jsp" %>
+
+<%@include file="../include.html" %>
 <!DOCTYPE html>
 
 <html>
@@ -9,10 +9,10 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
 
-    <link type="text/css" rel="stylesheet" href="${ctx}/resources/plugins/bootstarp-fileinput/css/fileinput.css"/>
-    <link type="text/css" rel="stylesheet" href="${ctx}/resources/plugins/bootstrap-edittable/css/bootstrap.min.css"/>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bootstarp-fileinput/js/fileinput.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bootstarp-fileinput/js/fileinput_locale_zh.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../resources/plugins/bootstarp-fileinput/css/fileinput.css"/>
+    <link type="text/css" rel="stylesheet" href="../../resources/plugins/bootstrap-edittable/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="../../resources/plugins/bootstarp-fileinput/js/fileinput.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bootstarp-fileinput/js/fileinput_locale_zh.js"></script>
     <style>
         .file-drop-zone {
             height: 400px;
@@ -21,7 +21,7 @@
     </style>
 </head>
 <body>
-<%@ include file="../../V1/topMenu.jsp" %>
+<%@ include file="../../V1/topMenu.html" %>
 <script type="text/javascript">
     sessionStorage.setItem("tag", "2");
     sessionStorage.setItem("path", "sensor");
@@ -238,7 +238,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="${ctx}/resources/js/system/equipment/sensor.js"></script>
+<script type="text/javascript" src="../../resources/js/system/equipment/sensor.js"></script>
 </body>
 
 </html>

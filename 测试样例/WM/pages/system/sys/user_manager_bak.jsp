@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../../system/include.jsp" %>
+
+<%@include file="../../system/include.html" %>
 <!DOCTYPE html>
 <html>
 
@@ -10,11 +10,11 @@
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
 
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
 	</head>
 
 	<body class="ovh">
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<!-- begin #content -->
 		<%--<sec:authorize access="hasRole('ROLE_FUN_006_01_01_01')">--%>
 		<input type="hidden" id="delAllBtn" value="1" />
@@ -436,7 +436,7 @@
 	</div>
 
 	<!-- 分配省市区域Modal end-->
-	<script type="text/javascript" src="${ctx}/resources/js/system/sys/user_manager.js"></script>
+	<script type="text/javascript" src="../../resources/js/system/sys/user_manager.js"></script>
 
 	<script type="text/javascript">
 		$(function() {

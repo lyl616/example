@@ -26,7 +26,7 @@
                 try {
                     var text = XMLHttpRequest.responseText// $.parseJSON(XMLHttpRequest.responseText);
                     if (text.indexOf('蛙鸣科技 | 登录') != -1) {
-                        window.location = CommonUtil.path + '/pages/login.jsp';
+                        window.location = CommonUtil.path + '/pages/login.html';
                     }
                 } catch (e) {
 
@@ -157,7 +157,7 @@
             if (resp.erroCode == '2000') {
                 return resp.result; // 直接返回要处理的数据，作为默认参数传入之后done()方法的回调
             } else if (resp.erroCode == '4000') {
-                window.location = CommonUtil.path + '/pages/login.jsp';
+                window.location = CommonUtil.path + '/pages/login.html';
             } else {
                 return $.Deferred().reject(resp.erroMsg); // 返回一个失败状态的deferred对象，把错误代码作为默认参数传入之后fail()方法的回调
             }

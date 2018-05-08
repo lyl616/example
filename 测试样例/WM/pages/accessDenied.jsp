@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
@@ -17,28 +17,28 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
 
-    <link href="${ctx}/resources/css/animate.min.css" rel="stylesheet"/>
-    <link href="${ctx}/resources/css/style.min.css" rel="stylesheet"/>
+    <link href="../../resources/css/animate.min.css" rel="stylesheet"/>
+    <link href="../../resources/css/style.min.css" rel="stylesheet"/>
 
 
-    <link rel="shortcut icon" href="${ctx}/resources/img/favicon.ico">
+    <link rel="shortcut icon" href="../../resources/img/favicon.ico">
 
 </head>
 <body class="pace-top BG-01">
 
 <!-- end page container -->
 
-<script src="${ctx}/resources/plugins/jquery/jquery-1.9.1.min.js"></script>
-<script src="${ctx}/resources/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+<script src="../../resources/plugins/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../resources/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
 
-<link href="${ctx}/resources/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"/>
-<script type="text/javascript" src="${ctx}/resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+<link href="../../resources/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"/>
+<script type="text/javascript" src="../../resources/plugins/jquery-ui/jquery-ui.min.js"></script>
 
 
-<script type="text/javascript" src="${ctx}/resources/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../resources/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
-<script src="${ctx}/resources/plugins/jquery/jquery.slimscroll.min.js"></script>
-<script src="${ctx}/resources/plugins/jquery-cookie/jquery.cookie.js"></script>
+<script src="../../resources/plugins/jquery/jquery.slimscroll.min.js"></script>
+<script src="../../resources/plugins/jquery-cookie/jquery.cookie.js"></script>
 
 
 <script>

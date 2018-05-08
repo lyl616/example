@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.ResourceBundle" %>
-<%@include file="../../includeJsCss.jsp" %>
+<%@include file="../../includeJsCss.html" %>
 <script type="text/javascript">
 	var communicat_IP_Port = "communicat_IP_Port";
 </script>
@@ -12,23 +12,23 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
-		<link type="text/css" rel="stylesheet" href="${ctx}/resources/plugins/bootstarp-fileinput/css/fileinput.css" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/bootstarp-fileinput/js/fileinput.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/bootstarp-fileinput/js/fileinput_locale_zh.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/jquery-file-upload/js/ajaxfileupload.js"></script>
+		<link type="text/css" rel="stylesheet" href="../../resources/plugins/bootstarp-fileinput/css/fileinput.css" />
+		<script type="text/javascript" src="../../resources/plugins/bootstarp-fileinput/js/fileinput.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/bootstarp-fileinput/js/fileinput_locale_zh.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/jquery-file-upload/js/ajaxfileupload.js"></script>
 		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/common/com-map.js"></script>
-		<link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table.js"></script>
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
+		<script type="text/javascript" src="../../resources/js/common/com-map.js"></script>
+		<link rel="stylesheet" href="../../resources/plugins/vue/vue-table.css" />
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-1.0.24.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-table.js"></script>
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
 		<script type="text/javascript">
 			sessionStorage.setItem("tag", "1,1");
 		</script>
 	</head>
 
 	<body id="app">
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<div id="content" class="col-sm-12 p-l-10 p-r-10">
 			<!-- begin breadcrumb -->
 			<div class="search-formgroup m-t-10">
@@ -896,4 +896,4 @@
 		}
 	})
 </script>
-<script type="text/javascript" src="${ctx}/resources/js/system/equipment/station_index.js"></script>
+<script type="text/javascript" src="../../resources/js/system/equipment/station_index.js"></script>

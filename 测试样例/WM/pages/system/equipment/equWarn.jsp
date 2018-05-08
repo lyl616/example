@@ -1,5 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../include.jsp" %>
+﻿
+<%@include file="../include.html" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,13 +8,13 @@
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 		<meta content="" name="description" />
 		<meta content="" name="author" />
-		<link href="${ctx}/resources/css/style.min.css" rel="stylesheet" />
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/My97DatePicker/WdatePicker.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/system/equipment/equWarn.js"></script>
+		<link href="../../resources/css/style.min.css" rel="stylesheet" />
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
+		<script type="text/javascript" src="../../resources/plugins/My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="../../resources/js/system/equipment/equWarn.js"></script>
 	</head>
 	<body>
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<input type="hidden" name="97DateTimeFmt" id="97DateTimeFmt" value="yyyy-MM-dd HH:mm:ss" />
 		<div class="magin10">
 			<div class="tabs-container" id="scrollObj">

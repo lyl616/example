@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../includeJsCss.jsp" %>
+
+<%@include file="../includeJsCss.html" %>
 <html lang="en">
 
 	<head>
@@ -8,12 +8,12 @@
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 		<meta content="" name="description" />
 		<meta content="" name="author" />
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
+		<script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
 	</head>
 
 	<body class="ovh">
-		<%@include file="../V1/topMenu.jsp" %>
+		<%@include file="../V1/topMenu.html" %>
 		<div class="pd10 table-scroll">
 			<div id="con">
 				<div class="top-search-container">

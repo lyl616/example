@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../includeJsCss.jsp" %>
+
+<%@include file="../includeJsCss.html" %>
 
 
 <html lang="en">
@@ -7,21 +7,21 @@
 <head>
     <meta charset="utf-8"/>
     <title>蛙鸣科技 | 虚拟网格</title>
-    <link rel="stylesheet" href="${ctx}/resources/css/bootstrap.min.css"/>
-    <link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet"/>
-    <script type="text/javascript" src="${ctx}/resources/plugins/jquery/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/layer/layer.js"></script>
+    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css"/>
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../../resources/plugins/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/layer/layer.js"></script>
 
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
 
-    <script type="text/javascript" src="${ctx}/resources/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/extension/bmap.min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/common/com-map.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/extension/bmap.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/common/com-map.js"></script>
 
 </head>
 <body>
-<%@include file="../V1/topMenu.jsp" %>
+<%@include file="../V1/topMenu.html" %>
 
 <div class="post-abs virt-lefttop-btn">
     <button class="btn btn-md btn-white dib" id="aqi">AQI</button>
@@ -33,10 +33,10 @@
 
 <div class="post-abs virt-rightbottom-btn">
     <div class="virt-legend">
-        <img id="virtlegend" src="${ctx}/resources/img/legend/wm-legend-pm25.png"/>
+        <img id="virtlegend" src="../../resources/img/legend/wm-legend-pm25.png"/>
     </div>
     <div onclick="changeMaptype(this)" id="map_0" class="virt-mapC post-abs">
-        <img src="${ctx}/resources/img/map.png"/>
+        <img src="../../resources/img/map.png"/>
     </div>
 </div>
 
@@ -75,6 +75,6 @@
     </div>
 </div>
 
-<script type="text/javascript" src="${ctx}/resources/js/airMonitoring/grid_index.js"></script>
+<script type="text/javascript" src="../../resources/js/airMonitoring/grid_index.js"></script>
 </body>
 </html>

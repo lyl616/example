@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
@@ -18,20 +18,20 @@
 		<meta content="" name="description" />
 		<meta content="" name="author" />
 
-		<link rel="shortcut icon" href="${ctx}/resources/img/favicon.ico">
-		<link href="${ctx}/resources/css/bootstrap.min.css" rel="stylesheet" />
-		<link href="${ctx}/resources/css/style.min.css" rel="stylesheet" />
+		<link rel="shortcut icon" href="../../resources/img/favicon.ico">
+		<link href="../../resources/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../resources/css/style.min.css" rel="stylesheet" />
 
 		<!-- ================== BEGIN BASE JS ================== -->
-		<script src="${ctx}/resources/plugins/jquery/jquery-1.9.1.min.js"></script>
-		<script src="${ctx}/resources/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
-		<%--<script src="${ctx}/resources/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>--%>
-		<script src="${ctx}/resources/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-		<script src="${ctx}/resources/plugins/layer/layer.js"></script>
+		<script src="../../resources/plugins/jquery/jquery-1.9.1.min.js"></script>
+		<script src="../../resources/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+		<%--<script src="../../resources/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>--%>
+		<script src="../../resources/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../../resources/plugins/layer/layer.js"></script>
 
-		<script src="${ctx}/resources/plugins/jquery/jquery.slimscroll.min.js"></script>
-		<script src="${ctx}/resources/plugins/jquery/jquery.cookie.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/common/commonUtils.js"></script>
+		<script src="../../resources/plugins/jquery/jquery.slimscroll.min.js"></script>
+		<script src="../../resources/plugins/jquery/jquery.cookie.js"></script>
+		<script type="text/javascript" src="../../resources/js/common/commonUtils.js"></script>
 	</head>
 
 	<body class="pace-top loginbg-01">
@@ -42,7 +42,7 @@
 				<div class="login-container-m">
 					<!-- begin brand -->
 					<div class="login-header">
-						<img src="${ctx}/resources/img/logoN.png" width="80">
+						<img src="../../resources/img/logoN.png" width="80">
 
 					</div>
 					<!-- end brand -->

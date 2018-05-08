@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../VueMulitTable.jsp" %>
+
+<%@include file="../VueMulitTable.html" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,18 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link href="${ctx}/resources/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"/>
-    <link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet"/>
-    <script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/report/Init_Reporttime.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/report/report-common.js"></script>
+    <link href="../../resources/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"/>
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/report/Init_Reporttime.js"></script>
+    <script type="text/javascript" src="../../resources/js/report/report-common.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/common/com-map.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../../resources/js/common/com-map.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/My97DatePicker/WdatePicker.js"></script>
 </head>
 
 <body>
-<%@ include file="../V1/topMenu.jsp" %>
+<%@ include file="../V1/topMenu.html" %>
 <div class="pd10" id="content">
     <div class='panel-left' :class="{'min-marginright':!tabActivefg,'min-sucerData-left':tabActivefg && btn_toogle_statue==1}">
         <div class="tabs-container">
@@ -321,7 +321,7 @@
         <div id="allmap" style="height:100%;"></div>
     </div>
 </div>
-<script type="text/javascript" src="${ctx}/resources/js/statistics/historyDataAnalysis.js"></script>
+<script type="text/javascript" src="../../resources/js/statistics/historyDataAnalysis.js"></script>
 </body>
 
 </html>

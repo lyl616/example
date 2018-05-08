@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@include file="../include.jsp" %>
+<%@include file="../include.html" %>
 <!DOCTYPE html>
 
 <html>
@@ -10,15 +10,15 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <title>大气数据</title>
-    <link type="text/css" rel="stylesheet" href="${ctx}/resources/plugins/bootstarp-fileinput/css/fileinput.css"/>
-    <link type="text/css" rel="stylesheet" href="${ctx}/resources/plugins/bootstrap-edittable/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../../resources/plugins/bootstarp-fileinput/css/fileinput.css"/>
+    <link type="text/css" rel="stylesheet" href="../../resources/plugins/bootstrap-edittable/css/bootstrap.min.css"/>
 
-    <link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css"/>
+    <link rel="stylesheet" href="../../resources/plugins/vue/vue-table.css"/>
 
-    <script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bootstarp-fileinput/js/fileinput.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bootstarp-fileinput/js/fileinput_locale_zh.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/vue/vue-1.0.24.min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/vue/vue-table.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bootstarp-fileinput/js/fileinput.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bootstarp-fileinput/js/fileinput_locale_zh.js"></script>
 
     <style>
         .file-drop-zone {
@@ -52,7 +52,7 @@
     </script>
 </head>
 <body>
-<%@ include file="../../V1/topMenu.jsp" %>
+<%@ include file="../../V1/topMenu.html" %>
 
 <div id="content" class="content">
     <!-- begin breadcrumb -->
@@ -240,6 +240,6 @@
     </div>
 </div>
 </body>
-<script type="text/javascript" src="${ctx}/resources/js/system/equipment/sensor_index.js"></script>
+<script type="text/javascript" src="../../resources/js/system/equipment/sensor_index.js"></script>
 </html>
 

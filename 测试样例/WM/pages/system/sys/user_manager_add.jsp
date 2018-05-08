@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../../includeVue.jsp" %>
+
+<%@include file="../../includeVue.html" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,11 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="${ctx}/resources/plugins/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
-    <link rel="stylesheet" href="${ctx}/resources/plugins/transfer-item/transfer.css" type="text/css">
-    <script type="text/javascript" src="${ctx}/resources/plugins/ztree/js/jquery.ztree.all.min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../resources/plugins/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <link rel="stylesheet" href="../../resources/plugins/transfer-item/transfer.css" type="text/css">
+    <script type="text/javascript" src="../../resources/plugins/ztree/js/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/jquery-validation/jquery.validate.min.js"></script>
     <script>
         var uid = "${requestScope.id}";
     </script>
@@ -21,7 +21,7 @@
 </head>
 
 <body class="ovh">
-<%@ include file="../../V1/topMenu.jsp" %>
+<%@ include file="../../V1/topMenu.html" %>
 <div class="f-s-12 ovh pd10 table-scroll" id="app">
     <div class="panel-body">
         <div class="panel-group" id="accordion">
@@ -365,7 +365,7 @@
         <ul id="downDragtree" class="ztree" style="width:188px; height: 300px;"></ul>
     </div>
 </div>
-<script type="text/javascript" src="${ctx}/resources/js/system/sys/user_manager_add.js"></script>
+<script type="text/javascript" src="../../resources/js/system/sys/user_manager_add.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     $(window).resize(function() {

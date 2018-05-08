@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@include file="../includeJsCss.jsp"%>
-<%@include file="../pwd.jsp"%>
+<%@include file="../includeJsCss.html"%>
+<%@include file="../pwd.html"%>
 <body>
 	<!-- begin #page-loader -->
 	<div id="page-loader" class="fade in">
@@ -22,7 +22,7 @@
 			<div class="container-fluid">
 				<!-- begin mobile sidebar expand / collapse button -->
 				<div class="navbar-header">
-					<a href="${ctx}/main" class="navbar-brand"><span style="margin-right: 12px;"><img src="${ctx}/resources/img/WMLogo.png" width="30" height="30"></span>大气污染管理系统</a>
+					<a href="${ctx}/main" class="navbar-brand"><span style="margin-right: 12px;"><img src="../../resources/img/WMLogo.png" width="30" height="30"></span>大气污染管理系统</a>
 					<div class="left m-b-10 m-t-10 m-r-15" style="width: 1px; height: 35px; border-right: 1px solid #b9bfc5;"></div>
 					<a href="${ctx}/main">
 						<div class="WMMap_back"></div>
@@ -65,7 +65,7 @@
 							</div>
 						</form>
 					</li>
-					<li class="dropdown navbar-user"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <img src="${ctx}/resources/img/user.jpg" alt="" /> <span class="hidden-xs"><c:out value='${auth.user.fullName}' /></span> <b class="caret"></b>
+					<li class="dropdown navbar-user"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <img src="../../resources/img/user.jpg" alt="" /> <span class="hidden-xs"><c:out value='${auth.user.fullName}' /></span> <b class="caret"></b>
 					</a>
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>

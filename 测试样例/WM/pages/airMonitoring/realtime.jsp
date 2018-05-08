@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../includeJsCss.jsp" %>
+
+<%@include file="../includeJsCss.html" %>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -11,38 +11,38 @@
     <meta charset="utf-8"/>
     <title>蛙鸣科技 | 实时监测</title>
 
-    <link href="${ctx}/resources/css/component.css" rel="stylesheet"/>
+    <link href="../../resources/css/component.css" rel="stylesheet"/>
     <!--引用插件使用-->
-    <link rel="stylesheet" href="${ctx}/resources/css/bigScreen.css"/>
+    <link rel="stylesheet" href="../../resources/css/bigScreen.css"/>
 
 
-    <link rel="stylesheet" href="${ctx}/resources/plugins/bmap/DrawingManager_min.css"/>
-    <link href="${ctx}/resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../../resources/plugins/bmap/DrawingManager_min.css"/>
+    <link href="../../resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
-    <%--<script type="text/javascript" src="${ctx}/resources/plugins/bmap/DistanceTool_min.js"></script>--%>
-    <script type="text/javascript" src="${ctx}/resources/js/tools/DistanceTool_realtime.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/DrawingManager_min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/TrafficControl_min.js"></script>
-    <%--<script type="text/javascript" src="${ctx}/resources/js/Heatmap_min.js"></script>--%>
-    <script type="text/javascript" src="${ctx}/resources/js/common/commonUtils.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/common/com-map.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
+    <%--<script type="text/javascript" src="../../resources/plugins/bmap/DistanceTool_min.js"></script>--%>
+    <script type="text/javascript" src="../../resources/js/tools/DistanceTool_realtime.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/DrawingManager_min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/TrafficControl_min.js"></script>
+    <%--<script type="text/javascript" src="../../resources/js/Heatmap_min.js"></script>--%>
+    <script type="text/javascript" src="../../resources/js/common/commonUtils.js"></script>
+    <script type="text/javascript" src="../../resources/js/common/com-map.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
     <!--实时检测页面使用-->
-    <script type="text/javascript" src="${ctx}/resources/js/common/realtime-info.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/management/pollution/pollution-detail.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/management/pollution/conf-pollutions.js?v=2"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/airMonitoring/realtime/realtime-pollutions.js?v=2"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/airMonitoring/realtime/realtime-map.js?v=7"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/airMonitoring/realtime/realtime-top.js?v=7"></script>
-    <%--<script type="text/javascript" src="${ctx}/resources/js/airMonitoring/realtime/warjquery.circliful.min.js"></script>--%>
-    <script type="text/javascript" src="${ctx}/resources/js/airMonitoring/realtime/jquery.circliful.min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/airMonitoring/realtime/uisearch.js"></script>
+    <script type="text/javascript" src="../../resources/js/common/realtime-info.js"></script>
+    <script type="text/javascript" src="../../resources/js/management/pollution/pollution-detail.js"></script>
+    <script type="text/javascript" src="../../resources/js/management/pollution/conf-pollutions.js?v=2"></script>
+    <script type="text/javascript" src="../../resources/js/airMonitoring/realtime/realtime-pollutions.js?v=2"></script>
+    <script type="text/javascript" src="../../resources/js/airMonitoring/realtime/realtime-map.js?v=7"></script>
+    <script type="text/javascript" src="../../resources/js/airMonitoring/realtime/realtime-top.js?v=7"></script>
+    <%--<script type="text/javascript" src="../../resources/js/airMonitoring/realtime/warjquery.circliful.min.js"></script>--%>
+    <script type="text/javascript" src="../../resources/js/airMonitoring/realtime/jquery.circliful.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/airMonitoring/realtime/uisearch.js"></script>
     <!--dataTable 表格插件引用-->
-    <link href="${ctx}/resources/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
-    <script type="text/javascript" src="${ctx}/resources/plugins/DataTables/media/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/DataTables/extensions/Select/js/dataTables.select.min.js"></script>
+    <link href="../../resources/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../../resources/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/DataTables/extensions/Select/js/dataTables.select.min.js"></script>
     <script type="text/javascript">
         var bigScreen_flg = true;
     </script>
@@ -51,7 +51,7 @@
             transform: scale(5);
         }
     </style>
-    <link rel="stylesheet" href="${ctx}/resources/plugins/layer/skin/default/biglayer.css"/>
+    <link rel="stylesheet" href="../../resources/plugins/layer/skin/default/biglayer.css"/>
 </head>
 
 <body class="ovh">
@@ -220,10 +220,10 @@
         <!--卫星和地图切换结束    -->
 
         <div class="Legend">
-            <img src="${ctx}/resources/img/legend/legend-pm25.png"/>
+            <img src="../../resources/img/legend/legend-pm25.png"/>
         </div>
         <div class="bottom-copyright">
-            <img src="${ctx}/resources/img/copyright.png"/>
+            <img src="../../resources/img/copyright.png"/>
         </div>
         <!-- 地图框选展示 -->
 

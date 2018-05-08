@@ -1,23 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="../../includeJsCss.jsp"%>
+<%@include file="../../includeJsCss.html"%>
 <!DOCTYPE html>
 <html>
 
 	<head>
 		<meta charset="utf-8">
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
 		<title>蛙鸣科技 | 数据校准</title>
 
-		<link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table.js"></script>
+		<link rel="stylesheet" href="../../resources/plugins/vue/vue-table.css" />
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-1.0.24.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-table.js"></script>
 
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
-		<script type="text/javascript" src="${ctx}/resources/js/config/config.js"></script>
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
+		<script type="text/javascript" src="../../resources/js/config/config.js"></script>
 	</head>
 
 	<body>
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<!-- begin breadcrumb -->
 		<div class="pd10">
 			<div class="top-search-container">
@@ -54,7 +54,7 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="${ctx}/resources/js/system/data/datacalibration.js"></script>
+		<script type="text/javascript" src="../../resources/js/system/data/datacalibration.js"></script>
 	</body>
 
 </html>

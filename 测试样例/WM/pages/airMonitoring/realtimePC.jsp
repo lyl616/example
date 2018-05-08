@@ -1,5 +1,5 @@
 
-<%@include file="../includeJsCss.jsp" %>
+<%@include file="../includeJsCss.html" %>
 
 <%--<sec:authentication property="principal" var="auth" scope="session" />--%>
 <%--<sec:authentication property="principal.domainList" var="domainList" scope="session" />--%>
@@ -12,35 +12,35 @@
 <head>
     <meta charset="utf-8"/>
     <title>蛙鸣科技 | 实时监测</title>
-    <link href="${ctx}/resources/css/component.css" rel="stylesheet"/>
-    <link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <link href="../../resources/css/component.css" rel="stylesheet"/>
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
     <!--引用插件使用-->
-    <link rel="stylesheet" href="${ctx}/resources/plugins/bmap/DrawingManager_min.css"/>
-    <link href="${ctx}/resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../../resources/plugins/bmap/DrawingManager_min.css"/>
+    <link href="../../resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/DistanceTool_min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/DrawingManager_min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/TrafficControl_min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/Heatmap_min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/common/com-map.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/DistanceTool_min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/DrawingManager_min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/TrafficControl_min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/Heatmap_min.js"></script>
+    <script type="text/javascript" src="../../resources/js/common/com-map.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
     <!--实时检测页面使用-->
-    <script type="text/javascript" src="${ctx}/resources/js/common/realtime-info.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/management/pollution/pollution-detail.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/management/pollution/conf-pollutions.js?v=2"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/airMonitoring/realtimePC/realtimePC-pollutions.js?v=2"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/airMonitoring/realtimePC/realtime-mapPC.js?v=7"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/airMonitoring/realtimePC/realtimePC-top.js?v=7"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/airMonitoring/realtimePC/warnmsgPC.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/airMonitoring/realtimePC/uisearch.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/airMonitoring/realtimePC/jquery.circliful.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/common/realtime-info.js"></script>
+    <script type="text/javascript" src="../../resources/js/management/pollution/pollution-detail.js"></script>
+    <script type="text/javascript" src="../../resources/js/management/pollution/conf-pollutions.js?v=2"></script>
+    <script type="text/javascript" src="../../resources/js/airMonitoring/realtimePC/realtimePC-pollutions.js?v=2"></script>
+    <script type="text/javascript" src="../../resources/js/airMonitoring/realtimePC/realtime-mapPC.js?v=7"></script>
+    <script type="text/javascript" src="../../resources/js/airMonitoring/realtimePC/realtimePC-top.js?v=7"></script>
+    <script type="text/javascript" src="../../resources/js/airMonitoring/realtimePC/warnmsgPC.js"></script>
+    <script type="text/javascript" src="../../resources/js/airMonitoring/realtimePC/uisearch.js"></script>
+    <script type="text/javascript" src="../../resources/js/airMonitoring/realtimePC/jquery.circliful.min.js"></script>
 
     <!--dataTable 表格插件引用-->
-    <link href="${ctx}/resources/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
-    <script type="text/javascript" src="${ctx}/resources/plugins/DataTables/media/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/DataTables/extensions/Select/js/dataTables.select.min.js"></script>
+    <link href="../../resources/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../../resources/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/DataTables/extensions/Select/js/dataTables.select.min.js"></script>
     <!--加载弹窗样式-->
     <script type="text/javascript">
         var bigScreen_flg = false;
@@ -48,7 +48,7 @@
 </head>
 
 <body class="ovh">
-<%@include file="../V1/topMenu.jsp" %>
+<%@include file="../V1/topMenu.html" %>
 <div id="content">
 
     <input type="hidden" name="province" id="province"/>
@@ -233,10 +233,10 @@
             <div href="javascript:void(0)" onclick="clkMapType()" id="weixing" data="1" class="fixpic wxpic"></div>
             <!--卫星和地图切换结束    -->
             <div class="Legend">
-                <img src="${ctx}/resources/img/legend/legend-pm25.png" height="46">
+                <img src="../../resources/img/legend/legend-pm25.png" height="46">
             </div>
             <div class="bottom-copyright">
-                <img src="${ctx}/resources/img/copyright.png" height="20">
+                <img src="../../resources/img/copyright.png" height="20">
             </div>
             <!-- 地图框选展示 -->
             <!------------------------- top10排行榜 ---------------->
@@ -604,9 +604,9 @@
         <!-- /.modal-dialog -->
     </div>
 </div>
-<script src="${ctx}/resources/js/common/common.js"></script>
-<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-2.5.9.min.js"></script>
-<script src="${ctx}/resources/js/common/common-vue.js"></script>
+<script src="../../resources/js/common/common.js"></script>
+<script type="text/javascript" src="../../resources/plugins/vue/vue-2.5.9.min.js"></script>
+<script src="../../resources/js/common/common-vue.js"></script>
 <script type="text/javascript">
     $(function () {
         $("#showTool ul li a").click(function () {

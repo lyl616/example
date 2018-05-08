@@ -1,5 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../../includeVue.jsp" %>
+﻿
+<%@include file="../../includeVue.html" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,23 +9,23 @@
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 		<meta content="" name="description" />
 		<meta content="" name="author" />
-		<link type="text/css" rel="stylesheet" href="${ctx}/resources/plugins/bootstarp-fileinput/css/fileinput.css" />
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
-		<link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table2.css">
-		<link rel="stylesheet" href="${ctx}/resources/plugins/webuploader/css/upload-files.css">
-		<link rel="stylesheet" href="${ctx}/resources/plugins/webuploader/css/viewer.min.css">
-		<%--<script type="text/javascript" src="${ctx}/resources/plugins/bootstarp-fileinput/js/fileinput.min.js"></script>--%>
-		<%--<script type="text/javascript" src="${ctx}/resources/plugins/bootstarp-fileinput/js/fileinput_locale_zh.js"></script>--%>
-		<%--<script type="text/javascript" src="${ctx}/resources/plugins/jquery-file-upload/js/ajaxfileupload.js"></script>--%>
+		<link type="text/css" rel="stylesheet" href="../../resources/plugins/bootstarp-fileinput/css/fileinput.css" />
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../resources/plugins/vue/vue-table2.css">
+		<link rel="stylesheet" href="../../resources/plugins/webuploader/css/upload-files.css">
+		<link rel="stylesheet" href="../../resources/plugins/webuploader/css/viewer.min.css">
+		<%--<script type="text/javascript" src="../../resources/plugins/bootstarp-fileinput/js/fileinput.min.js"></script>--%>
+		<%--<script type="text/javascript" src="../../resources/plugins/bootstarp-fileinput/js/fileinput_locale_zh.js"></script>--%>
+		<%--<script type="text/javascript" src="../../resources/plugins/jquery-file-upload/js/ajaxfileupload.js"></script>--%>
 		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/common/com-map.js"></script>
+		<script type="text/javascript" src="../../resources/js/common/com-map.js"></script>
 		<script>
 			var sid = "${requestScope.id}";
 		</script>
 	</head>
 
 	<body>
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<div class="ovh pd10" id="app">
 			<div class="panel-body">
 				<div class="panel-group" id="accordion">
@@ -355,10 +355,10 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="${ctx}/resources/plugins/webuploader/js/webuploader.min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/webuploader/js/viewer.new.min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/webuploader/js/upload-files.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/system/equipment/monitoring_add.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/webuploader/js/webuploader.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/webuploader/js/viewer.new.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/webuploader/js/upload-files.js"></script>
+		<script type="text/javascript" src="../../resources/js/system/equipment/monitoring_add.js"></script>
 	</body>
 
 </html>

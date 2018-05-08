@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../includeJsCss.jsp" %>
+
+<%@include file="../includeJsCss.html" %>
 
 
 <c:set var="path" value="${pageContext.request.servletPath}"/>
@@ -12,32 +12,32 @@
 <head>
     <meta charset="utf-8"/>
     <title>蛙鸣科技 | 历史回顾</title>
-    <link href="${ctx}/resources/css/component.css" rel="stylesheet"/>
-    <link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <link href="../../resources/css/component.css" rel="stylesheet"/>
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
 
-    <script src="${ctx}/resources/plugins/vue/vue-2.5.9.min.js"></script>
+    <script src="../../resources/plugins/vue/vue-2.5.9.min.js"></script>
 
     <!--引用插件使用-->
-    <link rel="stylesheet" href="${ctx}/resources/plugins/bmap/DrawingManager_min.css"/>
-    <link href="${ctx}/resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../../resources/plugins/bmap/DrawingManager_min.css"/>
+    <link href="../../resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css"/>
 
-    <!--<link href="${ctx}/resources/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />-->
-    <script type="text/javascript" src="${ctx}/resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!--<link href="../../resources/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />-->
+    <script type="text/javascript" src="../../resources/plugins/jquery-ui/jquery-ui.min.js"></script>
 
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/DistanceTool_min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/DrawingManager_min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/TrafficControl_min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/DistanceTool_min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/DrawingManager_min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/TrafficControl_min.js"></script>
 
-    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/Heatmap_min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/common/com-map.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/airMonitoring/GeoUtils.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/airMonitoring/spatialmap.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/common/timer.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/Heatmap_min.js"></script>
+    <script type="text/javascript" src="../../resources/js/common/com-map.js"></script>
+    <script type="text/javascript" src="../../resources/js/airMonitoring/GeoUtils.js"></script>
+    <script type="text/javascript" src="../../resources/js/airMonitoring/spatialmap.js"></script>
+    <script type="text/javascript" src="../../resources/js/common/timer.js"></script>
 </head>
 
 <body class="ovh">
-<%@include file="../V1/topMenu.jsp" %>
+<%@include file="../V1/topMenu.html" %>
 <div id="content">
 
     <input type="hidden" name="97DateTimeFmt" id="97DateTimeFmt" value="yyyy-MM-dd"/>
@@ -165,10 +165,10 @@
             </div>
 
             <div class="Legend" id="Legend">
-                <img src="${ctx}/resources/img/legend/legend-pm25.png"/>
+                <img src="../../resources/img/legend/legend-pm25.png"/>
             </div>
             <div class="bottom-copyright">
-                <img src="${ctx}/resources/img/copyright.png"/>
+                <img src="../../resources/img/copyright.png"/>
             </div>
             <!--卫星和地图切换开始    -->
             <div href="javascript:void(0)" id="weixing" data="0" class="fixpic wxpic"></div>
@@ -200,7 +200,7 @@
                     <input type="text" class="form-control Wdate" id="startTime" name="start" placeholder="开始时间">
                 </div>
                 <div class="form-group">
-                    <img src="${ctx}/resources/img/send-bg.png"/>
+                    <img src="../../resources/img/send-bg.png"/>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control Wdate" id="endTime" name="end" placeholder="结束时间">
@@ -242,7 +242,7 @@
         reviewCity();
     });
 </script>
-<script type="text/javascript" src="${ctx}/resources/js/airMonitoring/history-map.js"></script>
+<script type="text/javascript" src="../../resources/js/airMonitoring/history-map.js"></script>
 </body>
 
 </html>

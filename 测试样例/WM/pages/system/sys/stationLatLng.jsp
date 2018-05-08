@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-<%@include file="../include.jsp" %>
+<%@include file="../include.html" %>
 <!DOCTYPE html>
 <html>
 
@@ -10,11 +10,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="renderer" content="webkit">
 		<title>蛙鸣科技 | 经纬度转换 </title>
-		<link rel="stylesheet" href="${ctx}/resources/css/rewcssChrome.css" />
+		<link rel="stylesheet" href="../../resources/css/rewcssChrome.css" />
 	</head>
 
 	<body class="gray-bg">
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<div class="pd10">
 			<div class="top-search-container">
 				<form role="form" class="form-inline">
@@ -35,9 +35,9 @@
 				</form>
 			</div>
 		</div>
-		<script type="text/javascript" src="${ctx}/resources/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-		<script src="${ctx}/resources/plugins/jquery/content.min.js?v=1.0.0"></script>
-		<script src="${ctx}/resources/plugins/jquery/icheck.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../../resources/plugins/jquery/content.min.js?v=1.0.0"></script>
+		<script src="../../resources/plugins/jquery/icheck.min.js"></script>
 		<script type="text/javascript">
 			$.coreApiPath = "${requestScope.coreApiContextPath}";
 			//下载数据

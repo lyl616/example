@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+﻿
 
 <!DOCTYPE html>
 <html>
@@ -8,12 +8,12 @@
     <title>蛙鸣科技 | 勘查管理</title>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
-    <link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet"/>
-    <script type="text/javascript" src="${ctx}/resources/plugins/My97DatePicker/WdatePicker.js"></script>
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../../resources/plugins/My97DatePicker/WdatePicker.js"></script>
 </head>
 
 <body class="ovh">
-<%@ include file="../V1/topMenu.jsp" %>
+<%@ include file="../V1/topMenu.html" %>
 <div class="pd10  table-scroll" id="app">
     <!--搜索条开始-->
     <div class="top-search-container">

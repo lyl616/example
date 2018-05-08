@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../include.jsp" %>
+
+<%@include file="../include.html" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,7 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
 		<script>
 			sessionStorage.setItem("tag", "3");
 			sessionStorage.setItem("path", "jian_ci");
@@ -17,7 +17,7 @@
 	</head>
 
 	<body>
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<div id="content" class="pd10">
 			<div class="top-search-container">
 				<div class="form-inline">
@@ -179,8 +179,8 @@
 			</div>
 		</div>
 
-		<script src="${ctx}/resources/js/system/warn/spine.js"></script>
-		<script src="${ctx}/resources/js/system/warn/template-content.js"></script>
+		<script src="../../resources/js/system/warn/spine.js"></script>
+		<script src="../../resources/js/system/warn/template-content.js"></script>
 		<script type="text/javascript">
 			//计算左右树与右侧的表格对齐
 			calcOverflowH(0, 'scrollObj', 140);

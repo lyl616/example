@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>weather</title>
-    <link rel="shortcut icon" href="${ctx}/resources/img/favicon.ico">
+    <link rel="shortcut icon" href="../../resources/img/favicon.ico">
     <link href="${ctx}/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
     <link href="${ctx}/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
 
@@ -19,7 +19,7 @@
 </head>
 
 <body class="gray-bg">
-<%@ include file="../V1/topMenu.jsp" %>
+<%@ include file="../V1/topMenu.html" %>
     <div class="border-bottom white-bg dashboard-header">
         <div>
             <p>
@@ -109,10 +109,10 @@
         </div>
     </div>
     <script src="${ctx}/js/jquery.min.js?v=2.1.4"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="${ctx}/js/plugins/echarts/echarts.min.js"></script>
     <script src="${ctx}/js/content.min.js?v=1.0.0"></script>
-    <script src="${ctx}/resources/js/tools/lineChartStation.js"></script>
+    <script src="../../resources/js/tools/lineChartStation.js"></script>
     <script src="${ctx}/js/plugins/iCheck/icheck.min.js"></script>
 </body>
 </html>

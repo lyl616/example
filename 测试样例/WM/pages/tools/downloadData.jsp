@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<%@include file="../system/include_tools.jsp"%>
+<%@include file="../system/include_tools.html"%>
 <!DOCTYPE html>
 <html>
 <!--  /graph_echarts.html -->
@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>weather</title>
-    <link rel="shortcut icon" href="${ctx}/resources/img/favicon.ico">
+    <link rel="shortcut icon" href="../../resources/img/favicon.ico">
 </head>
 
 <body class="gray-bg">
-<%@ include file="../V1/topMenu.jsp" %>
+<%@ include file="../V1/topMenu.html" %>
 <div class="Map-All">
 <!-- 	<div id='f1'></div> -->
 	<div style="position: absolute; height: 100%; cursor: default; left: 230px; margin-top: 5px;width: 100%;" id="ff">

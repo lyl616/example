@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../system/include_pollution.jsp" %>
+
+<%@include file="../system/include_pollution.html" %>
 <head>
     <meta charset="utf-8"/>
     <title>蛙鸣科技 | 系统管理</title>
@@ -10,9 +10,9 @@
     <script type="text/javascript" src="${ctx }/resources/js/pollutionSource/pollutionSource-index.js"></script>
     <script type="text/javascript" src="${ctx }/resources/js/pollutionSource/pollution-index-range.js"></script>
     <script type="text/javascript" src="${ctx }/resources/js/common/weather-air.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/management/pollution/pollution-detail.js"></script>
+    <script type="text/javascript" src="../../resources/js/management/pollution/pollution-detail.js"></script>
 
-    <script type="text/javascript" src="${ctx}/resources/js/common/timer.js"></script>
+    <script type="text/javascript" src="../../resources/js/common/timer.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#myContent').layout({
@@ -23,7 +23,7 @@
 </head>
 
 <body style="background-color: white;">
-<%@ include file="../V1/topMenu.jsp" %>
+<%@ include file="../V1/topMenu.html" %>
 <input type="hidden" name="province" id="province" value="<c:out value='${auth.user.pro}'/>">
 <input type="hidden" name="city" id="city" value="<c:out value='${auth.user.city}'/>">
 <input type="hidden" name="mapCenter" id="mapCenter" value="<c:out value='${auth.user.cityName}'/>">
@@ -84,7 +84,7 @@
                 </div>
                 <!-- 切换污染物End -->
                 <div class="Legend" style="right: 10px;">
-                    <img src="${ctx}/resources/img/legend-pm25.png" width="212" height="46">
+                    <img src="../../resources/img/legend-pm25.png" width="212" height="46">
                 </div>
 
             </div>

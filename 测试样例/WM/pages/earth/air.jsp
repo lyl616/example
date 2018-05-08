@@ -10,10 +10,10 @@
     <meta name="description" itemprop="description" property="og:description" content=""/>
     <meta name="author" itemprop="author" content="Cameron Beccario"/>
     <meta property="fb:admins" content="510217216"/>
-    <link rel="stylesheet" type="text/css" href="${ctx}/resources/earth/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../../resources/earth/css/styles.css"/>
 </head>
 <body>
-    <div id="display" data-topography="${ctx}/resources/earth/data/${cityId}-topo.json"
+    <div id="display" data-topography="../../resources/earth/data/${cityId}-topo.json"
     	data-samples="${requestScope.coreApiContextPath}/data/wind/${samples}"
                       data-type="wind" data-date="${date}" data-total-hour="${totalHour}"
                        data-city-id="${cityId}">
@@ -34,12 +34,12 @@
         </div>
     </div>
 
-    <script src="${ctx}/resources/earth/js/when.js" charset="utf-8"></script>
-    <script src="${ctx}/resources/earth/js/d3.v3.js" charset="utf-8"></script>
-    <script src="${ctx}/resources/earth/js/jquery-3.1.1.js" charset="utf-8"></script>
-    <script src="${ctx}/resources/earth/js/topojson.v1.js" charset="utf-8"></script>
-    <script src="${ctx}/resources/earth/js/mvi.js" charset="utf-8"></script>
-    <script src="${ctx}/resources/earth/js/air.js" charset="utf-8"></script>
+    <script src="../../resources/earth/js/when.js" charset="utf-8"></script>
+    <script src="../../resources/earth/js/d3.v3.js" charset="utf-8"></script>
+    <script src="../../resources/earth/js/jquery-3.1.1.js" charset="utf-8"></script>
+    <script src="../../resources/earth/js/topojson.v1.js" charset="utf-8"></script>
+    <script src="../../resources/earth/js/mvi.js" charset="utf-8"></script>
+    <script src="../../resources/earth/js/air.js" charset="utf-8"></script>
     <script>
     	$.ctx = "${ctx}";
     	$.coreApiPath = "${requestScope.coreApiContextPath}";

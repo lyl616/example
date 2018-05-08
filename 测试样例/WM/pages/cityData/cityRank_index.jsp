@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../includeJsCss.jsp" %>
+
+<%@include file="../includeJsCss.html" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,12 +9,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp" />
-	<link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css" />
-	<%--<link rel="stylesheet" href="${ctx}/resources/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet"/>--%>
-	<link rel="stylesheet" href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
-	<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js "></script>
-	<script type="text/javascript" src="${ctx}/resources/js/report/Init_Reporttime.js"></script>
-	<script type="text/javascript" src="${ctx}/resources/js/report/report-common.js"></script>
+	<link rel="stylesheet" href="../../resources/plugins/vue/vue-table.css" />
+	<%--<link rel="stylesheet" href="../../resources/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet"/>--%>
+	<link rel="stylesheet" href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
+	<script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js "></script>
+	<script type="text/javascript" src="../../resources/js/report/Init_Reporttime.js"></script>
+	<script type="text/javascript" src="../../resources/js/report/report-common.js"></script>
 	<style>
         span.align-right{width: 90px;display: inline-block;text-align: right;}
 		.ui-btn {
@@ -46,9 +46,9 @@
 </head>
 
 <body id="content" class="ovh">
-<%@ include file="../V1/topMenu.jsp" %>
-<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
-<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table-sort.js"></script>
+<%@ include file="../V1/topMenu.html" %>
+<script type="text/javascript" src="../../resources/plugins/vue/vue-1.0.24.min.js"></script>
+<script type="text/javascript" src="../../resources/plugins/vue/vue-table-sort.js"></script>
 <div class="tabs-container  table-scroll">
 	<ul class="nav nav-tabs magin10">
 		<li class="active">
@@ -276,7 +276,7 @@
 	</div>
 </div>
 
-<script type="text/javascript" src="${ctx}/resources/js/cityData/cityRank_index.js"></script>
+<script type="text/javascript" src="../../resources/js/cityData/cityRank_index.js"></script>
 <script type="text/javascript">
      $(document).ready(function() {
          $(window).resize(function() {

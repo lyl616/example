@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -9,9 +9,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
-		<%@include file="../../includeVue.jsp" %>
-		<link rel="stylesheet" href="${ctx}/resources/plugins/ztree/css/zTreeStyle/zTreeStyle.css">
-		<script type="text/javascript" src="${ctx}/resources/plugins/ztree/js/jquery.ztree.all.min.js"></script>
+		<%@include file="../../includeVue.html" %>
+		<link rel="stylesheet" href="../../resources/plugins/ztree/css/zTreeStyle/zTreeStyle.css">
+		<script type="text/javascript" src="../../resources/plugins/ztree/js/jquery.ztree.all.min.js"></script>
 		<script>
 			sessionStorage.setItem("tag", "1");
 			sessionStorage.setItem("path", "role");
@@ -19,7 +19,7 @@
 	</head>
 
 	<body class="ovh">
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<div class="f-s-12 ovh pd10 table-scroll" id="app">
 			<input type="hidden" id="updateBtn" value="1" />
 			<input type="hidden" id="deleteBtn" value="1" />
@@ -63,7 +63,7 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="${ctx}/resources/js/system/sys/role_modify.js"></script>
+		<script type="text/javascript" src="../../resources/js/system/sys/role_modify.js"></script>
 		<script type="text/javascript">
 		     $(document).ready(function() {
 		         $(window).resize(function() {

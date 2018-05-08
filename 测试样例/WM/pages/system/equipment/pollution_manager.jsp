@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../include.jsp" %>
+
+<%@include file="../include.html" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
     <script>
         sessionStorage.setItem("tag", "2");
         sessionStorage.setItem("path", "poll");
@@ -17,7 +17,7 @@
 </head>
 
 <body class="ovh">
-<%@ include file="../../V1/topMenu.jsp" %>
+<%@ include file="../../V1/topMenu.html" %>
 <div id="content" class="pd10 table-scroll">
     <!-- begin breadcrumb -->
     <div class="top-search-container">
@@ -363,10 +363,10 @@
     </form>
 </div>
 <!-- 污染源排放量end -->
-<script type="text/javascript" src="${ctx}/resources/js/management/pollution/pollution.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/management/pollution/pollutionAir.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/common/country.js"></script>
-<script type="text/javascript" src="${ctx}/resources/plugins/jquery-file-upload/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="../../resources/js/management/pollution/pollution.js"></script>
+<script type="text/javascript" src="../../resources/js/management/pollution/pollutionAir.js"></script>
+<script type="text/javascript" src="../../resources/js/common/country.js"></script>
+<script type="text/javascript" src="../../resources/plugins/jquery-file-upload/js/ajaxfileupload.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $(window).resize(function() {

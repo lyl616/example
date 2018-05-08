@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%-- <%@include file="../system/include_statistics.jsp"%> --%>
+
+<%-- <%@include file="../system/include_statistics.html"%> --%>
 <meta http-equiv="pragma" CONTENT="no-cache">
 <meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate">
 <meta http-equiv="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
-<%@include file="../includeJsCss.jsp" %>
+<%@include file="../includeJsCss.html" %>
 <html lang="en">
 
 	<head>
@@ -12,16 +12,16 @@
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 		<meta content="" name="description" />
 		<meta content="" name="author" />
-		<link href="${ctx}/resources/plugins/select2/dist/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/select2/dist/js/select2.full.min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/select2/dist/js/i18n/zh-CN.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js "></script>
+		<link href="../../resources/plugins/select2/dist/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
+		<script type="text/javascript" src="../../resources/plugins/select2/dist/js/select2.full.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/select2/dist/js/i18n/zh-CN.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js "></script>
 		
 	</head>
 
 	<body>
-		<%@include file="../V1/topMenu.jsp" %>
+		<%@include file="../V1/topMenu.html" %>
 		
 		<input type="hidden" name="province" id="province" value="<c:out value='${auth.user.pro}'/>">
 		<input type="hidden" name="city" id="city" value="<c:out value='${auth.user.city}'/>">

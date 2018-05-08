@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@include file="../includeJsCss.jsp"%>
+<%@include file="../includeJsCss.html"%>
 
 
-<script src="${ctx}/resources/plugins/metisMenu/jquery.metisMenu.js"></script>
-<%-- <script src="${ctx}/resources/plugins/hplus.min.js?v=4.1.0"></script> --%>
-<script src="${ctx}/resources/plugins/contabs.min.js"></script>
-<script src="${ctx}/resources/plugins/pace/pace.min.js"></script>
+<script src="../../resources/plugins/metisMenu/jquery.metisMenu.js"></script>
+<%-- <script src="../../resources/plugins/hplus.min.js?v=4.1.0"></script> --%>
+<script src="../../resources/plugins/contabs.min.js"></script>
+<script src="../../resources/plugins/pace/pace.min.js"></script>
 <body>
 <div id="page-loader" class="fade in">
 	<span class="spinner"></span>
@@ -26,7 +26,7 @@
 			<div class="container-fluid">
 				<!-- begin mobile sidebar expand / collapse button -->
 				<div class="navbar-header">
-					<a href="${ctx}/main" class="navbar-brand"><span style="margin-right: 12px;"><img src="${ctx}/resources/img/WMLogo.png" width="30" height="30"></span>大气污染管理系统</a>
+					<a href="${ctx}/main" class="navbar-brand"><span style="margin-right: 12px;"><img src="../../resources/img/WMLogo.png" width="30" height="30"></span>大气污染管理系统</a>
 					<div class="left m-b-10 m-t-10 m-r-15" style="width: 1px; height: 35px; border-right: 1px solid #b9bfc5;"></div>
 					<a href="${ctx}/main">
 						<div class="WMMap_back"></div>
@@ -69,7 +69,7 @@
 							</div>
 						</form>
 					</li>
-					<li class="dropdown navbar-user"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <img src="${ctx}/resources/img/user.jpg" alt="" /> <span class="hidden-xs"><c:out value='${auth.user.fullName}' /></span> <b class="caret"></b>
+					<li class="dropdown navbar-user"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <img src="../../resources/img/user.jpg" alt="" /> <span class="hidden-xs"><c:out value='${auth.user.fullName}' /></span> <b class="caret"></b>
 					</a>
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>
@@ -101,13 +101,13 @@
                             </li>
                             <!-- 
                             <li>
-                                <a class="J_menuItem" href="weatherChartStation.jsp?">单站点</a>
+                                <a class="J_menuItem" href="weatherChartStation.html?">单站点</a>
                             </li>-->
                             <li>
                                <!--  <a href="${ctx}/weather/downloadDataIndex?">下载数据</a>-->
                             </li>
                             <li>
-                            	<!-- stationLatLng.jsp?
+                            	<!-- stationLatLng.html?
                                 <a class="J_menuItem" href="${ctx}/weather/stationLatLngIndex?">经纬度转化</a>
                                 -->
                             </li>

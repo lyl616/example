@@ -7,7 +7,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>实时监测</title>
-		<link href="${ctx}/resources/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../resources/css/bootstrap.min.css" rel="stylesheet" />
 		<style>
 			.if-l {
 				width: 62%;
@@ -23,7 +23,7 @@
 	</head>
 
 	<body>
-	<%@ include file="../V1/topMenu.jsp" %>
+	<%@ include file="../V1/topMenu.html" %>
 			<div class="if-l">
 				<iframe src="${ctx}/realtime/index" class="zte-iframe" frameborder="0" style="width: 100%; overflow: hidden;"></iframe>
 			</div>
@@ -31,8 +31,8 @@
 				<iframe src="${ctx}/history/cloudIndex" class="zte-iframe" frameborder="0" style="width: 100%; overflow: hidden;"></iframe>
 			</div>
 		
-		<script src="${ctx}/resources/js/jquery.min.js"></script>
-		<script src="${ctx}/resources/js/bootstrap.min.js"></script>
+		<script src="../../resources/js/jquery.min.js"></script>
+		<script src="../../resources/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 			var scrrenH = window.screen.height;			
 			$(".if-l iframe").css("height",scrrenH+"px");

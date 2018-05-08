@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../../includeJsCss.jsp" %>
+
+<%@include file="../../includeJsCss.html" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,15 +8,15 @@
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
 		<title>蛙鸣科技 | 参数计算</title>
-		<link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table-sort.js"></script>
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
-		<script type="text/javascript" src="${ctx}/resources/js/report/Init_Reporttime.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/layer/layer.js"></script>
+		<link rel="stylesheet" href="../../resources/plugins/vue/vue-table.css" />
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-1.0.24.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-table-sort.js"></script>
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
+		<script type="text/javascript" src="../../resources/js/report/Init_Reporttime.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/layer/layer.js"></script>
 	</head>
 	<body id="content" class="ovh">
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<div class="pd10 table-scroll">
 			<div class="tabs-container">
 				<ul class="nav nav-tabs bgf table-head" id="tabs-container">
@@ -219,7 +219,7 @@
 			</div>
 		</div>
 	</body>
-	<script type="text/javascript" src="${ctx}/resources/js/system/equipment/autocalibration.js"></script>
+	<script type="text/javascript" src="../../resources/js/system/equipment/autocalibration.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 		    $(window).resize(function() {

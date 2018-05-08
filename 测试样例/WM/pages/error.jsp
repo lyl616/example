@@ -213,9 +213,9 @@
 				</c:choose>
             </div> --%>
 				<div class="error_new pa">
-					<div class="fl error_new_left"><img src="${ctx}/resources/img/error-1.png"></div>
+					<div class="fl error_new_left"><img src="../../resources/img/error-1.png"></div>
 					<div class="fl error_new_right">
-						<p class="mb15"><img src="${ctx}/resources/img/error-2.png"></p>
+						<p class="mb15"><img src="../../resources/img/error-2.png"></p>
 						<p class="error_new_right_btn pr">
 							<a onclick="refreshFrame();" class="type-2 type-3">
 								<i> 返回首页</i>

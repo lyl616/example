@@ -9,7 +9,7 @@
 	</head>
 	<body>
 	</body>
-	<script src="${ctx}/resources/plugins/jquery/jquery-1.9.1.min.js"></script>
+	<script src="../../resources/plugins/jquery/jquery-1.9.1.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			window.parent.location.href="${ctx}/login";

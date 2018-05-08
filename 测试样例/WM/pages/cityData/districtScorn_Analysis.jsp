@@ -1,21 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8" />
 		<title>蛙鸣科技 | 区县考核统计</title>
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
 		<!--引入下拉多选框样式-->
-		<link href="${ctx}/resources/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+		<link href="../../resources/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet" />
+		<script type="text/javascript" src="../../resources/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
 		<script type="text/javascript" src="${ctx }/resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.js"></script>
 		<script type="text/javascript" src="${ctx }/resources/js/common/echarts-common.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/My97DatePicker/WdatePicker.js"></script>
 		<script type="text/javascript" src="${ctx }/resources/js/common/dateHelper.js"></script>
 	</head>
 	<body class="ovh">
-		<%@include file="../V1/topMenu.jsp" %>
+		<%@include file="../V1/topMenu.html" %>
 		<div class="pd10 table-scroll" id="content">
 			<div class="clear m-b-10" id="topSearch">
 				<div class="btn-group pull-left">
@@ -92,7 +92,7 @@
 			</div>
 		</div>
 		<script type="text/javascript" src="${ctx }/resources/js/cityData/districtScorn_Analysis.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/common/common.js"></script>
+		<script type="text/javascript" src="../../resources/js/common/common.js"></script>
 		<script type="text/javascript">
 		     $(document).ready(function() {
 		         $(window).resize(function() {

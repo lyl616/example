@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../../includeJsCss.jsp" %>
+
+<%@include file="../../includeJsCss.html" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,17 +9,17 @@
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
 		<title>蛙鸣科技 | 天气预报</title>
-		<link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table.js"></script>
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../resources/plugins/vue/vue-table.css" />
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-1.0.24.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-table.js"></script>
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
 		<script type="text/javascript">
 			sessionStorage.setItem("tag", "2,1");
 		</script>
 	</head>
 
 	<body class="ovh">
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<div id="content" class="pd10 table-scroll">
 			<!-- begin breadcrumb -->
 			<div class="top-search-container ovh">
@@ -61,7 +61,7 @@
 			</div>
 		</div>
 		<form id="exportForm" method="post"></form>
-		<script type="text/javascript" src="${ctx}/resources/js/system/data/forecast.js"></script>
+		<script type="text/javascript" src="../../resources/js/system/data/forecast.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 			    $(window).resize(function() {

@@ -8,30 +8,30 @@
 <head>
     <meta charset="utf-8"/>
     <title>蛙鸣科技 | 大气监测</title>
-    <link rel="stylesheet" href="${ctx}/resources/plugins/leaflet/css/initmap.css"/>
-    <link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet"/>
-    <link href="${ctx}/resources/css/timelineProgress.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../resources/plugins/leaflet/css/initmap.css"/>
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <link href="../../resources/css/timelineProgress.css" rel="stylesheet"/>
     <!--引用百度地图插件开始-->
-    <link rel="stylesheet" href="${ctx}/resources/plugins/bmap/DrawingManager_min.css"/>
-    <link href="${ctx}/resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css"/>
-    <link href="${ctx}/resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../../resources/plugins/bmap/DrawingManager_min.css"/>
+    <link href="../../resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css"/>
+    <link href="../../resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css"/>
 
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/DistanceTool_min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/DrawingManager_min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bmap/TrafficControl_min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/DistanceTool_min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/DrawingManager_min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/bmap/TrafficControl_min.js"></script>
     <!--引用百度地图插件结束-->
     <!--时间控件-->
-    <script type="text/javascript" src="${ctx}/resources/plugins/My97DatePicker/WdatePicker.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/report/Init_Reporttime.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../../resources/js/report/Init_Reporttime.js"></script>
     <!--地图操作-->
-    <script type="text/javascript" src="${ctx}/resources/js/management/pollution/conf-pollutions.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/common/com-map.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/management/pollution/conf-pollutions.js"></script>
+    <script type="text/javascript" src="../../resources/js/common/com-map.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
 </head>
 
 <body class="ovh">
-<%@include file="../V1/topMenu.jsp" %>
+<%@include file="../V1/topMenu.html" %>
 <div id="content" class="panel-left map-panel-left min-map-left">
     <div class="post-rel">
         <!-----------------------------------------------地图部分-------------------------------------------------------------->
@@ -387,12 +387,12 @@
 </div>
 <!--右侧的面板结束-->
 
-<script type="text/javascript" src="${ctx}/resources/js/airMonitoring/realtimePC/realtmeHistoryMap.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/airMonitoring/realtimePC/realtmeHistoryCommon.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/airMonitoring/realtimePC/timelineProgress.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/airMonitoring/realtimePC/stationPane.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/airMonitoring/country_index_initCharts.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/common/echarts-common.js"></script>
+<script type="text/javascript" src="../../resources/js/airMonitoring/realtimePC/realtmeHistoryMap.js"></script>
+<script type="text/javascript" src="../../resources/js/airMonitoring/realtimePC/realtmeHistoryCommon.js"></script>
+<script type="text/javascript" src="../../resources/js/airMonitoring/realtimePC/timelineProgress.js"></script>
+<script type="text/javascript" src="../../resources/js/airMonitoring/realtimePC/stationPane.js"></script>
+<script type="text/javascript" src="../../resources/js/airMonitoring/country_index_initCharts.js"></script>
+<script type="text/javascript" src="../../resources/js/common/echarts-common.js"></script>
 
 </body>
 

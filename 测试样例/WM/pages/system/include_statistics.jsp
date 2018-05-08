@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@include file="../includeJsCss.jsp"%>
-<%@include file="../pwd.jsp"%>
+<%@include file="../includeJsCss.html"%>
+<%@include file="../pwd.html"%>
 <script>
 	$(document).ready(function() {
 		if(sessionStorage.getItem("currentCityId")!=null){
@@ -52,7 +52,7 @@
 		<div id="header" class="header navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a href="${ctx}/main" class="navbar-brand"><span style="margin-right: 12px;"><img src="${ctx}/resources/img/WMLogo.png" width="30" height="30"></span>大气污染管理系统</a>
+					<a href="${ctx}/main" class="navbar-brand"><span style="margin-right: 12px;"><img src="../../resources/img/WMLogo.png" width="30" height="30"></span>大气污染管理系统</a>
 					<div class="left m-b-10 m-t-10 m-r-15" style="width: 1px; height: 35px; border-right: 1px solid #b9bfc5;"></div>
 					<a href="${ctx}/main">
 						<div class="WMMap_back"></div>
@@ -88,7 +88,7 @@
 				</div>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown navbar-user">
-						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <img src="${ctx}/resources/img/user.jpg" alt="" /> <span class="hidden-xs"><c:out value='${auth.user.fullName}' /></span> <b class="caret"></b></a>
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <img src="../../resources/img/user.jpg" alt="" /> <span class="hidden-xs"><c:out value='${auth.user.fullName}' /></span> <b class="caret"></b></a>
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>
 							 <li><a href="#" onclick="changePwd()">密码修改</a></li>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="../includeJsCss.jsp" %>
+<%@include file="../includeJsCss.html" %>
 <html>
 
 	<head>
@@ -9,7 +9,7 @@
 		<meta content="" name="description" />
 		<meta content="" name="author" />
 		<script type="text/javascript" src="${ctx }/resources/js/pollutionSource/pollution-index-range-temp.js"></script>
-		<link rel="stylesheet" href="${ctx}/resources/css/rewcssChrome.css" />
+		<link rel="stylesheet" href="../../resources/css/rewcssChrome.css" />
 		<script src="${ctx }/resources/plugins/d3/js/modernizr.js"></script>
 		<script src="${ctx }/resources/plugins/d3/js/d3.v3.min.js"></script>
 		<script src="${ctx }/resources/plugins/d3/js/underscore-min.js"></script>
@@ -23,7 +23,7 @@
 	</head>
 
 	<body>
-		<%@ include file="../V1/topMenu.jsp" %>
+		<%@ include file="../V1/topMenu.html" %>
 		<!-- end #header -->
 		<div class="col-md-12">
 			<div class="top-search-container post-fixed m-l-10 m-t-10">

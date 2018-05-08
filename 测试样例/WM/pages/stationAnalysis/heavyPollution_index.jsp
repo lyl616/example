@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../includeJsCss.jsp" %>
+
+<%@include file="../includeJsCss.html" %>
 <!DOCTYPE html>
 <html>
 
@@ -7,17 +7,17 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>蛙鸣科技 | 重污染监测</title>
-		<link rel="shortcut icon" href="${ctx}/resources/img/favicon.ico">
-		<link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css" />
-		<link rel="stylesheet" href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js "></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/report/Init_Reporttime.js"></script>
+		<link rel="shortcut icon" href="../../resources/img/favicon.ico">
+		<link rel="stylesheet" href="../../resources/plugins/vue/vue-table.css" />
+		<link rel="stylesheet" href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
+		<script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js "></script>
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-1.0.24.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-table.js"></script>
+		<script type="text/javascript" src="../../resources/js/report/Init_Reporttime.js"></script>
 	</head>
 
 	<body>
-		<%@ include file="../V1/topMenu.jsp" %>
+		<%@ include file="../V1/topMenu.html" %>
 		<div id="content">
 			<div class="pd10 ovh">
 				<!--重污染检测-->
@@ -122,7 +122,7 @@
 				</div>
 			</div>
 		</div>
-		<script src="${ctx}/resources/js/stationAnalysis/heavyPollution_index.js"></script>
+		<script src="../../resources/js/stationAnalysis/heavyPollution_index.js"></script>
 		<script type="text/javascript">
 			//计算左右树与右侧的表格对齐
 			calcOverflowH(0, 'scrollObj', 80);

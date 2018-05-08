@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../../includeJsCss.jsp" %>
+
+<%@include file="../../includeJsCss.html" %>
 <!DOCTYPE html>
 
 <html>
@@ -10,11 +10,11 @@
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
 		<title>传感器历史</title>
-		<link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/jquery-file-upload/js/ajaxfileupload.js"></script>
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../resources/plugins/vue/vue-table.css" />
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-1.0.24.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-table.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/jquery-file-upload/js/ajaxfileupload.js"></script>
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
 		<script type="text/javascript">
 			sessionStorage.setItem("tag", "1,2");
 			sessionStorage.setItem("path", "sensor");
@@ -22,7 +22,7 @@
 	</head>
 
 	<body>
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<div id="content" class="pd10">
 			<!-- begin breadcrumb -->
 			<div class="top-search-container">
@@ -76,7 +76,7 @@
 
 		</div>
 
-		<script type="text/javascript" src="${ctx}/resources/js/system/equipment/sensor_history_index.js"></script>
+		<script type="text/javascript" src="../../resources/js/system/equipment/sensor_history_index.js"></script>
 
 	</body>
 

@@ -1,16 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../includeJsCss.jsp" %>
+
+<%@include file="../includeJsCss.html" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>蛙鸣科技 | 全站分析</title>
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
+		<script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
 	</head>
 	<body>
-		<%@ include file="../V1/topMenu.jsp" %>
+		<%@ include file="../V1/topMenu.html" %>
 		<div class="pd10">
 			<div class="top-search-container">
 				<form role="form" class="form-inline">
@@ -43,7 +43,7 @@
 			<div class="animated fadeInRight" id="allCharts">
 			</div>
 		</div>
-		<script src="${ctx}/resources/js/tools/weatherChart.js"></script>
-		<script src="${ctx}/resources/js/common/dictionary.js"></script>
+		<script src="../../resources/js/tools/weatherChart.js"></script>
+		<script src="../../resources/js/common/dictionary.js"></script>
 	</body>
 </html>

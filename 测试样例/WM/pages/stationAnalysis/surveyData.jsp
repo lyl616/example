@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../includeJsCss.jsp" %>
+
+<%@include file="../includeJsCss.html" %>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
 <!DOCTYPE html>
@@ -9,21 +9,21 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>蛙鸣科技 | 监测数据分析</title>
-		<link rel="shortcut icon" href="${ctx}/resources/img/favicon.ico">
-		<link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css" />
-		<link rel="stylesheet" href="${ctx}/resources/css/rewcssChrome.css" />
+		<link rel="shortcut icon" href="../../resources/img/favicon.ico">
+		<link rel="stylesheet" href="../../resources/plugins/vue/vue-table.css" />
+		<link rel="stylesheet" href="../../resources/css/rewcssChrome.css" />
 
-		<script type="text/javascript" src="${ctx}/resources/js/report/Init_Reporttime.js"></script>
+		<script type="text/javascript" src="../../resources/js/report/Init_Reporttime.js"></script>
 		<!--引用插件使用-->
-		<link rel="stylesheet" href="${ctx}/resources/plugins/bmap/DrawingManager_min.css" />
-		<link href="${ctx}/resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../../resources/plugins/bmap/DrawingManager_min.css" />
+		<link href="../../resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
 
-		<script type="text/javascript" src="${ctx}/resources/plugins/bmap/DistanceTool_min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/bmap/DrawingManager_min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/bmap/TrafficControl_min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js "></script>
-		<script type="text/javascript" src="${ctx}/resources/js/common/com-map.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/bmap/DistanceTool_min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/bmap/DrawingManager_min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/bmap/TrafficControl_min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js "></script>
+		<script type="text/javascript" src="../../resources/js/common/com-map.js"></script>
 		<script type="text/javascript">
 			var stationId = "${requestScope.stationId}";
 			var stationType = "${requestScope.stationType}";
@@ -32,7 +32,7 @@
 	</head>
 
 	<body id="content" class="f-s-12 ovh">
-		<%@include file="../V1/topMenu.jsp" %>
+		<%@include file="../V1/topMenu.html" %>
 		<div class='panel-left'>
 			<div class="pd10 magin10 chunk-set">
 				<div class="form-inline">
@@ -252,12 +252,12 @@
 			<div class="tooltip-control post-abs map-Btnsurver-abs" :class="{'mapbtn-clearActive':btnStatus['mapbtnclear'].isActive,'mapbtn-clear':btnStatus['mapbtnclear'].noActive}" onclick="clearSelectMarker()" title="清除选中站点"></div>
 			<div id="allmap" style="height:100%;"></div>
 			<div class="map-surver-legend">
-				<img src='${ctx}/resources/img/legend/station-legend.png' />
+				<img src='../../resources/img/legend/station-legend.png' />
 			</div>
 		</div>
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table.js"></script>
-		<script src="${ctx}/resources/js/tools/surveyData.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-1.0.24.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-table.js"></script>
+		<script src="../../resources/js/tools/surveyData.js"></script>
 
 	</body>
 

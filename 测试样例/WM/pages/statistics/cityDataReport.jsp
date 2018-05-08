@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../includeJsCss.jsp" %>
+
+<%@include file="../includeJsCss.html" %>
 
 <!DOCTYPE html>
 <html>
@@ -10,18 +10,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css"/>
-    <link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet"/>
-    <script type="text/javascript" src="${ctx}/resources/js/report/Init_Reporttime.js"></script>
+    <link rel="stylesheet" href="../../resources/plugins/vue/vue-table.css"/>
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../../resources/js/report/Init_Reporttime.js"></script>
     <!--引入下拉多选框样式-->
-    <link href="${ctx}/resources/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet"/>
+    <link href="../../resources/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet"/>
     <script type="text/javascript"
-            src="${ctx}/resources/plugins/bootstrap-multiselect/js/bootstrap-multiselect-0.9.13.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js"></script>
+            src="../../resources/plugins/bootstrap-multiselect/js/bootstrap-multiselect-0.9.13.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js"></script>
 </head>
 
 <body class="ovh">
-<%@ include file="../V1/topMenu.jsp" %>
+<%@ include file="../V1/topMenu.html" %>
 <div id="content" class="pd10 table-scroll">
     <div class="top-search-container">
         <div class="form-inline">
@@ -124,9 +124,9 @@
 
     </div>
 </div>
-<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
-<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/statistics/cityDataReport.js"></script>
+<script type="text/javascript" src="../../resources/plugins/vue/vue-1.0.24.min.js"></script>
+<script type="text/javascript" src="../../resources/plugins/vue/vue-table.js"></script>
+<script type="text/javascript" src="../../resources/js/statistics/cityDataReport.js"></script>
 <script>
     $('.dropdown input, .dropdown label').click(function (event) {
         event.stopPropagation();

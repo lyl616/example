@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../VueMulitTable.jsp" %>
+
+<%@include file="../VueMulitTable.html" %>
 <!DOCTYPE html>
 <html>
 
@@ -7,14 +7,14 @@
 		<meta charset="utf-8" />
 		<title>蛙鸣科技 | 单区县统计</title>
 		<!--引入下拉多选框样式-->
-		<link href="${ctx}/resources/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet" />
-		<link href="${ctx}/resources/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+		<link href="../../resources/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet" />
+		<link href="../../resources/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
+		<script type="text/javascript" src="../../resources/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
 	</head>
 
 	<body>
-		<%@include file="../V1/topMenu.jsp" %>
+		<%@include file="../V1/topMenu.html" %>
 		<div class="pd10" id="content">
 			<div class="clear m-b-10">
 				<div class="btn-group pull-left">

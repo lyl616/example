@@ -1,17 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../VueMulitTable.jsp" %>
+
+<%@include file="../VueMulitTable.html" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8"/>
     <title>蛙鸣科技 | 区县目标管理</title>
-    <link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
     <!--引入下拉多选框样式-->
-    <link href="${ctx}/resources/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet"/>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+    <link href="../../resources/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../../resources/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
 </head>
 <body class="ovh">
-<%@include file="../V1/topMenu.jsp" %>
+<%@include file="../V1/topMenu.html" %>
 <div class="pd10 table-scroll" id="content">
     <div class="top-search-container">
         <div class="form-inline">

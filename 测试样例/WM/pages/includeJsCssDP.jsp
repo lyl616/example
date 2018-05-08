@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="provinceId" value="${auth.user.pro}"/>
@@ -7,31 +7,31 @@
 
 
 <!-- ================== BEGIN BASE CSS STYLE ================== -->
-<link rel="shortcut icon" href="${ctx}/resources/img/favicon.ico">
-<link rel="stylesheet" href="${ctx}/resources/css/zlight.menu.css" media="screen">
-<link rel="stylesheet" href="${ctx}/resources/css/bootstrap.min.css"/>
-<link rel="stylesheet" href="${ctx}/resources/css/style.min.css" rel="stylesheet"/>
-<link rel="stylesheet" href="${ctx}/resources/plugins/layer/skin/default/layer.css" rel="stylesheet"/>
+<link rel="shortcut icon" href="../../resources/img/favicon.ico">
+<link rel="stylesheet" href="../../resources/css/zlight.menu.css" media="screen">
+<link rel="stylesheet" href="../../resources/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="../../resources/css/style.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="../../resources/plugins/layer/skin/default/layer.css" rel="stylesheet"/>
 <!-- ================== END BASE CSS STYLE ================== -->
 
 
-<script type="text/javascript" src="${ctx}/resources/plugins/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="${ctx}/resources/plugins/layer/layer.js"></script>
-<script type="text/javascript" src="${ctx}/resources/plugins/My97DatePicker/WdatePicker.js"></script>
-<script type="text/javascript" src="${ctx}/resources/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../resources/plugins/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../resources/plugins/layer/layer.js"></script>
+<script type="text/javascript" src="../../resources/plugins/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../resources/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 
 <!-- ================== BEGIN COMMOM JS ================== -->
-<script type="text/javascript" src="${ctx}/resources/js/common/JSUtils.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/common/echarts-common.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/common/commonUtils.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/common/layer_msg.js"></script>
+<script type="text/javascript" src="../../resources/js/common/JSUtils.js"></script>
+<script type="text/javascript" src="../../resources/js/common/echarts-common.js"></script>
+<script type="text/javascript" src="../../resources/js/common/commonUtils.js"></script>
+<script type="text/javascript" src="../../resources/js/common/layer_msg.js"></script>
 
-<script type="text/javascript" src="${ctx}/resources/js/common/dictionary.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/common/common.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/common/country.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/common/lev-color.js"></script>
+<script type="text/javascript" src="../../resources/js/common/dictionary.js"></script>
+<script type="text/javascript" src="../../resources/js/common/common.js"></script>
+<script type="text/javascript" src="../../resources/js/common/country.js"></script>
+<script type="text/javascript" src="../../resources/js/common/lev-color.js"></script>
 <!-- ================== END COMMOM JS ================== -->
 
 

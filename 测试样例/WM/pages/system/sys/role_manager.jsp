@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../../includeVue.jsp" %>
+
+<%@include file="../../includeVue.html" %>
 <!DOCTYPE html>
 <html>
 
@@ -22,7 +22,7 @@
 	</head>
 
 	<body class="ovh">
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<div class="f-s-12 pd10 table-scroll" id="app">
 			<div class="top-search-container">
 				<div class="form-inline">
@@ -49,7 +49,7 @@
 					</div>
 				</div>
 			
-			<script type="text/javascript" src="${ctx}/resources/js/system/sys/role_manager.js"></script>
+			<script type="text/javascript" src="../../resources/js/system/sys/role_manager.js"></script>
 		</div>
 	</body>
 

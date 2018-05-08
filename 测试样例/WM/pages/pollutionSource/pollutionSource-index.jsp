@@ -1,30 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../includeJsCss.jsp" %>
+
+<%@include file="../includeJsCss.html" %>
 <html>
 
 	<head>
 		<meta charset="utf-8" />
 		<title>蛙鸣科技 | 污染来源</title>
 		<!--引用插件使用-->
-		<link rel="stylesheet" href="${ctx}/resources/plugins/bmap/DrawingManager_min.css" />
-		<link href="${ctx}/resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../../resources/plugins/bmap/DrawingManager_min.css" />
+		<link href="../../resources/plugins/bmap/TrafficControl_min.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uF99UKCfyDpn0dOjZcDtNd3u8ANCNI0D"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/bmap/DistanceTool_min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/bmap/DrawingManager_min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/bmap/TrafficControl_min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/common/com-map.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/extension/bmap.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/bmap/DistanceTool_min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/bmap/DrawingManager_min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/bmap/TrafficControl_min.js"></script>
+		<script type="text/javascript" src="../../resources/js/common/com-map.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/extension/bmap.js"></script>
 		<!--引用插件使用结束-->
-		<link href="${ctx}/resources/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-		<link href="${ctx}/resources/plugins/jquery-layout/layout-default-latest.css" rel="stylesheet" />
-		<script src="${ctx}/resources/plugins/DataTables/media/js/jquery.dataTables.js"></script>
-		<script src="${ctx}/resources/plugins/jquery-layout/jquery.layout-latest.js"></script>
-		<link href="${ctx}/resources/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/jquery-ui/jquery-ui.min.js"></script>
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
+		<link href="../../resources/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+		<link href="../../resources/plugins/jquery-layout/layout-default-latest.css" rel="stylesheet" />
+		<script src="../../resources/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+		<script src="../../resources/plugins/jquery-layout/jquery.layout-latest.js"></script>
+		<link href="../../resources/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="../../resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
 		<script type="text/javascript" src="${ctx }/resources/js/common/weather-air.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/common/timer.js"></script>
+		<script type="text/javascript" src="../../resources/js/common/timer.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('#myLayout').layout({
@@ -35,7 +35,7 @@
 	</head>
 
 	<body>
-		<%@ include file="../V1/topMenu.jsp" %>
+		<%@ include file="../V1/topMenu.html" %>
 		<input type="hidden" name="97DateTimeFmt" id="97DateTimeFmt" value="yyyy-MM-dd HH" />
 		<div class="pd10">
 			<div class="top-search-container">
@@ -97,7 +97,7 @@
 					</div>
 					<!-- 切换污染物End -->
 					<div class="Legend post-abs" style="right: 10px;">
-						<img src="${ctx}/resources/img/legend/legend-pm25.png" width="212" height="46">
+						<img src="../../resources/img/legend/legend-pm25.png" width="212" height="46">
 					</div>
 				</div>
 				<div class="ui-layout-east">
@@ -257,7 +257,7 @@
 		</div>
 		<script type="text/javascript" src="${ctx }/resources/js/pollutionSource/pollutionSource-index.js"></script>
 		<script type="text/javascript" src="${ctx }/resources/js/pollutionSource/pollution-index-range.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/management/pollution/pollution-detail.js"></script>
+		<script type="text/javascript" src="../../resources/js/management/pollution/pollution-detail.js"></script>
 	</body>
 
 </html>

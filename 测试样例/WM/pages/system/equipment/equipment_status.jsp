@@ -1,18 +1,18 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%-- <%@include file="../includeJsCss.jsp"%> --%>
-<%@include file="../include.jsp"%>
+<%-- <%@include file="../includeJsCss.html"%> --%>
+<%@include file="../include.html"%>
 <!DOCTYPE html>
 <html>
 
 	<head>
 		<meta charset="utf-8" />
 		<title>蛙鸣科技 | 设备状态</title>		
-		<link href="${ctx}/resources/css/style.min.css" rel="stylesheet" />
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
+		<link href="../../resources/css/style.min.css" rel="stylesheet" />
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
 	</head>
 
 	<body class="ovh">
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<!--搜索条开始-->
 		<div class="pd10 table-scroll">
 			<div class="top-search-container">
@@ -136,8 +136,8 @@
 			<!-- /.modal -->
 		</div>
 
-		<script type="text/javascript" src="${ctx}/resources/plugins/DataTables/config/datatable_common.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/system/equipment/equipment_status.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/DataTables/config/datatable_common.js"></script>
+		<script type="text/javascript" src="../../resources/js/system/equipment/equipment_status.js"></script>
 		<script type="text/javascript">
 			$(function() {
 				getEquipmentsPage();

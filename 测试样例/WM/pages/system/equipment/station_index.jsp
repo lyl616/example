@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
          import="java.util.ResourceBundle" %>
-<%@include file="../../includeJsCss.jsp" %>
+<%@include file="../../includeJsCss.html" %>
 
 <!DOCTYPE html>
 <html>
@@ -11,23 +11,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link type="text/css" rel="stylesheet" href="${ctx}/resources/plugins/bootstarp-fileinput/css/fileinput.css"/>
-    <script type="text/javascript" src="${ctx}/resources/plugins/bootstarp-fileinput/js/fileinput.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../resources/plugins/bootstarp-fileinput/css/fileinput.css"/>
+    <script type="text/javascript" src="../../resources/plugins/bootstarp-fileinput/js/fileinput.js"></script>
     <script type="text/javascript"
-            src="${ctx}/resources/plugins/bootstarp-fileinput/js/fileinput_locale_zh.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/jquery-file-upload/js/ajaxfileupload.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/jquery-file-upload/js/jquery.form.js"></script>
+            src="../../resources/plugins/bootstarp-fileinput/js/fileinput_locale_zh.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/jquery-file-upload/js/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/jquery-file-upload/js/jquery.form.js"></script>
 
-    <link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css"/>
-    <link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet"/>
-    <script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
-    <%--<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table.js"></script>--%>
-    <script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table-sort.js"></script>
+    <link rel="stylesheet" href="../../resources/plugins/vue/vue-table.css"/>
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../../resources/plugins/vue/vue-1.0.24.min.js"></script>
+    <%--<script type="text/javascript" src="../../resources/plugins/vue/vue-table.js"></script>--%>
+    <script type="text/javascript" src="../../resources/plugins/vue/vue-table-sort.js"></script>
 
     <!--引入下拉多选框样式-->
-    <link href="${ctx}/resources/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet"/>
+    <link href="../../resources/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet"/>
     <script type="text/javascript"
-            src="${ctx}/resources/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+            src="../../resources/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
     <script type="text/javascript">
         var communicat_IP_Port = "communicat_IP_Port";
     </script>
@@ -37,7 +37,7 @@
 </head>
 
 <body class="ovh">
-<%@ include file="../../V1/topMenu.jsp" %>
+<%@ include file="../../V1/topMenu.html" %>
 <div class="pd10 table-scroll">
     <div class="tabs-container chunk-set">
         <ul class="nav nav-tabs" id="tab-head">
@@ -265,7 +265,7 @@
                                         <option v-for="item in projectList" value="{{item.id}}">{{item.name}}</option>
                                     </select>
                                     <input id="excelFile" name="excelFile" type="file" class="m-t-10 m-b-10"/>
-                                    <a href="${ctx}/resources/template/Device_Import_Template.xlsx">导入文件模板下载</a>
+                                    <a href="../../resources/template/Device_Import_Template.xlsx">导入文件模板下载</a>
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -1048,7 +1048,7 @@
         }
     })
 </script>
-<script type="text/javascript" src="${ctx}/resources/js/system/equipment/station_index.js"></script>
+<script type="text/javascript" src="../../resources/js/system/equipment/station_index.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     $(window).resize(function() {

@@ -723,7 +723,7 @@
                                 self.isLoadding = false;
                             });
                         } else if (response.erroCode == '4000') {
-                            window.location = CommonUtil.path + '/pages/login.jsp';
+                            window.location = CommonUtil.path + '/pages/login.html';
                         } else {
                             return $.Deferred().reject(response.erroMsg); // 返回一个失败状态的deferred对象，把错误代码作为默认参数传入之后fail()方法的回调
                         }

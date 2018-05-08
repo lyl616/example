@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <div class="modal fade" id="pwdChgModal" tabindex="-1" role="dialog" aria-labelledby="pwdChgModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog .modal-sm">
         <div class="modal-content">

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../includeJsCss.jsp" %>
+
+<%@include file="../includeJsCss.html" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html lang="en">
@@ -7,15 +7,15 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>蛙鸣科技 | 城市数据分析</title>
-		<link href="${ctx}/resources/plugins/select2/dist/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/select2/dist/js/select2.full.min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/select2/dist/js/i18n/zh-CN.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
+		<link href="../../resources/plugins/select2/dist/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
+		<script type="text/javascript" src="../../resources/plugins/select2/dist/js/select2.full.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/select2/dist/js/i18n/zh-CN.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
 	</head>
 
 	<body>
-		<%@include file="../V1/topMenu.jsp" %>
+		<%@include file="../V1/topMenu.html" %>
 		<input type="hidden" name="97DateTimeFmt" id="97DateTimeFmt" value="yyyy-MM-dd HH" />
 		<div class="pd10">
 			<div class="top-search-container">
@@ -114,7 +114,7 @@
 				</div>
 			</div>
 		</div>
-		<script src="${ctx}/resources/js/cityData/cityData_analysisPC.js"></script>
+		<script src="../../resources/js/cityData/cityData_analysisPC.js"></script>
 		<script>
 			$(document).ready(function() {
 				$(window).resize(function() {

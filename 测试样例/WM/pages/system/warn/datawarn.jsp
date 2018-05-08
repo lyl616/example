@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../include.jsp" %>
+
+<%@include file="../include.html" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,15 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css"/>
-    <link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet"/>
-    <script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table-sort.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/report/Init_Reporttime.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/report/report-common.js"></script>
+    <link rel="stylesheet" href="../../resources/plugins/vue/vue-table.css"/>
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../../resources/plugins/vue/vue-1.0.24.min.js"></script>
+    <script type="text/javascript" src="../../resources/plugins/vue/vue-table-sort.js"></script>
+    <script type="text/javascript" src="../../resources/js/report/Init_Reporttime.js"></script>
+    <script type="text/javascript" src="../../resources/js/report/report-common.js"></script>
 </head>
 <body class="ovh">
-<%@ include file="../../V1/topMenu.jsp" %>
+<%@ include file="../../V1/topMenu.html" %>
 <div id="content" class="pd10 table-scroll">
     <div class="tabs-container">
         <ul class="nav nav-tabs chunk-set" id="tabContainer">
@@ -282,8 +282,8 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/system/warn/datawarn.js"></script>
+<script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
+<script type="text/javascript" src="../../resources/js/system/warn/datawarn.js"></script>
 <script type="text/javascript">
     //计算左右树与右侧的表格对齐
     calcOverflowH(0, 'scrollObj', 100);

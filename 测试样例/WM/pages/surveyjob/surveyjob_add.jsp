@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+﻿
 
 <!DOCTYPE html>
 <html>
@@ -9,9 +9,9 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
-    <link type="text/css" rel="stylesheet" href="${ctx}/resources/plugins/bootstarp-fileinput/css/fileinput.css"/>
-    <link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="${ctx}/resources/plugins/webuploader/css/upload-files.css">
+    <link type="text/css" rel="stylesheet" href="../../resources/plugins/bootstarp-fileinput/css/fileinput.css"/>
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../resources/plugins/webuploader/css/upload-files.css">
     <style type="text/css">
         .header-span {
             font-weight: 800;
@@ -25,7 +25,7 @@
 </head>
 
 <body class="ovh">
-<%@ include file="../V1/topMenu.jsp" %>
+<%@ include file="../V1/topMenu.html" %>
 <div class="ovh pd10 table-scroll" id="app">
     <div class="panel-body">
         <div class="panel-group" id="accordion">
@@ -504,9 +504,9 @@
     </div>
 </div>
 </div>
-<script type="text/javascript" src="${ctx}/resources/plugins/My97DatePicker/WdatePicker.js"></script>
-<script type="text/javascript" src="${ctx}/resources/plugins/webuploader/js/webuploader.min.js"></script>
-<script type="text/javascript" src="${ctx}/resources/plugins/webuploader/js/upload-files.js"></script>
+<script type="text/javascript" src="../../resources/plugins/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../../resources/plugins/webuploader/js/webuploader.min.js"></script>
+<script type="text/javascript" src="../../resources/plugins/webuploader/js/upload-files.js"></script>
 <script type="text/javascript" src="${ctx}/pages/surveyjob/surveyjob_add.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {

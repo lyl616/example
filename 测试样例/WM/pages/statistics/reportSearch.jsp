@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../includeJsCss.jsp" %>
+
+<%@include file="../includeJsCss.html" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,14 +9,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
-		<link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css" />
-		<link rel="stylesheet" href="${ctx}/resources/css/rewcssChrome.css" />
-		<script type="text/javascript" src="${ctx}/resources/js/report/Init_Reporttime.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/report/report-common.js"></script>
+		<link rel="stylesheet" href="../../resources/plugins/vue/vue-table.css" />
+		<link rel="stylesheet" href="../../resources/css/rewcssChrome.css" />
+		<script type="text/javascript" src="../../resources/js/report/Init_Reporttime.js"></script>
+		<script type="text/javascript" src="../../resources/js/report/report-common.js"></script>
 	</head>
 
 	<body>
-		<%@ include file="../V1/topMenu.jsp" %>
+		<%@ include file="../V1/topMenu.html" %>
 		<div class="pd10" id="content">
 			<div class="tabs-container chunk-set">
 				<ul class="nav nav-tabs">
@@ -243,9 +243,9 @@
 			<a class="dn" id="dowload" href="{{fileDownloadUrl}}">点击下载</a>
 			<!--搜索结果end-->
 		</div>
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/js/statistics/reportSearch.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-1.0.24.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-table.js"></script>
+		<script type="text/javascript" src="../../resources/js/statistics/reportSearch.js"></script>
 
 	</body>
 

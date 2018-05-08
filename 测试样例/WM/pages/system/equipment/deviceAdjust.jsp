@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../../includeJsCss.jsp" %>
+
+<%@include file="../../includeJsCss.html" %>
 <!DOCTYPE html>
 <html>
 
@@ -7,16 +7,16 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>蛙鸣科技 | 设备驯化</title>
-		<link rel="shortcut icon" href="${ctx}/resources/img/favicon.ico">
-		<link href="${ctx}/resources/plugins/select2/dist/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/select2/dist/js/select2.full.min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/select2/dist/js/i18n/zh-CN.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js"></script>
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
+		<link rel="shortcut icon" href="../../resources/img/favicon.ico">
+		<link href="../../resources/plugins/select2/dist/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="../../resources/plugins/select2/dist/js/select2.full.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/select2/dist/js/i18n/zh-CN.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.min.3.7.0.js"></script>
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
 	</head>
 
 	<body class="ovh">
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<div class="pd10 table-scroll">
 			<div class="top-search-container">
 				<form role="form" class="form-inline">
@@ -59,8 +59,8 @@
 			<div class="m-t-10" id="allCharts">
 			</div>
 		</div>
-		<script src="${ctx}/resources/js/system/equipment/deviceAdjust.js"></script>
-		<script src="${ctx}/resources/js/common/dictionary.js"></script>
+		<script src="../../resources/js/system/equipment/deviceAdjust.js"></script>
+		<script src="../../resources/js/common/dictionary.js"></script>
 		<script type="text/javascript">
 		     $(document).ready(function() {
 		         $(window).resize(function() {

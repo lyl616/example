@@ -1,16 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../includeJsCss.jsp" %>
+
+<%@include file="../includeJsCss.html" %>
 
 <head>
 	<meta charset="utf-8" />
 	<title>蛙鸣科技 | 站点统计</title>
 
-	<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
-	<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
+	<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
+	<script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js"></script>
 </head>
 
 <body>
-	<%@ include file="../V1/topMenu.jsp" %>
+	<%@ include file="../V1/topMenu.html" %>
 	<div id="cons"></div>
 	<div id="areaModal" class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-hidden="false">
 		<div class="modal-dialog modal-md">
@@ -59,7 +59,7 @@
 			calcOverflowH(0, 'rectangle_charts', 200);
 		}
 	</script>
-	<script src="${ctx}/resources/js/pollutionSource/pollution-level.js"></script>
+	<script src="../../resources/js/pollutionSource/pollution-level.js"></script>
 
 </body>
 

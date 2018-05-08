@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
@@ -7,8 +7,8 @@
 <html lang="zh-CN" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#" class="no-touch"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <title>全球视图</title>
-    <link rel="shortcut icon" href="${ctx}/resources/img/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="${ctx}/resources/plugins/wmearth/styles/styles.css"/>
+    <link rel="shortcut icon" href="../../resources/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../resources/plugins/wmearth/styles/styles.css"/>
     <script>
         window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
         ga('create', 'UA-44235933-2', 'auto');
@@ -16,7 +16,7 @@
         window.ctx = "${ctx}";
         window.coreApiPath = "${requestScope.coreApiContextPath}";
     </script>
-    <script async="" src="${ctx}/resources/plugins/wmearth/js/analytics.js"></script>
+    <script async="" src="../../resources/plugins/wmearth/js/analytics.js"></script>
 </head>
 <body>
 
@@ -132,7 +132,7 @@
 
 
 <!--<script async src="/js/bundle.js"></script>-->
-<script type="text/javascript" src="${ctx}/resources/plugins/wmearth/js/bundle.js?v2"></script>
+<script type="text/javascript" src="../../resources/plugins/wmearth/js/bundle.js?v2"></script>
 
 
 

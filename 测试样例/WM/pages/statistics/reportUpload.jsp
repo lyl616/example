@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../includeJsCss.jsp" %>
+
+<%@include file="../includeJsCss.html" %>
 
 <!DOCTYPE html>
 <html>
@@ -10,19 +10,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link type="text/css" rel="stylesheet" href="${ctx}/resources/plugins/bootstarp-fileinput/css/fileinput.css"/>
-    <link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css"/>
-    <link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="${ctx}/resources/plugins/webuploader/css/upload-files.css">
-    <%--<script type="text/javascript" src="${ctx}/resources/plugins/bootstarp-fileinput/js/fileinput.min.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/resources/plugins/bootstarp-fileinput/js/fileinput_locale_zh.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/resources/plugins/jquery-file-upload/js/ajaxfileupload.js"></script>--%>
-    <script type="text/javascript" src="${ctx}/resources/js/report/Init_Reporttime.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/report/report-common.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../resources/plugins/bootstarp-fileinput/css/fileinput.css"/>
+    <link rel="stylesheet" href="../../resources/plugins/vue/vue-table.css"/>
+    <link href="../../resources/css/rewcssChrome.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../resources/plugins/webuploader/css/upload-files.css">
+    <%--<script type="text/javascript" src="../../resources/plugins/bootstarp-fileinput/js/fileinput.min.js"></script>--%>
+    <%--<script type="text/javascript" src="../../resources/plugins/bootstarp-fileinput/js/fileinput_locale_zh.js"></script>--%>
+    <%--<script type="text/javascript" src="../../resources/plugins/jquery-file-upload/js/ajaxfileupload.js"></script>--%>
+    <script type="text/javascript" src="../../resources/js/report/Init_Reporttime.js"></script>
+    <script type="text/javascript" src="../../resources/js/report/report-common.js"></script>
 </head>
 
 <body>
-<%@ include file="../V1/topMenu.jsp" %>
+<%@ include file="../V1/topMenu.html" %>
 <div id="content" class="pd10">
 
     <div class="tabs-container bgf">
@@ -413,11 +413,11 @@
     </div>
     <!--上传弹窗end-->
 </div>
-<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
-<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table.js"></script>
-<script type="text/javascript" src="${ctx}/resources/plugins/webuploader/js/webuploader.min.js"></script>
-<script type="text/javascript" src="${ctx}/resources/plugins/webuploader/js/upload-files.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/statistics/reportUpload.js"></script>
+<script type="text/javascript" src="../../resources/plugins/vue/vue-1.0.24.min.js"></script>
+<script type="text/javascript" src="../../resources/plugins/vue/vue-table.js"></script>
+<script type="text/javascript" src="../../resources/plugins/webuploader/js/webuploader.min.js"></script>
+<script type="text/javascript" src="../../resources/plugins/webuploader/js/upload-files.js"></script>
+<script type="text/javascript" src="../../resources/js/statistics/reportUpload.js"></script>
 </body>
 
 </html>

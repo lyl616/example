@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../includeJsCssDP.jsp" %>
+
+<%@include file="../includeJsCssDP.html" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html lang="en">
@@ -7,12 +7,12 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>蛙鸣科技 | 城市数据分析</title>
-		<link href="${ctx}/resources/css/rewcss.css" rel="stylesheet" />
-		<link href="${ctx}/resources/plugins/select2/dist/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="${ctx}/resources/css/bigScreen.css" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/select2/dist/js/select2.full.min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/select2/dist/js/i18n/zh-CN.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js "></script>
+		<link href="../../resources/css/rewcss.css" rel="stylesheet" />
+		<link href="../../resources/plugins/select2/dist/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../../resources/css/bigScreen.css" />
+		<script type="text/javascript" src="../../resources/plugins/select2/dist/js/select2.full.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/select2/dist/js/i18n/zh-CN.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/echarts-3.1.10/dist/echarts.3.1.10.min.js "></script>
 		<script type="text/javascript">
 			var bigScreen_flg = true;
 		</script>
@@ -115,7 +115,7 @@
 				</div>
 			</div>
 		</div>
-		<script src="${ctx}/resources/js/cityData/cityData_analysis.js"></script>
+		<script src="../../resources/js/cityData/cityData_analysis.js"></script>
 		<script>
 			$(document).ready(function() {
 				$(window).resize(function() {

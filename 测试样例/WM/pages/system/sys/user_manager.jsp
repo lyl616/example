@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../../includeVue.jsp" %>
+
+<%@include file="../../includeVue.html" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,13 +9,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
-		<link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table2.css">
-		<link rel="stylesheet" href="${ctx}/resources/plugins/ztree/css/zTreeStyle/zTreeStyle.css">		
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../resources/plugins/vue/vue-table2.css">
+		<link rel="stylesheet" href="../../resources/plugins/ztree/css/zTreeStyle/zTreeStyle.css">
 	</head>
 
 	<body class="ovh">
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<div class="f-s-12 ovh p-t-10 table-scroll" id="app">
 			<div class="zTreeDemoBackground col-sm-3 p-l-10">
 				<div class="panel panel-white">
@@ -79,9 +79,9 @@
 			</div>
 		</div>
 
-		<script type="text/javascript" src="${ctx}/resources/plugins/ztree/js/jquery.ztree.all.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/ztree/js/jquery.ztree.all.js"></script>
 
-		<script type="text/javascript" src="${ctx}/resources/js/system/sys/user_manager.js"></script>
+		<script type="text/javascript" src="../../resources/js/system/sys/user_manager.js"></script>
 		<script>
 			$(document).ready(function() {
 				$(window).resize(function() {

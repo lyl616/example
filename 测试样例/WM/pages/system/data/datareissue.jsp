@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../include.jsp" %>
+
+<%@include file="../include.html" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,14 +9,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
-		<link rel="stylesheet" href="${ctx}/resources/plugins/vue/vue-table.css" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-1.0.24.min.js"></script>
-		<script type="text/javascript" src="${ctx}/resources/plugins/vue/vue-table.js"></script>
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />		
+		<link rel="stylesheet" href="../../resources/plugins/vue/vue-table.css" />
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-1.0.24.min.js"></script>
+		<script type="text/javascript" src="../../resources/plugins/vue/vue-table.js"></script>
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
 	</head>
 
 	<body>
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<div id="content" class="pd10">
 			<div class="top-search-container">
 				<div class="form-inline">
@@ -46,7 +46,7 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="${ctx}/resources/js/system/data/datareissue.js"></script>
+		<script type="text/javascript" src="../../resources/js/system/data/datareissue.js"></script>
 	</body>
 
 </html>

@@ -1,5 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../../includeVue.jsp" %>
+﻿
+<%@include file="../../includeVue.html" %>
 
 <!DOCTYPE html>
 <html>
@@ -10,12 +10,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
-		<script type="text/javascript" src="${ctx}/resources/plugins/My97DatePicker/WdatePicker.js"></script>
-		<link href="${ctx}/resources/css/rewcssChrome.css" rel="stylesheet" />
+		<script type="text/javascript" src="../../resources/plugins/My97DatePicker/WdatePicker.js"></script>
+		<link href="../../resources/css/rewcssChrome.css" rel="stylesheet" />
 	</head>
 
 	<body class="ovh">
-		<%@ include file="../../V1/topMenu.jsp" %>
+		<%@ include file="../../V1/topMenu.html" %>
 		<div id="app" class="pd10 table-scroll">
 			<!--实时告警搜索条件 begin-->
 			<div class="pd10 bgf">
@@ -72,7 +72,7 @@
 			</div>
 			<!--搜索结果end-->
 		</div>
-		<script type="text/javascript" src="${ctx}/resources/js/system/sys/operateLog.js"></script>
+		<script type="text/javascript" src="../../resources/js/system/sys/operateLog.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 			    $(window).resize(function() {

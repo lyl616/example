@@ -2,7 +2,7 @@
 
 <c:set var="coreApiPath" value="${requestScope.coreApiContextPath}"/>
 <c:set var="backendApiPath" value="${requestScope.backendApiContextPath}"/>
-<script type="text/javascript" src="${ctx}/resources/js/common/commonUtils.js"></script>
+<script type="text/javascript" src="../../resources/js/common/commonUtils.js"></script>
 <script type="text/javascript">
     $.ctx = "${ctx}";
     $.coreApiPath = "${requestScope.coreApiContextPath}";
@@ -19,7 +19,7 @@
         <ul id="zlightmenu">
             <li id="menuParentLi">
 				<span href="2015-10-28/juqery-nav677020150824/index.html">
-						<img src="${ctx}/resources/img/system/logo.png" class="logo-img"/>
+						<img src="../../resources/img/system/logo.png" class="logo-img"/>
 						<b class="text"></b>
 				</span>
             </li>
@@ -52,7 +52,7 @@
             </li>
         </ul>
     </div>
-    <div class="pull-right telecom-logo"><img src="${ctx}/resources/img/whiteLogo-Chengdu.png"/></div>
+    <div class="pull-right telecom-logo"><img src="../../resources/img/whiteLogo-Chengdu.png"/></div>
     <div class="top-pname hidden" id="pageName"></div>
 </div>
 <div class="frame-menu-place"></div>
@@ -360,4 +360,4 @@
 
 
 </script>
-<%@include file="../pwd.jsp" %>
+<%@include file="../pwd.html" %>
