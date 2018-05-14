@@ -1,6 +1,4 @@
 
-<%@include file="../includeJsCss.html" %>
-<c:set var="coreApiPath" value="${requestScope.coreApiContextPath}"/>
 
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -38,7 +36,6 @@
 </head>
 
 <body>
-<%@include file="../V1/topMenu.html" %>
 <input type="hidden" name="97DateTimeFmt" id="97DateTimeFmt" value="yyyy-MM-dd"/>
 <!-- begin #page-container -->
 <div id="page-container" class="page-sidebar-fixed">
@@ -56,20 +53,16 @@
                 <a id="no2" class="btn btn-white" type="button">NO<sub>2</sub></a>
             </div>
             <div class="btn-group col-sm-6 pull-right">
-                <%--<sec:authorize access="hasRole('ROLE_FUN_001_03_001')">--%>
                 <div class="btn-group s-5 pull-right">
                     <button type="button" class="btn btn-info" id="wz">
                         <span>微站</span>
                     </button>
                 </div>
-                <%--</sec:authorize>--%>
-                <%--<sec:authorize access="hasRole('ROLE_FUN_001_03_002')">--%>
                 <div class="btn-group s-5 pull-right">
                     <button type="button" class="btn btn-white" id="kaohe">
                         <span>考核站</span>
                     </button>
                 </div>
-                <%--</sec:authorize>--%>
                 <div class="btn-group s-5 pull-right">
                     <button type="button" class="btn btn-white">
                         <span> 风向 ： <i class="g0f85c9 fsn" id="direction"> <img
