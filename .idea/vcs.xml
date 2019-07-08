@@ -2,7 +2,12 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Semantic-UI" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/echarts-examples" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/mcloud" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vue-bootstrap-table" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vuetable-2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/zyapp_static" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/zyapp_static/SUI-Mobile" vcs="Git" />
   </component>
 </project>

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .table {font-size: 12px;margin-bottom: 8px;background-color: #fdfdfd;width: 100%}
+        .table-bordered th, .table-bordered td {border-left: 1px solid #ddd;padding: 4px 5px;}
+        .table th{text-align: center;}
+        .table td{text-align: right}
+        .table th, .table td {padding: 2px;line-height: 20px;vertical-align: middle;border-top: 1px solid #ddd;}
+        .table-bordered {border: 1px solid #ddd;border-collapse: separate;border-left: 0;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
+        body {font-family: Helvetica, Georgia, Arial, sans-serif, 宋体;margin: 0;font-size: 14px;line-height: 20px;color: #555;background-color: #fff;}
+    </style>
+</head>
+<body>
+<div style="margin: 10px">XXX，您好：<br/>这是今日的“OEM厂库存呈现报表”，请阅览。</div>
+<table id="contentTable" class="table table-hover table-bordered table-condensed">
+    <thead style="border-top: 0px;">
+    <tr>
+        <th rowspan="2">现地</th>
+        <th rowspan="2">DOS</th>
+        <th rowspan="2">计划排配</th>
+        <th rowspan="2">Total</th>
+        <th colspan="3" >成品库</th>
+        <th rowspan="2">材料库良品</th>
+        <th colspan="3" >不良品库</th>
+        <th colspan="5" >实绩WIP</th>
+    </tr>
+    <tr >
+        <th>成品良品</th>
+        <th>成品降级品</th>
+        <th>Total</th>
+        <th>材损</th>
+        <th>制损</th>
+        <th>Total</th>
+        <th>良品</th>
+        <th>Hold</th>
+        <th>维修品</th>
+        <th>不良品</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    <tr>
+
+        <td style="text-align:center">
+            B1
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+            1,980,373
+        </td>
+        <td style="text-align:right">
+            1,340,063
+        </td>
+        <td style="text-align:right">
+            91,452
+        </td>
+        <td style="text-align:right">
+            1,431,515
+        </td>
+        <td style="text-align:right">
+            296,848
+        </td>
+        <td style="text-align:right">
+            238,629
+        </td>
+        <td style="text-align:right">
+            13,381
+        </td>
+        <td style="text-align:right">
+            252,010
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+    </tr>
+
+    <tr>
+
+        <td style="text-align:center">
+            B2
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+            126,633
+        </td>
+        <td style="text-align:right">
+            115,171
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+            115,171
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+            9,620
+        </td>
+        <td style="text-align:right">
+            1,842
+        </td>
+        <td style="text-align:right">
+            11,462
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+    </tr>
+
+    <tr>
+
+        <td style="text-align:center">
+            B3
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+            1,327,124
+        </td>
+        <td style="text-align:right">
+            694,893
+        </td>
+        <td style="text-align:right">
+            91,171
+        </td>
+        <td style="text-align:right">
+            786,064
+        </td>
+        <td style="text-align:right">
+            473,613
+        </td>
+        <td style="text-align:right">
+            45,496
+        </td>
+        <td style="text-align:right">
+            21,951
+        </td>
+        <td style="text-align:right">
+            67,447
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+    </tr>
+
+    <tr>
+
+        <td style="text-align:center">
+            B4
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+            108,172
+        </td>
+        <td style="text-align:right">
+            64,945
+        </td>
+        <td style="text-align:right">
+            13,167
+        </td>
+        <td style="text-align:right">
+            78,112
+        </td>
+        <td style="text-align:right">
+            27,246
+        </td>
+        <td style="text-align:right">
+            485
+        </td>
+        <td style="text-align:right">
+            2,329
+        </td>
+        <td style="text-align:right">
+            2,814
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+    </tr>
+
+    <tr>
+
+        <td style="text-align:center">
+            B5
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+            98,320
+        </td>
+        <td style="text-align:right">
+            39,467
+        </td>
+        <td style="text-align:right">
+            26,211
+        </td>
+        <td style="text-align:right">
+            65,678
+        </td>
+        <td style="text-align:right">
+            31,511
+        </td>
+        <td style="text-align:right">
+            177
+        </td>
+        <td style="text-align:right">
+            954
+        </td>
+        <td style="text-align:right">
+            1,131
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+    </tr>
+
+    <tr>
+
+        <td style="text-align:center">
+            B6
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+            5,796,788
+        </td>
+        <td style="text-align:right">
+            3,080,193
+        </td>
+        <td style="text-align:right">
+            858,667
+        </td>
+        <td style="text-align:right">
+            3,938,860
+        </td>
+        <td style="text-align:right">
+            1,155,515
+        </td>
+        <td style="text-align:right">
+            494,524
+        </td>
+        <td style="text-align:right">
+            207,889
+        </td>
+        <td style="text-align:right">
+            702,413
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+    </tr>
+
+    <tr>
+
+        <td style="text-align:center">
+            B7
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+            11,338
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+            11,338
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+            11,338
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+    </tr>
+
+    <tr>
+
+        <td style="text-align:center">
+            B8
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+            1,251,650
+        </td>
+        <td style="text-align:right">
+            637,578
+        </td>
+        <td style="text-align:right">
+            95,006
+        </td>
+        <td style="text-align:right">
+            732,584
+        </td>
+        <td style="text-align:right">
+            435,086
+        </td>
+        <td style="text-align:right">
+            65,518
+        </td>
+        <td style="text-align:right">
+            18,462
+        </td>
+        <td style="text-align:right">
+            83,980
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+    </tr>
+
+    <tr>
+
+        <td style="text-align:center">
+            B10
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+            498,599
+        </td>
+        <td style="text-align:right">
+            436,411
+        </td>
+        <td style="text-align:right">
+            27,468
+        </td>
+        <td style="text-align:right">
+            463,879
+        </td>
+        <td style="text-align:right">
+            31,595
+        </td>
+        <td style="text-align:right">
+            1,865
+        </td>
+        <td style="text-align:right">
+            1,260
+        </td>
+        <td style="text-align:right">
+            3,125
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+    </tr>
+
+    <tr>
+
+        <td style="text-align:center">
+            TM1
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+            11,749
+        </td>
+        <td style="text-align:right">
+            8,296
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+            8,296
+        </td>
+        <td style="text-align:right">
+            2,836
+        </td>
+        <td style="text-align:right">
+            19
+        </td>
+        <td style="text-align:right">
+            598
+        </td>
+        <td style="text-align:right">
+            617
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+    </tr>
+
+    <tr>
+
+        <td style="text-align:center">
+            BMDT
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+            22,962
+        </td>
+        <td style="text-align:right">
+            739
+        </td>
+        <td style="text-align:right">
+            1,788
+        </td>
+        <td style="text-align:right">
+            2,527
+        </td>
+        <td style="text-align:right">
+            20,435
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+        <td style="text-align:right">
+
+        </td>
+    </tr>
+
+    <tr style="font-weight: 700; border-bottom: 1px solid rgb(221, 221, 221);">
+        <td style="text-align:center;">总计</td>
+        <td style="text-align:right"></td>
+        <td style="text-align:right"></td>
+        <td style="text-align:right">11,233,708</td>
+        <td style="text-align:right">6,417,756</td>
+        <td style="text-align:right">1,204,930</td>
+        <td style="text-align:right">7,622,686</td>
+        <td style="text-align:right">2,474,685</td>
+        <td style="text-align:right">867,671</td>
+        <td style="text-align:right">268,666</td>
+        <td style="text-align:right">1,136,337</td>
+        <td style="text-align:right"></td>
+        <td style="text-align:right"></td>
+        <td style="text-align:right"></td>
+        <td style="text-align:right"></td>
+        <td style="text-align:right"></td>
+    </tr>
+    </tbody>
+</table>
+<div style="float: right;margin-right: 20px;text-align: right;">
+    <ul style="list-style-type:none;">
+        <li>如有问题，请联系OEM信息管理平台的管理员。</li>
+        <li>祝您工作愉快！</li>
+        <li> OEM信息管理平台&nbsp;</li>
+    </ul>
+</div>
+</body>
+</html>
