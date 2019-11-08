@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="bootstrap-2.3.2/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/jquery.treegrid.css">
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.treegrid.js"></script>
+    <script type="text/javascript" src="../js/jquery.treegrid.bootstrap2.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var topicjson = {
+                    "response": [
+                        {
+                            "id": "1",
+                            "elementName": "Grouping",
+                            level: "0", parent: "", isLeaf: false, expanded: false, loaded: true
+                        },
+                        {
+                            "id": "1_1",
+                            "elementName": "Simple Grouping",
+                            level: "1", parent: "1", isLeaf: true, expanded: false, loaded: true
+                        },
+                        {
+                            "id": "1_2",
+                            "elementName": "May be some other grouping",
+                            level: "1", parent: "1", isLeaf: true, expanded: false, loaded: true
+                        },
+                        {
+                            "id": "2",
+                            "elementName": "CustomFormater",
+                            level: "0", parent: "", isLeaf: false, expanded: true, loaded: true
+                        },
+                        {
+                            "id": "2_1",
+                            "elementName": "Image Formatter",
+                            level: "1", parent: "2", isLeaf: true, expanded: false, loaded: true
+                        },
+                        {
+                            "id": "2_1",
+                            "elementName": "Anchor Formatter",
+                            level: "1", parent: "2", isLeaf: true, expanded: false, loaded: true
+                        }
+                    ]
+                },
+                grid;
+            var lastsel;
+            grid = jQuery("#treegrid2");
+            grid.jqGrid({
+                datastr: topicjson,
+                datatype: "jsonstring",
+                height: "auto",
+                loadui: "disable",
+                colNames: ["id", "Items", "url"],
+                colModel: [
+                    {name: "id", width: 200, hidden: false, key: true},
+                    {name: "elementName", editable: true, width: 250, resizable: false},
+                    {name: "url", width: 1, editable: true, hidden: true}
+                ],
+                treeGrid: true,
+                treeGridModel: "adjacency",
+                ExpandColumn: "elementName",
+                treeIcons: {leaf: 'ui-icon-document-b'},
+                caption: "jqGrid Demos",
+                rowNum: 10000,
+                //ExpandColClick: true,
+                jsonReader: {
+                    repeatitems: false,
+                    root: "response"
+                },
+                onSelectRow: function (id) {
+                    if (id && id !== lastsel) {
+                        grid.jqGrid('restoreRow', lastsel);
+                        grid.jqGrid('editRow', id, true);
+                        lastsel = id;
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<table class="table tree2 table-bordered table-striped table-condensed">
+    <tr class="treegrid-1">
+        <td>Root node 1</td>
+        <td>Additional info</td>
+    </tr>
+    <tr class="treegrid-2 treegrid-parent-1">
+        <td>Node 1-1</td>
+        <td>Additional info</td>
+    </tr>
+    <tr class="treegrid-3 treegrid-parent-1">
+        <td>Node 1-2</td>
+        <td>Additional info</td>
+    </tr>
+    <tr class="treegrid-4 treegrid-parent-3">
+        <td>Node 1-2-1</td>
+        <td>Additional info</td>
+    </tr>
+    <tr class="treegrid-5">
+        <td>Root node 2</td>
+        <td>Additional info</td>
+    </tr>
+    <tr class="treegrid-6 treegrid-parent-5">
+        <td>Node 2-1</td>
+        <td>Additional info</td>
+    </tr>
+    <tr class="treegrid-7 treegrid-parent-5">
+        <td>Node 2-2</td>
+        <td>Additional info</td>
+    </tr>
+    <tr class="treegrid-8 treegrid-parent-7">
+        <td>Node 2-2-1</td>
+        <td>Additional info</td>
+    </tr>
+</table>
+</body>
+</html>
